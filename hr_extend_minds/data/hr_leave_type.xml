@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='0'>
+
+        <record id="hr_leave_type_1" model="hr.leave.type">
+            <field name="name">رصيد متجمد حتى 2009</field>
+            <field name="code">FL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">brown</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_2" model="hr.leave.type">
+            <field name="name">مرضي اجر كامل ينطبق عليه القرار</field>
+            <field name="code">SFPL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightpink</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_3" model="hr.leave.type">
+            <field name="name">اعتيادي 2021</field>
+            <field name="code">AL2021</field>
+            <field name="request_unit">day</field>
+            <field name="validity_start">2021-01-01</field>
+            <field name="validity_stop">2021-12-31</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">blue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_4" model="hr.leave.type">
+            <field name="name">اعتيادي 2022</field>
+            <field name="code">AL2022</field>
+            <field name="request_unit">day</field>
+            <field name="validity_start">2022-01-01</field>
+            <field name="validity_stop">2023-12-31</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">blue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_5" model="hr.leave.type">
+            <field name="name">مرضي كورونا - مخالط</field>
+            <field name="code">SCML01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">wheat</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_6" model="hr.leave.type">
+            <field name="name">مرضي كورونا - مشتبه</field>
+            <field name="code">SCSL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">wheat</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_7" model="hr.leave.type">
+            <field name="name">مرضي كورونا - مصاب</field>
+            <field name="code">SCIL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">black</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_8" model="hr.leave.type">
+            <field name="name">مناسك دينية - 30 يوم</field>
+            <field name="code">RRL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">violet</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_9" model="hr.leave.type">
+            <field name="name">أجازة وضع - 3 شهور</field>
+            <field name="code">ML01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">lightcyan</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_10" model="hr.leave.type">
+            <field name="name">اصابة عمل</field>
+            <field name="code">WIL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightcoral</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_11" model="hr.leave.type">
+            <field name="name">بلاغ مرضي</field>
+            <field name="code">SRL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightsalmon</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_12" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار أجر كامل - 90 يوم</field>
+            <field name="code">SNFPL9001</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_13" model="hr.leave.type">
+            <field name="name">عارضة - 2021</field>
+            <field name="code">CL2021</field>
+            <field name="validity_start">2021-01-01</field>
+            <field name="validity_stop">2021-12-31</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">red</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_14" model="hr.leave.type">
+            <field name="name">عارضة - 2022</field>
+            <field name="code">CL2022</field>
+            <field name="validity_start">2022-01-01</field>
+            <field name="validity_stop">2022-12-31</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">red</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_15" model="hr.leave.type">
+            <field name="name">وجوبي - رعاية طفل</field>
+            <field name="code">OCCL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lavender</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_16" model="hr.leave.type">
+            <field name="name">وجوبي - مرافقة زوج أو زوجة</field>
+            <field name="code">OSL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lavender</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_17" model="hr.leave.type">
+            <field name="name">جوازي - ظروف خاصة</field>
+            <field name="code">MSCL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightyellow</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_18" model="hr.leave.type">
+            <field name="name">جوازي - استثنائي</field>
+            <field name="code">MEL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightyellow</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_19" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار أجر 75% - 180 يوم</field>
+            <field name="code">SNFPL18002</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_20" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار أجر 50% - 180 يوم</field>
+            <field name="code">SNFPL18003</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_21" model="hr.leave.type">
+            <field name="name">مرضي لا ينطبق عليه القرار بدون أجر - 180 يوم</field>
+            <field name="code">SNFPL18004</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">ivory</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_22" model="hr.leave.type">
+            <field name="name">DMS - مرضي</field>
+            <field name="code">SDMSL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">lightblue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_23" model="hr.leave.type">
+            <field name="name">اعتيادي رصيد مرحل اعوام زوجية بعد 2009</field>
+            <field name="code">EBAL2009</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">blue</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+        <record id="hr_leave_type_24" model="hr.leave.type">
+            <field name="name">أجازات رسمية</field>
+            <field name="code">OVL01</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">magenta</field>
+            <field name="leave_validation_type">hr</field>
+        </record>
+
+    </data>
+</odoo>

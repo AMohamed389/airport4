@@ -1,0 +1,142 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- <template id="report_hiring_document">
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" >
+                        <h2 class="text-center">عقد عمل</h2>
+                        
+                        <div class="row">
+                            <div class="text-left col-8">
+                                <span clss="font-weight-bold text-left" t-esc="'انه في يوم {0} الموافق {1}'.format(o.create_date.strftime('%A').replace('Saturday','السبت').replace('Sunday','الأحد').replace('Monday','الاثنين').replace('Tuesday','الثلاثاء').replace('Wednesday','الأربعاء').replace('Thursday','الخميس').replace('Friday','الجمعة') or '', o.create_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"></span>
+                            </div>
+                            
+                            <div class="text-right col-4">
+                                <span t-esc="'{0}'.format(o.name).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" class="text-right" />
+                                <br/>
+                                <span t-esc="'بما يعادل الدرجة {0}'.format(o.equal_degree)" class="text-right" />
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span>تم الأتفاق بين كلا من :-</span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-9">
+                                <span t-esc="'1-شركة ميناء القاهرة الجوي و يمثلها السيد / رئيس مجلس الادارة'.replace('1','١')"/>
+                            </div>
+                            <div class="col-3">
+                                <span t-esc="'(طرف أول)'" class="text-right font-weight-bold"></span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-9">
+                                <span t-esc="'2-السيد / {}'.format(o.employee_id.name).replace('2','٢')"/>
+                            </div>
+                            <div class="col-3">
+                                <span t-esc="'(طرف ثان)'" class="text-right font-weight-bold"></span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'المقيم / {}'.format(o.employee_id.address_home_id.name).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'بطاقة رقم / {}'.format(o.employee_id.identification_id).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="o.employee_id.birthday and 'و تاريخ ميلاده / {}'.format(o.employee_id.birthday.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'و مؤهله / {}'.format(o.employee_id.certificate)"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span>على الاّتي :-</span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'أولا :- أن يعمل الطرف الثاني لدى الطرف الأول بوظيفة {0}'.format(o.job_id.name)"/>
+                                <br/>
+                                <span t-esc="o.sector and '  بقطاع / {0}'.format(o.sector.replace('القطاع ','').replace('قطاع ',''))"/>
+                                <br/>
+                                <span t-esc="o.date_start and o.date_end and '      أعتبارا من {0} الى {1}'.format(o.date_start.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', o.date_end.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <span t-esc="o.date_start and not o.date_end and '      أعتبارا من {0}'.format(o.date_start.strftime('%d-%m-%Y').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span t-esc="'ثانيا :- يتقاضى الطرف الثاني من الطرف الأول مكأفة شاملة شهرية و قدرها ({0}) جنيها'.format(str(o.bonus).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <br/>
+                                <span t-esc="'({0}) فقط لاغير بمرتب أساسي ({1}) جنيها'.format(o.bonus_text.replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '', str(o.wage).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or '')"/>
+                                <br/>
+                                <span>بالاضافة الى مايقرر من مزايا خلال فترة سريان العقد طبقا للوائح و التعليمات المقررة.</span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span>ثالثا :- يلتزم الطرف الثاني في حالة تقاضيه أي معاش أن يبادر بأخطار الجهة المختصة بالتحاقه بالعمل لدى الشركة و المكافأة الشاملة التي يحصل عليها كم يلتزم أن يقدم للطرف الأول ما يثبت قيامه بتنفيذ هذا الأجراء خلال خمسة عشر يوما من تاريخ التحاقه بالعمل وفي حالة عدم تنفيذه يحق للطرف الأول الغاء العقد فضلا عن تحمله المسئولية الجنائيه وحده.</span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span>رابعا :- يتعهد الطرف الثاني بتنفيذ كافة اللوائح و التعليمات الصادرة بالشركة.</span>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <span>خامسا :- يلتزم الطرف الثاني بتقديم مسوغات التعيين قبل استلام العمل أو في المدة التي يحددها الطرف الأول و في حالة عدم التنفيذ يحق للطرف الأول انهاء هذا العقد دون حاجة الى تنبيه أو انذار.</span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template> -->
+
+    <!-- <record id="action_report_hiring_document" model="ir.actions.report">
+        <field name="name">Hiring Document</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_extend_minds.report_hiring_document</field>
+        <field name="report_file">hr_extend_minds.report_hiring_document</field>
+        <field name="print_report_name">'Hiring Document - %s - %s' % (object.employee_id.name, object.name)</field>
+        <field name="binding_model_id" ref="model_hr_contract"/>
+        <field name="binding_type">report</field>
+    </record> -->
+
+    <!-- <field name="report_name">hr_extend_minds.report_hiring_document</field>
+        <field name="report_file">hr_extend_minds.report_hiring_document</field> -->
+
+    <!-- <record id="action_report_hiring_document" model="ir.actions.report">
+        <field name="name">Hiring Document</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">docx</field>
+        <field name="print_report_name">'Hiring Document - %s - %s' % (object.employee_id.name, object.name)</field>
+        <field name="binding_model_id" ref="model_hr_contract"/>
+        <field name="binding_type">report</field>        
+    </record> -->
+
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <template id="report_job_structure_document">
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                <!-- <t t-call="hr_extend_minds.custom_internal_layout"> -->
+                    <div class="page" >
+                        <h4 t-field="o.x_sector_id"/>
+                        <div>
+                            <br />
+                            <br />
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span>اسم الوظيفة : </span>
+                                            <span t-field="o.name" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span>المجموعة النوعية : </span>
+                                            <span t-field="o.x_qualitative_group_id.name" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <span>الدرجة : </span>
+                                            <span t-field="o.x_job_degree_id.name" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <h5>الوصف العام : </h5>
+                                    <br/>
+                                    <p t-field="o.description"/>
+                                </div>
+                            </div>
+
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <h5>الواجبات و المسؤوليات : </h5>
+                                    <br/>
+                                    <p t-field="o.x_job_responsibilities"/>
+                                </div>
+                            </div>
+
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <h5>شروط شغل الوظيفة : </h5>
+                                    <br/>
+                                    <p t-field="o.x_job_qualifications"/>
+                                </div>
+                            </div>
+
+                            <div class="row footer text-left">
+                                <div class="col-3">
+                                    <span>التوقيع / </span>
+                                </div>
+                                <div class="col-9">
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="row footer text-left">
+                                <div class="col-3">
+                                    <span>رئيس مجلس الادارة</span>
+                                </div>
+                                <div class="col-9">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row footer text-left">
+                        <div class="col-3">
+                            <span>التوقيع / </span>
+                        </div>
+                        <div class="col-9">
+                        </div>
+                    </div>
+                    <div class="row footer text-left">
+                        <div class="col-3">
+                            <span>رئيس مجلس الادارة</span>
+                        </div>
+                        <div class="col-9">
+                        </div>
+                    </div> -->
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_job_structure_document" model="ir.actions.report">
+        <field name="name">Job Structure</field>
+        <field name="model">hr.job</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_extend_minds.report_job_structure_document</field>
+        <field name="report_file">hr_extend_minds.report_job_structure_document</field>
+        <field name="print_report_name">'Job Structure Document - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_hr_job"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

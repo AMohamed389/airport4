@@ -1,0 +1,220 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <template id="report_hr_letter_document">
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="o">
+                <!-- <t t-call="web.external_layout"> -->
+                <t t-call="hr_extend_minds.custom_internal_layout">
+                    <div>
+                        <span>التاريخ : </span><span t-field="o.create_date"></span>
+                    </div>
+                    <!-- dir="rtl" -->
+                    <div class="page" >
+                        <br />
+
+                        <h2 class="text-center">شهادة</h2>
+                        <div>
+                            <br />
+                            <br />
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row" t-if="o.x_employee_id.name">
+                                        <div class="col-3">
+                                            <span>اسم الموظف : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-field="o.x_employee_id.name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.x_employee_id.job_id">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>الوظيفة : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <span t-field="o.x_employee_id.job_id.name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.x_employee_id.certificate">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>المؤهل : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <span t-field="o.x_employee_id.certificate" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.x_employee_id.birthday">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>تاريخ الميلاد : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <!-- <span t-field="o.x_employee_id.birthday" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.birthday.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.x_employee_id.identification_id">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>الرقم القومي : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <!-- <span t-field="o.x_employee_id.identification_id" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.identification_id).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.x_employee_id.x_hiring_date">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>تاريخ التعيين : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <!-- <span  t-field="o.x_employee_id.x_hiring_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_hiring_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.x_employee_id.x_receiving_work_date">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>تاريخ استلام العمل : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <!-- <span  t-field="o.x_employee_id.x_receiving_work_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_receiving_work_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.x_employee_id.x_job_degree_id">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>الدرجة المالية : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <span  t-field="o.x_employee_id.x_job_degree_id.name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.x_employee_id.x_qualitative_group_id">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>المجموعة النوعية : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <span  t-field="o.x_employee_id.x_qualitative_group_id.name" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.x_employee_id.x_social_insurance_number">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>الرقم التأميني : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <!-- <span  t-field="o.x_employee_id.x_social_insurance_number" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_social_insurance_number).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.x_employee_id.x_pension_date">
+                                        <div class="col-3">
+                                            <br />
+                                            <span>تاريخ الاحالة للمعاش : </span>
+                                        </div>
+                                        <div class="col-9">
+                                            <br />
+                                            <!-- <span  t-field="o.x_employee_id.x_pension_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_pension_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- <div class="col-6">
+
+
+                                </div> -->
+                            </div>
+
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- <span>علما بأن السيد المذكور من ضمن العاملين بشركة ميناء القاهرة الجوي و مازال يعمل بها حتى الان و انه يخضع لقانون التأمين الاجتماعي رقم 79 لسنة 75</span> -->
+                                    <span t-esc="'علما بأن السيد المذكور من ضمن العاملين بشركة ميناء القاهرة الجوي و مازال يعمل بها حتى الان و انه يخضع لقانون التأمين الاجتماعي رقم 79 لسنة 75'.replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                </div>
+                            </div>
+
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- <span>و قد أعطيت لسيادته هذه الشهادة بناء على طلبه من واقع سجلات الشركة وذلك لتقديمها الى : </span><span t-field="o.x_destination" /> -->
+                                    <span t-esc="'و قد أعطيت لسيادته هذه الشهادة بناء على طلبه من واقع سجلات الشركة وذلك لتقديمها الى : {}'.format(o.x_destination).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')" />
+                                </div>
+                            </div>
+
+                            <br/>
+                            <br/>
+                            
+
+                            <!-- <div class="row">
+                                
+                            </div>
+
+                            <div class="row">
+                                
+                            </div>
+
+                            <div class="row">
+                                
+                            </div> -->
+                        </div>
+                        
+                    </div>
+                    <div class="row footer text-center">
+                        <div class="col-3">
+                            <span>الموظف المختص</span>
+                        </div>
+                        <div class="col-3">
+                            <span>رئيس قسم السجلات</span>
+                        </div>
+                        <div class="col-3">
+                            <span>مدير ادارة وثائق الخدمة</span>
+                        </div>
+                        <div class="col-3">
+                            <span>مدير عام الموارد البشرية</span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_hr_letter_document" model="ir.actions.report">
+        <field name="name">HR Letter Document</field>
+        <field name="model">hr_letter_document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_extend_minds.report_hr_letter_document</field>
+        <field name="report_file">hr_extend_minds.report_hr_letter_document</field>
+        <field name="print_report_name">'HR Letter Document - %s - %s' % (object.x_employee_id.name, object.x_employee_id.x_staff_id)</field>
+        <field name="binding_model_id" ref="model_hr_letter_document"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

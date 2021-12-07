@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <!-- hr_statement_document-->
+    
+
+    <record id="view_hr_statement_document_form" model="ir.ui.view">
+        <field name="name">view_hr_statement_document_form</field>
+        <field name="model">hr_statement_document</field>
+
+        <field name="arch" type="xml">
+        <form  create="false" edit="false">
+            <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+            </header>
+
+            <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+                <h1>
+                <field name="x_employee_id" readonly="1"/>
+                </h1>
+            </div>
+
+            <group>
+                <!-- <group><button name="clean_flags" type="object" string="Clean" class="oe_highlight" attrs="{}"/></group> -->
+                <group><field name="is_all_selected"/></group>
+            </group>
+
+            <group name="main_group">
+                <group name="group_left">
+                <field name="is_employee_name"/>
+                <field name="is_employee_pic"/>
+                <field name="is_mother_name"/>
+                <field name="is_staff_id"/>
+                <field name="is_gender"/>
+                <field name="is_age"/>
+                <field name="is_birth_date"/>
+                <field name="is_place_of_birth"/>
+                <field name="is_national_id"/>
+                <field name="is_id_issuer"/>
+                <field name="is_marital_status"/>
+                <field name="is_employee_address"/>
+                <field name="is_insurance_number"/>
+                <field name="is_hiring_date"/>
+                <field name="is_receiving_Working_date"/>
+                <field name="is_education_certificate_level"/>
+                <field name="is_education_certificates_history"/>
+                <field name="is_email"/>
+                <field name="is_phone"/>
+                <field name="is_mobile_phone"/>
+                <field name="is_work_phone"/>
+                </group>
+                <group name="group_right">
+                <field name="is_full_department_name"/>
+                <field name="is_sector"/>
+                <field name="is_public_administartion"/>
+                <field name="is_administration"/>
+                <field name="is_section"/>
+                <field name="is_manager"/>
+                <field name="is_qualitative_group"/>
+                <field name="is_degree"/>
+                <field name="is_job_position"/>
+                <field name="is_supervision_job"/>
+                <field name="is_pension_date"/>
+                <field name="is_oldest_hiring_date"/>
+                <field name="is_education_certificates"/>
+                <field name="is_job_history"/>
+                <field name="is_training"/>
+                <field name="is_penalties"/>
+                <field name="is_committee"/>
+                </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+            </sheet>
+            <footer>
+                <!-- <button type="action" name="%(hr_extend_minds.action_report_hr_statement_document)d" context="{'default_doc_ids': x_employee_id}" class="btn-primary" string="Print"/> -->
+                <button type="object" name="print_hr_statement_document" context="{'default_doc_ids': x_employee_id}" class="btn-primary" string="Print"/>
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_hr_statement_document" model="ir.actions.act_window">
+        <field name="name">HR Statement Document</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_statement_document</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_hr_statement_document_form" />
+        <field name="target" >new</field>
+    </record>
+
+</odoo>

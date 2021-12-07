@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <!-- salary_degree-->
+    <record id="action_salary_degree" model="ir.actions.act_window">
+        <field name="name">Salary Degree</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">salary_degree</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_salary_degree_list" model="ir.ui.view">
+        <field name="name">view_salary_degree_list</field>
+        <field name="model">salary_degree</field>
+        <field name="arch" type="xml">
+        <tree editable="bottom" >
+            <field name="name"/>
+            <field name="amount"/>
+            <field name="active"/>
+            <field name="currency_id" invisible="1"/>
+        </tree>
+        </field>
+    </record>
+
+    <record id="view_salary_degree_form" model="ir.ui.view">
+        <field name="name">view_salary_degree_form</field>
+        <field name="model">salary_degree</field>
+
+        <field name="arch" type="xml">
+        <form  >
+            <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+            </header>
+
+            <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+                <h1>
+                <field name="name" placeholder="Name"/>
+                </h1>
+            </div>
+
+
+            <group name="main_group">
+                <group name="group_left">
+
+                </group>
+                <group name="group_right">
+
+                </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+            </sheet>
+            <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+        </form>
+        </field>
+    </record>
+
+
+    <!-- salary_marital-->
+    <!-- <record id="action_salary_marital" model="ir.actions.act_window">
+      <field name="name">Salary Marital</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">salary_marital</field>
+      <field name="view_mode">tree,form</field>
+    </record> -->
+
+    <!-- <record id="view_salary_marital_list" model="ir.ui.view">
+      <field name="name">view_salary_marital_list</field>
+      <field name="model">salary_marital</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+            <field name="name"/>
+            <field name="no_of_children"/>
+            <field name="amount"/>
+            <field name="active"/>
+            <field name="currency_id" invisible="1"/>
+        </tree>
+      </field>
+    </record> -->
+
+    <!-- <record id="view_salary_marital_form" model="ir.ui.view">
+      <field name="name">view_salary_marital_form</field>
+      <field name="model">salary_marital</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+          </sheet>
+        </form>
+      </field>
+    </record> -->
+
+
+    <!-- salary_supervision_job-->
+    <!-- <record id="action_salary_supervision_job" model="ir.actions.act_window">
+      <field name="name">Salary Supervision Job</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">salary_supervision_job</field>
+      <field name="view_mode">tree,form</field>
+    </record> -->
+
+    <!-- <record id="view_salary_supervision_job_list" model="ir.ui.view">
+      <field name="name">view_salary_supervision_job_list</field>
+      <field name="model">salary_supervision_job</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+            <field name="supervision_job_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+            <field name="amount"/>
+            <field name="active"/>
+            <field name="currency_id" invisible="1"/>
+        </tree>
+      </field>
+    </record> -->
+
+    <!-- <record id="view_salary_supervision_job_form" model="ir.ui.view">
+      <field name="name">view_salary_supervision_job_form</field>
+      <field name="model">salary_supervision_job</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+          </sheet>
+        </form>
+      </field>
+    </record> -->
+
+
+
+    <!-- bonus_batch-->
+    <record id="action_bonus_batch" model="ir.actions.act_window">
+      <field name="name">Bonus Batch</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">bonus_batch</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_bonus_batch_list" model="ir.ui.view">
+      <field name="name">view_bonus_batch_list</field>
+      <field name="model">bonus_batch</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="date"/>
+          <field name="state"/>
+          <field name="number_of_employees"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_bonus_batch_form" model="ir.ui.view">
+      <field name="name">view_bonus_batch_form</field>
+      <field name="model">bonus_batch</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <button name="review" type="object" string="Review" class="oe_highlight" states="Draft" attrs="{}"/>
+            <button name="confirm" type="object" string="Confirm" class="oe_highlight" states="In Review" attrs="{}"/>
+            <button name="cancel" type="object" string="Cancel" class="oe_highlight btn-danger" states="Draft,In Review" attrs="{}"/>
+            <button name="rerun" type="object" string="Re-Run" class="oe_highlight btn-warning" states="In Review" attrs="{}"/>
+             
+
+             <field name="state" widget="statusbar" />
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+                <field name="date"/>
+                <field name="active" readonly="1"/>
+              </group>
+              <group name="group_right">
+                <field name="number_of_employees"/>
+              </group>
+            </group>
+
+
+            <notebook name="main_notebook">
+                <page name="employees" string="Employees">
+                  <field name="employee_bonus"/>
+                </page>
+              </notebook>
+
+
+          </sheet>
+          <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+  
+
+
+    <!-- employee_bonus-->
+    <record id="action_employee_bonus" model="ir.actions.act_window">
+      <field name="name">Employee Bonus</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">employee_bonus</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_employee_bonus_list" model="ir.ui.view">
+      <field name="name">view_employee_bonus_list</field>
+      <field name="model">employee_bonus</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+          <field name="batch_id" optional="show"/>
+          <field name="batch_state" optional="show"/>
+          <field name="employee_id" optional="show"/>
+          <field name="employee_staff_id" optional="show"/>
+          <field name="qualitative_group_id" optional="show"/>
+          <field name="current_basic_salary" optional="show"/>
+          <field name="periodic_bonus" optional="show"/>
+          <field name="special_bonus" optional="show"/>
+          <field name="previous_bonus" optional="show"/>
+          <field name="exceptional_bonus" optional="show"/>
+          <field name="new_basic_salary" optional="show"/>
+          <field name="notes" optional="hide"/>
+          <field name="currency_id" invisible="1"/>
+          <field name="active" optional="hide"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_employee_bonus_form" model="ir.ui.view">
+      <field name="name">view_employee_bonus_form</field>
+      <field name="model">employee_bonus</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <!-- <field name="name" placeholder="Name"/> -->
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+
+
+    <!-- employee_card-->
+    <record id="action_employee_card" model="ir.actions.act_window">
+      <field name="name">Employee Card</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">employee_card</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_employee_card_list" model="ir.ui.view">
+      <field name="name">view_employee_card_list</field>
+      <field name="model">employee_card</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+          <field name="employee_id" optional="show"/>
+          <field name="employee_staff_id" optional="show"/>
+          <field name="job_id" optional="show"/>
+          <field name="job_degree_id" optional="show"/>
+          <field name="date" optional="show"/>
+          <field name="basic_salary" optional="show"/>
+          <field name="decision_number" optional="show"/>
+          <field name="decision_date" optional="show"/>
+          <field name="notes" optional="hide"/>
+          <field name="currency_id" invisible="1"/>
+          <field name="active" optional="show"/>
+          <field name="employee_job_id" invisible="1"/>
+          <field name="employee_degree_id" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_employee_card_form" model="ir.ui.view">
+      <field name="name">view_employee_card_form</field>
+      <field name="model">employee_card</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <!-- <field name="name" placeholder="Name"/> -->
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+
+    <!-- bonus_matrix-->
+    <record id="action_bonus_matrix" model="ir.actions.act_window">
+      <field name="name">Bonus Materix</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">bonus_matrix</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_bonus_matrix_list" model="ir.ui.view">
+      <field name="name">view_bonus_matrix_list</field>
+      <field name="model">bonus_matrix</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+          <field name="periodic_bonus_percent" optional="show"/>
+          <field name="basic_salary_periodic_bonus_date" optional="show"/>
+          <field name="special_bonus_percent" optional="show"/>
+          <field name="special_bonus_folded" optional="show"/>
+          <field name="minimum" optional="show"/>
+          <field name="maximum" optional="show"/>
+          <field name="job_degree" optional="show"/>
+          <field name="exceptional_bonus_degrees" optional="show"/>
+          <field name="exceptional_bonus_folded" optional="show"/>
+          <field name="previous_bonus" optional="show"/>
+          <field name="currency_id" invisible="1"/>
+          <field name="active" optional="show"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_bonus_matrix_form" model="ir.ui.view">
+      <field name="name">view_bonus_matrix_form</field>
+      <field name="model">bonus_matrix</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <!-- <field name="name" placeholder="Name"/> -->
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+
+</odoo>

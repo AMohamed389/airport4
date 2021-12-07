@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <!-- hr_letter_document-->
+    
+
+    <record id="view_hr_letter_document_form" model="ir.ui.view">
+        <field name="name">view_hr_letter_document_form</field>
+        <field name="model">hr_letter_document</field>
+
+        <field name="arch" type="xml">
+        <form  create="false" edit="false">
+            <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+            </header>
+
+            <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+                <h1>
+                    <field name="x_employee_id" readonly="1"/>
+                </h1>
+            </div>
+
+            <group name="main_group">
+                <group name="group_left">
+                    <field name="x_destination" />
+                </group>
+                <group name="group_right">
+                </group>
+            </group>
+
+            </sheet>
+            <footer>
+                <!-- <button type="action" name="%(hr_extend_minds.action_report_hr_letter_document)d" context="{'default_doc_ids': x_employee_id}" class="btn-primary" string="Print"/> -->
+                <button type="object" name="print_hr_letter_document" context="{'default_doc_ids': x_employee_id}" class="btn-primary" string="Print"/>
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_hr_letter_document" model="ir.actions.act_window">
+        <field name="name">HR Letter Document</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_letter_document</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_hr_letter_document_form" />
+        <field name="target" >new</field>
+    </record>
+
+</odoo>

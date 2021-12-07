@@ -1,0 +1,576 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <template id="report_hr_statement_document">
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="o">
+                <!-- <t t-call="web.external_layout"> -->
+                <t t-call="hr_extend_minds.custom_internal_layout">
+                    <!-- dir="rtl" -->
+                    <div class="page" >
+                        <br />
+
+                        <h2 class="text-center">بيان حالة</h2>
+                        <div>
+                            <br />
+                            
+                            <div class="row" t-if="o.is_employee_pic and o.x_employee_id.image_128">
+                                <div class="col-6">
+
+                                </div>
+                                <div class="col-6">
+                                    <img class="border border-secondary" t-attf-src="data:image/*;base64,{{o.x_employee_id.image_128}}"/>
+                                </div>
+                            </div>
+                            
+                            <br />
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row" t-if="o.is_employee_name and o.x_employee_id.name">
+                                        <div class="col">
+                                            <span>اسم الموظف : </span><span t-field="o.x_employee_id.name" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_birth_date and o.x_employee_id.birthday">
+                                        <div class="col">
+                                            <br />
+                                            <span>تاريخ الميلاد : </span><span t-esc="'{0}'.format(o.x_employee_id.birthday.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_age and o.x_employee_id.x_age">
+                                        <div class="col">
+                                            <br />
+                                            <span>العمر : </span>
+                                            <!-- <span  t-field="o.x_employee_id.x_age" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_age).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_national_id and o.x_employee_id.identification_id">
+                                        <div class="col">
+                                            <br />
+                                            <span>الرقم القومي : </span><span t-field="o.x_employee_id.identification_id" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_gender and o.x_employee_id.gender">
+                                        <div class="col">
+                                            <br />
+                                            <span>النوع : </span><span  t-field="o.x_employee_id.gender" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_employee_address and o.x_employee_id.address_home_id.name">
+                                        <div class="col">
+                                            <br />
+                                            <span>العنوان : </span><span  t-field="o.x_employee_id.address_home_id.name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.certificate">
+                                        <div class="col">
+                                            <br />
+                                            <span>المؤهل : </span><span  t-field="o.x_employee_id.certificate" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.x_education_certificate_level">
+                                        <div class="col">
+                                            <br />
+                                            <span>تاريخ المؤهل : </span>
+                                            <!-- <span  t-field="o.x_employee_id.x_education_certificate_level" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_education_certificate_level.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.study_field">
+                                        <div class="col">
+                                            <br />
+                                            <span>مجال الدراسة : </span><span  t-field="o.x_employee_id.study_field" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_education_certificate_level and o.x_employee_id.study_school">
+                                        <div class="col">
+                                            <br />
+                                            <span>جهة صدور المؤهل : </span><span  t-field="o.x_employee_id.study_school" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.is_qualitative_group and o.x_employee_id.x_qualitative_group_id.name">
+                                        <div class="col">
+                                            <br />
+                                            <span>المجموعة النوعية : </span><span  t-field="o.x_employee_id.x_qualitative_group_id.name" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_phone and o.x_employee_id.phone">
+                                        <div class="col">
+                                            <br />
+                                            <span>رقم الهاتف : </span><span  t-field="o.x_employee_id.phone" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_work_phone and o.x_employee_id.work_phone">
+                                        <div class="col">
+                                            <br />
+                                            <span>رقم هاتف العمل : </span><span  t-field="o.x_employee_id.work_phone" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" t-if="o.is_full_department_name and o.x_employee_id.department_id">
+                                        <div class="col">
+                                            <br />
+                                            <span>التسلسل الكامل : </span><span  t-field="o.x_employee_id.department_id" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.is_sector and o.x_employee_id.x_sector_name">
+                                        <div class="col">
+                                            <br />
+                                            <span>القطاع : </span><span  t-field="o.x_employee_id.x_sector_name" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.is_public_administartion and o.x_employee_id.x_public_administration_name">
+                                        <div class="col">
+                                            <br />
+                                            <span>ادارة العامة : </span><span  t-field="o.x_employee_id.x_public_administration_name" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.is_administration and o.x_employee_id.x_administration_name">
+                                        <div class="col">
+                                            <br />
+                                            <span>ادارة : </span><span  t-field="o.x_employee_id.x_administration_name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_section and o.x_employee_id.x_section_name">
+                                        <div class="col">
+                                            <br />
+                                            <span>قسم : </span><span  t-field="o.x_employee_id.x_section_name" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="row" t-if="o.is_staff_id and o.x_employee_id.x_staff_id">
+                                        <div class="col">
+                                            <span>كود الموظف : </span><span t-field="o.x_employee_id.x_staff_id" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_place_of_birth and o.x_employee_id.place_of_birth">
+                                        <div class="col">
+                                            <br />
+                                            <span>محل الميلاد : </span><span t-field="o.x_employee_id.place_of_birth" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_id_issuer and o.x_employee_id.x_identity_issuer">
+                                        <div class="col">
+                                            <br />
+                                            <span>جهة الاصدار : </span><span t-field="o.x_employee_id.x_identity_issuer" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_marital_status and o.x_employee_id.marital">
+                                        <div class="col">
+                                            <br />
+                                            <span>الحالة الاجتماعية : </span><span  t-field="o.x_employee_id.marital" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                    <div class="row" t-if="o.is_mother_name and o.x_employee_id.x_mother_name">
+                                        <div class="col">
+                                            <br />
+                                            <span>اسم الأم : </span><span  t-field="o.x_employee_id.x_mother_name" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_email and o.x_employee_id.work_email">
+                                        <div class="col">
+                                            <br />
+                                            <span>البريد الالكتروني : </span><span  t-field="o.x_employee_id.work_email" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_id_issuer and o.x_employee_id.mobile_phone">
+                                        <div class="col">
+                                            <br />
+                                            <span>رقم المحمول : </span><span  t-field="o.x_employee_id.mobile_phone" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_degree and o.x_employee_id.x_job_degree_id.name">
+                                        <div class="col">
+                                            <br />
+                                            <span>الدرجة : </span><span  t-field="o.x_employee_id.x_job_degree_id.name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_degree and o.x_employee_id.x_job_degree_id.name">
+                                        <div class="col">
+                                            <br />
+                                            <span>تاريخ الدرجة : </span>
+                                            <!-- <span  t-field="o.x_employee_id.x_job_degree_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_job_degree_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_job_position and o.x_employee_id.job_id.name">
+                                        <div class="col">
+                                            <br />
+                                            <span>الوظيفة : </span><span  t-field="o.x_employee_id.job_id.name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" t-if="o.is_supervision_job and o.x_employee_id.x_supervision_job.name">
+                                        <div class="col">
+                                            <br />
+                                            <span>الوظيفة الاشرافية : </span><span  t-field="o.x_employee_id.x_supervision_job.name" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_hiring_date and o.x_employee_id.x_hiring_date">
+                                        <div class="col">
+                                            <br />
+                                            <span>تاريخ التعيين : </span>
+                                            <!-- <span  t-field="o.x_employee_id.x_hiring_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_hiring_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row" t-if="o.is_oldest_hiring_date and o.x_employee_id.x_oldest_hiring_date">
+                                        <div class="col">
+                                            <br />
+                                            <span>تاريخ الأقدمية : </span>
+                                            <!-- <span  t-field="o.x_employee_id.x_oldest_hiring_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_oldest_hiring_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" t-if="o.is_receiving_Working_date and o.x_employee_id.x_receiving_work_date">
+                                        <div class="col">
+                                            <br />
+                                            <span>تاريخ استلام العمل : </span>
+                                            <!-- <span  t-field="o.x_employee_id.x_receiving_work_date" /> -->
+                                            <span t-esc="'{0}'.format(o.x_employee_id.x_receiving_work_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            
+                            <div t-if="o.is_committee and o.x_employee_id.x_committee_employee">
+                                <br/>
+                                <h5 class="">اللجان</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">اللجنة</th>
+                                            <!-- <th class="text-nowrap">بدل اللجنة</th> -->
+                                            <th class="text-nowrap">من تاريخ</th>
+                                            <th class="text-nowrap">الى تاريخ</th>
+                                            <th class="text-nowrap">ملاحظات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_committee_employee" t-as="committee_employee">
+                                            <tr>
+                                                <td class="">
+                                                    <!-- <span class="" t-field="committee_employee.x_committee_id.name"/> -->
+                                                    <span t-esc="'{0}'.format(committee_employee.x_committee_id.name).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')" />
+                                                </td>
+                                                <!-- <td class="">
+                                                    <span class="" t-field="committee_employee.x_amount"/>
+                                                </td> -->
+                                                <td class="">
+                                                    <!-- <span class="" t-field="committee_employee.x_committee_id.x_date_from"/> -->
+                                                    <span t-if="committee_employee.x_committee_id.x_date_from" t-esc="'{0}'.format(committee_employee.x_committee_id.x_date_from.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                                </td>
+                                                <td class="">
+                                                    <!-- <span class="" t-field="committee_employee.x_committee_id.x_date_to"/> -->
+                                                    <span t-if="committee_employee.x_committee_id.x_date_to" t-esc="'{0}'.format(committee_employee.x_committee_id.x_date_to.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                                </td>
+                                                <td class="">
+                                                    <span class="" t-field="committee_employee.x_notes"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div t-if="o.is_job_history and o.x_employee_id.x_job_history">
+                                <br/>
+                                <h5 class="">التدرج الوظيفي</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">النوع</th>
+                                            <th class="text-nowrap">الجهة</th>
+                                            <th class="text-nowrap">القطاع</th>
+                                            <th class="text-nowrap">الادارة العامة</th>
+                                            <th class="text-nowrap">الادارة</th>
+                                            <th class="text-nowrap">القسم</th>
+                                            <th class="text-nowrap">المجموعة النوعية</th>
+                                            <th class="text-nowrap">الدرجة</th>
+                                            <th class="text-nowrap">من تاريخ</th>
+                                            <th class="text-nowrap">الى تاريخ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_job_history" t-as="job_history">
+                                            <tr>
+                                                <td class="">
+                                                    <span t-field="job_history.x_type"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_source_company"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_sector"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_public_administration"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_administration"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_department"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_qualitative_group"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="job_history.x_degree"/>
+                                                </td>
+                                                <td class="">
+                                                    <!-- <span t-field="job_history.x_date_from"/> -->
+                                                    <span t-if="job_history.x_date_from" t-esc="'{0}'.format(job_history.x_date_from.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')  or ''" />
+                                                </td>
+                                                <td class="">
+                                                    <!-- <span t-field="job_history.x_date_to"/> -->
+                                                    <span t-if="job_history.x_date_to" t-esc="'{0}'.format(job_history.x_date_to.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')  or ''" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div t-if="o.is_education_certificates_history and o.x_employee_id.x_hr_education_certificate">
+                                <br/>
+                                <h5 class="">المؤهلات الدراسية</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">المؤهل</th>
+                                            <th class="text-nowrap">الجامعة</th>
+                                            <th class="text-nowrap">التخصص</th>
+                                            <th class="text-nowrap">تاريخ المؤهل</th>
+                                            <th class="text-nowrap">رقم القرار</th>
+                                            <th class="text-nowrap">تاريخ القرار</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_hr_education_certificate" t-as="education_certificate">
+                                            <tr>
+                                                <td class="">
+                                                    <span t-field="education_certificate.name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="education_certificate.x_university_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="education_certificate.x_specialization"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="education_certificate.x_certificate_date" t-esc="'{0}'.format(education_certificate.x_certificate_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-esc="'{0}'.format(education_certificate.x_decision_number).replace(',','').replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')"/>
+                                                </td>
+                                                <td class="">
+                                                    <!-- <span t-field="education_certificate.x_decision_date"/> -->
+                                                    <span t-if="education_certificate.x_decision_date" t-esc="'{0}'.format(education_certificate.x_decision_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div t-if="o.is_training and o.x_employee_id.x_employee_training">
+                                <br/>
+                                <h5 class="">التدريبات</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">قطاع</th>
+                                            <th class="text-nowrap">ادارة عامة</th>
+                                            <th class="text-nowrap">ادارة</th>
+                                            <th class="text-nowrap">قسم</th>
+                                            <th class="text-nowrap">تدريبات</th>
+                                            <th class="text-nowrap">نوع الدورة</th>
+                                            <th class="text-nowrap">كود برنامج التدريب</th>
+                                            <th class="text-nowrap">مستوى التدريب</th>
+                                            <th class="text-nowrap">تاريخ البداية</th>
+                                            <th class="text-nowrap">تاريخ الانتهاء</th>
+                                            <th class="text-nowrap">حالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_employee_training" t-as="employee_training">
+                                            <tr>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_sector_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_public_administration_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_administration_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_section_name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training_type"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training_code"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.x_training_level"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_training.x_start_date" t-esc="'{0}'.format(employee_training.x_start_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_training.x_end_date" t-esc="'{0}'.format(employee_training.x_end_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_training.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div t-if="o.is_penalties and o.x_employee_id.x_employee_penalty">
+                                <br/>
+                                <h5 class="">الجزاءات</h5>
+                                <table class="table table-striped">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th class="text-nowrap">الجزاء</th>
+                                            <th class="text-nowrap">تاريخ الجزاء</th>
+                                            <th class="text-nowrap">تاريخ تفعيل الجزاء</th>
+                                            <th class="text-nowrap">رقم القرار</th>
+                                            <th class="text-nowrap">تاريخ القرار</th>
+                                            <th class="text-nowrap">رقم التحقيق</th>
+                                            <th class="text-nowrap">تاريخ التحقيق</th>
+                                            <th class="text-nowrap">السبب</th>
+                                            <th class="text-nowrap">حالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                
+                                
+                                        <t t-foreach="o.x_employee_id.x_employee_penalty" t-as="employee_penalty">
+                                            <tr>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_penalty_id.name"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_penalty_date" t-esc="'{0}'.format(employee_penalty.x_penalty_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_penalty_effective_date" t-esc="'{0}'.format(employee_penalty.x_penalty_effective_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_decision_number"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_penalty_decision_date" t-esc="'{0}'.format(employee_penalty.x_penalty_decision_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_investigation_number"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-if="employee_penalty.x_investigation_date" t-esc="'{0}'.format(employee_penalty.x_investigation_date.strftime('%d-%m-%Y')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠') or ''"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.x_penalty_reason"/>
+                                                </td>
+                                                <td class="">
+                                                    <span t-field="employee_penalty.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer">
+                        <!-- <span>التاريخ : </span><span t-field="o.create_date"></span> -->
+                        <span>التاريخ : </span><span t-esc="'{0}'.format(o.create_date.strftime('%d-%m-%Y %H:%M:%S')).replace('1','١').replace('2','٢').replace('3','٣').replace('4','٤').replace('5','٥').replace('6','٦').replace('7','٧').replace('8','٨').replace('9','٩').replace('0','٠')" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_hr_statement_document" model="ir.actions.report">
+        <field name="name">HR Statement Document</field>
+        <field name="model">hr_statement_document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_extend_minds.report_hr_statement_document</field>
+        <field name="report_file">hr_extend_minds.report_hr_statement_document</field>
+        <field name="print_report_name">'HR Statement Document - %s - %s' % (object.x_employee_id.name, object.x_employee_id.x_staff_id)</field>
+        <field name="binding_model_id" ref="model_hr_statement_document"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

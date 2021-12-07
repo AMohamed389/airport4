@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="employee_penalty_group_system_1" model="ir.model.access">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="model_id" ref="model_employee_penalty"/>
+        <field name="name">Employee Penalty group_system</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+    <record id="employee_penalty_group_user_1" model="ir.model.access">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="model_id" ref="model_employee_penalty"/>
+        <field name="name">Employee Penalty group_user</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+
+
+
+    <record id="employee_training_group_user_1" model="ir.model.access"
+            context="{'studio': True}">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="model_id" ref="model_employee_training"/>
+        <field name="name">Employee Training group_user</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+    <record id="employee_training_group_system_1" model="ir.model.access">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="model_id" ref="model_employee_training"/>
+        <field name="name">Employee Training group_system</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+    <record id="penalty_types_group_system_1" model="ir.model.access"
+            context="{'studio': True}">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="model_id" ref="model_penalty_type"/>
+        <field name="name">Penalty Types group_system</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+    <record id="penalty_types_group_user_1" model="ir.model.access">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="model_id" ref="model_penalty_type"/>
+        <field name="name">Penalty Types group_user</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+
+
+    <record id="training_catalogue_group_user_1" model="ir.model.access">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="model_id" ref="model_training_catalogue"/>
+        <field name="name">Training Catalogue group_user</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+    <record id="training_catalogue_group_system_1" model="ir.model.access">
+        <field name="active" eval="True"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="model_id" ref="model_training_catalogue"/>
+        <field name="name">Training Catalogue group_system</field>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+
+    <record id="module_hr_extend_minds_category" model="ir.module.category">
+        <field name="name">Airport</field>
+      </record>
+    
+     
+      <record id="hr_extend_minds_group_employee" model="res.groups">
+        <field name="name">Employee</field>
+        <field name="category_id" ref="module_hr_extend_minds_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+      </record>
+    
+        <record id="hr_extend_minds_group_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="module_hr_extend_minds_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')),(4, ref('hr_extend_minds_group_employee'))]"/>
+      </record>
+
+</odoo>

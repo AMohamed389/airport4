@@ -1,0 +1,2979 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="hr_resource_calendar_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='tz']" position="after">
+                    <field name="x_work_schedule_type"/>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="resource.resource_calendar_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">resource.calendar</field>
+        <field name="name">resource.calendar.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="hr_leave_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="x_staff_id"/>
+                    <field name="x_sector_name"/>
+                    <field name="x_public_administration_name"/>
+                    <field name="x_administration_name"/>
+                    <field name="x_section_name"/>
+                    <field name="x_issuer"/>
+                    <field name="x_work_schedule_type" optional="show"/>
+                    <field name="x_resource_calendar_name" optional="hide"/>
+                    <field name="x_leave_type_code" optional="show"/>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_tree"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.leave</field>
+        <field name="name">hr.leave.tree customization</field>
+        <field name="priority">99</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="hr_leave_extend_2" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='employee_id']" position="before">
+                    <field name="x_staff_id"/>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="x_sector_name"/>
+                    <field name="x_public_administration_name"/>
+                    <field name="x_administration_name"/>
+                    <field name="x_section_name"/>
+                </xpath>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="x_work_schedule_type"/>
+                    <field name="x_resource_calendar_name"/>
+                    <field name="x_leave_type_code"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="x_half_shift_leave_flg" attrs="{'invisible':[('x_work_schedule_type','=','Morning')],'readonly':[('state','not in',('draft','confirm'))]}"/>
+                    <field name="x_issuer"/>
+                </xpath>
+                <xpath expr="//field[@name='number_of_days']" position="after">
+
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.leave</field>
+        <field name="name">hr.leave.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
+
+    <!-- hr_report-->
+    <record id="action_hr_report" model="ir.actions.act_window">
+        <field name="name">HR Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_hr_report_list" model="ir.ui.view">
+        <field name="name">view_hr_report_list</field>
+        <field name="model">hr_report</field>
+        <field name="arch" type="xml">
+            <tree delete="true">
+                <field name="name"/>
+                <field name="x_employee_id"/>
+                <field name="state"/>
+                <field name="active"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_report_form" model="ir.ui.view">
+        <field name="name">view_hr_report_form</field>
+        <field name="model">hr_report</field>
+
+        <field name="arch" type="xml">
+            <form delete="true">
+                <header>
+                    <!-- <button type="action" name="%(hr_extend_minds.action_hr_statement_document)d" context="{'default_x_employee_id': x_employee_id, 'default_x_hr_report_id':id}" string="Print" class="oe_highlight" states="Submit" attrs="{}"/> -->
+                    <button name="submit_report" type="object" string="Submit" class="oe_highlight" states="Draft" attrs="{}"/>
+                    <button name="print_document" type="object" string="Print" class="oe_highlight" states="Submit" attrs="{}"/>
+
+
+                    <field name="state" widget="statusbar" />
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="name" attrs="{'readonly':[('state', '=', 'Completed')]}"/>
+                            <field name="x_employee_id" attrs="{'readonly':[('state', '=', 'Completed')]}" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                            <field name="active"/>
+                            <field name="id" invisible="1"/>
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- <record id="hr_ir_attachment_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='res_model']" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_field']" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_name']" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="base.view_attachment_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">ir.attachment</field>
+        <field name="name">ir.attachment.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record> -->
+
+    <!-- hr_attachment-->
+    <record id="action_hr_attachment" model="ir.actions.act_window">
+        <field name="name">Attachments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_attachment</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_hr_attachment_list" model="ir.ui.view">
+        <field name="name">view_hr_attachment_list</field>
+        <field name="model">hr_attachment</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" readonly="1" invisible="0" force_save="1"/>
+                <field name="x_datas" filename="name" widget="binary"/>
+                <!-- <field name="x_file_size" readonly="1"/>
+            <field name="x_mime_type" readonly="1"/> -->
+                <field name="x_notes"/>
+                <field name="active"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_attachment_form" model="ir.ui.view">
+        <field name="name">view_hr_attachment_form</field>
+        <field name="model">hr_attachment</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- committee_employee-->
+    <record id="action_committee_employee" model="ir.actions.act_window">
+        <field name="name">Committee Employee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">committee_employee</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_committee_employee_list" model="ir.ui.view">
+        <field name="name">view_committee_employee_list</field>
+        <field name="model">committee_employee</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="currency_id" optional="hide" invisible="1" />
+                <field name="x_committee_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                <field name="x_employee_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                <field name="x_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="x_document_folder_id"/>
+                <!-- <field name="x_attachments" /> -->
+                <!-- <field name="x_datas" widget="binary"/> -->
+                <field name="x_notes"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_committee_employee_form" model="ir.ui.view">
+        <field name="name">view_committee_employee_form</field>
+        <field name="model">committee_employee</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <!-- <div class="oe_title">
+                <h1>
+                <field name="name" placeholder="Name"/>
+                </h1>
+            </div> -->
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="x_employee_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                            <field name="x_amount"/>
+                            <field name="x_document_folder_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="x_notes"/>
+                        </group>
+                    </group>
+
+
+                    <notebook name="main_notebook">
+                        <page name="attachments" string="Attachments">
+                            <field name="x_attachments"/>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- committee-->
+    <record id="action_committee" model="ir.actions.act_window">
+        <field name="name">Committee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">committee</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_committee_list" model="ir.ui.view">
+        <field name="name">view_committee_list</field>
+        <field name="model">committee</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="name"/>
+                <field name="x_date_from"/>
+                <field name="x_date_to"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_committee_form" model="ir.ui.view">
+        <field name="name">view_committee_form</field>
+        <field name="model">committee</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Decision Number"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="id" invisible="1"/>
+                            <field name="x_document_folder_id"/>
+                            <field name="x_date_from"/>
+                            <field name="x_date_to"/>
+                            <field name="active"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="x_notes"/>
+                        </group>
+                    </group>
+
+
+                    <notebook name="main_notebook">
+                        <page name="page1" string="Employees">
+                            <field name="x_committee_employee" context="{'default_x_committee_id':id}"/>
+                        </page>
+                        <page name="page2" string="Attachments">
+                            <!-- <field name="x_attachments" force_save="1" widget="one2many_list" context="{'default_res_id':id, 'default_res_model':'committee','folder_id': x_document_folder_id}" /> -->
+                            <!-- <field name="x_attachments" force_save="1" widget="one2many_list" context="{'default_x_res_id':id, 'default_x_res_model':'committee'}" /> -->
+                            <!-- <field name="x_attachments" force_save="1" widget="one2many_list" context="{'default_res_id':id, 'default_res_model':'committee', 'default_res_field':'id', 
+                    'default_type':'binary', 'default_res_name':id}">
+                        <tree editable='bottom'>
+                            <field name="res_id" readonly="1" force_save="1"/>
+                            <field name="name" force_save="1" readonly="1"/>
+                            <field name="type" force_save="1" invisible="0" readonly="1"/>
+                            <field name="res_name" force_save="1" readonly="1"/>
+                            <field name="res_model" force_save="1" readonly="1"/>                                
+                            <field name="res_field" force_save="1" readonly="1"/>                                
+                            <field name="datas" widget="binary" filename="name" force_save="1" string="File"/>                                
+                        </tree>
+                    </field> -->
+                            <field name="x_attachments"/>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <div class="oe_chatter" name="mainchatterview">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- job_history-->
+    <record id="action_job_history" model="ir.actions.act_window">
+        <field name="name">job_history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job_history</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_job_history_list" model="ir.ui.view">
+        <field name="name">view_job_history_list</field>
+        <field name="model">job_history</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+
+                <field name="x_employee_id" readonly="1"/>
+                <field name="x_type"/>
+                <field name="x_source_company"/>
+                <field name="x_sector"/>
+                <field name="x_public_administration"/>
+                <field name="x_administration"/>
+                <field name="x_department"/>
+                <field name="x_qualitative_group"/>
+                <field name="x_degree"/>
+                <field name="name"/>
+                <field name="x_date_from"/>
+                <field name="x_date_to"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_job_history_form" model="ir.ui.view">
+        <field name="name">view_job_history_form</field>
+        <field name="model">job_history</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- job_degree-->
+    <record id="action_job_degree" model="ir.actions.act_window">
+        <field name="name">Job Degree</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job_degree</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_job_degree_list" model="ir.ui.view">
+        <field name="name">view_job_degree_list</field>
+        <field name="model">job_degree</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="x_qualitative_group_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                <field name="name"/>
+                <field name="x_order"/>
+                <!-- <field name="x_job_id"/> -->
+                <field name="active"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_job_degree_form" model="ir.ui.view">
+        <field name="name">view_job_degree_form</field>
+        <field name="model">job_degree</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- hr_education_certificate-->
+    <record id="action_hr_education_certificate" model="ir.actions.act_window">
+        <field name="name">hr Education Certificate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_education_certificate</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_hr_education_certificate_list" model="ir.ui.view">
+        <field name="name">view_hr_education_certificate_list</field>
+        <field name="model">hr_education_certificate</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="x_employee_id" readonly="1"/>
+                <field name="name"/>
+                <field name="x_university_name"/>
+                <field name="x_specialization"/>
+                <field name="x_certificate_date"/>
+                <field name="x_decision_number"/>
+                <field name="x_decision_date"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_education_certificate_form" model="ir.ui.view">
+        <field name="name">view_hr_education_certificate_form</field>
+        <field name="model">hr_education_certificate</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_job_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="x_qualitative_group_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                    <field name="x_job_degree_id" domain="[('x_qualitative_group_id','=',x_qualitative_group_id)]" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                    <field name="x_sector_id"/>
+                    <field name="description" optional="hide"/>
+                    <field name="x_job_responsibilities" optional="hide"/>
+                    <field name="x_job_qualifications" optional="hide"/>
+                    <field name="x_is_limited"/>
+                    <field name="x_is_supervision_job"/>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr.view_hr_job_tree"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.job</field>
+        <field name="name">hr.job.tree customization</field>
+        <field name="priority">99</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="hr_job_extend_2" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Job Responsibilities">
+                        <label for="x_job_responsibilities"/>
+                        <field name="x_job_responsibilities"/>
+                    </page>
+                    <page string="Job Qualifications">
+                        <label for="x_job_qualifications"/>
+                        <field name="x_job_qualifications"/>
+                    </page>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Degree" name="degree_page">
+                        <group name="job_page_group_parent">
+                            <group name="degree_page_group_parent_right">
+                                <field name="x_sector_id"/>
+                                <field name="x_qualitative_group_id" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                                <field name="x_job_degree_id" domain="[('x_qualitative_group_id','=',x_qualitative_group_id)]" options="{'no_quick_create':True, 'no_create_edit':True}"/>
+                                <field name="x_is_limited"/>
+                                <field name="x_is_supervision_job"/>
+                            </group>
+                            <group name="degree_page_group_parent_left"/>
+                        </group>
+                    </page>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr.view_hr_job_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.job</field>
+        <field name="name">hr.job.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="hr_department_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="x_type"/>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr.view_department_tree"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.department</field>
+        <field name="name">hr.department.tree customization</field>
+        <field name="priority">99</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="hr_department_extend_2" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='manager_id']" position="after">
+                    <field name="x_type" />
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.department</field>
+        <field name="name">hr.department.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="hr_employee_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//tree[1]/field[@name='name']" position="before">
+                    <field name="x_staff_id"/>
+                </xpath>
+                <xpath expr="//tree[1]/field[@name='name']" position="after">
+                    <!-- <field name="x_employee_status"/> -->
+                    <field name="x_age"/>
+                    <field name="gender"/>
+                    <field name="x_religion"/>
+                    <field name="x_receiving_work_date" optional="hide"/>
+                    <field name="x_hiring_date" optional="hide"/>
+                    <field name="x_end_of_service_date" optional="hide"/>
+                    <field name="x_number_of_years" optional="hide"/>
+
+                    <field name="x_job_degree_date" optional="hide"/>
+                    <field name="x_pension_date" optional="hide"/>
+                    <field name="x_education_certificate_level" optional="hide"/>
+                    <field name="x_identity_issuer" optional="hide"/>
+                    <field name="x_has_disability_condition" optional="hide"/>
+                    <field name="x_military_start_date" optional="hide"/>
+                    <field name="x_military_end_date" optional="hide"/>
+                    <field name="x_military_status" optional="hide"/>
+                    <field name="x_mother_name" optional="hide"/>
+                    <field name="x_section_name" optional="show"/>
+                    <field name="x_administration_name" optional="show"/>
+                    <field name="x_public_administration_name" optional="show"/>
+                    <field name="x_sector_name" optional="show"/>
+                    <field name="x_job_degree_id" optional="show"/>
+                    <field name="x_qualitative_group_id" optional="show"/>
+                    <field name="x_seniority_number" optional="hide"/>
+                    <field name="x_company_leaving_reason" optional="hide"/>
+                    <field name="x_work_schedule_type" optional="hide"/>
+
+                </xpath>
+                <xpath expr="//field[@name='work_phone']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.employee</field>
+        <field name="name">hr.employee.tree customization</field>
+        <field name="priority">99</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="hr_employee_extend_2" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+
+                <xpath expr="//field[@name='coach_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="x_sector_name" />
+                    <field name="x_public_administration_name" />
+                    <field name="x_administration_name" />
+                    <field name="x_section_name" />
+                </xpath>
+
+                <xpath expr="//field[@name='job_title']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <!-- <xpath expr="//button[@name='124']" position="after">
+                    <field widget="statusbar" options="{'clickable': '1'}" name="x_employee_status" string="Employee Status"/>
+                </xpath> -->
+                <xpath expr="//field[@name='mobile_phone']" position="before">
+                    <field name="id" invisible="1"/>
+                    <field name="x_staff_id" string="Staff Id"/>
+                    <field name="x_document_folder_id" string="Document Folder" />
+                    <field name="x_company_leaving_reason" string="Company Leaving Reason"/>
+                    <field name="x_work_schedule_type" />
+                </xpath>
+                <xpath expr="//field[@name='address_home_id']" position="before">
+                    <field name="mobile_phone" position="move"/>
+                    <field name="work_phone" position="move"/>
+                    <field name="work_email" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='gender']" position="after">
+                    <field name="x_religion" string="Religion"/>
+                    <field name="x_age" string="Age"/>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="x_mother_name" string="Mother Name"/>
+                </xpath>
+                <xpath expr="//field[@name='certificate']" position="after">
+                    <field name="x_education_certificate_level" string="Education Certificate Date"/>
+                </xpath>
+                <xpath expr="//field[@name='identification_id']" position="after">
+                    <field name="x_identity_issuer" string="Identification Issuer"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Job" name="job_page">
+                        <group name="job_page_group_parent">
+                            <group name="job_page_group_parent_left"/>
+                        </group>
+                    </page>
+                </xpath>
+
+                <xpath expr="//group[@name='job_page_group_parent_left']" position="inside">
+                    <field name="x_qualitative_group_id" />
+                    <field name="x_job_degree_id" domain="[('x_qualitative_group_id','=',x_qualitative_group_id)]" string="Degree"/>
+                    <xpath expr="//field[@name='job_id']" position="move"/>
+                    <!-- <xpath name="job_id" position="attributes">
+                        <attribute name="domain">[['x_job_degree_id','=',x_job_degree_id],['x_qualitative_group_id','=',x_qualitative_group_id]]</attribute>
+                    </xpath> -->
+                    <field name="x_job_degree_date" string="Degree Date"/>
+                    <field name="x_supervision_job" string="Supervision Job"/>
+                </xpath>
+                <xpath expr="//group[@name='job_page_group_parent']" position="inside">
+                    <group name="job_page_group_parent_right">
+                        <field name="x_hiring_date" string="Hiring Date"/>
+                        <field name="x_receiving_work_date" string="Receiving Work Date"/>
+                        <field name="x_end_of_service_date" string="End Of Service Date"/>
+                        <field name="x_oldest_hiring_date" string="Oldest Hiring Date"/>
+                        <field name="x_seniority_number" string="Seniority Number"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//group[@name='work_permit']" position="after">
+                    <group name="disability_group" string="Disability">
+                        <field name="x_has_disability_condition"/>
+                        <field name="x_disability" string="Disability Id Number"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+
+                    <page string="Job History" name="job_history_page">
+                        <field name="x_job_history" context="{'default_x_employee_id': id}"/>
+                    </page>
+
+                    <page string="Education Certificates" name="hr_education_certificates_page">
+                        <field name="x_hr_education_certificate" context="{'default_x_employee_id': id}"/>
+                    </page>
+
+
+                    <page string="Insurance" name="insurance_page">
+                        <group name="insurance_page_group_parent">
+                            <group name="insurance_page_group_parent_left">
+                                <field name="x_social_insurance_number" string="Social Insurance Number"/>
+                                <field name="x_social_insurance_status" string="Social Insurance Status"/>
+                            </group>
+                            <group name="insurance_page_group_parent_right"/>
+                        </group>
+                    </page>
+
+                    <page string="Pension" name="pension_page">
+                        <group name="pension_page_group_parent">
+                            <group name="pension_page_group_parent_left">
+                                <field name="x_pension_date" string="Pension Date"/>
+                            </group>
+                            <group name="pension_page_group_parent_right"/>
+                        </group>
+                    </page>
+
+                    <page string="Penalties" name="penalty_page">
+                        <field name="x_employee_penalty" context="{'default_x_employee_id': id}"/>
+                    </page>
+
+                    <page string="Training" name="training_page">
+                        <field name="x_employee_training" context="{'default_x_employee_id': id}" />
+                        <!--<tree editable="bottom">
+                                <field name="x_employee_id"/>
+                                <field name="x_training"/>
+                                <field name="x_training_code"/>
+                                <field name="x_training_type"/>
+                                <field name="x_training_grade"/>
+                                <field name="x_start_date"/>
+                                <field name="x_end_date"/>
+                                <field name="x_status"/>
+                            </tree>
+                        </field>-->
+                    </page>
+
+                    <page string="Military" name="military_page">
+                        <group>
+                            <group name="military_page_group_parent_left">
+                                <field name="x_military_status" string="Military Status"/>
+                                <field name="x_military_start_date" string="Military Start Date"/>
+                                <field name="x_military_end_date" string="Military End Date"/>
+                            </group>
+                            <group name="military_page_group_parent_right">
+                            </group>
+                        </group>
+                    </page>
+
+                    <page string="Delegation" name="delegation_page">
+                        <group>
+                            <group name="delegation_page_group_parent_left">
+                                <field name="x_is_delegated" string="Is Delegated"/>
+                                <field name="x_delegated_from" string="Delegated From"/>
+                                <field name="x_delegated_to" string="Delegated To"/>
+                            </group>
+                            <group name="delegation_page_group_parent_right">
+                            </group>
+                        </group>
+                    </page>
+
+                    <page string="Trainings" name="Training_page">
+                        <field name="employee_training_ids" readonly="1"/>
+                    </page>
+
+                    <page string="Loan" name="loan_page">
+                        <group>
+                            <group name="loan_page_group_parent_left">
+                                <field name="x_is_loaned" string="Is Loaned"/>
+                                <field name="x_loaned_from" string="Loaned From"/>
+                                <field name="x_loaned_to" string="Loaned To"/>
+                            </group>
+                            <group name="loan_page_group_parent_right">
+                            </group>
+                        </group>
+                    </page>
+
+                    <page string="Illegal Earning" name="illegal_earning_page">
+                        <group name="illegal_earning_page_group_parent">
+                            <group name="illegal_earning_page_group_parent_left">
+                                <field name="x_current_illegal_earning_date" string="Current Illegal Earning Date"/>
+                                <field name="x_next_illegal_earning_date" string="Next Illegal Earning Date"/>
+                            </group>
+                            <group name="illegal_earning_page_group_parent_right"/>
+                        </group>
+                    </page>
+
+                    <page string="Committee" name="Committee_employee_page">
+                        <field name="x_committee_employee" context="{'default_x_employee_id': id}"/>
+                    </page>
+
+                    <page string="Card" name="employee_card_page">
+                        <field name="employee_card" context="{'default_employee_id': id}"/>
+                    </page>
+
+                    <page string="Bonus" name="employee_bonus_page">
+                        <field name="employee_bonus" context="{'default_employee_id': id}"/>
+                    </page>
+
+                    <page string="Attachments" name="attachment_employee_page">
+                        <field name="x_attachments" context="{'default_x_employee_id': id}"/>
+                    </page>
+
+                    <page string="Notes" name="notes_page">
+                        <field name="x_notes" placeholder="Type down your notes here..." />
+                    </page>
+
+                    <!-- <page string="Test Images" name="test_images_employee_page">
+                        <field name="x_test_image" context="{'default_x_employee_id': id}"/>
+                    </page> -->
+
+                </xpath>
+
+                <!-- <xpath expr="//field[@name='x_job_degree']" position="before">
+                    <field name="x_qualitative_group_name" />
+                </xpath> -->
+
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.employee</field>
+        <field name="name">hr.employee.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="employee_training_calendar_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <calendar string="Assigned Training" date_start="x_start_date" date_stop="x_end_date" color="x_training">
+                <field name="x_training"/>
+                <field name="x_training_type"/>
+                <field name="x_training_code"/>
+                <field name="state"/>
+                <field name="active"/>
+            </calendar>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Calendar view for employee_training</field>
+        <field name="priority">16</field>
+        <field name="type">calendar</field>
+    </record>
+
+    <record id="penalty_types_form_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet string="Penalty Types">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="x_name" required="1" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                    <group name="penalty_types_parent_group">
+                        <group name="penalty_types_parent_group_left">
+                            <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                            <field name="x_code"/>
+                            <field name="active"/>
+                        </group>
+                        <group name="penalty_types_parent_group_right"/>
+                    </group>
+                    <group>
+                        <field name="x_notes" placeholder="Type down your notes here..." />
+                    </group>
+                </sheet>
+                <div class="oe_chatter" name="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                    <field name="activity_ids"/>
+                </div>
+            </form>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">penalty.type</field>
+        <field name="name">Default form view for penalty_types</field>
+        <field name="priority">16</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="training_catalogue_form_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet string="Training Catalogue">
+                    <field class="oe_avatar" widget="image" name="x_image"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="x_name" required="1" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                    <group name="training_catalogue_parent_group">
+                        <group name="training_catalogue_parent_group_left">
+                            <field name="x_responsible_id" invisible="1"/>
+                            <field name="x_currency_id" invisible="1"/>
+                            <field name="x_training_cost" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                            <field name="employee_count" />
+
+                            <field name="budget_actual" widget="monetary" options="{'currency_field': 'x_currency_id'}" sum="Total"/>
+                            <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                            <field name="x_description" />
+                        </group>
+                        <group name="training_catalogue_parent_group_right">
+                            <field name="x_training_code"/>
+                            <field name="x_training_type"/>
+                            <field name="x_training_level"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="x_notes" placeholder="Type down your notes here..." nolabel="1"/>
+                    </group>
+
+                    <notebook name="main_notebook">
+                        <page name="Trainee" string="Trainee">
+                            <field name="trainee_ids" readonly="1" />
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter" name="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                    <field name="activity_ids"/>
+                </div>
+            </form>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">training.catalogue</field>
+        <field name="name">Default form view for x_training_catalogue</field>
+        <field name="priority">16</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="employee_penalty_form_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field widget="statusbar" options="{'clickable': '1'}" name="state" string="Status"/>
+                </header>
+                <sheet string="Employee Penalty">
+                    <!--<div class="oe_title">
+                        <h1>
+                            <field name="x_name" required="1" placeholder="Name..."/>
+                        </h1>
+                    </div>-->
+                    <group name="employee_penalty_parent_group">
+                        <group name="employee_penalty_parent_group_left">
+                            <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                            <field name="x_employee_id" string="Employee" attrs="{}" required="1"/>
+                            <field name="active"/>
+                        </group>
+                        <group name="employee_penalty_parent_group_right">
+                            <field name="x_penalty_id" string="Penalty" attrs="{}" required="1"/>
+                            <field name="x_penalty_date" string="Penalty Date" attrs="{}" required="1"/>
+                            <field name="x_penalty_effective_date" />
+                            <field name="x_decision_number" attrs="{}" required="1"/>
+                            <field name="x_penalty_decision_date" attrs="{}" required="1"/>
+                            <field name="x_investigation_number" attrs="{}" required="0"/>
+                            <field name="x_investigation_date" attrs="{}" required="0"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="x_penalty_reason" attrs="{}" required="1"/>
+                    </group>
+                    <group>
+                        <field name="x_notes" placeholder="Type down your notes here..." nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter" name="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                    <field name="activity_ids"/>
+                </div>
+            </form>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.penalty</field>
+        <field name="name">Default form view for employee_penalty</field>
+        <field name="priority">16</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="employee_training_form_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="submit_training" type="object" string="Submit" class="oe_highlight" states="New" attrs="{}"/>
+                    <button name="final_training" type="object" string="Finalize Training" class="oe_highlight" states="In Progress" attrs="{}"/>
+                    <button name="start_training" type="object" string="Start Training" class="oe_highlight" states="Scheduled" attrs="{}"/>
+                    <button name="cancel_training" type="object" string="Cancel Training" class="" states="New,Scheduled,In Progress" attrs="{}"/>
+                    <field widget="statusbar" name="state" string="Status" statusbar_visible="New,Scheduled,In Progress,Completed"/>
+                </header>
+                <sheet string="Assigned Training">
+                    <!--<div class="oe_title">
+                        <h1>
+                            <field name="x_name" required="1" placeholder="Name..."/>
+                        </h1>
+                    </div>-->
+                    <group name="employee_training_parent_group">
+                        <group name="employee_training_parent_group_left">
+
+                            <field name="trainee_type" attrs="{'readonly':[('state', '!=', 'New')]}" options='{"no_open": True,"no_create": True}'/>
+                            <field name="trainee_id" attrs="{'invisible':[('trainee_type','!=','External')],'required':[('trainee_type','=','External')],'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
+                            <field name="trainee_type_rel" attrs="{'invisible':[('trainee_type','!=','External')]}" options='{"no_open": True,"no_create": True}'/>
+                            <field name="x_employee_id" attrs="{'invisible':[('trainee_type','!=','Employee')],'required':[('trainee_type','=','Employee')],'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
+                            <field name="x_staff_id" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
+                            <field name="x_sector_name" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
+                            <field name="x_public_administration_name" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
+                            <field name="x_administration_name" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
+                            <field name="x_section_name" attrs="{'invisible':[('trainee_type','!=','Employee')]}"/>
+                            <field name="active" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                            <label string="Training Date" for="x_start_date"/>
+                            <div class="o_row">
+                                <field name="x_start_date" widget="daterange" options="{&quot;related_end_date&quot;: &quot;x_end_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                                <span>to</span>
+                                <field name="x_end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;x_start_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                            </div>
+                            <field name="x_training" attrs="{'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
+                            <field name="x_training_actual_cost" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                            <field name="training_location_id" attrs="{'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
+                            <field name="trainer_id" attrs="{'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
+                            <field name="supervisor_id" attrs="{'readonly':[('state', '!=', 'New')]}" options='{"no_create": True}'/>
+                            <field name="department_id" attrs="{'readonly':[('state', '!=', 'New')],'invisible':[('trainee_type_rel','!=','Undergraduate')]}" options='{"no_create": True}'/>
+                            <field name="qualitative_group_id" attrs="{'readonly':[('state', '!=', 'New')],'invisible':[('trainee_type_rel','!=','Undergraduate')]}" options='{"no_create": True}'/>
+
+                        </group>
+                        <group name="employee_training_parent_group_right">
+
+                            <field name="x_training_code"/>
+                            <field name="x_training_type"/>
+                            <field name="x_training_level"/>
+                            <field name="x_training_cost"/>
+                            <field name="training_budget_id" readonly="1" force_save="1" options='{"no_create": True}' />
+                            <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                        </group>
+
+                        <group name="training_score" string="Training Score" attrs="{'readonly':[('state', '!=', 'In Progress')]}">
+                            <field name="certificate" attrs="{'readonly':[('state', '!=', 'In Progress')]}"/>
+                            <field name="x_training_grade" attrs="{'readonly':[('state', '!=', 'In Progress')]}"/>
+                        </group>
+
+                        <group name="training_location_details" string="Training Location Details" attrs="{'invisible':[('trainee_type_rel','!=','Undergraduate')]}">
+                            <field name="trainee_type_rel" invisible="1" />
+
+                            <field name="x_section_name_train_loc" />
+                            <field name="x_administration_name_train_loc" />
+                            <field name="x_public_administration_name_train_loc" />
+                            <field name="x_sector_name_train_loc" />
+                        </group>
+
+                    </group>
+                    <group>
+                        <field name="x_notes" placeholder="Type down your notes here..." nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter" name="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                    <field name="activity_ids"/>
+                </div>
+            </form>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default form view for employee_training</field>
+        <field name="priority">16</field>
+        <field name="type">form</field>
+    </record>
+
+    <record id="employee_training_gantt_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <gantt date_start="x_start_date" date_stop="x_end_date"/>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default gantt view for employee_training</field>
+        <field name="priority">16</field>
+        <field name="type">gantt</field>
+    </record>
+
+    <record id="employee_training_tree_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <tree>
+                <!--<field name="x_studio_sequence" widget="handle"/>-->
+                <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                <field name="trainee_type" optional="show"/>
+                <field name="x_employee_id" optional="show"/>
+                <field name="x_sector_name" optional="show"/>
+                <field name="x_public_administration_name" optional="show"/>
+                <field name="x_administration_name" optional="show"/>
+                <field name="x_section_name" optional="show"/>
+
+
+                <field name="trainee_id" optional="show"/>
+                <field name="x_training" optional="show"/>
+                <field name="x_training_type" optional="show"/>
+                <field name="x_training_code" optional="show"/>
+                <field name="x_training_level" optional="show"/>
+                <field name="x_training_grade" decoration-danger="x_training_grade == 'Fair'" decoration-info="x_training_grade == 'Very Good'" decoration-warning="x_training_grade == 'Good'" decoration-success="x_training_grade == 'Excellent'" widget="badge" optional="show"/>
+                <field name="x_start_date" optional="show"/>
+                <field name="x_end_date" optional="show"/>
+                <field name="department_id" optional="hide"/>
+                <field name="x_section_name_train_loc" optional="hide"/>
+                <field name="x_administration_name_train_loc" optional="hide"/>
+                <field name="x_public_administration_name_train_loc" optional="hide"/>
+                <field name="x_sector_name_train_loc" optional="hide"/>
+                <field name="state" optional="show"/>
+                <field name="active" optional="show"/>
+            </tree>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default list view for employee_training</field>
+        <field name="priority">16</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="penalty_types_tree_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <tree>
+                <!--<field name="x_studio_sequence" widget="handle"/>-->
+                <field name="x_name"/>
+                <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                <field name="x_code"/>
+                <field name="x_notes" optional="hide"/>
+                <field name="active"/>
+            </tree>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">penalty.type</field>
+        <field name="name">Default list view for penalty_types</field>
+        <field name="priority">16</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="training_catalogue_tree_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <tree>
+                <!--<field name="x_studio_sequence" widget="handle"/>-->
+                <field name="x_name"/>
+                <field name="x_training_code"/>
+                <field name="x_training_type"/>
+                <field name="x_training_level"/>
+                <field name="x_responsible_id" invisible="1"/>
+                <field name="x_currency_id" invisible="1"/>
+                <field name="employee_count" />
+                <field name="x_training_cost" widget="monetary" options="{'currency_field': 'x_currency_id'}" sum="Total"/>
+                <field name="budget_actual" widget="monetary" options="{'currency_field': 'x_currency_id'}" sum="Total"/>
+
+                <field name="active"/>
+                <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+            </tree>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">training.catalogue</field>
+        <field name="name">Default list view for training_catalogue</field>
+        <field name="priority">16</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="employee_penalty_tree_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <tree>
+                <!--<field name="x_studio_sequence" widget="handle"/>-->
+                <!--<field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>-->
+                <field name="x_employee_id"/>
+                <field name="x_penalty_id"/>
+                <field name="x_penalty_date"/>
+                <field name="x_penalty_effective_date"/>
+                <field name="x_decision_number"/>
+                <field name="x_penalty_decision_date"/>
+                <field name="x_investigation_number"/>
+                <field name="x_investigation_date"/>
+                <field name="state"/>
+                <field name="active"/>
+                <field name="x_notes" optional="hide"/>
+            </tree>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.penalty</field>
+        <field name="name">Default list view for employee_penalty</field>
+        <field name="priority">16</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="training_catalogue_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="x_training_cost" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">training.catalogue</field>
+        <field name="name">Default pivot view for training_catalogue</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <record id="penalty_types_search_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_name"/>
+                <field name="x_code"/>
+                <!--<field name="x_studio_tag_ids"/>-->
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">penalty.type</field>
+        <field name="name">Default search view for penalty_types</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record>
+
+    <!-- <record id="employee_training_search_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_employee_id"/>
+                <field name="x_training"/>
+                <field name="x_training_code"/>
+                <field name="x_training_type"/>
+                <field name="state"/>
+                
+                <separator/>
+                <filter date="x_start_date" name="filter_date_start" string="Start Date"/>
+                <filter date="x_end_date" name="filter_date_stop" string="End Date"/>
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default search view for employee_training</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record> -->
+
+    <record id="default_search_view_employee_training" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search string="employee_training">
+                <field name="x_employee_id"/>
+                <field name="x_training"/>
+                <field name="x_training_code"/>
+                <field name="x_training_type"/>
+                <field name="state"/>
+                <field name="x_training_level" />
+
+                <filter name="am_filter_Employee" string="Employee" domain="[['trainee_type','=','Employee']]"/>
+                <filter name="am_filter_External" string="External" domain="[['trainee_type','=','External']]"/>
+                <filter name="am_filter_Scheduled" string="Scheduled" domain="[['state','=','Scheduled']]"/>
+                <filter name="am_filter_inprogress" string="In Progress" domain="[['state','=','In Progress']]"/>
+                <filter name="am_filter_completed" string="Completed" domain="[['state','=','Completed']]"/>
+                <filter name="am_filter_cancelled" string="Completed" domain="[['state','=','Cancelled']]"/>
+                <separator/>
+                <filter name="am_filter_External_Undergraduate" string="External Undergraduate" domain="[['trainee_type_rel','=','Undergraduate']]"/>
+                <filter name="am_filter_External_Company" string="External Company" domain="[['trainee_type_rel','=','External Company']]"/>
+                <separator/>
+                <filter date="x_start_date" name="filter_date_start" string="Start Date"/>
+                <filter date="x_end_date" name="filter_date_stop" string="End Date"/>
+
+
+
+                <separator/>
+
+                <group>
+                    <filter name="employee_training_group_by_sector" string="Sector" context="{'group_by': 'x_sector_name'}"/>
+                    <filter name="employee_training_group_by_x_public_administration_name" string="Public Administration" context="{'group_by': 'x_public_administration_name'}"/>
+                    <filter name="employee_training_group_by_x_administration_name" string="Administration" context="{'group_by': 'x_administration_name'}"/>
+                    <filter name="employee_training_group_by_x_section_name" string="Section" context="{'group_by': 'x_section_name'}"/>
+                </group>
+
+                <searchpanel>
+
+                    <field name="trainee_type" icon="fa fa-user" groupby="trainee_type" string="Trainee Type" enable_counters="1"/>
+                    <field name="training_location_id" icon="fa fa-building" groupby="training_location_id" string="Training Center" enable_counters="1"/>
+                    <!-- <field name="trainee_type_rel" icon="fa fa-user" groupby="trainee_type_rel" string="Trainee Source" enable_counters="1"/> -->
+
+                </searchpanel>
+
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default search view for employee.training</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record>
+
+    <record id="employee_penalty_search_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_employee_id"/>
+                <field name="x_penalty_id"/>
+                <field name="x_penalty_date"/>
+                <field name="x_decision_number"/>
+                <field name="x_investigation_number"/>
+                <field name="x_penalty_reason"/>
+                <field name="x_notes"/>
+                <field name="state"/>
+                <!--<field name="x_studio_tag_ids"/>-->
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.penalty</field>
+        <field name="name">Default search view for employee_penalty</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record>
+
+    <record id="training_catalogue_search_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_name"/>
+                <field name="x_training_code"/>
+                <field name="x_training_type"/>
+                <field name="x_training_level"/>
+                <field name="x_training_cost"/>
+                <!--<field name="x_studio_tag_ids"/>-->
+                <!--<filter string="My Training Catalogue" name="my_x_training_catalogue" domain="[['x_studio_user_id', '=', uid]]"/>-->
+                <!-- <filter name="responsible_id_group_by" string="Responsible" context="{'group_by': 'x_responsible_id'}" domain="[]"/> -->
+                <filter name="training_type_group_by" string="Training Type" context="{'group_by': 'x_training_type'}" domain="[]"/>
+                <filter name="training_level_group_by" string="Training Level" context="{'group_by': 'x_training_level'}" domain="[]"/>
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">training.catalogue</field>
+        <field name="name">Default search view for training_catalogue</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record>
+
+    <record id="job_degree_search_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="x_qualitative_group_id"/>
+                <field name="x_order"/>
+                <filter name="x_qualitative_group_id_group_by" string="Qualitative Group" context="{'group_by': 'x_qualitative_group_id'}" domain="[]"/>
+                <filter name="x_order_group_by" string="Order" context="{'group_by': 'x_order'}" domain="[]"/>
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">job_degree</field>
+        <field name="name">Default search view for job_degree</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record>
+
+    <record id="hr_employee_search_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.search.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="x_staff_id"/>
+                <field name="identification_id"/>
+                <field name="x_social_insurance_number"/>
+                <field name="x_sector_name"/>
+                <field name="x_public_administration_name"/>
+                <field name="x_administration_name"/>
+                <field name="x_section_name"/>
+                <field name="x_qualitative_group_id"/>
+                <field name="x_job_degree_id"/>
+                <field name="job_id"/>
+                <field name="x_age"/>
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter string="Christian" name="christian" domain="['|',('x_religion', '=', 'Christiana'),('x_religion', '=', 'Christian')]"/>
+                <filter string="Muslim" name="Muslim" domain="['|',('x_religion','=','Muslima'),('x_religion', '=', 'Muslim')]"/>
+                <filter string="Age >= 60" name="Age" domain="[('x_age', '>=', 60)]"/>
+
+                <filter name="religion_group_by" string="Religion" context="{'group_by': 'x_religion'}" domain="[]"/>
+                <filter name="age_group_by" string="Age" context="{'group_by': 'x_age'}" domain="[]"/>
+                <filter name="sector_group_by" string="Sector" context="{'group_by': 'x_sector_name'}" domain="[]"/>
+                <filter name="public_administration_group_by" string="Public Administration" context="{'group_by': 'x_public_administration_name'}" domain="[]"/>
+                <filter name="administration_group_by" string="Administration" context="{'group_by': 'x_administration_name'}" domain="[]"/>
+                <filter name="section_group_by" string="Section" context="{'group_by': 'x_section_name'}" domain="[]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_job_search_inherit" model="ir.ui.view">
+        <field name="name">hr.job.search.inherit</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_job_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="x_sector_id"/>
+                <field name="x_qualitative_group_id"/>
+                <field name="x_job_degree_id"/>
+                <field name="description"/>
+                <field name="x_job_responsibilities"/>
+                <field name="x_job_qualifications"/>
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter string="Sector" name="sector" domain="[]" context="{'group_by': 'x_sector_id'}"/>
+                <filter string="Qualitative Group" name="qualitative_group" domain="[]" context="{'group_by': 'x_qualitative_group_id'}"/>
+                <filter string="Job Degree" name="job_degree" domain="[]" context="{'group_by': 'x_qualitative_group_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--<record id="hr_employee_filter_1" model="ir.filters">
+        <field name="name">Christian</field>
+        <field name="model_id">hr.employee</field>
+        <field name="user_id" eval="False"/>
+        <field name="domain">[('x_religion','=','Christian')]</field>
+    </record>-->
+
+    <!-- qualitative_group-->
+    <record id="action_qualitative_group" model="ir.actions.act_window">
+        <field name="name">Qualitative Group</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qualitative_group</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_qualitative_group_list" model="ir.ui.view">
+        <field name="name">view_qualitative_group_list</field>
+        <field name="model">qualitative_group</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="active"/>
+                <!-- <field name="x_job_position_id"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_qualitative_group_form" model="ir.ui.view">
+        <field name="name">view_qualitative_group_form</field>
+        <field name="model">qualitative_group</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- sync_folder-->
+    <record id="action_sync_folder" model="ir.actions.act_window">
+        <field name="name">Sync Employees Folders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sync_folder</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_sync_folder_list" model="ir.ui.view">
+        <field name="name">view_sync_folder_list</field>
+        <field name="model">sync_folder</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- <field name="name"/> -->
+                <field name="create_uid"/>
+                <field name="create_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sync_folder_form" model="ir.ui.view">
+        <field name="name">view_sync_folder_form</field>
+        <field name="model">sync_folder</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+
+                    <button name="sync_employees_folder" type="object" string="Sync" class="oe_highlight" states="Draft" attrs="{}"/>
+                    <field name="state" widget="statusbar" />
+
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!-- <field name="name" placeholder="Name"/> -->
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employees_reporting" model="ir.actions.act_window">
+        <field name="name">Employees Reporting</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">pivot</field>
+    </record>
+
+    <record id="hr_employee_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot display_quantity="true" default_order="name asc">
+                <!-- <field name="x_age" type="measure"/> -->
+                <field name="name" type="count"/>
+                <!-- <field name="x_religion" type="count"/> -->
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">hr.employee</field>
+        <field name="name">Default pivot view for hr_employee</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <!-- employee_leave_allocation-->
+    <record id="action_employee_leave_allocation" model="ir.actions.act_window">
+        <field name="name">Employee Leave Allocation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee_leave_allocation</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_employee_leave_allocation_list" model="ir.ui.view">
+        <field name="name">view_employee_leave_allocation_list</field>
+        <field name="model">employee_leave_allocation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_employee_leave_allocation_form" model="ir.ui.view">
+        <field name="name">view_employee_leave_allocation_form</field>
+        <field name="model">employee_leave_allocation</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <button name="allocate_emp_leaves_begin_year" type="object" string="Run" class="oe_highlight" states="Draft,Submit" attrs="{}"/>
+
+
+                    <field name="state" widget="statusbar" />
+                </header>
+
+                <sheet>
+                    <widget name="web_ribbon" title="Success" bg_color="bg-success" attrs="{'invisible': [('state', 'not in', ('Completed'))]}"/>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                    <page name="page1" string="page name">
+                      
+                    </page>
+                  </notebook> -->
+
+
+                </sheet>
+                <div class="oe_chatter" name="mainchatterview">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- training_budget-->
+    <record id="action_training_budget" model="ir.actions.act_window">
+        <field name="name">Training Budget</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">training_budget</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_training_budget_list" model="ir.ui.view">
+        <field name="name">view_training_budget_list</field>
+        <field name="model">training_budget</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="name" optional="show"/>
+                <field name="start_date" optional="show"/>
+                <field name="end_date" optional="show"/>
+                <field name="budget_planned" optional="show"/>
+                <field name="budget_actual" optional="show"/>
+                <field name="employee_count" optional="show"/>
+                <field name="budget_diff" decoration-success="budget_diff &gt; 0" decoration-danger="budget_diff &lt; 0" optional="show"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_training_budget_form" model="ir.ui.view">
+        <field name="name">view_training_budget_form</field>
+        <field name="model">training_budget</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                            <!-- <field name="start_date" optional="show"/>
+                            <field name="end_date" optional="show"/> -->
+                            <label string="Training Date" for="start_date"/>
+                            <div class="o_row">
+                                <field name="start_date" widget="daterange" options="{&quot;related_end_date&quot;: &quot;end_date&quot;}"/>
+                                <span>to</span>
+                                <field name="end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;start_date&quot;}"/>
+                            </div>
+                            <field name="budget_planned" optional="show"/>
+                            <field name="budget_actual" optional="show"/>
+                            <field name="employee_count" optional="show"/>
+                            <field name="budget_diff" decoration-success="budget_diff &gt; 0" decoration-danger="budget_diff &lt; 0" optional="show"/>
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <notebook name="main_notebook">
+                        <page name="Trainings" string="Trainings">
+                            <field name="empolyee_ids" readonly="1" />
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <div class="oe_chatter" name="mainchatterview">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_training_budget_pivot" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">training_budget</field>
+        <field name="name">Default pivot view for training_budget</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <!-- training_location-->
+    <record id="action_training_location" model="ir.actions.act_window">
+        <field name="name">Training Location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">training_location</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_training_location_list" model="ir.ui.view">
+        <field name="name">view_training_location_list</field>
+        <field name="model">training_location</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" multi_edit="1">
+                <field name="name" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_training_location_form" model="ir.ui.view">
+        <field name="name">view_training_location_form</field>
+        <field name="model">training_location</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                 
+       
+                 <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                    <page name="page1" string="page name">
+                      
+                    </page>
+                  </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+              </div> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="view_training_location_pivot" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">training_location</field>
+        <field name="name">Default pivot view for training_location</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <!-- trainer-->
+    <record id="action_trainer" model="ir.actions.act_window">
+        <field name="name">Trainer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">trainer</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_trainer_list" model="ir.ui.view">
+        <field name="name">view_trainer_list</field>
+        <field name="model">trainer</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="name" optional="show"/>
+                <field name="trainer_type" optional="show"/>
+                <!-- <field name="employee_id" optional="show"/> -->
+                <field name="mobile_phone" optional="show"/>
+                <field name="identification_id" optional="show"/>
+                <field name="trainer_code" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_trainer_form" model="ir.ui.view">
+        <field name="name">view_trainer_form</field>
+        <field name="model">trainer</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                 
+       
+                 <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <!-- <h1>
+                    <field name="name" placeholder="Name"/>
+                  </h1> -->
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="trainer_type" optional="show"/>
+
+                            <field name="employee_id" optional="show" attrs="{'invisible':[('trainer_type','!=','Employee')],'required':[('trainer_type','=','Employee')]}"/>
+                            <field name="name" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+                            <field name="mobile_phone" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+                            <field name="identification_id" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+                            <field name="trainer_code" attrs="{'readonly':[('trainer_type','=','Employee')]}" force_save="1"/>
+
+                        </group>
+                        <group name="group_right">
+                            <field name="active" optional="show"/>
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                    <page name="page1" string="page name">
+                      
+                    </page>
+                  </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+              </div> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="view_trainer_pivot" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">trainer</field>
+        <field name="name">Default pivot view for trainer</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <!-- trainee-->
+    <record id="action_trainee" model="ir.actions.act_window">
+        <field name="name">External Trainee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">trainee</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_trainee_list" model="ir.ui.view">
+        <field name="name">view_trainee_list</field>
+        <field name="model">trainee</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="trainee_type" optional="show"/>
+                <field name="name" optional="show"/>
+                <field name="mobile_phone" optional="show"/>
+                <field name="identification_id" optional="show"/>
+                <field name="trainer_code" optional="show"/>
+                <field name="university" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_trainee_form" model="ir.ui.view">
+        <field name="name">view_trainee_form</field>
+        <field name="model">trainee</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <!-- <h1>
+                <field name="name" placeholder="Name"/>
+              </h1> -->
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="trainee_type" optional="show"/>
+                            <field name="name" optional="show"/>
+                            <field name="mobile_phone" optional="show"/>
+                            <field name="identification_id" optional="show"/>
+
+                        </group>
+                        <group name="group_right">
+                            <field name="trainer_code" optional="show"/>
+                            <field name="university" optional="show" attrs="{'invisible':[('trainee_type','!=','Undergraduate')],'required':[('trainee_type','=','Undergraduate')]}"/>
+                            <field name="active" optional="show"/>
+                        </group>
+                    </group>
+
+
+                    <notebook name="main_notebook">
+                        <page name="Trainings" string="Trainings">
+                            <field name="employee_training_id" readonly="1" />
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <div class="oe_chatter" name="mainchatterview">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_trainee_pivot" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">trainee</field>
+        <field name="name">Default pivot view for trainee</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <!-- mission-->
+    <record id="action_mission" model="ir.actions.act_window">
+        <field name="name">Missions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mission</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_mission_list" model="ir.ui.view">
+        <field name="name">view_mission_list</field>
+        <field name="model">mission</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="name" optional="show"/>
+                <field name="type" optional="show"/>
+                <field name="start_date" optional="show"/>
+                <field name="end_date" optional="show"/>
+                <field name="destination_country" optional="show"/>
+                <field name="decision_number" optional="show"/>
+                <field name="state" optional="show"/>
+
+
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mission_form" model="ir.ui.view">
+        <field name="name">view_mission_form</field>
+        <field name="model">mission</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <button name="submit" type="object" string="Submit" class="oe_highlight" states="New" attrs="{}"/>
+
+
+                    <field name="state" widget="statusbar" />
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!-- <field name="name" placeholder="Name"/> -->
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <field name="name" optional="show"/>
+                            <field name="type" optional="show"/>
+                            <label string="Mission Date" for="start_date"/>
+                            <div class="o_row">
+                                <field name="start_date" widget="daterange" options="{&quot;related_end_date&quot;: &quot;end_date&quot;}"/>
+                                <span>to</span>
+                                <field name="end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;start_date&quot;}"/>
+                            </div>
+                            
+                            <field name="attachment" />
+
+
+                        </group>
+                        <group name="group_right">
+                            <field name="destination_country" options='{"no_open": True,"no_create": True}' optional="show"/>
+                            <field name="decision_number" optional="show"/>
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                    <page name="page1" string="page name">
+                      
+                    </page>
+                  </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+              </div> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mission_pivot" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">mission</field>
+        <field name="name">Default pivot view for mission</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <!-- hr_holiday_bulk_update-->
+    <record id="action_hr_holiday_bulk_update" model="ir.actions.act_window">
+        <field name="name">HR Holidays Bulk Update</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_holiday_bulk_update</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_hr_holiday_bulk_update_list" model="ir.ui.view">
+        <field name="name">view_hr_holiday_bulk_update_list</field>
+        <field name="model">hr_holiday_bulk_update</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="is_deducted"/>
+                <field name="number_of_days"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_holiday_bulk_update_form" model="ir.ui.view">
+        <field name="name">view_hr_holiday_bulk_update_form</field>
+        <field name="model">hr_holiday_bulk_update</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <button name="submit_bulk" type="object" string="Submit" class="oe_highlight" states="New" attrs="{}"/>
+                    <button name="run_bulk" type="object" string="Run" class="oe_highlight" states="Submit" attrs="{}" />
+                    <button name="make_as_draft" type="object" string="Make As Draft" class="oe_highlight" states="Submit" attrs="{}" />
+                    <field name="state" widget="statusbar" />
+                </header>
+
+                <sheet>
+                    <widget name="web_ribbon" title="Success" bg_color="bg-success" attrs="{'invisible': [('state', 'not in', ('Completed'))]}"/>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+                            <label string="From" for="start_date"/>
+                            <div class="o_row">
+                                <field name="start_date" widget="daterange" options="{&quot;related_end_date&quot;: &quot;end_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                                <span>to</span>
+                                <field name="end_date" widget="daterange" options="{&quot;related_start_date&quot;: &quot;start_date&quot;}" attrs="{'readonly':[('state', '!=', 'New')]}"/>
+                            </div>
+                            <field name="number_of_days"/>
+                            <field name="is_deducted" attrs="{'readonly': [('state', 'in', ('Completed'))]}"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+
+
+                    <notebook name="main_notebook">
+                        <page name="bulk_update_employees" string="Bulk Update Employees">
+                            <field name="hr_holiday_bulk_update_employee"/>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!-- hr_holiday_bulk_update_employee-->
+    <record id="action_hr_holiday_bulk_update_employee" model="ir.actions.act_window">
+        <field name="name">Bulk Update Employees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_holiday_bulk_update_employee</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_hr_holiday_bulk_update_employee_list" model="ir.ui.view">
+        <field name="name">view_hr_holiday_bulk_update_employee_list</field>
+        <field name="model">hr_holiday_bulk_update_employee</field>
+        <field name="arch" type="xml">
+            <tree edit="false" create="false" delete="false">
+                <field name="hr_holiday_bulk_update_id"/>
+                <field name="employee_id"/>
+                <field name="desc"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_holiday_bulk_update_employee_form" model="ir.ui.view">
+        <field name="name">view_hr_holiday_bulk_update_employee_form</field>
+        <field name="model">hr_holiday_bulk_update_employee</field>
+
+        <field name="arch" type="xml">
+            <form  >
+                <header>
+                    <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+                </header>
+
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+
+                        </h1>
+                    </div>
+
+
+                    <group name="main_group">
+                        <group name="group_left">
+
+                        </group>
+                        <group name="group_right">
+
+                        </group>
+                    </group>
+
+
+                    <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+                </sheet>
+                <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+            </form>
+        </field>
+    </record>
+
+
+    <record id="employee_training_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="x_employee_id" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.training</field>
+        <field name="name">Default pivot view for employee_training_pivot_1</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <record id="employee_penalty_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="x_employee_id" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">employee.penalty</field>
+        <field name="name">Default pivot view for employee_penalty_pivot_1</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+    
+    <!-- job_hierarchy-->
+    <record id="action_job_hierarchy" model="ir.actions.act_window">
+        <field name="name">Job Hierarchy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job_hierarchy</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_job_hierarchy_list" model="ir.ui.view">
+        <field name="name">view_job_hierarchy_list</field>
+        <field name="model">job_hierarchy</field>
+        <field name="arch" type="xml">
+        <tree editable="bottom" >
+            <field name="name"/>
+            <field name="file_name" invisible="1"/>
+            <field name="attachment_store" widget="binary" filename="file_name"/>
+            <field name="create_uid"/>
+            <field name="create_date"/>
+            <field name="write_uid"/>
+            <field name="write_date"/>
+        </tree>
+        </field>
+    </record>
+    
+    <record id="view_job_hierarchy_form" model="ir.ui.view">
+        <field name="name">view_job_hierarchy_form</field>
+        <field name="model">job_hierarchy</field>
+
+        <field name="arch" type="xml">
+        <form  >
+            <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                
+    
+                <field name="state" widget="statusbar" />-->
+            </header>
+
+            <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+                <h1>
+                <field name="name" placeholder="Name"/>
+                </h1>
+            </div>
+
+
+            <group name="main_group">
+                <group name="group_left">
+
+                </group>
+                <group name="group_right">
+
+                </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                    
+                </page>
+                </notebook> -->
+
+
+            </sheet>
+            <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+            </div> -->
+        </form>
+        </field>
+    </record>
+
+
+    <!-- job_hierarchy_decisions-->
+    <record id="action_job_hierarchy_decisions" model="ir.actions.act_window">
+      <field name="name">Job Hierarchy Decisions</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">job_hierarchy_decisions</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_job_hierarchy_decisions_list" model="ir.ui.view">
+      <field name="name">view_job_hierarchy_decisions_list</field>
+      <field name="model">job_hierarchy_decisions</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+            <field name="name"/>
+            <field name="decision_date"/>
+            <field name="attachment_store" widget="file_name" filename="file_name"/>
+            <field name="file_name" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+    <record id="view_job_hierarchy_decisions_form" model="ir.ui.view">
+      <field name="name">view_job_hierarchy_decisions_form</field>
+      <field name="model">job_hierarchy_decisions</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+    <record id="employee_pivot_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="measure"/>
+            </pivot>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">hr.employee</field>
+        <field name="name">Default pivot view for hr_employee_pivot_1</field>
+        <field name="priority">16</field>
+        <field name="type">pivot</field>
+    </record>
+
+    <record id="action_job_structure" model="ir.actions.act_window">
+        <field name="name">Job Position</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.job</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <record id="open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">pivot</field>
+        <field name="domain">[]</field>
+        <field name="context">{'chat_icon': True}</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+        <field name="help" type="html">
+         <p class="o_view_nocontent_smiling_face">
+           Add a new employee
+         </p><p>
+           With just a quick glance on the Odoo employee screen, you
+           can easily find all the information you need for each person;
+           contact data, job position, availability, etc.
+         </p>
+        </field>
+    </record>
+
+    <!-- <record id="open_view_employee_tree" model="ir.actions.act_window">
+        <field name="name">Employees Structure</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_id" ref="hr.view_employee_tree"/>
+        <field name="domain">[('parent_id','=',False)]</field>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+    </record>
+
+    <record id="open_view_employee_list" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">form,tree,pivot</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+    </record> -->
+
+    <record id="hr_contract_extend_1" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='date_end']" position="after">
+                    <field name="wage"/>
+                    <field name="bonus"/>
+                    <field name="equal_degree"/>
+                    <field name="structure_type_id" optional="hide"/>
+                    <field name="sector" optional="hide"/>
+                    <field name="public_administration" optional="hide"/>
+                    <field name="section" optional="hide"/>
+                    <field name="receiving_work_date" optional="hide"/>
+                    <field name="qualitative_group_id" optional="hide"/>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.contract</field>
+        <field name="name">hr.contract.tree customization</field>
+        <field name="priority">99</field>
+        <field name="type">tree</field>
+    </record>
+
+    <record id="hr_contract_extend_2" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="sector"/>
+                    <field name="public_administration"/>
+                    <field name="administration"/>
+                    <field name="section"/>
+                    <field name="qualitative_group_id"/>
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="receiving_work_date"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page name="hiring" string="Hiring">
+                        <group name="main_group">
+                            <group name="group_left">
+                                <field name="equal_degree"/>
+                                <field name="wage"/>
+                                <field name="basic_text"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="bonus"/>
+                                <field name="bonus_text"/>
+                            </group>
+                          </group>
+                    </page>
+                </xpath>
+            </data>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="key" eval="False"/>
+        <field name="mode">extension</field>
+        <field name="model">hr.contract</field>
+        <field name="name">hr.contract.form customization</field>
+        <field name="priority">99</field>
+        <field name="type">form</field>
+    </record>
+
+</odoo>
