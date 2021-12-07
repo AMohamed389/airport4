@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Add test field to existing view -->
+        <record model="ir.ui.view" id="hr_contract_extend_view">
+            <field name="name">Contract Extend View</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='main_info']" position="after">
+                    
+                </xpath>
+                <!-- <xpath expr="//group[@name='salary_type']" position="after">
+                    
+                </xpath> -->
+            </field>
+        </record>
+    </data>
+</odoo>

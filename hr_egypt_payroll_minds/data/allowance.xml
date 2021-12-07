@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='0'>
+
+        <record id="incentive_2019_01" model="allowance">
+            <field name="name">حافز 2019</field>
+            <field name="code">A201901</field>
+            <field name="type">incentive</field>
+            <field name="all_employees">True</field>
+            <field name="amount">150</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="incentive_2020_01" model="allowance">
+            <field name="name">علاوة 2020</field>
+            <field name="code">I202001</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="min_amount">75</field>
+            <field name="percentage">12</field>
+            <field name="monthly">True</field>
+            <field name="employee_card_salary">True</field>
+            <field name="employee_card_date">2020-06-30</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="incentive_2021_01" model="allowance">
+            <field name="name">علاوة 2021</field>
+            <field name="code">I202101</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="min_amount">75</field>
+            <field name="percentage">13</field>
+            <field name="monthly">True</field>
+            <field name="employee_card_salary">True</field>
+            <field name="employee_card_date">2021-06-30</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="supervision_allowance_01" model="allowance">
+            <field name="name">وظائف اشرافية (مدير عام  أو قائم باعمال)</field>
+            <field name="code">SupA01</field>
+            <field name="type">allowance</field>
+            <field name="amount">200</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+        <record id="supervision_allowance_02" model="allowance">
+            <field name="name">وظائف اشرافية (رئيس قطاع أو قائم باعمال)</field>
+            <field name="code">SupA02</field>
+            <field name="type">allowance</field>
+            <field name="amount">300</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+        <record id="supervision_allowance_03" model="allowance">
+            <field name="name">وظائف اشرافية (مساعد رئيس مجلس الادارة)</field>
+            <field name="code">SupA03</field>
+            <field name="type">allowance</field>
+            <field name="amount">400</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <!--military domain-->
+        <record id="fixed_allowance_01" model="allowance">
+            <field name="name">اخري(10 جنيه ثابت)</field>
+            <field name="code">FA01</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="amount">10</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="fixed_allowance_02" model="allowance">
+            <field name="name">علاوة اضافية 4 ج</field>
+            <field name="code">FA02</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="amount">4</field>
+            <field name="monthly">True</field>
+        </record>
+
+        <record id="fixed_allowance_03" model="allowance">
+            <field name="name">علاوة اضافية اعزب</field>
+            <field name="code">FA03</field>
+            <field name="type">allowance</field>
+            <field name="amount">0</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','single')]</field>
+        </record>
+
+        <!--for male and female-->
+        <record id="fixed_allowance_04" model="allowance">
+            <field name="name">علاوة اضافية متزوج</field>
+            <field name="code">FA04</field>
+            <field name="type">allowance</field>
+            <field name="amount">2</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','married')]</field>
+        </record>
+        <!--married, one dependant-->
+        <record id="fixed_allowance_05" model="allowance">
+            <field name="name">علاوة اضافية متزوج و يعول شخص</field>
+            <field name="code">FA05</field>
+            <field name="type">allowance</field>
+            <field name="amount">4</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','married and dependent')]</field>
+        </record>
+
+        <!--married, more than one dependant-->
+        <record id="fixed_allowance_06" model="allowance">
+            <field name="name">علاوة اضافية متزوج و يعول اكثر من شخص</field>
+            <field name="code">FA06</field>
+            <field name="type">allowance</field>
+            <field name="amount">6</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','married and dependent')]</field>
+        </record>
+
+        <!--widow-->
+        <record id="fixed_allowance_07" model="allowance">
+            <field name="name">علاوة اضافية ارملة</field>
+            <field name="code">FA07</field>
+            <field name="type">allowance</field>
+            <field name="amount">0</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','widower')]</field>
+        </record>
+
+        <!--divorced-->
+        <record id="fixed_allowance_08" model="allowance">
+            <field name="name">علاوة اضافية مطلقة</field>
+            <field name="code">FA08</field>
+            <field name="type">allowance</field>
+            <field name="amount">0</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','divorced')]</field>
+        </record>
+
+        <!--widow, one dependant-->
+        <record id="fixed_allowance_09" model="allowance">
+            <field name="name">علاوة اضافية ارملة و تعول شخص واحد</field>
+            <field name="code">FA09</field>
+            <field name="type">allowance</field>
+            <field name="amount">2</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','divorced and dependent')]</field>
+        </record>
+
+        <record id="fixed_allowance_10" model="allowance">
+            <field name="name">علاوة اضافية ارملة و تعول اكثر من شخص</field>
+            <field name="code">FA010</field>
+            <field name="type">allowance</field>
+            <field name="amount">4</field>
+            <field name="monthly">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('marital','=','divorced and dependent')]</field>
+        </record>
+
+        <!--exchange representative-->
+        <record id="exchange_allowance_01" model="allowance">
+            <field name="name">بدل الصرافة</field>
+            <field name="code">EA01</field>
+            <field name="type">allowance</field>
+            <field name="monthly">True</field>
+            <field name="amount">70</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <!--no supervision positions-->
+        <record id="shift_allowance_01" model="allowance">
+            <field name="name">بدل نوبات</field>
+            <field name="code">SHA01</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="amount">150</field>
+            <field name="monthly">True</field>
+            <field name="domain">[('x_work_schedule_type','=','Shift')]</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="airplane_fee_allowance_01" model="allowance">
+            <field name="name">بدل رسوم(طائرات)</field>
+            <field name="code">AFA01</field>
+            <field name="type">allowance</field>
+            <field name="employee_card_salary">True</field>
+            <field name="percentage">30</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="car_fee_allowance_02" model="allowance">
+            <field name="name">بدل رسوم (سيارات)</field>
+            <field name="code">CFA02</field>
+            <field name="type">allowance</field>
+            <field name="employee_card_salary">True</field>
+            <field name="percentage">20</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <!--free time allowance for engineers,commercial specialists and lawyers-->
+        <record id="free_time_allowance_01" model="allowance">
+            <field name="name">بدل تفرغ</field>
+            <field name="code">FTA01</field>
+            <field name="type">allowance</field>
+            <field name="percentage">30</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+        <!--for lawyers specialization-->
+        <record id="lawyer_incentive_01" model="allowance">
+            <field name="name">حافز محامي نقض</field>
+            <field name="code">LI01</field>
+            <field name="type">incentive</field>
+            <field name="percentage">40</field>
+            <field name="monthly">True</field>
+        </record>
+
+        <record id="lawyer_incentive_02" model="allowance">
+            <field name="name">حافز محامي استئناف</field>
+            <field name="code">LI02</field>
+            <field name="type">incentive</field>
+            <field name="percentage">20</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="lawyer_incentive_03" model="allowance">
+            <field name="name">حافز محامي ابتدائي</field>
+            <field name="code">LI03</field>
+            <field name="type">incentive</field>
+            <field name="percentage">15</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="monitor_allowance_03" model="allowance">
+            <field name="name">بدل شاشة</field>
+            <field name="code">MA01</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="amount">100</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <!--for telephone employees-->
+        <record id="headphone_tele_allowance_03" model="allowance">
+            <field name="name">بدل سماعة</field>
+            <field name="code">TA01</field>
+            <field name="type">allowance</field>
+            <field name="amount">100</field>
+            <field name="monthly">True</field>
+            <field name="is_partial">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+<!--for French/English graduate-->
+        <record id="distinguish_incentive_01" model="allowance">
+            <field name="name">حافز تميز(لغة فرنسية أو انجليزية)</field>
+            <field name="code">DI01</field>
+            <field name="type">incentive</field>
+            <field name="amount">150</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <!--for PhD holder-->
+        <record id="distinguish_incentive_02" model="allowance">
+            <field name="name">حافز تميز (الحاصلين علي الدكتوراه)</field>
+            <field name="code">DI02</field>
+            <field name="type">incentive</field>
+            <field name="amount">200</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+        <!--for masters or post graduate studies-->
+        <record id="distinguish_incentive_03" model="allowance">
+            <field name="name">حافز تميز(ماجستير أو دراسات عليا)</field>
+            <field name="code">DI03</field>
+            <field name="type">incentive</field>
+            <field name="amount">150</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+    </data>
+</odoo>

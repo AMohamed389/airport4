@@ -1,0 +1,240 @@
+<odoo>
+    <data noupdate="0">
+
+
+        <record id="EGYPT_CAI_STRUCTURE" model="hr.payroll.structure">
+            <field name="name">هيكل مرتب شركة ميناء القاهرة الجوي</field>
+            <field name="type_id">1</field>
+        </record>
+
+
+        <record id="BASIC" model="hr.salary.rule.category">
+            <field name="name">اساسي</field>
+            <field name="code">BASIC</field>
+        </record>
+
+        <record id="TMRT" model="hr.salary.rule.category">
+            <field name="name">استحقاق خاضع للضريبة</field>
+            <field name="code">TMRT</field>
+        </record>
+
+        <record id="NTMRT" model="hr.salary.rule.category">
+            <field name="name">استحقاق غير خاضع للضريبة</field>
+            <field name="code">NTMRT</field>
+        </record>
+
+        <record id="GROSS" model="hr.salary.rule.category">
+            <field name="name">الأجر الشامل قبل الضريبة و الاسقطاعات</field>
+            <field name="code">GROSS</field>
+        </record>
+
+        <record id="TDED" model="hr.salary.rule.category">
+            <field name="name">استقطاع خاضع للضريبة</field>
+            <field name="code">TDED</field>
+        </record>
+
+        <record id="NTDED" model="hr.salary.rule.category">
+            <field name="name">استقطاع غير خاضع للضريبة</field>
+            <field name="code">NTDED</field>
+        </record>
+
+        <record id="TS" model="hr.salary.rule.category">
+            <field name="name">اشتراك خاضع للضريبة</field>
+            <field name="code">TS</field>
+        </record>
+
+        <record id="NTS" model="hr.salary.rule.category">
+            <field name="name">اشتراك غير خاضع للضريبة</field>
+            <field name="code">NTS</field>
+        </record>
+
+        <record id="NET" model="hr.salary.rule.category">
+            <field name="name">الأجر الشامل قبل الضريبة و بعد الاسقطاعات</field>
+            <field name="code">NET</field>
+        </record>
+
+        <record id="TOTALDED" model="hr.salary.rule.category">
+            <field name="name">اجمالي الاسقطاعات</field>
+            <field name="code">TOTALDED</field>
+        </record>
+
+
+        <record id="TAX" model="hr.salary.rule.category">
+            <field name="name">ضريبة المرتب</field>
+            <field name="code">TAX</field>
+        </record>
+
+        <record id="INSPEN" model="hr.salary.rule.category">
+            <field name="name">تأمينات و معاشات</field>
+            <field name="code">INSPEN</field>
+        </record>
+
+        <record id="hr_payslip_rule_basic" model="hr.salary.rule">
+            <field name="name">أساسي</field>
+            <field name="sequence" eval="1"/>
+            <field name="code">BASIC_EG</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.BASIC"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = payslip.env['hr.payslip'].get_basic_salary(employee)</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dtalw" model="hr.salary.rule">
+            <field name="name">بدل خاضع للضريبة</field>
+            <field name="sequence" eval="101"/>
+            <field name="code">DTALW</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dntalw" model="hr.salary.rule">
+            <field name="name">بدل غير خاضع للضريبة</field>
+            <field name="sequence" eval="102"/>
+            <field name="code">DNTALW</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dtinc" model="hr.salary.rule">
+            <field name="name">حافز خاضع للضريبة</field>
+            <field name="sequence" eval="201"/>
+            <field name="code">DTINC</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dntinc" model="hr.salary.rule">
+            <field name="name">حافز غير خاضع للضريبة</field>
+            <field name="sequence" eval="202"/>
+            <field name="code">DNTINC</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_gross" model="hr.salary.rule">
+            <field name="name">الأجر الشامل قبل الضريبة و الاسقطاعات و الاشتراكات</field>
+            <field name="sequence" eval="203"/>
+            <field name="code">GROSS_EG</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.GROSS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.TMRT + categories.NTMRT</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <!-- <record id="hr_payslip_rule_inspen" model="hr.salary.rule">
+            <field name="name">تأمينات و معاشات</field>
+            <field name="sequence" eval="301"/>
+            <field name="code">INSPEN</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.INSPEN"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record> -->
+
+        <record id="hr_payslip_rule_dtded" model="hr.salary.rule">
+            <field name="name">استقطاع خاضع للضريبة</field>
+            <field name="sequence" eval="302"/>
+            <field name="code">DTDED</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TDED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dntded" model="hr.salary.rule">
+            <field name="name">استقطاع غير خاضع للضريبة</field>
+            <field name="sequence" eval="303"/>
+            <field name="code">DNTDED</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTDED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dts" model="hr.salary.rule">
+            <field name="name">اشتراك خاضع للضريبة</field>
+            <field name="sequence" eval="304"/>
+            <field name="code">DTS</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dnts" model="hr.salary.rule">
+            <field name="name">اشتراك غير خاضع للضريبة</field>
+            <field name="sequence" eval="304"/>
+            <field name="code">DNTS</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_totalded" model="hr.salary.rule">
+            <field name="name">اجمالي الاسقطاعات</field>
+            <field name="sequence" eval="350"/>
+            <field name="code">TOTAL_DED</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.TDED + categories.NTDED + categories.TS + categories.NTS</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_net" model="hr.salary.rule">
+            <field name="name">الأجر الشامل قبل الضريبة و بعد الاسقطاعات و بعد الاشتراكات</field>
+            <field name="sequence" eval="401"/>
+            <field name="code">NET_EG</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.TMRT + categories.NTMRT + categories.TDED + categories.NTDED + categories.TS + categories.NTS</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_tax" model="hr.salary.rule">
+            <field name="name">ضريبة المرتب</field>
+            <field name="sequence" eval="501"/>
+            <field name="code">ST</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TAX"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = payslip.env['hr.payslip'].get_salary_m_taxes(employee, (categories.BASIC + categories.TMRT + categories.TDED + categories.TS))</field>
+            <!-- <field name="amount_python_compute">result = 0.0</field> -->
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_nsat" model="hr.salary.rule">
+            <field name="name">صافي الأجر بعد الضريبة</field>
+            <field name="sequence" eval="601"/>
+            <field name="code">NSAT</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.NET + categories.TAX</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+
+    </data>
+</odoo>

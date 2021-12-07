@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate='0'>
+
+        <record id="salary_degree_01" model="salary_degree">
+            <field name="name">ممتازة</field>
+            <field name="amount">240</field>
+        </record>
+
+        <record id="salary_degree_02" model="salary_degree">
+            <field name="name">عالية</field>
+            <field name="amount">160</field>
+        </record>
+
+        <record id="salary_degree_03" model="salary_degree">
+            <field name="name">مدير عام</field>
+            <field name="amount">130</field>
+        </record>
+
+        <record id="salary_degree_04" model="salary_degree">
+            <field name="name">الأولى</field>
+            <field name="amount">100</field>
+        </record>
+
+        <record id="salary_degree_05" model="salary_degree">
+            <field name="name">الثانية</field>
+            <field name="amount">75</field>
+        </record>
+
+        <record id="salary_degree_06" model="salary_degree">
+            <field name="name">الثالثة</field>
+            <field name="amount">60</field>
+        </record>
+
+        <record id="salary_degree_07" model="salary_degree">
+            <field name="name">الرابعة</field>
+            <field name="amount">42</field>
+        </record>
+
+        <record id="salary_degree_08" model="salary_degree">
+            <field name="name">الخامسة</field>
+            <field name="amount">40</field>
+        </record>
+
+        <record id="salary_degree_09" model="salary_degree">
+            <field name="name">السادسة</field>
+            <field name="amount">38</field>
+        </record>
+
+    </data>
+
+</odoo>

@@ -1,0 +1,555 @@
+<odoo>
+    <data>
+        <!--Allowance-->
+        <!-- Allowance action -->
+        <record id="allowance_action" model="ir.actions.act_window">
+            <field name="name">Allowance</field>
+            <field name="res_model">allowance</field>
+            <field name="domain">[('type','=','allowance')]</field>
+            <field name="context">{'default_type':'allowance'}</field>
+        </record>
+
+        <!-- incentive action -->
+        <record id="incentive_action" model="ir.actions.act_window">
+            <field name="name">Incentive</field>
+            <field name="res_model">allowance</field>
+            <field name="domain">[('type','=','incentive')]</field>
+            <field name="context">{'default_type':'incentive'}</field>
+        </record>
+
+        <!--employee Allowance action -->
+        <record id="employee_allowance_action" model="ir.actions.act_window">
+            <field name="name">Employee Allowance</field>
+            <field name="res_model">employee_allowance</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- employee deduction action -->
+        <record id="employee_deduction_action" model="ir.actions.act_window">
+            <field name="name">Employee deduction</field>
+            <field name="res_model">employee_deduction</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+
+    <!--employee deduction form view  -->
+        <record id="employee_deduction_form_view" model="ir.ui.view">
+            <field name="name">deduction_form_view</field>
+            <field name="model">employee_deduction</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="deduction_id"/>
+                                <field name="amount"/>
+                                <field name="payslip_id" readonly="1"/>
+                                <!-- <field name="once"/> -->
+                            </group>
+
+                            <group>
+                                <field name="run_date" readonly="1"/>
+                                <field name="is_run" readonly="1"/>
+                                <!-- <field name="run_date"/> -->
+                                <field name="active"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+    <!--                <notebook>-->
+    <!--                    <page string="Employee deductions">-->
+    <!--                        <field name="deduction_employee_ids" mode="tree">-->
+    <!--                            <tree editable="top">-->
+    <!--                                <field name="employee_id"/>-->
+    <!--                                <field name="deduction_id"/>-->
+    <!--                                <field name="employee_card_id"/>-->
+    <!--                                <field name="payslip_id"/>-->
+    <!--                                <field name="once" optional="show"/>-->
+    <!--                                <field name="monthly" optional="show"/>-->
+    <!--                                <field name="yearly" optional="hide"/>-->
+    <!--                                <field name="run_date" optional="show"/>-->
+    <!--                                <field name="is_run" optional="show"/>-->
+    <!--                                <field name="run_date" optional="hide"/>-->
+    <!--                                <field name="active" optional="hide"/>-->
+    <!--                            </tree>-->
+    <!--                        </field>-->
+    <!--                    </page>-->
+    <!--                </notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--employee  deduction tree view      -->
+        <record id="employee_deduction_tree_view" model="ir.ui.view">
+            <field name="name">employee_deduction_tree_view</field>
+            <field name="model">employee_deduction</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="deduction_id"/>
+                    <field name="amount" optional="show"/>
+                    <field name="payslip_id" optional="show" readonly="1"/>
+                    <!-- <field name="once" optional="show"/>
+                    <field name="monthly" optional="show"/>
+                    <field name="yearly" optional="hide"/> -->
+                    <field name="run_date" optional="show" readonly="1"/>
+                    <field name="is_run" optional="show" readonly="1"/>
+                    <!-- <field name="run_date" optional="show"/> -->
+                    <field name="active" optional="show"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <!--employee allowance form view  -->
+        <record id="employee_allowance_form_view" model="ir.ui.view">
+            <field name="name">employee_allowance_form_view</field>
+            <field name="model">employee_allowance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="allowance_id"/>
+                                <field name="amount" optional="show"/>
+                                <field name="payslip_id" readonly="1"/>
+                                <!-- <field name="once"/> -->
+                            </group>
+
+                            <group>
+                                <!-- <field name="once" optional="show"/>
+                                <field name="monthly" optional="show"/>
+                                <field name="yearly" optional="hide"/> -->
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="is_run" readonly="1"/>
+                                <field name="run_date" readonly="1"/>
+                                <field name="active"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+    <!--                <notebook>-->
+    <!--                    <page string="Employee deductions">-->
+    <!--                        <field name="deduction_employee_ids" mode="tree">-->
+    <!--                            <tree editable="top">-->
+    <!--                                <field name="employee_id"/>-->
+    <!--                                <field name="deduction_id"/>-->
+    <!--                                <field name="employee_card_id"/>-->
+    <!--                                <field name="payslip_id"/>-->
+    <!--                                <field name="once" optional="show"/>-->
+    <!--                                <field name="monthly" optional="show"/>-->
+    <!--                                <field name="yearly" optional="hide"/>-->
+    <!--                                <field name="run_date" optional="show"/>-->
+    <!--                                <field name="is_run" optional="show"/>-->
+    <!--                                <field name="run_date" optional="hide"/>-->
+    <!--                                <field name="active" optional="hide"/>-->
+    <!--                            </tree>-->
+    <!--                        </field>-->
+    <!--                    </page>-->
+    <!--                </notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--employee  allowance tree view      -->
+        <record id="employee_allowance_tree_view" model="ir.ui.view">
+            <field name="name">employee_allowance_tree_view</field>
+            <field name="model">employee_allowance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="allowance_id"/>
+                    <field name="amount"/>
+                    <field name="payslip_id" optional="show" readonly="1"/>
+                    <!-- <field name="once" optional="show"/>
+                    <field name="monthly" optional="show"/>
+                    <field name="yearly" optional="hide"/> -->
+                    <field name="start_date" optional="show"/>
+                    <field name="end_date" optional="show"/>
+                    <field name="is_run" optional="show" readonly="1"/>
+                    <field name="run_date" optional="show" readonly="1"/>
+                    <field name="active" optional="show"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Allowance-->
+        <!-- Allowance action -->
+        <record id="allowance_action" model="ir.actions.act_window">
+            <field name="name">Allowance</field>
+            <field name="res_model">allowance</field>
+        </record>
+
+        <!--allowance form view-->
+        <record id="allowance_form_view" model="ir.ui.view">
+            <field name="name">allowance_form_view</field>
+            <field name="model">allowance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="type"/>
+                        <field name="code"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="percentage"/>
+                        <field name="all_employees"/>
+                        <field name="employee_card_date"/>
+                        <field name="amount" widget="monetary"/>
+                        <field name="min_amount" widget="monetary"/>
+                        <field name="max_amount" widget="monetary"/>
+                    </group>
+                    <group>
+                        <field name="currency_id" invisible="1" />
+                        <field name="employee_card_salary"/>
+                        <field name="comprehensive_wage"/>
+                        <field name="once" />
+                        <field name="monthly"/>
+                        <field name="yearly" />
+                        <field name="is_partial" />
+                        <field name="is_retroactive" />
+                        <field name="is_taxable"/>
+                        <field name="domain"/>
+                        <field name="active"/>
+                    </group>
+                    </group>
+                    <notebook>
+                        <page string="Employee Allowances">
+                            <field name="allowance_employee_ids" mode="tree">
+                                <tree editable="top">
+                                    <field name="employee_id"/>
+                                    <field name="allowance_id"/>
+                                    <!-- <field name="employee_card_id"/> -->
+                                    <field name="payslip_id" optional="show" readonly="1"/>
+                                    <!-- <field name="once"/>
+                                    <field name="monthly"/>
+                                    <field name="yearly" optional="hide"/> -->
+                                    <field name="start_date" optional="show"/>
+                                    <field name="end_date" optional="show"/>
+                                    <field name="is_run" optional="show" readonly="1"/>
+                                    <field name="run_date" optional="show" readonly="1"/>
+                                    <field name="active" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- allowance tree view        -->
+        <record id="allowance_tree_view" model="ir.ui.view">
+            <field name="name">allowance_tree_view</field>
+            <field name="model">allowance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="percentage"/>
+                    <field name="all_employees"/>
+                    <field name="amount" widget="monetary" optional="show"/>
+                    <field name="min_amount" widget="monetary" optional="hide"/>
+                    <field name="max_amount" widget="monetary" optional="hide"/>
+                    <field name="employee_card_salary" optional="show"/>
+                    <field name="employee_card_date" optional="show"/>
+                    <field name="comprehensive_wage" optional="show"/>
+                    <field name="once" optional="hide"/>
+                    <field name="monthly" optional="hide"/>
+                    <field name="yearly" optional="hide"/>
+                    <field name="is_partial" optional="show"/>
+                    <field name="is_retroactive" optional="show"/>
+                    <field name="is_taxable" optional="hide"/>
+                    <field name="domain" optional="hide"/>
+                    <field name="active" optional="hide"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+    <!--deduction-->
+        <!-- Deduction action -->
+        <record id="deduction_action" model="ir.actions.act_window">
+            <field name="name">Deduction</field>
+            <field name="res_model">deduction</field>
+        </record>
+
+        <!-- deduction form view  -->
+        <record id="deduction_form_view" model="ir.ui.view">
+            <field name="name">deduction_form_view</field>
+            <field name="model">deduction</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="percentage"/>
+                                <field name="all_employees"/>
+                                <field name="currency_id" invisible="1" />
+                                <field name="amount" widget="monetary"/>
+                                <field name="min_amount" widget="monetary"/>
+                                <field name="max_amount" widget="monetary"/>
+                                <field name="employee_card_date"/>
+                            </group>
+
+                            <group>
+                                <field name="employee_card_salary"/>
+                                <field name="once"/>
+                                <field name="monthly"/>
+                                <field name="yearly"/>
+                                <field name="comprehensive_wage"/>
+                                <!-- <field name="is_partial" /> -->
+                                <field name="is_retroactive" />
+                                <field name="is_taxable"/>
+                                <field name="domain"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    <notebook>
+                        <page string="Employee Deductions">
+                            <field name="deduction_employee_ids" mode="tree">
+                                <tree editable="top">
+                                    <field name="employee_id"/>
+                                    <field name="deduction_id"/>
+                                    <!-- <field name="employee_card_id"/> -->
+                                    <field name="payslip_id" optional="show" readonly="1"/>
+                                    <!-- <field name="once" optional="show"/>
+                                    <field name="monthly" optional="show"/>
+                                    <field name="yearly" optional="hide"/> -->
+                                    <field name="run_date" optional="show" readonly="1"/>
+                                    <field name="is_run" optional="show" readonly="1"/>
+                                    <!-- <field name="run_date" optional="show"/> -->
+                                    <field name="active" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  deduction tree view      -->
+        <record id="deduction_tree_view" model="ir.ui.view">
+            <field name="name">deduction_tree_view</field>
+            <field name="model">deduction</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="percentage"/>
+                    <field name="all_employees"/>
+                    <field name="amount" widget="monetary" optional="hide"/>
+                    <field name="max_amount" widget="monetary" optional="hide"/>
+                    <field name="min_amount" widget="monetary" optional="hide"/>
+                    <field name="employee_card_salary" optional="show"/>
+                    <field name="comprehensive_wage" optional="show"/>
+                    <field name="once" optional="hide"/>
+                    <field name="monthly" optional="hide"/>
+                    <field name="yearly" optional="hide"/>
+                    <!-- <field name="is_partial" optional="show"/> -->
+                    <field name="is_retroactive" optional="show"/>
+                    <field name="is_taxable" optional="show"/>
+                    <field name="domain" optional="hide"/>
+                    <field name="active" optional="hide"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Subscription action -->
+        <record id="subscription_action" model="ir.actions.act_window">
+            <field name="name">Subscription</field>
+            <field name="res_model">subscription</field>
+        </record>
+
+        <!-- subscription form view  -->
+        <record id="subscription_form_view" model="ir.ui.view">
+            <field name="name">subscription_form_view</field>
+            <field name="model">subscription</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="percentage"/>
+                                <field name="all_employees"/>
+                                <field name="currency_id" invisible="1" />
+                                <field name="amount" widget="monetary"/>
+                                <field name="minimum_amount" widget="monetary"/>
+                                <field name="maximum_amount" widget="monetary"/>
+                            </group>
+
+                            <group>
+                                <field name="employee_card_salary"/>
+                                <field name="employee_card_date"/>
+                                <field name="comprehensive_wage"/>
+                                <field name="monthly"/>
+                                <field name="yearly"/>
+                                <field name="is_partial" />
+                                <field name="is_retroactive" />
+                                <field name="is_taxable"/>
+                                <field name="domain"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    <notebook>
+                        <page string="Employee Subscriptions">
+                            <field name="employee_subscription_ids" mode="tree">
+                                <tree editable="top">
+                                    <field name="employee_id"/>
+                                    <field name="subscription_id"/>
+                                    <field name="amount"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <!-- <field name="employee_card_id"/> -->
+                                    <!-- <field name="once" optional="show"/>
+                                    <field name="monthly" optional="show"/>
+                                    <field name="yearly" optional="hide"/> -->
+                                    <field name="active" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  subscription tree view      -->
+        <record id="subscription_tree_view" model="ir.ui.view">
+            <field name="name">subscription_tree_view</field>
+            <field name="model">subscription</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" optional="show"/>
+                    <field name="code" optional="show"/>
+                    <field name="start_date" optional="show"/>
+                    <field name="end_date" optional="show"/>
+                    <field name="percentage" optional="show"/>
+                    <field name="all_employees" optional="show"/>
+                    <field name="amount" widget="monetary" optional="show"/>
+                    <field name="minimum_amount" widget="monetary" optional="show"/>
+                    <field name="maximum_amount" widget="monetary" optional="show"/>
+                    <field name="employee_card_salary" optional="show"/>
+                    <field name="employee_card_date" optional="show"/>
+                    <field name="comprehensive_wage" optional="show"/>
+                    <field name="monthly" optional="hide"/>
+                    <field name="yearly" optional="hide"/>
+                    <field name="is_partial" optional="show"/>
+                    <field name="is_retroactive" optional="show"/>
+                    <field name="is_taxable" optional="show"/>
+                    <field name="domain" optional="hide"/>
+                    <field name="active" optional="hide"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- employee subscription action -->
+        <record id="employee_subscription_action" model="ir.actions.act_window">
+            <field name="name">Employee Subscription</field>
+            <field name="res_model">employee_subscription</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+
+    <!--employee subscription form view  -->
+        <record id="employee_subscription_form_view" model="ir.ui.view">
+            <field name="name">subscription_form_view</field>
+            <field name="model">employee_subscription</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="subscription_id"/>
+                                <field name="amount"/>
+                            </group>
+
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="active"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--employee  subscription tree view      -->
+        <record id="employee_subscription_tree_view" model="ir.ui.view">
+            <field name="name">employee_subscription_tree_view</field>
+            <field name="model">employee_subscription</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id" optional="show"/>
+                    <field name="subscription_id" optional="show"/>
+                    <field name="amount" optional="show"/>
+                    <field name="start_date" optional="show"/>
+                    <field name="end_date" optional="show"/>
+                    <field name="active" optional="show"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--menu items for the salary-->
+        <!--allowances-->
+        <menuitem id="allowance_salary_menu_item" parent="hr_extend_minds.parent_menu_salary"
+                  name="Merit" sequence="3500" />
+
+        <menuitem id="allowance_salary_sub_menu_item" parent="allowance_salary_menu_item"
+                  name="Allowance" sequence="1" action="allowance_action"/>
+
+        <menuitem id="incentive_salary_sub_menu_item" parent="allowance_salary_menu_item"
+                  name="Incentive" sequence="100" action="incentive_action"/>
+
+        <menuitem id="employee_allowance_salary_sub_menu_item" parent="allowance_salary_menu_item"
+                  name="Employee Allowance" sequence="200" action="employee_allowance_action"/>
+
+        <!--deductions-->
+        <menuitem id="deduction_salary_menu_item" parent="hr_extend_minds.parent_menu_salary"
+                  name="Deduction" sequence="4000" />
+
+        <menuitem id="deduction_ded_salary_menu_item" parent="deduction_salary_menu_item"
+                  name="Deduction" sequence="1" action="deduction_action"/>
+
+        <menuitem id="employee_deduction_menu_item" parent="deduction_salary_menu_item"
+                  name="Employee Deduction" sequence="100" action="employee_deduction_action"/>
+
+        <menuitem id="subscription_salary_menu_item" parent="hr_extend_minds.parent_menu_salary"
+        name="Subscription" sequence="4500" />
+
+        <menuitem id="subscription_sub_salary_menu_item" parent="subscription_salary_menu_item"
+                  name="Subscription" sequence="1" action="subscription_action"/>
+
+        <menuitem id="employee_subscription_menu_item" parent="subscription_salary_menu_item"
+                  name="Employee Subscription" sequence="100" action="employee_subscription_action"/>
+
+    </data>
+</odoo>

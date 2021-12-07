@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='0'>
+        <record id="insurance_pensions_01" model="deduction">
+            <field name="name">تأمينات و معاشات</field>
+            <field name="code">IP01</field>
+            <field name="all_employees">True</field>
+            <field name="percentage">9</field>
+            <field name="max_amount">729</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+            <field name="comprehensive_wage">True</field>
+        </record>
+
+        <record id="savings_01" model="deduction">
+            <field name="name">ادخار</field>
+            <field name="code">S01</field>
+            <field name="all_employees">True</field>
+            <field name="percentage">1</field>
+            <field name="max_amount">81</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+            <field name="comprehensive_wage">True</field>
+        </record>
+
+        <record id="sickness_insurance_01" model="deduction">
+            <field name="name">تأمين مرض</field>
+            <field name="code">SI01</field>
+            <field name="all_employees">True</field>
+            <field name="percentage">1</field>
+            <field name="max_amount">81</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+            <field name="comprehensive_wage">True</field>
+        </record>
+
+<!--        <record id="employees_Fund_01" model="deduction">-->
+<!--            <field name="name">صندوق العاملين</field>-->
+<!--            <field name="code">EF01</field>-->
+<!--            <field name="all_employees">True</field>-->
+<!--            <field name="percentage">34.25</field>-->
+<!--        </record>-->
+
+<!--        <record id="air_transport_union_01" model="deduction">-->
+<!--            <field name="name">نقابة نقل جوي</field>-->
+<!--            <field name="code">ATU01</field>-->
+<!--            <field name="amount">355</field>-->
+<!--        </record>-->
+
+<!--        <record id="sport_activity_committee_01" model="deduction">-->
+<!--            <field name="name">لجنة نشاط رياضي</field>-->
+<!--            <field name="code">SAC01</field>-->
+<!--            <field name="amount">5</field>-->
+<!--        </record>-->
+
+
+    </data>
+</odoo>

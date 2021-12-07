@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate='0'>
+
+        <record id="subscription_01" model="subscription" forcecreate="True">
+            <field name="name">صندوق وزارة الطيرن للمشتركين</field>
+            <field name="code">MAFS01</field>
+            <field name="monthly">True</field>
+            <field name="maximum_amount">112.5</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="subscription_02" model="subscription" forcecreate="True">
+            <field name="name">صندوق العاملين</field>
+            <field name="code">EFS01</field>
+            <field name="monthly">True</field>
+            <field name="percentage">34.25</field>
+            <field name="employee_card_salary">True</field>
+            <field name="is_retroactive">True</field>
+            <field name="is_partial">True</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="subscription_03" model="subscription" forcecreate="True">
+            <field name="name">وثيقة التامين الاجتماعي جديدة</field>
+            <field name="code">NSIPS01</field>
+            <field name="monthly">True</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="subscription_04" model="subscription" forcecreate="True">
+            <field name="name">وثيقة التامين الاجتماعي قديمة</field>
+            <field name="code">OSIPS01</field>
+            <field name="monthly">True</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="subscription_05" model="subscription" forcecreate="True">
+            <field name="name">علاج</field>
+            <field name="code">TS01</field>
+            <field name="monthly">True</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="subscription_06" model="subscription" forcecreate="True">
+            <field name="name">نقابة نقل جوي</field>
+            <field name="code">ATUS01</field>
+            <field name="monthly">True</field>
+            <field name="amount">3.55</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="subscription_07" model="subscription" forcecreate="True">
+            <field name="name">لجنة نشاط رياضي</field>
+            <field name="code">SACS01</field>
+            <field name="monthly">True</field>
+            <field name="amount">5</field>
+            <field name="active">True</field>
+        </record>
+
+    </data>
+
+</odoo>

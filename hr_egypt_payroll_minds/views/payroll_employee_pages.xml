@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+
+    <record id="employee_payroll_inherit_view" model="ir.ui.view">
+        <field name="name">employee_payroll_inherit_view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='mobile_phone']" position="after">
+                <field name="x_type_designation"/>
+            </xpath>
+
+             <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Allowance">
+                        <field name="employee_allowance_ids" mode="tree">
+                            <tree string="Allowance" editable="top">
+                                <!--<field name="employee_id"/>-->
+                                <field name="allowance_id" optional="show"/>
+                                <field name="amount"/>
+                                <field name="payslip_id" optional="show" readonly="1"/>
+                                <!-- <field name="once"/>
+                                <field name="monthly"/>
+                                <field name="yearly"/> -->
+                                <field name="start_date" optional="show"/>
+                                <field name="end_date" optional="show"/>
+                                <field name="is_run" optional="show" readonly="1"/>
+                                <field name="run_date" optional="show" readonly="1"/>
+                                <field name="active" optional="show"/>
+                                <field name="currency_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Deduction">
+                        <field name="employee_deduction_ids" mode="tree">
+                            <tree string="Deduction" editable="top">
+                                <!--<field name="employee_id"/>-->
+                                <field name="deduction_id" optional="show"/>
+                                <field name="amount"/>
+                                <field name="payslip_id" optional="show" readonly="1"/>
+                                <!-- <field name="once"/>
+                                <field name="monthly"/>
+                                <field name="yearly"/> -->
+                                <field name="run_date" optional="show" readonly="1"/>
+                                <field name="is_run" optional="show" readonly="1"/>
+                                <!-- <field name="run_date" optional="show"/> -->
+                                <field name="active" optional="show"/>
+                                <field name="currency_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Subscription">
+                        <field name="employee_subscription_ids" mode="tree">
+                            <tree string="Subscription" editable="top">
+                                <!--<field name="employee_id"/>-->
+                                <field name="subscription_id" optional="show"/>
+                                <field name="amount" optional="show"/>
+                                <!-- <field name="once"/>
+                                <field name="monthly"/>
+                                <field name="yearly"/> -->
+                                <field name="start_date" optional="show"/>
+                                <field name="end_date" optional="show"/>
+                                <field name="active" optional="show"/>
+                                <field name="currency_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Employee Flags">
+                        <group>
+                            <group>
+                                    <field name="is_military"/>
+                                    <field name="is_exchange_representative"/>
+                                    <field name="is_aircraft_fees"/>
+                                    <field name="is_car_fees"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </page>
+
+             </xpath>
+        </field>
+    </record>
+
+</odoo>

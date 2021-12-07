@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+
+from . import payroll
+from . import contract
+from . import allowance
+from . import deduction
+from . import employee_allowance
+from . import employee_deduction
+from . import hr_inherit
+from . import hr_payslip_line
+from . import subscription
+from . import employee_subscription
