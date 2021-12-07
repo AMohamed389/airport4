@@ -49,7 +49,7 @@
         </record>
 
         <record id="NET" model="hr.salary.rule.category">
-            <field name="name">الأجر الشامل قبل الضريبة و بعد الاسقطاعات</field>
+            <field name="name">الأجر الشامل قبل الضريبة و بعد الاسقطاعات و الاشتراكات</field>
             <field name="code">NET</field>
         </record>
 
@@ -125,7 +125,8 @@
         </record>
 
         <record id="hr_payslip_rule_gross" model="hr.salary.rule">
-            <field name="name">الأجر الشامل قبل الضريبة و الاسقطاعات و الاشتراكات</field>
+            <field name="name">الأجر الشامل قبل الضريبة (اجمالي الاستحقاقات)</field>
+            <!-- <field name="name">الأجر الشامل قبل الضريبة و الاسقطاعات و الاشتراكات</field> -->
             <field name="sequence" eval="203"/>
             <field name="code">GROSS_EG</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.GROSS"/>
@@ -181,7 +182,7 @@
 
         <record id="hr_payslip_rule_dnts" model="hr.salary.rule">
             <field name="name">اشتراك غير خاضع للضريبة</field>
-            <field name="sequence" eval="304"/>
+            <field name="sequence" eval="305"/>
             <field name="code">DNTS</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.NTS"/>
             <field name="condition_select">none</field>
@@ -194,7 +195,7 @@
             <field name="name">اجمالي الاسقطاعات</field>
             <field name="sequence" eval="350"/>
             <field name="code">TOTAL_DED</field>
-            <field name="category_id" ref="hr_egypt_payroll_minds.NTS"/>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TOTALDED"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = categories.TDED + categories.NTDED + categories.TS + categories.NTS</field>
@@ -208,7 +209,8 @@
             <field name="category_id" ref="hr_egypt_payroll_minds.NET"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = categories.BASIC + categories.TMRT + categories.NTMRT + categories.TDED + categories.NTDED + categories.TS + categories.NTS</field>
+            <!-- <field name="amount_python_compute">result = categories.BASIC + categories.TMRT + categories.NTMRT + categories.TDED + categories.NTDED + categories.TS + categories.NTS</field> -->
+            <field name="amount_python_compute">result = categories.GROSS + categories.TOTALDED</field>
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
 
