@@ -1,0 +1,200 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_dependents_minds
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210124\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-24 13:49+0000\n"
+"PO-Revision-Date: 2021-09-24 15:59+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar\n"
+"X-Generator: Poedit 3.0\n"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__address
+msgid "Address"
+msgstr "العنوان"
+
+#. module: hr_dependents_minds
+#: model:res.groups,name:hr_dependents_minds.hr_dependents_minds_group_admin
+msgid "Admin"
+msgstr ""
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__birth_date
+msgid "Birth Date"
+msgstr "تاريخ الميلاد"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__relationship__child
+msgid "Child"
+msgstr "طفل"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__address
+msgid "Dependant Address"
+msgstr "عنوان المعالين"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__birth_date
+msgid "Dependant Birth Date"
+msgstr "تاريخ الميلاد المعالين"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__mobile
+msgid "Dependant Mobile Number"
+msgstr "رقم جوال فرد الاسرة"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__name
+msgid "Dependant Name"
+msgstr "الاسم التابع"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__phone
+msgid "Dependant Phone Number"
+msgstr "رقم تليفون فرد الاسرة"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__ssn
+msgid "Dependant SSN"
+msgstr "الرقم القومي للفرد"
+
+#. module: hr_dependents_minds
+#: model:ir.module.category,name:hr_dependents_minds.module_hr_dependants_category
+#: model_terms:ir.ui.view,arch_db:hr_dependents_minds.hr_dependants_view
+msgid "Dependants"
+msgstr "أفراد العائلة"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__display_name
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_employee__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__relationship__domestic_partner
+msgid "Domestic Partner"
+msgstr ""
+
+#. module: hr_dependents_minds
+#: model:ir.model,name:hr_dependents_minds.model_hr_employee
+#: model:res.groups,name:hr_dependents_minds.hr_dependents_minds_group_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_employee__employee_dependants
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_employee__employee_dependants
+msgid "Employee Dependants"
+msgstr "افراد العائلة للموظف"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__employee_id
+#: model:ir.model.fields,help:hr_dependents_minds.field_hr_dependants__employee_id
+msgid "Employee Id"
+msgstr "رقم الموظف"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__gender__female
+msgid "Female"
+msgstr "أنثى"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__relationship__foster_child
+msgid "Foster Child"
+msgstr "طفل بالتبنى"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__gender
+msgid "Gender"
+msgstr "النوع"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__has_disability_condition
+msgid "Has Disability Condition"
+msgstr "معاق"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__id
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_employee__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants____last_update
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_employee____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__write_uid
+msgid "Last Updated by"
+msgstr "اخر تعديل بواسطة"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__write_date
+msgid "Last Updated on"
+msgstr "تاريخ اخر تعديل"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__gender__male
+msgid "Male"
+msgstr "ذكر"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__mobile
+msgid "Mobile Number"
+msgstr "رقم المحمول"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__phone
+msgid "Phone Number"
+msgstr "رقم التليفون"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__relationship
+msgid "Relationship"
+msgstr "صلة القرابة"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields,field_description:hr_dependents_minds.field_hr_dependants__ssn
+msgid "SSN"
+msgstr "الرقم القومي"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__relationship__spouse
+msgid "Spouse"
+msgstr "زوج"
+
+#. module: hr_dependents_minds
+#: model:ir.model.fields.selection,name:hr_dependents_minds.selection__hr_dependants__relationship__step_child
+msgid "Step Child"
+msgstr "الابن"
+
+#. module: hr_dependents_minds
+#: model:ir.model,name:hr_dependents_minds.model_hr_dependants
+msgid "hr_dependants"
+msgstr ""

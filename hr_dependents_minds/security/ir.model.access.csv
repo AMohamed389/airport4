@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_hr_dependants_all,hr_dependants_all,model_hr_dependants,base.group_user,1,0,0,0
+access_hr_dependants_basic,hr_dependants_basic,model_hr_dependants,hr_dependents_minds_group_employee,1,0,0,0
+access_hr_dependants_admin,hr_dependants_admin,model_hr_dependants,hr_dependents_minds_group_admin,1,1,1,1
+

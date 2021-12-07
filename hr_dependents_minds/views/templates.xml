@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <!-- <template id="listing"> -->
+        <!--   <ul> -->
+        <!--     <li t-foreach="objects" t-as="object"> -->
+        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+        <!--         <t t-esc="object.display_name"/> -->
+        <!--       </a> -->
+        <!--     </li> -->
+        <!--   </ul> -->
+        <!-- </template> -->
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+        <!--     <t t-foreach="object._fields" t-as="field"> -->
+        <!--       <dt><t t-esc="field"/></dt> -->
+        <!--       <dd><t t-esc="object[field]"/></dd> -->
+        <!--     </t> -->
+        <!--   </dl> -->
+        <!-- </template> -->
+
+        <record model="ir.ui.view" id="hr_dependants_view">
+            <field name="name">Employee Dependants</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                        <page name="Dependants" string="Dependants">
+                            <field name="employee_dependants" mode="tree" >
+                                 <tree string="Dependants" editable="top" >
+                                     <field name="name" />
+                                     <field name="relationship" />
+                                     <field name="birth_date" string="Birth Date (M/D/Y)"/>
+                                     <field name="gender" />
+                                     <field name="ssn" />
+                                     <field name="mobile" />
+                                     <field name="phone" />
+                                     <field name="address" />
+                                     <field name="has_disability_condition"/>
+                                 </tree>
+                             </field>
+                        </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

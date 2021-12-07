@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<odoo>
+  <record id="module_hr_dependants_category" model="ir.module.category">
+    <field name="name">Dependants</field>
+  </record>
+
+ 
+  <record id="hr_dependents_minds_group_employee" model="res.groups">
+    <field name="name">Employee</field>
+    <field name="category_id" ref="module_hr_dependants_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
+    <record id="hr_dependents_minds_group_admin" model="res.groups">
+    <field name="name">Admin</field>
+    <field name="category_id" ref="module_hr_dependants_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user')),(4, ref('hr_dependents_minds_group_employee'))]"/>
+  </record>
+
+
+
+</odoo>
