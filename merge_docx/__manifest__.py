@@ -7,7 +7,7 @@
     'summary': 'Export data all objects odoo to Microsoft Office output'
                    ' files docx, pdf',
     'category': 'All',
-    'version': '1.0',
+    'version': '1.1',
     'website': 'http://www.buildfish.com/',
     "license": "OPL-1",
     'author': 'BuildFish',
