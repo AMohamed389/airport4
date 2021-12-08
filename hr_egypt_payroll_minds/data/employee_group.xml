@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="employee_group_01" model="employee_group">
+        <field name="name">مهندسين</field>
+    </record>
+
+    <record id="employee_group_02" model="employee_group">
+        <field name="name">اخصائيين تجاريين</field>
+    </record>
+
+    <record id="employee_group_03" model="employee_group">
+        <field name="name">محامين</field>
+    </record>
+
+</odoo>

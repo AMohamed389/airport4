@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="employee_group_child_01" model="employee_group_child">
+        <field name="name">محامي نقض</field>
+        <field name="employee_group_id" ref="employee_group_03"/>
+    </record>
+
+    <record id="employee_group_child_02" model="employee_group_child">
+        <field name="name">محامي استئناف</field>
+        <field name="employee_group_id" ref="employee_group_03"/>
+    </record>
+
+    <record id="employee_group_child_03" model="employee_group_child">
+        <field name="name">محامي ابتدائي</field>
+        <field name="employee_group_id" ref="employee_group_03"/>
+    </record>
+
+</odoo>

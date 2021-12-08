@@ -9,6 +9,9 @@ from copy import deepcopy
 from ast import literal_eval
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError, AccessError, MissingError, UserError, AccessDenied
+from odoo.tools.safe_eval import safe_eval
+import base64
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -627,8 +630,8 @@ class taxation(models.Model):
         if not emp_id or not _allowance:
             return False
 
-        if (_allowance.start_date and _allowance.start_date > datetime.now().date()) \
-            or (_allowance.end_date and _allowance.end_date < datetime.now().date()):
+        if (_allowance.start_date and _allowance.start_date > self.date_to) \
+            or (_allowance.end_date and _allowance.end_date < self.date_from):
             return False
 
         _domain = []
@@ -712,7 +715,7 @@ class taxation(models.Model):
         _employee_end_date = False
         _pay_slip_domain_calc = {}
         _missed = 0
-        if _employee_start_date:
+        if _employee_start_date and _allowance.is_retroactive:
             _employee_end_date = _allowance.end_date
             _pay_slip_domain_calc['employee_id'] = [('employee_id','=',emp_id.id)]
             _pay_slip_domain_calc['state'] = [('state','=','done')]
@@ -772,8 +775,8 @@ class taxation(models.Model):
             return False
 
         if _employee_allowance.is_run \
-            or (_employee_allowance.start_date and _employee_allowance.start_date > datetime.now().date()) \
-            or (_employee_allowance.end_date and _employee_allowance.end_date < datetime.now().date()) \
+            or (_employee_allowance.start_date and _employee_allowance.start_date > self.date_to) \
+            or (_employee_allowance.end_date and _employee_allowance.end_date < self.date_from) \
             or _employee_allowance.run_date :
             return False
 
@@ -887,7 +890,7 @@ class taxation(models.Model):
         _employee_end_date = False
         _pay_slip_domain_calc = {}
         _missed = 0
-        if _employee_start_date:
+        if _employee_start_date and _allowance_id.is_retroactive:
             _employee_end_date = _allowance_id.end_date
             if _employee_allowance.end_date:
                 _employee_end_date = _employee_allowance.end_date
@@ -1066,12 +1069,12 @@ class taxation(models.Model):
         if not _employee_subscription :
             return False
 
-        if (_employee_subscription.start_date and _employee_subscription.start_date > datetime.now().date()) \
-            or (_employee_subscription.end_date and _employee_subscription.end_date < datetime.now().date()):
+        if (_employee_subscription.start_date and _employee_subscription.start_date > self.date_to) \
+            or (_employee_subscription.end_date and _employee_subscription.end_date < self.date_from):
             return False
         
-        if (_employee_subscription.subscription_id.start_date and _employee_subscription.subscription_id.start_date > datetime.now().date()) \
-            or (_employee_subscription.subscription_id.end_date and _employee_subscription.subscription_id.end_date < datetime.now().date()):
+        if (_employee_subscription.subscription_id.start_date and _employee_subscription.subscription_id.start_date > self.date_to) \
+            or (_employee_subscription.subscription_id.end_date and _employee_subscription.subscription_id.end_date < self.date_from):
             return False
 
         _subscription_id = _employee_subscription.subscription_id
@@ -1178,7 +1181,7 @@ class taxation(models.Model):
         _employee_end_date = False
         _pay_slip_domain_calc = {}
         _missed = 0
-        if _employee_start_date:
+        if _employee_start_date and _subscription_id.is_retroactive:
             _employee_end_date = _subscription_id.end_date
             if _employee_subscription.end_date:
                 _employee_end_date = _employee_subscription.end_date
@@ -1240,8 +1243,8 @@ class taxation(models.Model):
         if not emp_id or not _subscription:
             return False
 
-        if (_subscription.start_date and _subscription.start_date > datetime.now().date()) \
-            or (_subscription.end_date and _subscription.end_date < datetime.now().date()):
+        if (_subscription.start_date and _subscription.start_date > self.date_to) \
+            or (_subscription.end_date and _subscription.end_date < self.date_from):
             return False
 
         _domain = []
@@ -1324,7 +1327,7 @@ class taxation(models.Model):
         _employee_end_date = False
         _pay_slip_domain_calc = {}
         _missed = 0
-        if _employee_start_date:
+        if _employee_start_date and _subscription.is_retroactive:
             _employee_end_date = _subscription.end_date
             _pay_slip_domain_calc['employee_id'] = [('employee_id','=',emp_id.id)]
             _pay_slip_domain_calc['state'] = [('state','=','done')]
@@ -1475,15 +1478,15 @@ class taxation(models.Model):
         _dic['amount'] = -1 * _dic['amount']
         return _dic
 
-    def compute_sheet(self):
-        payslips = self.filtered(lambda slip: slip.state in ['draft', 'verify'])
-        # delete old payslip lines
-        payslips.line_ids.unlink()
-        for payslip in payslips:
-            number = payslip.number or self.env['ir.sequence'].next_by_code('salary.slip')
-            lines = [(0, 0, line) for line in payslip._get_payslip_lines()]
-            payslip.write({'line_ids': lines, 'number': number, 'state': 'verify', 'compute_date': fields.Date.today()})
-        return True
+    # def compute_sheet(self):
+    #     payslips = self.filtered(lambda slip: slip.state in ['draft', 'verify'])
+    #     # delete old payslip lines
+    #     payslips.line_ids.unlink()
+    #     for payslip in payslips:
+    #         number = payslip.number or self.env['ir.sequence'].next_by_code('salary.slip')
+    #         lines = [(0, 0, line) for line in payslip._get_payslip_lines()]
+    #         payslip.write({'line_ids': lines, 'number': number, 'state': 'verify', 'compute_date': fields.Date.today()})
+    #     return True
 
     def compute_sheet(self):
         payslips = self.filtered(lambda slip: slip.state in ['draft', 'verify'])
@@ -1767,8 +1770,8 @@ class taxation(models.Model):
                     # _domain['is_taxable'] = [('allowance_id.is_taxable','=',False)]
                     _domain['employee'] = [('employee_id','=',self.employee_id.id)]
                     _domain['not_run'] = [('is_run','=',False)]
-                    _domain['start_date'] = [('start_date','>=',datetime.now().date())]
-                    _domain['end_date'] = [('end_date','<',datetime.now().date())]
+                    # _domain['start_date'] = [('start_date','>=',self.date_from)]
+                    # _domain['end_date'] = ['|',('end_date','<',self.date_from),('end_date','=',None)]
 
                     
                     for key, search in _domain.items():
@@ -1880,8 +1883,8 @@ class taxation(models.Model):
                     # _domain['is_taxable'] = [('allowance_id.is_taxable','=',True)]
                     _domain['employee'] = [('employee_id','=',self.employee_id.id)]
                     _domain['not_run'] = [('is_run','=',False)]
-                    _domain['start_date'] = [('start_date','>=',datetime.now().date())]
-                    _domain['end_date'] = [('end_date','<',datetime.now().date())]
+                    # _domain['start_date'] = [('start_date','>=',self.date_from)]
+                    # _domain['end_date'] = ['|',('end_date','<',self.date_from),('end_date','=',None)]
 
                     
                     for key, search in _domain.items():
@@ -2214,8 +2217,8 @@ class taxation(models.Model):
                     # _domain['is_taxable'] = [('deduction_id.is_taxable','=',False)]
                     _domain['employee'] = [('employee_id','=',self.employee_id.id)]
                     _domain['not_run'] = [('is_run','=',False)]
-                    # _domain['start_date'] = [('start_date','>=',datetime.now().date())]
-                    # _domain['end_date'] = [('end_date','<',datetime.now().date())]
+                    # _domain['start_date'] = [('start_date','>=',self.date_from)]
+                    # _domain['end_date'] = ['|',('end_date','<',self.date_from),('end_date','=',None)]
 
                     
                     for key, search in _domain.items():
@@ -2323,8 +2326,8 @@ class taxation(models.Model):
                     _rule_merit_id = None
                     _rule_subscription_id = None
                     _domain['employee'] = [('employee_id','=',self.employee_id.id)]
-                    # _domain['start_date'] = [('start_date','>=',datetime.now().date())]
-                    # _domain['end_date'] = [('end_date','<',datetime.now().date())]
+                    # _domain['start_date'] = [('start_date','>=',self.date_from)]
+                    # _domain['end_date'] = ['|',('end_date','<',self.date_from),('end_date','=',None)]
 
                     
                     for key, search in _domain.items():
@@ -2433,8 +2436,8 @@ class taxation(models.Model):
                     _rule_merit_id = None
                     _rule_subscription_id = None
                     _domain['employee'] = [('employee_id','=',self.employee_id.id)]
-                    # _domain['start_date'] = [('start_date','>=',datetime.now().date())]
-                    # _domain['end_date'] = [('end_date','<',datetime.now().date())]
+                    # _domain['start_date'] = [('start_date','>=',self.date_from)]
+                    # _domain['end_date'] = ['|',('end_date','<',self.date_from),('end_date','=',None)]
 
                     
                     for key, search in _domain.items():
@@ -2569,3 +2572,70 @@ class taxation(models.Model):
             
             if _net_wage_eg > _net_wage:
                 payslip.net_wage = _net_wage_eg
+
+    def action_payslip_done(self):
+        if any(slip.state == 'cancel' for slip in self):
+            raise ValidationError(_("You can't validate a cancelled payslip."))
+        self.write({'state' : 'done'})
+        self.mapped('payslip_run_id').action_close()
+
+        _confirm_run_recs = self.env['employee_allowance'].search([('payslip_id','=',self.id),
+                                                                   ('employee_id','=',self.employee_id.id)])
+        for _rec in _confirm_run_recs:
+            _line_ids = self.line_ids.mapped('code')
+            if _rec.allowance_id.code in _line_ids:
+                _rec.is_run = True
+                _rec.run_date = datetime.now()
+        
+        _confirm_run_recs = self.env['employee_deduction'].search([('payslip_id','=',self.id),
+                                                                    ('employee_id','=',self.employee_id.id)])
+        for _rec in _confirm_run_recs:
+            _line_ids = self.line_ids.mapped('code')
+            if _rec.deduction_id.code in _line_ids:
+                _rec.is_run = True
+                _rec.run_date = datetime.now()
+        
+
+        # Validate work entries for regular payslips (exclude end of year bonus, ...)
+        regular_payslips = self.filtered(lambda p: p.struct_id.type_id.default_struct_id == p.struct_id)
+        for regular_payslip in regular_payslips:
+            work_entries = self.env['hr.work.entry'].search([
+                ('date_start', '<=', regular_payslip.date_to),
+                ('date_stop', '>=', regular_payslip.date_from),
+                ('employee_id', '=', regular_payslip.employee_id.id),
+            ])
+            work_entries.action_validate()
+
+        if self.env.context.get('payslip_generate_pdf'):
+            for payslip in self:
+                if not payslip.struct_id or not payslip.struct_id.report_id:
+                    report = self.env.ref('hr_payroll.action_report_payslip', False)
+                else:
+                    report = payslip.struct_id.report_id
+                pdf_content, content_type = report.sudo()._render_qweb_pdf(payslip.id)
+                if payslip.struct_id.report_id.print_report_name:
+                    pdf_name = safe_eval(payslip.struct_id.report_id.print_report_name, {'object': payslip})
+                else:
+                    pdf_name = _("Payslip")
+                # Sudo to allow payroll managers to create document.document without access to the
+                # application
+                attachment = self.env['ir.attachment'].sudo().create({
+                    'name': pdf_name,
+                    'type': 'binary',
+                    'datas': base64.encodebytes(pdf_content),
+                    'res_model': payslip._name,
+                    'res_id': payslip.id
+                })
+                # Send email to employees
+                subject = '%s, a new payslip is available for you' % (payslip.employee_id.name)
+                template = self.env.ref('hr_payroll.mail_template_new_payslip', raise_if_not_found=False)
+                if template:
+                    email_values = {
+                        'attachment_ids': attachment,
+                    }
+                    template.send_mail(
+                        payslip.id,
+                        email_values=email_values,
+                        notif_layout='mail.mail_notification_light')
+
+    

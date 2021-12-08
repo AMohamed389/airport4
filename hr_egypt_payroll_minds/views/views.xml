@@ -1,60 +1,149 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="innovanity-payroll.list">
-      <field name="name">innovanity-payroll list</field>
-      <field name="model">innovanity-payroll.innovanity-payroll</field>
+    
+
+
+    <!-- employee_group-->
+    <record id="action_employee_group" model="ir.actions.act_window">
+      <field name="name">Employee Group</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">employee_group</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_employee_group_list" model="ir.ui.view">
+      <field name="name">view_employee_group_list</field>
+      <field name="model">employee_group</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree editable="bottom" >
           <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="active"/>
         </tree>
       </field>
     </record>
-    -->
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="innovanity-payroll.action_window">
-      <field name="name">innovanity-payroll window</field>
-      <field name="res_model">innovanity-payroll.innovanity-payroll</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+    <record id="view_employee_group_form" model="ir.ui.view">
+      <field name="name">view_employee_group_form</field>
+      <field name="model">employee_group</field>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="innovanity-payroll.action_server">
-      <field name="name">innovanity-payroll server</field>
-      <field name="model_id" ref="model_innovanity-payroll_innovanity-payroll"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
       </field>
     </record>
-    -->
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="innovanity-payroll" id="innovanity-payroll.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="innovanity-payroll.menu_1" parent="innovanity-payroll.menu_root"/>
-    <menuitem name="Menu 2" id="innovanity-payroll.menu_2" parent="innovanity-payroll.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="innovanity-payroll.menu_1_list" parent="innovanity-payroll.menu_1"
-              action="innovanity-payroll.action_window"/>
-    <menuitem name="Server to list" id="innovanity-payroll" parent="innovanity-payroll.menu_2"
-              action="innovanity-payroll.action_server"/>
-    -->
+
+    <!-- employee_group_child-->
+    <record id="action_employee_group_child" model="ir.actions.act_window">
+      <field name="name">Employee Group Child</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">employee_group_child</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_employee_group_child_list" model="ir.ui.view">
+      <field name="name">view_employee_group_child_list</field>
+      <field name="model">employee_group_child</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" >
+          <field name="name"/>
+          <field name="employee_group_id"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_employee_group_child_form" model="ir.ui.view">
+      <field name="name">view_employee_group_child_form</field>
+      <field name="model">employee_group_child</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
   </data>
 </odoo>

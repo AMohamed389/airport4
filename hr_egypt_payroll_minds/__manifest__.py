@@ -22,6 +22,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
+        'views/ir.ui.menu.xml',
         'views/templates.xml',
         'views/hr_contract_view.xml',
         'views/payroll_employee_pages.xml',
@@ -34,6 +35,8 @@
         'data/subscription.xml',
         'data/data.xml',
         'data/salary_degree.xml',
+        'data/employee_group.xml',
+        'data/employee_group_child.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

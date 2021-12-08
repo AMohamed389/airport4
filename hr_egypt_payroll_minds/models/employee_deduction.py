@@ -1,5 +1,5 @@
-from odoo import models, fields
-
+from odoo import models, fields, _
+from odoo.exceptions import ValidationError, AccessError, MissingError, UserError, AccessDenied
 
 class EmployeeDeduction(models.Model):
     _name = 'employee_deduction'
@@ -21,3 +21,12 @@ class EmployeeDeduction(models.Model):
     active = fields.Boolean(string="Active", index=True, tracking=True, default=True)
     currency_id = fields.Many2one('res.currency', string="Currency", store=True, tracking=True, index=True,
                                   default=lambda self: self.env.user.company_id.currency_id.id)
+
+    def unlink(self):
+        
+        for _rec in self:
+            if _rec.is_run or _rec.run_date:
+                raise ValidationError(_("Record cannot be deleted as it may be run !."))
+        
+        ret = super(EmployeeDeduction, self).unlink()
+        return ret

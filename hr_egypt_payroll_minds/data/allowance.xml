@@ -205,6 +205,8 @@
             <field name="monthly">True</field>
             <field name="is_partial">True</field>
             <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('is_aircraft_fees','=',True)]</field>
         </record>
 
         <record id="car_fee_allowance_02" model="allowance">
@@ -216,6 +218,8 @@
             <field name="monthly">True</field>
             <field name="is_partial">True</field>
             <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('is_car_fees','=',True)]</field>
         </record>
 
         <!--free time allowance for engineers,commercial specialists and lawyers-->
@@ -271,10 +275,12 @@
             <field name="name">بدل سماعة</field>
             <field name="code">TA01</field>
             <field name="type">allowance</field>
-            <field name="amount">100</field>
+            <field name="amount">30</field>
             <field name="monthly">True</field>
             <field name="is_partial">True</field>
             <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="domain">[('is_exchange_representative','=',True)]</field>
         </record>
 
 <!--for French/English graduate-->

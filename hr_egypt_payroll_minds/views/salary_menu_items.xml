@@ -198,7 +198,7 @@
                     <group>
                     <group>
                         <field name="name"/>
-                        <field name="type"/>
+                        <field name="type" />
                         <field name="code"/>
                         <field name="start_date"/>
                         <field name="end_date"/>
@@ -225,10 +225,11 @@
                     </group>
                     <notebook>
                         <page string="Employee Allowances">
-                            <field name="allowance_employee_ids" mode="tree">
+                            <field name="id" invisible="1"/>
+                            <field name="allowance_employee_ids" mode="tree" context="{'default_allowance_id': id}">
                                 <tree editable="top">
-                                    <field name="employee_id"/>
-                                    <field name="allowance_id"/>
+                                    <field name="employee_id" required="1"/>
+                                    <field name="allowance_id" invisible="1"/>
                                     <!-- <field name="employee_card_id"/> -->
                                     <field name="payslip_id" optional="show" readonly="1"/>
                                     <!-- <field name="once"/>
@@ -322,10 +323,11 @@
                         </group>
                     <notebook>
                         <page string="Employee Deductions">
-                            <field name="deduction_employee_ids" mode="tree">
+                            <field name="id" invisible="1"/>
+                            <field name="deduction_employee_ids" mode="tree" context="{'default_deduction_id': id}">
                                 <tree editable="top">
-                                    <field name="employee_id"/>
-                                    <field name="deduction_id"/>
+                                    <field name="employee_id" required="1"/>
+                                    <field name="deduction_id" invisible="1"/>
                                     <!-- <field name="employee_card_id"/> -->
                                     <field name="payslip_id" optional="show" readonly="1"/>
                                     <!-- <field name="once" optional="show"/>
@@ -414,10 +416,11 @@
                         </group>
                     <notebook>
                         <page string="Employee Subscriptions">
-                            <field name="employee_subscription_ids" mode="tree">
+                            <field name="id" invisible="1"/>
+                            <field name="employee_subscription_ids" mode="tree" context="{'default_subscription_id': id}">
                                 <tree editable="top">
-                                    <field name="employee_id"/>
-                                    <field name="subscription_id"/>
+                                    <field name="employee_id" required="1"/>
+                                    <field name="subscription_id" invisible="1"/>
                                     <field name="amount"/>
                                     <field name="start_date"/>
                                     <field name="end_date"/>

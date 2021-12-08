@@ -30,3 +30,7 @@ class Allowance(models.Model):
     domain = fields.Char(string="Domain", index=True, tracking=True)
     active = fields.Boolean(string="Active", index=True, tracking=True, default=True)
     allowance_employee_ids = fields.One2many('employee_allowance', 'allowance_id', store=True, string="Allowance Employees")
+
+
+
+    

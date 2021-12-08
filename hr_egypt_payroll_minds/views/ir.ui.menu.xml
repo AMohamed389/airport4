@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="parent_menu_employee_group"  name="Employee Group"  action="action_employee_group"  
+                                        parent="hr_extend_minds.parent_menu_qualitative_group" sequence="3001" />
+    <menuitem id="parent_menu_employee_group_child"  name="Employee Group Child"  action="action_employee_group_child"  
+                                        parent="hr_extend_minds.parent_menu_qualitative_group" sequence="3002" />
+
+</odoo>

@@ -10,3 +10,5 @@ from . import hr_inherit
 from . import hr_payslip_line
 from . import subscription
 from . import employee_subscription
+from . import employee_group
+from . import employee_group_child

@@ -19,4 +19,7 @@ class HrPayrollExtend(models.Model):
     is_aircraft_fees = fields.Boolean(string="Is Aircraft Fees", index=True, tracking=True)
     is_car_fees = fields.Boolean(string="Is Car Fees", index=True, tracking=True)
 
-
+    
+    employee_group_id = fields.Many2one('employee_group', tracking=True, index=True)
+    employee_group_child_id = fields.Many2one('employee_group_child', domain=lambda self: "[('employee_group_id','=',employee_group_id)]", tracking=True, index=True)
+    

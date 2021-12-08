@@ -10,13 +10,15 @@
             <xpath expr="//field[@name='mobile_phone']" position="after">
                 <field name="x_type_designation"/>
             </xpath>
-
+            
+            <!-- domain="[('type','=','allowance')]" -->
              <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-                    <page string="Allowance">
-                        <field name="employee_allowance_ids" mode="tree">
-                            <tree string="Allowance" editable="top">
-                                <!--<field name="employee_id"/>-->
-                                <field name="allowance_id" optional="show"/>
+                    <page string="Merit">
+                        <field name="id" invisible="1"/>
+                        <field name="employee_allowance_ids" mode="tree" context="{'default_employee_id': id}">
+                            <tree string="Merit" editable="top">
+                                <field name="employee_id" invisible="1"/>
+                                <field name="allowance_id" optional="show" />
                                 <field name="amount"/>
                                 <field name="payslip_id" optional="show" readonly="1"/>
                                 <!-- <field name="once"/>
@@ -32,10 +34,29 @@
                         </field>
                     </page>
 
+                    <!-- <page string="Incentive">
+                        <field name="id" invisible="1"/>
+                        <field name="employee_allowance_ids" mode="tree" context="{'default_employee_id': id}">
+                            <tree string="Incentive" editable="top">
+                                <field name="employee_id" invisible="1"/>
+                                <field name="allowance_id" optional="show" domain="[('type','=','incentive')]"/>
+                                <field name="amount"/>
+                                <field name="payslip_id" optional="show" readonly="1"/>
+                                <field name="start_date" optional="show"/>
+                                <field name="end_date" optional="show"/>
+                                <field name="is_run" optional="show" readonly="1"/>
+                                <field name="run_date" optional="show" readonly="1"/>
+                                <field name="active" optional="show"/>
+                                <field name="currency_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page> -->
+
                     <page string="Deduction">
-                        <field name="employee_deduction_ids" mode="tree">
+                        <field name="id" invisible="1"/>
+                        <field name="employee_deduction_ids" mode="tree" context="{'default_employee_id': id}">
                             <tree string="Deduction" editable="top">
-                                <!--<field name="employee_id"/>-->
+                                <field name="employee_id" invisible="1"/>
                                 <field name="deduction_id" optional="show"/>
                                 <field name="amount"/>
                                 <field name="payslip_id" optional="show" readonly="1"/>
@@ -52,9 +73,10 @@
                     </page>
 
                     <page string="Subscription">
-                        <field name="employee_subscription_ids" mode="tree">
+                        <field name="id" invisible="1"/>
+                        <field name="employee_subscription_ids" mode="tree" context="{'default_employee_id': id}">
                             <tree string="Subscription" editable="top">
-                                <!--<field name="employee_id"/>-->
+                                <field name="employee_id" invisible="1"/>
                                 <field name="subscription_id" optional="show"/>
                                 <field name="amount" optional="show"/>
                                 <!-- <field name="once"/>
@@ -70,17 +92,18 @@
 
                     <page string="Employee Flags">
                         <group>
-                            <group>
-                                    <field name="is_military"/>
-                                    <field name="is_exchange_representative"/>
-                                    <field name="is_aircraft_fees"/>
-                                    <field name="is_car_fees"/>
+                            <group string="Flags">
+                                <field name="is_military"/>
+                                <field name="is_exchange_representative"/>
+                                <field name="is_aircraft_fees"/>
+                                <field name="is_car_fees"/>
                             </group>
-                            <group>
+                            <group string="Other Information">
+                                <field name="employee_group_id" />
+                                <field name="employee_group_child_id" />
                             </group>
                         </group>
                     </page>
-
              </xpath>
         </field>
     </record>
