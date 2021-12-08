@@ -830,7 +830,7 @@ class taxation(models.Model):
 
         _rate = 0.0
         _employee_start_date =  _employee_allowance.allowance_id.start_date
-        if _employee_start_date and _employee_allowance._allowance_id.is_partial:
+        if _employee_start_date and _employee_allowance.allowance_id.is_partial:
             _today_date = date(_employee_start_date.year, _employee_start_date.month, 1)
             num_months = (_employee_start_date.year - _today_date.year) * 12 + (_employee_start_date.month - _today_date.month)
             if num_months >= 0 and num_months < 1:
@@ -838,7 +838,7 @@ class taxation(models.Model):
                 _rate = num_days / 30
 
         _employee_start_date =  _employee_allowance.start_date
-        if _employee_start_date and _employee_allowance._allowance_id.is_partial:
+        if _employee_start_date and _employee_allowance.allowance_id.is_partial:
             _today_date = date(_employee_start_date.year, _employee_start_date.month, 1)
             num_months = (_employee_start_date.year - _today_date.year) * 12 + (_employee_start_date.month - _today_date.month)
             if num_months >= 0 and num_months < 1:
@@ -881,7 +881,7 @@ class taxation(models.Model):
                 # _employee_allowance.is_run = True
                 # _employee_allowance.run_date = datetime.now().date()
 
-        _employee_start_date =  _employee_allowance._allowance_id.start_date
+        _employee_start_date =  _employee_allowance.allowance_id.start_date
         if _employee_allowance.start_date:
             _employee_start_date =  _employee_allowance.start_date
         _employee_end_date = False
@@ -1137,7 +1137,7 @@ class taxation(models.Model):
                 _rate = num_days / 30
 
         _employee_start_date =  _employee_subscription.start_date
-        if _employee_start_date and _employee_subscription._allowance_id.is_partial:
+        if _employee_start_date and _employee_subscription.subscription_id.is_partial:
             _today_date = date(_employee_start_date.year, _employee_start_date.month, 1)
             num_months = (_employee_start_date.year - _today_date.year) * 12 + (_employee_start_date.month - _today_date.month)
             if num_months >= 0 and num_months < 1:
@@ -1285,7 +1285,7 @@ class taxation(models.Model):
 
         _rate = 0.0
         _employee_start_date =  _subscription.start_date
-        if _employee_start_date and _subscription._allowance_id.is_partial:
+        if _employee_start_date and _subscription.is_partial:
             _today_date = date(_employee_start_date.year, _employee_start_date.month, 1)
             num_months = (_employee_start_date.year - _today_date.year) * 12 + (_employee_start_date.month - _today_date.month)
             if num_months >= 0 and num_months < 1:
