@@ -705,7 +705,9 @@ class taxation(models.Model):
                         _dic['amount'] = _min_amount
                     if _res > _max_amount:
                         _dic['amount'] = _max_amount
-                    _dic['amount'] = _res
+                    
+                    if not _dic['amount']:
+                        _dic['amount'] = _res
 
             elif _allowance.comprehensive_wage or _allowance.salary_degree or _allowance.job_incentive or _allowance.extra_incentive:
                 _res = _basic_calc * (_percent/100)
@@ -713,7 +715,9 @@ class taxation(models.Model):
                     _dic['amount'] = _min_amount
                 if _res > _max_amount:
                     _dic['amount'] = _max_amount
-                _dic['amount'] = _res
+                
+                if not _dic['amount']:
+                    _dic['amount'] = _res
 
 
         _employee_start_date =  _allowance.start_date
@@ -874,7 +878,9 @@ class taxation(models.Model):
                         _dic['amount'] = _min_amount
                     if _res > _max_amount:
                         _dic['amount'] = _max_amount
-                    _dic['amount'] = _res
+
+                    if not _dic['amount']:
+                        _dic['amount'] = _res
 
             elif _allowance_id.comprehensive_wage or _allowance_id.salary_degree or _allowance_id.job_incentive or _allowance_id.extra_incentive:
                 _res = _basic_calc * (_percent/100)
@@ -882,7 +888,9 @@ class taxation(models.Model):
                     _dic['amount'] = _min_amount
                 if _res > _max_amount:
                     _dic['amount'] = _max_amount
-                _dic['amount'] = _res
+                
+                if not _dic['amount']:
+                    _dic['amount'] = _res
             
             if _allowance_id.once:
                 _employee_allowance.payslip_id = self.id
@@ -1032,7 +1040,9 @@ class taxation(models.Model):
                         _dic['amount'] = _min_amount
                     if _res > _max_amount:
                         _dic['amount'] = _max_amount
-                    _dic['amount'] = _res
+                    
+                    if not _dic['amount']:
+                        _dic['amount'] = _res
 
             elif _deduction_id.comprehensive_wage or _deduction_id.job_incentive or _deduction_id.extra_incentive:
                 _res = _basic_calc * (_percent/100)
@@ -1040,7 +1050,9 @@ class taxation(models.Model):
                     _dic['amount'] = _min_amount
                 if _res > _max_amount:
                     _dic['amount'] = _max_amount
-                _dic['amount'] = _res
+                
+                if not _dic['amount']:
+                    _dic['amount'] = _res
             
             if _deduction_id.once:
                 _employee_deduction.payslip_id = self.id
@@ -1169,7 +1181,9 @@ class taxation(models.Model):
                         _dic['amount'] = _min_amount
                     if _res > _max_amount:
                         _dic['amount'] = _max_amount
-                    _dic['amount'] = _res
+                    
+                    if not _dic['amount']:
+                        _dic['amount'] = _res
 
             elif _subscription_id.comprehensive_wage or _subscription_id.job_incentive or _subscription_id.extra_incentive:
                 _res = _basic_calc * (_percent/100)
@@ -1177,7 +1191,9 @@ class taxation(models.Model):
                     _dic['amount'] = _min_amount
                 if _res > _max_amount:
                     _dic['amount'] = _max_amount
-                _dic['amount'] = _res
+
+                if not _dic['amount']:
+                    _dic['amount'] = _res
             
 
         _employee_start_date =  _subscription_id.start_date
@@ -1318,7 +1334,9 @@ class taxation(models.Model):
                         _dic['amount'] = _min_amount
                     if _res > _max_amount:
                         _dic['amount'] = _max_amount
-                    _dic['amount'] = _res
+                    
+                    if not _dic['amount']:
+                        _dic['amount'] = _res
 
             elif _subscription.comprehensive_wage or _subscription.job_incentive or _subscription.extra_incentive:
                 _res = _basic_calc * (_percent/100)
@@ -1326,7 +1344,9 @@ class taxation(models.Model):
                     _dic['amount'] = _min_amount
                 if _res > _max_amount:
                     _dic['amount'] = _max_amount
-                _dic['amount'] = _res
+                
+                if not _dic['amount']:
+                    _dic['amount'] = _res
 
         _employee_start_date =  _subscription.start_date
         _employee_end_date = False
@@ -1449,7 +1469,9 @@ class taxation(models.Model):
                         _dic['amount'] = _min_amount
                     if _res > _max_amount:
                         _dic['amount'] = _max_amount
-                    _dic['amount'] = _res
+                    
+                    if not _dic['amount']:
+                        _dic['amount'] = _res
 
             elif _deduction.comprehensive_wage or _deduction.job_incentive or _deduction.extra_incentive:
                 _res = _basic_calc * (_percent/100)
@@ -1457,7 +1479,9 @@ class taxation(models.Model):
                     _dic['amount'] = _min_amount
                 if _res > _max_amount:
                     _dic['amount'] = _max_amount
-                _dic['amount'] = _res
+                
+                if not _dic['amount']:
+                    _dic['amount'] = _res
 
         
         _pay_slip_domain_calc = {}
@@ -1482,16 +1506,6 @@ class taxation(models.Model):
         _dic['rate'] = 1
         _dic['amount'] = -1 * _dic['amount']
         return _dic
-
-    # def compute_sheet(self):
-    #     payslips = self.filtered(lambda slip: slip.state in ['draft', 'verify'])
-    #     # delete old payslip lines
-    #     payslips.line_ids.unlink()
-    #     for payslip in payslips:
-    #         number = payslip.number or self.env['ir.sequence'].next_by_code('salary.slip')
-    #         lines = [(0, 0, line) for line in payslip._get_payslip_lines()]
-    #         payslip.write({'line_ids': lines, 'number': number, 'state': 'verify', 'compute_date': fields.Date.today()})
-    #     return True
 
     def compute_sheet(self):
         payslips = self.filtered(lambda slip: slip.state in ['draft', 'verify'])
