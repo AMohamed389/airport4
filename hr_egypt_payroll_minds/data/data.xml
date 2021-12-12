@@ -271,12 +271,12 @@
             <field name="category_id" ref="hr_egypt_payroll_minds.STAMP"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = payslip.env['hr.payslip']._get_stamp_amount(employee, categories.NET)</field>
+            <field name="amount_python_compute">result = payslip.env['hr.payslip']._get_stamp_amount(employee, (categories.GROSS + categories.TDED + categories.TS))</field>
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
 
         <record id="hr_payslip_rule_tax" model="hr.salary.rule">
-            <field name="name">ضريبة المرتب</field>
+            <field name="name">ضريبة كسب العمل</field>
             <field name="sequence" eval="501"/>
             <field name="code">ST</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.TAX"/>

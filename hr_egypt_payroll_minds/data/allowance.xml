@@ -13,6 +13,14 @@
             <field name="is_taxable">True</field>
         </record>
 
+        <record id="incentive_san_01" model="allowance">
+            <field name="name">علاوة خاصة غير مضمومة</field>
+            <field name="code">SAN01</field>
+            <field name="type">allowance</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
         <record id="incentive_2020_01" model="allowance">
             <field name="name">علاوة 2020</field>
             <field name="code">I202001</field>
