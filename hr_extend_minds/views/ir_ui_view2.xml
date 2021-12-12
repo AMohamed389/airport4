@@ -78,14 +78,14 @@
 
 
     <!-- salary_marital-->
-    <!-- <record id="action_salary_marital" model="ir.actions.act_window">
+    <record id="action_salary_marital" model="ir.actions.act_window">
       <field name="name">Salary Marital</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">salary_marital</field>
       <field name="view_mode">tree,form</field>
-    </record> -->
+    </record>
 
-    <!-- <record id="view_salary_marital_list" model="ir.ui.view">
+    <record id="view_salary_marital_list" model="ir.ui.view">
       <field name="name">view_salary_marital_list</field>
       <field name="model">salary_marital</field>
       <field name="arch" type="xml">
@@ -97,15 +97,19 @@
             <field name="currency_id" invisible="1"/>
         </tree>
       </field>
-    </record> -->
+    </record>
 
-    <!-- <record id="view_salary_marital_form" model="ir.ui.view">
+    <record id="view_salary_marital_form" model="ir.ui.view">
       <field name="name">view_salary_marital_form</field>
       <field name="model">salary_marital</field>
 
       <field name="arch" type="xml">
         <form  >
           <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
           </header>
 
           <sheet>
@@ -129,21 +133,35 @@
             </group>
 
 
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
           </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
         </form>
       </field>
-    </record> -->
+    </record>
 
 
     <!-- salary_supervision_job-->
-    <!-- <record id="action_salary_supervision_job" model="ir.actions.act_window">
+    <record id="action_salary_supervision_job" model="ir.actions.act_window">
       <field name="name">Salary Supervision Job</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">salary_supervision_job</field>
       <field name="view_mode">tree,form</field>
-    </record> -->
 
-    <!-- <record id="view_salary_supervision_job_list" model="ir.ui.view">
+
+    </record>
+
+    <record id="view_salary_supervision_job_list" model="ir.ui.view">
       <field name="name">view_salary_supervision_job_list</field>
       <field name="model">salary_supervision_job</field>
       <field name="arch" type="xml">
@@ -154,15 +172,19 @@
             <field name="currency_id" invisible="1"/>
         </tree>
       </field>
-    </record> -->
+    </record>
 
-    <!-- <record id="view_salary_supervision_job_form" model="ir.ui.view">
+    <record id="view_salary_supervision_job_form" model="ir.ui.view">
       <field name="name">view_salary_supervision_job_form</field>
       <field name="model">salary_supervision_job</field>
 
       <field name="arch" type="xml">
         <form  >
           <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
           </header>
 
           <sheet>
@@ -186,10 +208,22 @@
             </group>
 
 
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
           </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
         </form>
       </field>
-    </record> -->
+    </record>
 
 
 
@@ -524,5 +558,759 @@
       </field>
     </record>
 
+    <!-- grants -->
+    <record id="action_grants" model="ir.actions.act_window">
+        <field name="name">Grants</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grants</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+    <record id="view_grants_list" model="ir.ui.view">
+        <field name="name">view_grants_list</field>
+        <field name="model">grants</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="hr_employee_id" optional="show"/>
+                <field name="grant_type_id" optional="show"/>
+                <field name="amount" optional="show"/>
+                <field name="grants_terms_id" optional="show"/>
+                <field name="diagnosis_id" optional="show"/>
+                <field name="currency_id" optional="show" invisible="1"/>
+                <field name="document_date" optional="show"/>
+                <field name="submission_date" optional="show"/>
+                <field name="attachment" optional="show"/>
 
+            </tree>
+        </field>
+    </record>
+    <record id="view_grants_form" model="ir.ui.view">
+        <field name="name">view_grants_form</field>
+        <field name="model">grants</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+    <record id="grants_pivot" model="ir.ui.view">
+        <field name="name">grants.pivot</field>
+        <field name="model">grants</field>
+        <field name="arch" type="xml">
+            <pivot string="Grants">
+                <field name="grant_type_id" type="row"/>
+                <field name="diagnosis_id" type="row"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- grants type-->
+    <record id="action_grant_type" model="ir.actions.act_window">
+        <field name="name">Grant Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grant_type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_grant_type_list" model="ir.ui.view">
+        <field name="name">Grant Type</field>
+        <field name="model">grant_type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_grant_type_form" model="ir.ui.view">
+        <field name="name">view_grant_type_form</field>
+        <field name="model">grant_type</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+    <!-- employee diagnosis type-->
+    <record id="action_employee_diagnosis_type" model="ir.actions.act_window">
+        <field name="name">Employee Diagnosis Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee_diagnosis_type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_employee_diagnosis_type_list" model="ir.ui.view">
+        <field name="name">employee_diagnosis_type_list</field>
+        <field name="model">employee_diagnosis_type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_employee_diagnosis_type_form" model="ir.ui.view">
+        <field name="name">view_employee_diagnosis_type_form</field>
+        <field name="model">employee_diagnosis_type</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+    <!-- employee care subscriptions-->
+    <record id="action_employee_care_subscriptions" model="ir.actions.act_window">
+        <field name="name">Employee Care Subscriptions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee_care_subscriptions</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+    <record id="view_employee_care_subscriptions_list" model="ir.ui.view">
+        <field name="name">employee_care_subscriptions_list</field>
+        <field name="model">employee_care_subscriptions</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="hr_employee_id" optional="show"/>
+                <field name="care_subscriptions_type_id" optional="show"/>
+                <field name="employee_destination_id" optional="show"/>
+                <field name="no_of_months" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="amount" optional="show"/>
+                <field name="start_date" optional="show"/>
+                <field name="end_date" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_employee_care_subscriptions_form" model="ir.ui.view">
+        <field name="name">view_employee_care_subscriptions_form</field>
+        <field name="model">employee_care_subscriptions</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_care_subscriptions_pivot" model="ir.ui.view">
+        <field name="name">employee_care_subscriptions.pivot</field>
+        <field name="model">employee_care_subscriptions</field>
+        <field name="arch" type="xml">
+            <pivot string="Subscriptions">
+                <field name="start_date" type="row"/>
+                <field name="end_date" type="col"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- care subscriptions type-->
+    <record id="action_care_subscriptions_type" model="ir.actions.act_window">
+        <field name="name">Care Subscriptions Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">care_subscriptions_type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_care_subscriptions_type_list" model="ir.ui.view">
+        <field name="name">care_subscriptions_type_list</field>
+        <field name="model">care_subscriptions_type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_care_subscriptions_type_form" model="ir.ui.view">
+        <field name="name">view_care_subscriptions_type_form</field>
+        <field name="model">care_subscriptions_type</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+    <!-- Employee Usage -->
+    <record id="action_employee_usage" model="ir.actions.act_window">
+        <field name="name">Employee Usage</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee_usage</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+    <record id="view_employee_usage_list" model="ir.ui.view">
+        <field name="name">view_employee_usage_list</field>
+        <field name="model">employee_usage</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="hr_employee_id" optional="show"/>
+                <field name="insurance_company" optional="show"/>
+                <field name="medical_number" optional="show"/>
+                <field name="service_date" optional="show"/>
+                <field name="employee_diagnosis_type_id" optional="show"/>
+                <field name="service_provider_id" optional="show"/>
+                <field name="service_group_id" optional="show"/>
+                <field name="employee_service_name_id" optional="show"/>
+                <field name="currency_id" optional="show"/>
+                <field name="service_fees" optional="show"/>
+                <field name="total_fees" optional="show"/>
+                <field name="discount" optional="show"/>
+                <field name="after_discount" optional="show"/>
+                <field name="after_bearing" optional="show"/>
+                <field name="deductions" optional="show"/>
+                <field name="total" optional="show"/>
+                <field name="notes" optional="show"/>
+                <field name="attachment" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_employee_usage_form" model="ir.ui.view">
+        <field name="name">view_employee_usage_form</field>
+        <field name="model">employee_usage</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+    <record id="employee_usage_pivot" model="ir.ui.view">
+        <field name="name">employee_usage.pivot</field>
+        <field name="model">employee_usage</field>
+        <field name="arch" type="xml">
+            <pivot string="Usage">
+                <field name="service_date" type="row"/>
+                <field name="insurance_company" type="col"/>
+                <field name="total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- service provider-->
+    <record id="action_service_provider" model="ir.actions.act_window">
+        <field name="name">service provider</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">service_provider</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_service_provider_list" model="ir.ui.view">
+        <field name="name">Service Provider</field>
+        <field name="model">service_provider</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_service_provider_form" model="ir.ui.view">
+        <field name="name">view_service_provider_form</field>
+        <field name="model">service_provider</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+    <!-- service group-->
+    <record id="action_service_group" model="ir.actions.act_window">
+        <field name="name">service group</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">service_group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_service_group_list" model="ir.ui.view">
+        <field name="name">view_service_group_list</field>
+        <field name="model">service_group</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_service_group_form" model="ir.ui.view">
+        <field name="name">view_service_group_form</field>
+        <field name="model">service_group</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- service group-->
+    <record id="action_employee_service_name" model="ir.actions.act_window">
+        <field name="name">Employee Service Name</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee_service_name</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_employee_service_name_list" model="ir.ui.view">
+        <field name="name">view_employee_service_name_list</field>
+        <field name="model">employee_service_name</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_employee_service_name_form" model="ir.ui.view">
+        <field name="name">view_employee_service_name_form</field>
+        <field name="model">employee_service_name</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- daily approvals -->
+    <record id="action_daily_approvals" model="ir.actions.act_window">
+        <field name="name">Daily Approvals</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">daily_approvals</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+    <record id="view_daily_approvals_list" model="ir.ui.view">
+        <field name="name">view_daily_approvals_list</field>
+        <field name="model">daily_approvals</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="hr_employee_id" optional="show"/>
+                <field name="date" optional="show"/>
+                <field name="diagnosis_id" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="amount" optional="show"/>
+                <field name="destination" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_daily_approvals_form" model="ir.ui.view">
+        <field name="name">view_daily_approvals_form</field>
+        <field name="model">daily_approvals</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+    
+    <record id="daily_approvals_pivot" model="ir.ui.view">
+        <field name="name">daily_approvals.pivot</field>
+        <field name="model">daily_approvals</field>
+        <field name="arch" type="xml">
+            <pivot string="Daily Approvals">
+                <field name="date"/>
+                <field name="diagnosis_id" type="measure"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- medical committee -->
+    <record id="action_medical_committee" model="ir.actions.act_window">
+        <field name="name">Medical Committee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical_committee</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+    <record id="view_medical_committee_list" model="ir.ui.view">
+        <field name="name">view_medical_committee_list</field>
+        <field name="model">medical_committee</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="hr_employee_id" optional="show"/>
+                <field name="date" optional="show"/>
+                <field name="diagnosis_id" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="amount" optional="show"/>
+                <field name="destination_number" optional="show"/>
+                <field name="destination_date" optional="show"/>
+                <field name="attachment" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_medical_committee_form" model="ir.ui.view">
+        <field name="name">view_medical_committee_form</field>
+        <field name="model">medical_committee</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
+    <record id="medical_committee_pivot" model="ir.ui.view">
+        <field name="name">medical_committee.pivot</field>
+        <field name="model">medical_committee</field>
+        <field name="arch" type="xml">
+            <pivot string="Medical Committee">
+                <field name="date" type="row"/>
+                <field name="diagnosis_id" type="row"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- service group-->
+    <record id="action_grants_terms" model="ir.actions.act_window">
+        <field name="name">Grants Terms</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grants_terms</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_grants_terms_list" model="ir.ui.view">
+        <field name="name">view_grants_terms_list</field>
+        <field name="model">grants_terms</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" optional="show"/>
+                <field name="active" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_grants_terms_form" model="ir.ui.view">
+        <field name="name">view_grants_terms_form</field>
+        <field name="model">grants_terms</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+
+
+                                         <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"> </div>
+                    <div class="oe_title">
+                        <h1>
+                            <!--  <field name="name" placeholder="Name"/>  -->
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group name="group_left"> </group>
+                        <group name="group_right"> </group>
+                    </group>
+                    <!--  <notebook name="main_notebook">
+                                            <page name="page1" string="page name">
+
+                                            </page>
+                                          </notebook>  -->
+                </sheet>
+                <!--  <div class="oe_chatter" name="mainchatterview">
+                                  <field name="message_follower_ids"/>
+                                  <field name="activity_ids"/>
+                                  <field name="message_ids"/>
+                                </div>  -->
+            </form>
+        </field>
+    </record>
 </odoo>

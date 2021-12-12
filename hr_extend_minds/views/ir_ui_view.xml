@@ -900,6 +900,7 @@
                             <group name="job_page_group_parent_left"/>
                         </group>
                     </page>
+
                 </xpath>
 
                 <xpath expr="//group[@name='job_page_group_parent_left']" position="inside">
@@ -946,7 +947,13 @@
                                 <field name="x_social_insurance_number" string="Social Insurance Number"/>
                                 <field name="x_social_insurance_status" string="Social Insurance Status"/>
                             </group>
-                            <group name="insurance_page_group_parent_right"/>
+                            <group name="insurance_page_group_parent_right">
+                                <field name="egypt_air_insurance" string="Egypt Air Insurance Number" placeholder="ex: 123-465-126"/>
+                                <field name="dmc_insurance" string="DMS Insurance Number" placeholder="ex: 123-465-126"/>
+                                <field name="gov_medical_insurance" string="Gov Medical Insurance Number" placeholder="ex: 123-465-126"/>
+                                <field name="egypt_air_subscription" string="Egypt Air Subscription"/>
+                            </group>
+
                         </group>
                     </page>
 
@@ -1043,14 +1050,25 @@
                     <page string="Attachments" name="attachment_employee_page">
                         <field name="x_attachments" context="{'default_x_employee_id': id}"/>
                     </page>
+                    <page string="Grants" name="grants_page">
+                        <field name="grants_ids" readonly="1"/>
+                    </page>
+                    <page string="Subscriptions" name="subscriptions_page">
+                        <field name="employee_care_subscriptions_ids" readonly="1"/>
+                    </page>
+                    <page string="Usage" name="usage_page">
+                        <field name="employee_usage_ids" readonly="1"/>
+                    </page>
+                    <page string="Daily Approvals" name="daily_approvals_page">
+                        <field name="daily_approvals_ids" readonly="1"/>
+                    </page>
+                    <page string="Medical Committee" name="medical_committee_page">
+                        <field name="medical_committee_ids" readonly="1"/>
+                    </page>
 
                     <page string="Notes" name="notes_page">
                         <field name="x_notes" placeholder="Type down your notes here..." />
                     </page>
-
-                    <!-- <page string="Test Images" name="test_images_employee_page">
-                        <field name="x_test_image" context="{'default_x_employee_id': id}"/>
-                    </page> -->
 
                 </xpath>
 
@@ -1692,6 +1710,9 @@
                 <field name="x_job_degree_id"/>
                 <field name="job_id"/>
                 <field name="x_age"/>
+                <field name="egypt_air_insurance"/>
+                <field name="dmc_insurance"/>
+                <field name="gov_medical_insurance"/>
             </xpath>
             <xpath expr="//search/group" position="inside">
                 <filter string="Christian" name="christian" domain="['|',('x_religion', '=', 'Christiana'),('x_religion', '=', 'Christian')]"/>
@@ -2702,6 +2723,8 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">job_hierarchy</field>
         <field name="view_mode">tree,form</field>
+
+
     </record>
 
     <record id="view_job_hierarchy_list" model="ir.ui.view">
@@ -2719,7 +2742,6 @@
         </tree>
         </field>
     </record>
-    
     <record id="view_job_hierarchy_form" model="ir.ui.view">
         <field name="name">view_job_hierarchy_form</field>
         <field name="model">job_hierarchy</field>

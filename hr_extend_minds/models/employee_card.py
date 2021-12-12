@@ -36,4 +36,6 @@ class employee_card(models.Model):
 
     active = fields.Boolean(string='Active',index=True,default=True,tracking=True)
 
-    _sql_constraints = [('constrain_employee_id_date_active', 'UNIQUE (employee_id, date, active)', 'The combination employee, date and active is already exists !.')]
+    _sql_constraints = [('constrain_employee_id_date_active', 'UNIQUE (employee_id, date, active)', 'The combination employee, date and active is already exists !.')
+                        ,('constrain_employee_id_date_active', 'UNIQUE (employee_id, active)', 'The combination employee and active is already exists !.')
+                        ]

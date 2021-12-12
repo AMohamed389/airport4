@@ -27,7 +27,7 @@ class hr_attachment(models.Model):
     x_res_id = fields.Integer(string="Resource ID", index=True, store=True)
     # x_res_name = fields.Char(string="Resource Name", index=True, store=True)
     x_notes = fields.Text(string="Notes", tracking=True, store=True)
-    active = fields.Boolean(string='Active',index=True,default=True,tracking=True)
+    active = fields.Boolean(string='Active', index=True, default=True, tracking=True)
 
 
     @api.model   

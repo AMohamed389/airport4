@@ -252,8 +252,8 @@
   </record>
 
   <menuitem id="parent_menu_salary_degree"  name="Salary Degree"  action="action_salary_degree"  parent="parent_menu_salary" sequence="3000" />
-  <!-- <menuitem id="parent_menu_salary_marital"  name="Salary Marital"  action="action_salary_marital"  parent="parent_menu_salary" sequence="3001" /> -->
-  <!-- <menuitem id="parent_menu_salary_supervision_job"  name="Salary Supervision Job"  action="action_salary_supervision_job"  parent="parent_menu_salary" sequence="3002" /> -->
+  <menuitem id="parent_menu_salary_marital"  name="Salary Marital"  action="action_salary_marital"  parent="parent_menu_salary" sequence="3001" />
+  <menuitem id="parent_menu_salary_supervision_job"  name="Salary Supervision Job"  action="action_salary_supervision_job"  parent="parent_menu_salary" sequence="3002" />
 
   <record id="parent_menu_settlement" model="ir.ui.menu">
     <field name="action" eval="False" />
@@ -269,5 +269,33 @@
   <menuitem id="parent_menu_employee_bonus"  name="Employee Bonus"  action="action_employee_bonus"  parent="parent_menu_settlement" sequence="3001" />
   <menuitem id="parent_menu_bonus_matrix"  name="Bonus Matrix"  action="action_bonus_matrix"  parent="parent_menu_settlement" sequence="3002" />
   <menuitem id="parent_menu_employee_card"  name="Employee Card"  action="action_employee_card"  parent="parent_menu_settlement" sequence="3003" />
+
+  <record id="parent_menu_employees_care" model="ir.ui.menu">
+    <field name="action" eval="False" />
+    <field name="active" eval="True" />
+    <field name="groups_id" eval="[(6, 0, [])]" />
+    <field name="name">Employees Care</field>
+    <field name="parent_id" eval="False" />
+    <field name="sequence">150</field>
+    <field name="web_icon">fa fa-handshake-o,#FFFFFF,#698b69</field>
+  </record>
+
+
+
+  <menuitem id="parent_menu_grants"  name="Grants"  action="action_grants"  parent="parent_menu_employees_care" sequence="3000" />
+  <menuitem id="parent_menu_employee_care_subscriptions"  name="Subscriptions"  action="action_employee_care_subscriptions"  parent="parent_menu_employees_care" sequence="3003" />
+  <menuitem id="parent_menu_employee_usage"  name="Usage"  action="action_employee_usage"  parent="parent_menu_employees_care" sequence="3005" />
+  <menuitem id="parent_menu_daily_approvals"  name="Daily Approvals"  action="action_daily_approvals"  parent="parent_menu_employees_care" sequence="3006" />
+  <menuitem id="parent_menu_medical_committee"  name="Medical Committee"  action="action_medical_committee"  parent="parent_menu_employees_care" sequence="3007" />
+
+
+  <menuitem id="parent_menu_employees_care_config" name="Configuration" parent="parent_menu_employees_care" sequence="3009" />
+  <menuitem id="parent_menu_grant_type"  name="Grant Type"  action="action_grant_type"  parent="parent_menu_employees_care_config" sequence="3001" />
+  <menuitem id="parent_menu_employee_diagnosis_type"  name="Diagnosis Type"  action="action_employee_diagnosis_type"  parent="parent_menu_employees_care_config" sequence="3002" />
+  <menuitem id="parent_menu_care_subscriptions_type"  name="Subscriptions Type"  action="action_care_subscriptions_type"  parent="parent_menu_employees_care_config" sequence="3004" />
+  <menuitem id="parent_menu_service_provider"  name="Service Provider"  action="action_service_provider"  parent="parent_menu_employees_care_config" sequence="3006" />
+  <menuitem id="parent_menu_service_group"  name="Service Group"  action="action_service_group"  parent="parent_menu_employees_care_config" sequence="3007" />
+  <menuitem id="parent_menu_employee_service_name"  name="Employee Service Name"  action="action_employee_service_name"  parent="parent_menu_employees_care_config" sequence="3008" />
+  <menuitem id="parent_menu_action_grants_terms"  name="Grants Terms"  action="action_grants_terms"  parent="parent_menu_employees_care_config" sequence="3009" />
 
 </odoo>

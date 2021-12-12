@@ -53,4 +53,24 @@ from . import bonus_matrix
 from . import employee_bonus
 from . import employee_card
 
+
+from . import grants
+from . import grant_type
+
+from . import employee_diagnosis_type
+
+from . import employee_care_subscriptions
+from . import care_subscriptions_type
+from . import employee_destination
+
+from . import employee_usage
+from . import service_provider
+from . import service_group
+from . import employee_service_name
+
+from . import daily_approvals
+
+from . import medical_committee
+
+from . import grants_terms
 #from . import test

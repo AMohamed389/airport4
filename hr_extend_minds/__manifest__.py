@@ -22,6 +22,7 @@
         'data/job_degree.xml',
         'data/document_folder.xml',
         'data/hr_leave_type.xml',
+        'data/grants.xml',
     ],
 
     # 'qweb': [
