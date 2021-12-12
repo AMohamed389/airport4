@@ -231,31 +231,34 @@
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">hr.payslip.line</field>
       <field name="view_mode">tree,form</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_hr_payslip_line_list')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_hr_payslip_line_form')})]"/>
     </record>
 
     <record id="view_hr_payslip_line_list" model="ir.ui.view">
       <field name="name">view_hr_payslip_line_list</field>
       <field name="model">hr.payslip.line</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="sequence" optional="show"/>
-          <field name="slip_id" optional="show"/>
-          <field name="salary_rule_id" optional="show"/>
-          <field name="employee_id" optional="show"/>
-          <field name="rate" optional="hide"/>
-          <field name="quantity" optional="hide"/>
-          <field name="amount" optional="hide"/>
-          <field name="total" optional="show"/>
-          <field name="category_id" optional="show"/>
-          <field name="date_from" optional="show"/>
-          <field name="date_to" optional="show"/>
-          <field name="merit_id" optional="hide"/>
-          <field name="deduction_id" optional="hide"/>
-          <field name="subscription_id" optional="hide"/>
-          <field name="salary_rule_code" optional="hide"/>
-          <field name="category_code" optional="hide"/>
-          <field name="company_id" optional="hide"/>
+        <tree create="0" delete="0" edit="0">
+          <field name="name" readonly="1"/>
+          <field name="sequence" readonly="1" optional="show"/>
+          <field name="slip_id" readonly="1" optional="show"/>
+          <field name="salary_rule_id" readonly="1" optional="show"/>
+          <field name="employee_id" readonly="1" optional="show"/>
+          <field name="rate" readonly="1" optional="hide"/>
+          <field name="quantity" readonly="1" optional="hide"/>
+          <field name="amount" readonly="1" optional="hide"/>
+          <field name="total" readonly="1" optional="show"/>
+          <field name="category_id" readonly="1" optional="show"/>
+          <field name="date_from" readonly="1" optional="show"/>
+          <field name="date_to" readonly="1" optional="show"/>
+          <field name="merit_id" readonly="1" optional="hide"/>
+          <field name="deduction_id" readonly="1" optional="hide"/>
+          <field name="subscription_id" readonly="1" optional="hide"/>
+          <field name="salary_rule_code" readonly="1" optional="hide"/>
+          <field name="category_code" readonly="1" optional="hide"/>
+          <field name="company_id" readonly="1" optional="hide"/>
         </tree>
       </field>
     </record>
@@ -263,7 +266,6 @@
     <record id="view_hr_payslip_line_form" model="ir.ui.view">
       <field name="name">view_hr_payslip_line_form</field>
       <field name="model">hr.payslip.line</field>
-
       <field name="arch" type="xml">
         <form  >
           <header>
@@ -279,17 +281,34 @@
             </div>
             <div class="oe_title">
               <h1>
-                <field name="name" placeholder="Name"/>
+                <field name="name" readonly="1" placeholder="Name"/>
               </h1>
             </div>
 
 
             <group name="main_group">
               <group name="group_left">
-
+                <field name="sequence" readonly="1"/>
+                <field name="code" readonly="1"/>
+                <field name="slip_id" readonly="1"/>
+                <field name="salary_rule_id" readonly="1"/>
+                <field name="employee_id" readonly="1"/>
+                <field name="amount" readonly="1"/>
+                <field name="rate" readonly="1"/>
+                <field name="quantity" readonly="1"/>
+                <field name="amount_select" readonly="1"/>
+                <field name="amount_fix" readonly="1"/>
+                <field name="category_id" readonly="1"/>
+                <field name="date_from" readonly="1"/>
+                <field name="date_to" readonly="1"/>
+                <field name="company_id" readonly="1"/>
               </group>
               <group name="group_right">
-
+                <field name="merit_id" readonly="1"/>
+                <field name="deduction_id" readonly="1"/>
+                <field name="subscription_id" readonly="1"/>
+                <field name="salary_rule_code" readonly="1"/>
+                <field name="category_code" readonly="1"/>
               </group>
             </group>
 
