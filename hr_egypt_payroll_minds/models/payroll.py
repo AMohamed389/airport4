@@ -2890,7 +2890,7 @@ class taxation(models.Model):
             payslip.net_wage = _net_wage
 
             _basic_wage_eg = payslip._get_salary_line_total('BASIC_EG')
-            _net_wage_eg = payslip._get_salary_line_total('NET_EG')
+            _net_wage_eg = payslip._get_salary_line_total('NSAT')
 
             if _basic_wage_eg > _basic_wage:
                 payslip.basic_wage = _basic_wage_eg
