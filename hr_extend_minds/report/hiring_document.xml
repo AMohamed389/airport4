@@ -130,13 +130,13 @@
     <!-- <field name="report_name">hr_extend_minds.report_hiring_document</field>
         <field name="report_file">hr_extend_minds.report_hiring_document</field> -->
 
-    <!-- <record id="action_report_hiring_document" model="ir.actions.report">
+    <record id="action_report_hiring_document" model="ir.actions.report">
         <field name="name">Hiring Document</field>
         <field name="model">hr.contract</field>
         <field name="report_type">docx</field>
         <field name="print_report_name">'Hiring Document - %s - %s' % (object.employee_id.name, object.name)</field>
         <field name="binding_model_id" ref="model_hr_contract"/>
         <field name="binding_type">report</field>        
-    </record> -->
+    </record>
 
 </odoo>
