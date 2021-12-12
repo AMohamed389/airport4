@@ -224,5 +224,92 @@
       </field>
     </record>
 
+
+    <!-- hr.payslip.line-->
+    <record id="action_hr_payslip_line" model="ir.actions.act_window">
+      <field name="name">Payslip Lines</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hr.payslip.line</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_hr_payslip_line_list" model="ir.ui.view">
+      <field name="name">view_hr_payslip_line_list</field>
+      <field name="model">hr.payslip.line</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="sequence" optional="show"/>
+          <field name="slip_id" optional="show"/>
+          <field name="salary_rule_id" optional="show"/>
+          <field name="employee_id" optional="show"/>
+          <field name="rate" optional="hide"/>
+          <field name="quantity" optional="hide"/>
+          <field name="amount" optional="hide"/>
+          <field name="total" optional="show"/>
+          <field name="category_id" optional="show"/>
+          <field name="date_from" optional="show"/>
+          <field name="date_to" optional="show"/>
+          <field name="merit_id" optional="hide"/>
+          <field name="deduction_id" optional="hide"/>
+          <field name="subscription_id" optional="hide"/>
+          <field name="salary_rule_code" optional="hide"/>
+          <field name="category_code" optional="hide"/>
+          <field name="company_id" optional="hide"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_hr_payslip_line_form" model="ir.ui.view">
+      <field name="name">view_hr_payslip_line_form</field>
+      <field name="model">hr.payslip.line</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
   </data>
 </odoo>

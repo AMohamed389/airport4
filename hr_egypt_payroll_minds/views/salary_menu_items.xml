@@ -589,5 +589,7 @@
         <menuitem id="employee_subscription_menu_item" parent="subscription_salary_menu_item"
                   name="Employee Subscription" sequence="100" action="employee_subscription_action"/>
 
+        <menuitem id="parent_menu_hr_payslip_line"  name="Payslip Lines"  action="action_hr_payslip_line"  parent="hr_payroll.menu_hr_payroll_payslips" sequence="3000" />
+
     </data>
 </odoo>
