@@ -17,6 +17,6 @@ class taxation(models.Model):
     merit_id = fields.Many2one('allowance', string="Merit", index=True)
     deduction_id = fields.Many2one('deduction', string="Merit", index=True)
     subscription_id = fields.Many2one('subscription', string="Subscription", index=True)
-    salary_rule_code = fields.Char(related='salary_rule_id.code', readonly=True, store=True)
-    category_code = fields.Char(related='category_id.code', readonly=True, store=True)
+    salary_rule_code = fields.Char(related='salary_rule_id.code', string="Salary Rule Code", readonly=True, store=True)
+    category_code = fields.Char(related='category_id.code', string="Category Code", readonly=True, store=True)
     contract_id = fields.Many2one('hr.contract', string='Contract', required=False, index=True)

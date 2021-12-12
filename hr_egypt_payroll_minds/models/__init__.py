@@ -13,3 +13,4 @@ from . import employee_subscription
 from . import employee_group
 from . import employee_group_child
 from . import incentive_band
+from . import hr_payroll_report
