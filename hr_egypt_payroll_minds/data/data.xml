@@ -69,6 +69,11 @@
             <field name="code">INSPEN</field>
         </record>
 
+        <record id="STAMP" model="hr.salary.rule.category">
+            <field name="name">دمغة</field>
+            <field name="code">STAMP</field>
+        </record>
+
         <record id="hr_payslip_rule_basic" model="hr.salary.rule">
             <field name="name">أساسي</field>
             <field name="sequence" eval="1"/>
@@ -259,6 +264,17 @@
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
 
+        <record id="hr_payslip_rule_stamp" model="hr.salary.rule">
+            <field name="name">دمغة</field>
+            <field name="sequence" eval="450"/>
+            <field name="code">STAMP</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.STAMP"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = payslip.env['hr.payslip']._get_stamp_amount(employee, categories.NET)</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
         <record id="hr_payslip_rule_tax" model="hr.salary.rule">
             <field name="name">ضريبة المرتب</field>
             <field name="sequence" eval="501"/>
@@ -266,7 +282,7 @@
             <field name="category_id" ref="hr_egypt_payroll_minds.TAX"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = payslip.env['hr.payslip'].get_salary_m_taxes(employee, (categories.BASIC + categories.TMRT + categories.TDED + categories.TS))</field>
+            <field name="amount_python_compute">result = payslip.env['hr.payslip'].get_salary_m_taxes(employee, (categories.BASIC + categories.TMRT + categories.TDED + categories.TS + categories.STAMP))</field>
             <!-- <field name="amount_python_compute">result = 0.0</field> -->
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
@@ -278,7 +294,7 @@
             <field name="category_id" ref="hr_egypt_payroll_minds.NET"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = categories.NET + categories.TAX</field>
+            <field name="amount_python_compute">result = categories.NET + categories.TAX + categories.STAMP</field>
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
 

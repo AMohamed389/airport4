@@ -48,9 +48,11 @@ class taxation(models.Model):
         return self.merit_line_ids
 
     def _get_net_tax(self):
-        self.net_tax_line_ids = self.env['hr.payslip.line'].search(['|',('category_code', '=', 'TAX'),
-                                                                ('category_code', '=', 'NET')
-                                                                ,('slip_id','=',self.id)])
+        self.net_tax_line_ids = self.env['hr.payslip.line'].search([('category_code', 'in', ('TAX','NET','STAMP')),
+                                                                # ('category_code', '=', 'NET')
+                                                                # ('category_code', '=', 'STAMP'),
+                                                                ('slip_id','=',self.id)
+                                                                ])
         return self.net_tax_line_ids
 
     def get_salary_m_taxes(self, emp_id, netgross):
@@ -874,7 +876,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _allowance_id.comprehensive_wage or _allowance_id.salary_degree or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _allowance_id.comprehensive_wage or _allowance_id.salary_degree or _allowance_id.job_incentive or _allowance_id.extra_incentive:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1032,7 +1034,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _deduction_id.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _deduction_id.comprehensive_wage or _deduction_id.job_incentive or _deduction_id.extra_incentive:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1169,7 +1171,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _subscription_id.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _subscription_id.comprehensive_wage or _subscription_id.job_incentive or _subscription_id.extra_incentive:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1318,7 +1320,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _subscription.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _subscription.comprehensive_wage or _subscription.job_incentive or _subscription.extra_incentive:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1449,7 +1451,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _deduction.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _deduction.comprehensive_wage or _deduction.job_incentive or _deduction.extra_incentive:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -3027,4 +3029,35 @@ class taxation(models.Model):
         else:
             self.warning_message = False
 
-        self.worked_days_line_ids = self._get_new_worked_days_lines()
+        # self.worked_days_line_ids = self._get_new_worked_days_lines()
+
+    def _get_stamp_amount(self, _employee_id=False, _amount=0.0):
+
+        # _employee_id = self.employee_id
+        _res_amount = 0.0
+        _exempted_amount = 50
+
+        if not _employee_id:
+            return _res_amount
+
+        _check_amount = _amount - _exempted_amount
+        if _check_amount <= 50:
+            return _res_amount
+        
+        if 50 < _amount <= 250:
+            _res_amount = _amount * (6/1000)
+        elif 250 < _amount <= 500:
+            _res_amount = _amount * (6.5/1000)
+        elif 500 < _amount <= 1000:
+            _res_amount = _amount * (7/1000)
+        elif 1000 < _amount <= 5000:
+            _res_amount = _amount * (7.5/1000)
+        elif 5000 < _amount <= 10000:
+            _res_amount = _amount * (8/1000)
+        elif 10000 < _amount:
+            _res_amount = 10000 * (8/1000)
+            _remain = _amount - 10000
+            _res_amount_2 = _remain * (3/1000)
+            _res_amount += _res_amount_2
+        
+        return -1 * _res_amount or 0.0
