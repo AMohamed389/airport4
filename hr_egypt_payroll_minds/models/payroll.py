@@ -57,22 +57,22 @@ class taxation(models.Model):
 
     def get_salary_m_taxes(self, emp_id, netgross):
 
-        emp_rec = self.env['hr.contract'].search([('employee_id', '=', int(emp_id))])
-        dt_start = emp_rec.date_start
-        _logger.info('dt_start maged ! "%s"' % (str(dt_start)))
+        # emp_rec = self.env['hr.contract'].search([('employee_id', '=', int(emp_id))])
+        # dt_start = emp_rec.date_start
+        # _logger.info('dt_start maged ! "%s"' % (str(dt_start)))
 
-        today = date.today()
-        _logger.info('today maged ! "%s"' % (str(today)))
+        # today = date.today()
+        # _logger.info('today maged ! "%s"' % (str(today)))
 
-        start_month = datetime.strptime(str(dt_start), "%Y-%m-%d").month
-        _logger.info('start_month maged ! "%s"' % (str(start_month)))
-        start_year = datetime.strptime(str(dt_start), "%Y-%m-%d").year
-        _logger.info('start_year maged ! "%s"' % (str(start_year)))
+        # start_month = datetime.strptime(str(dt_start), "%Y-%m-%d").month
+        # _logger.info('start_month maged ! "%s"' % (str(start_month)))
+        # start_year = datetime.strptime(str(dt_start), "%Y-%m-%d").year
+        # _logger.info('start_year maged ! "%s"' % (str(start_year)))
 
-        current_month = today.month
-        _logger.info('current_month maged ! "%s"' % (str(current_month)))
-        current_year = today.year
-        _logger.info('current_year maged ! "%s"' % (str(current_year)))
+        # current_month = today.month
+        # _logger.info('current_month maged ! "%s"' % (str(current_month)))
+        # current_year = today.year
+        # _logger.info('current_year maged ! "%s"' % (str(current_year)))
 
         return -1 * self.EgyPayroll(emp_id, netgross)
 
