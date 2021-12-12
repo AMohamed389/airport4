@@ -59,6 +59,14 @@
             <field name="active">True</field>
         </record>
 
+        <record id="subscription_08" model="subscription" forcecreate="True">
+            <field name="name">مدة سابقة</field>
+            <field name="code">OP01</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+            <field name="active">True</field>
+        </record>
+
     </data>
 
 </odoo>
