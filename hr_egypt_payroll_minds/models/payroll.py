@@ -1627,7 +1627,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
                         
-                        if _merit_rec.allowance_id.type == "allowance" and not _merit_rec.allowance_id.all_employees == False and _merit_rec.allowance_id.is_taxable:
+                        if _merit_rec.allowance_id.type == "allowance" and not _merit_rec.allowance_id.all_employees and _merit_rec.allowance_id.is_taxable:
 
                             _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
 
@@ -1840,7 +1840,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
                         
-                        if _merit_rec.allowance_id.incentive_type == 'Job Incentive' and not _merit_rec.allowance_id.all_employees == False and _merit_rec.allowance_id.is_taxable:
+                        if _merit_rec.allowance_id.incentive_type == 'Job Incentive' and not _merit_rec.allowance_id.all_employees and _merit_rec.allowance_id.is_taxable:
 
                             _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
 
@@ -2060,7 +2060,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
                         
-                        if _merit_rec.allowance_id.incentive_type == 'Extra Incentive' and not _merit_rec.allowance_id.all_employees == False and _merit_rec.allowance_id.is_taxable:
+                        if _merit_rec.allowance_id.incentive_type == 'Extra Incentive' and not _merit_rec.allowance_id.all_employees and _merit_rec.allowance_id.is_taxable:
 
                             _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
 
