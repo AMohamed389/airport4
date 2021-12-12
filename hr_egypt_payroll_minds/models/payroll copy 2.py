@@ -705,7 +705,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _allowance.comprehensive_wage or _allowance.salary_degree or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _allowance.comprehensive_wage or _allowance.salary_degree:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -874,7 +874,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _allowance_id.comprehensive_wage or _allowance_id.salary_degree or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _allowance_id.comprehensive_wage or _allowance_id.salary_degree:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1032,7 +1032,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _deduction_id.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _deduction_id.comprehensive_wage:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1169,7 +1169,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _subscription_id.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _subscription_id.comprehensive_wage:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1318,7 +1318,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _subscription.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _subscription.comprehensive_wage:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1449,7 +1449,7 @@ class taxation(models.Model):
                         _dic['amount'] = _max_amount
                     _dic['amount'] = _res
 
-            elif _deduction.comprehensive_wage or _allowance.job_incentive or _allowance.extra_incentive:
+            elif _deduction.comprehensive_wage:
                 _res = _basic_calc * (_percent/100)
                 if _res < _min_amount:
                     _dic['amount'] = _min_amount
@@ -1497,7 +1497,69 @@ class taxation(models.Model):
         payslips.line_ids.unlink()
         for payslip in payslips:
             number = payslip.number or self.env['ir.sequence'].next_by_code('salary.slip')
-            lines = [(0, 0, line) for line in payslip._get_payslip_lines()] 
+            lines = [(0, 0, line) for line in payslip._get_payslip_lines()]
+            # _lines_for = deepcopy(lines)
+            # for _line in _lines_for:
+            #     if _line[2]['code'] == "DTALW":
+            #         _copy = deepcopy(_line)
+            #         lines.remove(_line)
+            #         _merit_recs = self.env['allowance'].search([('all_employees','=',True),
+            #                                                     ('type','=','allowance'),
+            #                                                     ('is_taxable','=',True)], order="name DESC")
+            #         for _merit_rec in _merit_recs:
+            #             _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, lines[0][2]['amount'])
+            #             _new_line = deepcopy(_copy)
+            #             _new_line[2]['name'] = _res_dict['name']
+            #             _new_line[2]['code'] = _res_dict['code']
+            #             _new_line[2]['amount'] = _res_dict['amount']
+            #             _new_line[2]['merit_id'] = _merit_rec.id
+            #             lines.append(_new_line)
+
+            #     elif _line[2]['code'] == "DNTALW":
+            #         _copy = deepcopy(_line)
+            #         lines.remove(_line)
+            #         _merit_recs = self.env['allowance'].search([('all_employees','=',True),
+            #                                                     ('type','=','allowance'),
+            #                                                     ('is_taxable','=',False)], order="name DESC")
+            #         for _merit_rec in _merit_recs:
+            #             _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, lines[0][2]['amount'])
+            #             _new_line = deepcopy(_copy)
+            #             _new_line[2]['name'] = _res_dict['name']
+            #             _new_line[2]['code'] = _res_dict['code']
+            #             _new_line[2]['amount'] = _res_dict['amount']
+            #             _new_line[2]['merit_id'] = _merit_rec.id
+            #             lines.append(_new_line)
+                
+                # elif _line[2]['code'] == "DTINC":
+                #     _copy = deepcopy(_line)
+                #     lines.remove(_line)
+                #     _merit_recs = self.env['allowance'].search([('all_employees','=',True),
+                #                                                 ('type','=','incentive'),
+                #                                                 ('is_taxable','=',True)], order="name DESC")
+                #     for _merit_rec in _merit_recs:
+                #         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, lines[0][2]['amount'])
+                #         _new_line = deepcopy(_copy)
+                #         _new_line[2]['name'] = _res_dict['name']
+                #         _new_line[2]['code'] = _res_dict['code']
+                #         _new_line[2]['amount'] = _res_dict['amount']
+                #         _new_line[2]['merit_id'] = _merit_rec.id
+                #         lines.append(_new_line)
+                
+                # elif _line[2]['code'] == "DNTINC":
+                #     _copy = deepcopy(_line)
+                #     lines.remove(_line)
+                #     _merit_recs = self.env['allowance'].search([('all_employees','=',True),
+                #                                                 ('type','=','incentive'),
+                #                                                 ('is_taxable','=',False)], order="name DESC")
+                #     for _merit_rec in _merit_recs:
+                #         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, lines[0][2]['amount'])
+                #         _new_line = deepcopy(_copy)
+                #         _new_line[2]['name'] = _res_dict['name']
+                #         _new_line[2]['code'] = _res_dict['code']
+                #         _new_line[2]['amount'] = _res_dict['amount']
+                #         _new_line[2]['merit_id'] = _merit_rec.id
+                #         lines.append(_new_line)
+                
             payslip.write({'line_ids': lines, 'number': number, 'state': 'verify', 'compute_date': fields.Date.today()})
         return True
 
@@ -1514,12 +1576,6 @@ class taxation(models.Model):
         blacklisted_rule_ids = self.env.context.get('prevent_payslip_computation_line_ids', [])
 
         result = {}
-        result_je = {
-            'DTJINC':0.0,
-            'DNTJINC':0.0,
-            'DTEINC':0.0,
-            'DNTEINC':0.0,
-        }
 
         for rule in sorted(self.struct_id.rule_ids, key=lambda x: x.sequence):
             if rule.id in blacklisted_rule_ids:
@@ -1555,7 +1611,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, True, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, True)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -1613,7 +1669,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.type == "allowance" and not _merit_rec.allowance_id.all_employees == False and _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -1660,7 +1716,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, False, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, False)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -1718,7 +1774,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.type == "allowance" and not _merit_rec.allowance_id.all_employees and not _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -1766,7 +1822,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, True, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, True)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -1799,8 +1855,6 @@ class taxation(models.Model):
                                 'merit_id': _rule_merit_id,
                                 'deduction_id': _rule_deduction_id,
                             }
-
-                            result_je['DTJINC'] = result_je['DTJINC'] + _rule_amount
                     
                     # _domain['type'] = [('allowance_id.type','=','allowance')]
                     # _domain['all_employees'] = [('allowance_id.all_employees','=',False)]
@@ -1826,7 +1880,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.incentive_type == 'Job Incentive' and not _merit_rec.allowance_id.all_employees == False and _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -1859,8 +1913,6 @@ class taxation(models.Model):
                                     'merit_id': _rule_merit_id,
                                     'deduction_id': _rule_deduction_id,
                                 }
-
-                                result_je['DTJINC'] = result_je['DTJINC'] + _rule_amount
                 
                 elif rule.code == "DNTJINC":
                     _domain['type'] = [('type','=','incentive')]
@@ -1876,7 +1928,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, False, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, False)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -1909,8 +1961,6 @@ class taxation(models.Model):
                                 'merit_id': _rule_merit_id,
                                 'deduction_id': _rule_deduction_id,
                             }
-
-                            result_je['DNTJINC'] = result_je['DNTJINC'] + _rule_amount
 
                     _domain = {}
                     _domain_calc = []
@@ -1936,7 +1986,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.incentive_type == 'Job Incentive' and not _merit_rec.allowance_id.all_employees and not _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -1970,8 +2020,6 @@ class taxation(models.Model):
                                     'deduction_id': _rule_deduction_id,
                                 }
 
-                                result_je['DNTJINC'] = result_je['DNTJINC'] + _rule_amount
-
                 elif rule.code == "DTEINC":
                     _domain['type'] = [('type','=','incentive')]
                     _domain['all_employees'] = [('all_employees','=',True)]
@@ -1986,7 +2034,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, True, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, True)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2019,8 +2067,6 @@ class taxation(models.Model):
                                 'merit_id': _rule_merit_id,
                                 'deduction_id': _rule_deduction_id,
                             }
-
-                            result_je['DTEINC'] = result_je['DTEINC'] + _rule_amount
                     
                     # _domain['type'] = [('allowance_id.type','=','allowance')]
                     # _domain['all_employees'] = [('allowance_id.all_employees','=',False)]
@@ -2046,7 +2092,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.incentive_type == 'Extra Incentive' and not _merit_rec.allowance_id.all_employees == False and _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -2079,8 +2125,6 @@ class taxation(models.Model):
                                     'merit_id': _rule_merit_id,
                                     'deduction_id': _rule_deduction_id,
                                 }
-
-                                result_je['DTEINC'] = result_je['DTEINC'] + _rule_amount
                 
                 elif rule.code == "DNTEINC":
                     _domain['type'] = [('type','=','incentive')]
@@ -2096,7 +2140,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, False, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, False)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2130,8 +2174,6 @@ class taxation(models.Model):
                                 'deduction_id': _rule_deduction_id,
                             }
 
-                            result_je['DNTEINC'] = result_je['DNTEINC'] + _rule_amount
-
                     _domain = {}
                     _domain_calc = []
                     _rule_name = None
@@ -2156,7 +2198,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.incentive_type == 'Extra Incentive' and not _merit_rec.allowance_id.all_employees and not _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -2190,8 +2232,6 @@ class taxation(models.Model):
                                     'deduction_id': _rule_deduction_id,
                                 }
 
-                                result_je['DNTEINC'] = result_je['DNTEINC'] + _rule_amount
-
                 elif rule.code == "DTINC":
                     _domain['type'] = [('type','=','incentive')]
                     _domain['all_employees'] = [('all_employees','=',True)]
@@ -2206,7 +2246,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, True, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, True)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2264,7 +2304,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.incentive_type == 'Incentive' and not _merit_rec.allowance_id.all_employees and _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, True)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -2312,7 +2352,7 @@ class taxation(models.Model):
 
                     for _merit_rec in _merit_recs:
 
-                        _input_amount = self._get_rule_amount(result, _merit_rec, False, result_je)
+                        _input_amount = self._get_rule_amount(result, _merit_rec, False)
 
                         _res_dict = self.get_employee_merit(_merit_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2370,7 +2410,7 @@ class taxation(models.Model):
                         
                         if _merit_rec.allowance_id.incentive_type == 'Incentive' and not _merit_rec.allowance_id.all_employees and not _merit_rec.allowance_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False, result_je)
+                            _input_amount = self._get_rule_amount(result, _merit_rec.allowance_id, False)
 
                             _res_dict = self.get_specific_employee_merit(_merit_rec, _input_amount)
                             if _res_dict:
@@ -2415,7 +2455,7 @@ class taxation(models.Model):
 
                     for _deduction_rec in _deduction_recs:
 
-                        _input_amount = self._get_rule_amount(result, _deduction_rec, True, result_je)
+                        _input_amount = self._get_rule_amount(result, _deduction_rec, True)
 
                         _res_dict = self.get_employee_deduction(_deduction_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2473,7 +2513,7 @@ class taxation(models.Model):
                         
                         if not _deduction_rec.deduction_id.all_employees and _deduction_rec.deduction_id.is_taxable:
                             
-                            _input_amount = self._get_rule_amount(result, _deduction_rec.deduction_id, True, result_je)
+                            _input_amount = self._get_rule_amount(result, _deduction_rec.deduction_id, True)
 
                             _res_dict = self.get_specific_employee_deduction(_deduction_rec, _input_amount)
                             if _res_dict:
@@ -2518,7 +2558,7 @@ class taxation(models.Model):
 
                     for _deduction_rec in _deduction_recs:
 
-                        _input_amount = self._get_rule_amount(result, _deduction_rec, False, result_je)
+                        _input_amount = self._get_rule_amount(result, _deduction_rec, False)
 
                         _res_dict = self.get_employee_deduction(_deduction_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2575,7 +2615,7 @@ class taxation(models.Model):
 
                         if not _deduction_rec.deduction_id.all_employees and not _deduction_rec.deduction_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _deduction_rec.deduction_id, False, result_je)
+                            _input_amount = self._get_rule_amount(result, _deduction_rec.deduction_id, False)
 
                             _res_dict = self.get_specific_employee_deduction(_deduction_rec, _input_amount)
                             if _res_dict:
@@ -2620,7 +2660,7 @@ class taxation(models.Model):
 
                     for _subscription_rec in _subscription_recs:
 
-                        _input_amount = self._get_rule_amount(result, _subscription_rec, True, result_je)
+                        _input_amount = self._get_rule_amount(result, _subscription_rec, True)
 
                         _res_dict = self.get_employee_subscription(_subscription_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2676,7 +2716,7 @@ class taxation(models.Model):
                         
                         if not _subscription_rec.subscription_id.all_employees and _subscription_rec.subscription_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _subscription_rec.subscription_id, True, result_je)
+                            _input_amount = self._get_rule_amount(result, _subscription_rec.subscription_id, True)
 
                             _res_dict = self.get_specific_employee_subscription(_subscription_rec, _input_amount)
                             if _res_dict:
@@ -2722,7 +2762,7 @@ class taxation(models.Model):
 
                     for _subscription_rec in _subscription_recs:
 
-                        _input_amount = self._get_rule_amount(result, _subscription_rec, False, result_je)
+                        _input_amount = self._get_rule_amount(result, _subscription_rec, False)
 
                         _res_dict = self.get_employee_subscription(_subscription_rec, self.employee_id, _input_amount)
                         if _res_dict:
@@ -2778,7 +2818,7 @@ class taxation(models.Model):
                         
                         if not _subscription_rec.subscription_id.all_employees and not _subscription_rec.subscription_id.is_taxable:
 
-                            _input_amount = self._get_rule_amount(result, _subscription_rec.subscription_id, False, result_je)
+                            _input_amount = self._get_rule_amount(result, _subscription_rec.subscription_id, False)
 
                             _res_dict = self.get_specific_employee_subscription(_subscription_rec, _input_amount)
                             if _res_dict:
@@ -2973,12 +3013,12 @@ class taxation(models.Model):
             _amount = _rec.amount
         return _amount
 
-    def _get_rule_amount(self, _result=False, _obj=False, _is_taxable=False, result_je=False):
+    def _get_rule_amount(self, _result=False, _obj=False, _is_taxable=False):
         
         _input_amount = 0.0
 
         try:
-            if not _obj or not _result or not result_je:
+            if not _obj or not _result:
                 return _input_amount
             if _obj.employee_card_salary:
                 _input_amount = _result["BASIC_EG"]["amount"]
@@ -2986,10 +3026,14 @@ class taxation(models.Model):
                 _input_amount = _result["GROSS_EG"]["amount"]
             elif _obj.salary_degree:
                 _input_amount = self._get_salary_degree_amount()
-            elif _obj.job_incentive:
-                _input_amount = result_je["DTJINC"] + result_je["DNTJINC"]
-            elif _obj.extra_incentive:
-                _input_amount = result_je["DTEINC"] or result_je["DNTEINC"]
+            elif _obj.job_incentive and _obj.is_taxable == _is_taxable:
+                _input_amount = _result["DTJINC"]["amount"]
+            elif _obj.job_incentive and _obj.is_taxable == _is_taxable:
+                _input_amount = _result["DNTJINC"]["amount"]
+            elif _obj.extra_incentive and _obj.is_taxable == _is_taxable:
+                _input_amount = _result["DTEINC"]["amount"]
+            elif _obj.extra_incentive and _obj.is_taxable == _is_taxable:
+                _input_amount = _result["DNTEINC"]["amount"]
         except Exception as ex:
             pass
         

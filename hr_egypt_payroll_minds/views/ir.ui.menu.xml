@@ -6,4 +6,6 @@
     <menuitem id="parent_menu_employee_group_child"  name="Employee Group Child"  action="action_employee_group_child"  
                                         parent="hr_extend_minds.parent_menu_qualitative_group" sequence="3002" />
 
+    <menuitem id="parent_menu_incentive_band"  name="Incentive Slice"  action="action_incentive_band"  parent="hr_extend_minds.parent_menu_salary" sequence="5000" />
+
 </odoo>

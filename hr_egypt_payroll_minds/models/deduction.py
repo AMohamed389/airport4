@@ -6,6 +6,9 @@ class Deduction(models.Model):
     _order = 'id DESC'
     name = fields.Char(string="Deduction", index=True, tracking=True)
     code = fields.Char(string="Deduction code", index=True, tracking=True)
+    slice = fields.Char(string="Slice", index=True, tracking=True)
+    desc = fields.Char(string="Description", index=True, tracking=True)
+    group = fields.Char(string="Group", index=True, tracking=True)
     amount = fields.Monetary(string="Amount of money", tracking=True)
     percentage = fields.Float(string="Percentage", tracking=True)
     min_amount = fields.Monetary(string="Minimum amount", tracking=True)
@@ -19,6 +22,8 @@ class Deduction(models.Model):
     employee_card_salary = fields.Boolean(string="Employee card salary", index=True, tracking=True)
     employee_card_date = fields.Date(string="Employee card date", index=True, tracking=True)
     comprehensive_wage = fields.Boolean(string="Comprehensive wage", index=True, tracking=True)
+    job_incentive = fields.Boolean(string="Job Incentive", index=True, tracking=True)
+    extra_incentive = fields.Boolean(string="Extra Incentive", index=True, tracking=True)
     # is_partial = fields.Boolean(string="Is Partial", index=True, tracking=True)
     is_retroactive = fields.Boolean(string="Is Retroactive", index=True, tracking=True)
     is_taxable = fields.Boolean(string="Is Taxable", index=True, tracking=True)

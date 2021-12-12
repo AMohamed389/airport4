@@ -37,6 +37,9 @@
         'data/salary_degree.xml',
         'data/employee_group.xml',
         'data/employee_group_child.xml',
+        'data/job_incentive.xml',
+        'data/extra_incentive.xml',
+        'report/report_payslip_templates.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

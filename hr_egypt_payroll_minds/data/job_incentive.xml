@@ -1,0 +1,1397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="job_incentive_01" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI01</field>
+        <field name="slice">شريحة 1</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام (كبير + 3 سنوات ويشغل ادارة + 3 سنوات)</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4710</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI01')]</field>
+        <field name="incentive_type">Job Incentive</field>
+    </record>
+
+    <record id="job_incentive_02" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI02</field>
+        <field name="slice">شريحة 2</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام (ويشغل ادارة + 3 سنوات)</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4660</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI02')]</field>
+        <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_03" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI03</field>
+        <field name="slice">شريحة 3</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام (كبير 3 سنوات)</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4610</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI03')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_04" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI04</field>
+        <field name="slice">شريحة 4</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4510</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI04')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_05" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI05</field>
+        <field name="slice">شريحة 5</field>
+        <field name="desc"></field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4600</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI05')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_06" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI06</field>
+        <field name="slice">شريحة 6</field>
+        <field name="desc">كبير (تكراري) مدير عام ادارة + 3 سنوات ويشرف علي ادارة + 3 سنوات</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4550</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI06')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_07" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI07</field>
+        <field name="slice">شريحة 7</field>
+        <field name="desc">كبير مدير عام ادارة + 3 سنوات ويشرف علي ادارة حديث</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4500</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI07')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_08" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI08</field>
+        <field name="slice">شريحة 8</field>
+        <field name="desc">كبير مدير عام ادارة حديث ةيشرف علي ادارة حديث</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4400</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI08')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_09" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI09</field>
+        <field name="slice">شريحة 9</field>
+        <field name="desc">مدير ادارة + 3 سنوات</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4385</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI09')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_10" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI10</field>
+        <field name="slice">شريحة 10</field>
+        <field name="desc">مستشار رابع (كبير ) + 3 سنوات</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4335</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI10')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_11" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI11</field>
+        <field name="slice">شريحة 11</field>
+        <field name="desc">مدير ادارة حديث</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4235</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI11')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_12" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI12</field>
+        <field name="slice">شريحة 12</field>
+        <field name="desc">كبير ولا يشرف علي ادارة + 3 سنوات</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">4060</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI12')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_13" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI13</field>
+        <field name="slice">شريحة 13</field>
+        <field name="desc">كبير ولا يشرف علي ادارة</field>
+        <field name="group">تخصصى / فني / كتابي</field>
+        <field name="type">incentive</field>
+        <field name="amount">3960</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI13')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    <record id="job_incentive_14" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI14</field>
+        <field name="slice">شريحة 14</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام (كبير + 3 سنوات ويشغل ادارة + 3 سنوات)</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4810</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI14')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_15" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI15</field>
+        <field name="slice">شريحة 15</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام (ويشغل ادارة + 3 سنوات)</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4760</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI15')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_16" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI16</field>
+        <field name="slice">شريحة 16</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام (كبير 3 سنوات)</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4710</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI16')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_17" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI17</field>
+        <field name="slice">شريحة 17</field>
+        <field name="desc">مساعد (نائب) مدير عام ادارة عامة / مدير منوب بدرجة مدير عام</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4610</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI17')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_18" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI18</field>
+        <field name="slice">شريحة 18</field>
+        <field name="desc">كبير (تكراري) مدير عام ادارة + 3 سنوات ويشرف علي ادارة + 3 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4750</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI18')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_19" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI19</field>
+        <field name="slice">شريحة 19</field>
+        <field name="desc">كبير (تكراري) مدير عام ادارة حديث  ويشرف علي ادارة + 3 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4700</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI19')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_20" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI20</field>
+        <field name="slice">شريحة 20</field>
+        <field name="desc">كبير مدير عام ادارة + 3 سنوات ويشرف علي ادارة حديث</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4650</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI20')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_21" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI21</field>
+        <field name="slice">شريحة 21</field>
+        <field name="desc">كبير مدير عام ادارة حديث ةيشرف علي ادارة حديث</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4550</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI21')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_22" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI22</field>
+        <field name="slice">شريحة 22</field>
+        <field name="desc">مدير ادارة + 3 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4635</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI22')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_23" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI23</field>
+        <field name="slice">شريحة 23</field>
+        <field name="desc">مستشار رابع (كبير ) + 3 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4585</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI23')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_24" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI24</field>
+        <field name="slice">شريحة 24</field>
+        <field name="desc">مدير ادارة حديث</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4485</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI24')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_25" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI25</field>
+        <field name="slice">شريحة 25</field>
+        <field name="desc">كبير ولا يشرف علي ادارة + 3 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4460</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI25')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_26" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI26</field>
+        <field name="slice">شريحة 26</field>
+        <field name="desc">كبير ولا يشرف علي ادارة</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">4360</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI26')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_27" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI27</field>
+        <field name="slice">شريحة 27</field>
+        <field name="desc">اولي بعد 15 سنة</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">3905</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI27')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_28" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI28</field>
+        <field name="slice">شريحة 28</field>
+        <field name="desc">اولي بعد 10 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">3828</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI28')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+    
+    <record id="job_incentive_29" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI29</field>
+        <field name="slice">شريحة 29</field>
+        <field name="desc">اولي بعد 5 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">3624.5</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI29')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_30" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI30</field>
+        <field name="slice">شريحة 30</field>
+        <field name="desc">اولي حديث</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">3481.5</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI30')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_31" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI31</field>
+        <field name="slice">شريحة 31</field>
+        <field name="desc">ثانية بعد 3 سنوات</field>
+        <field name="group">هندسة / طبيب</field>
+        <field name="type">incentive</field>
+        <field name="amount">3019.5</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI31')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_32" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI32</field>
+      <field name="slice">شريحة 32</field>
+      <field name="desc">ثانية حديث</field>
+      <field name="group">هندسة / طبيب</field>
+      <field name="type">incentive</field>
+      <field name="amount">2673</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI32')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_33" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI33</field>
+      <field name="slice">شريحة 33</field>
+      <field name="desc">ثالثة بعد 6 سنوات</field>
+      <field name="group">هندسة / طبيب</field>
+      <field name="type">incentive</field>
+      <field name="amount">2420</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI33')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_34" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI34</field>
+      <field name="slice">شريحة 34</field>
+      <field name="desc">ثالثة بعد 3 سنوات</field>
+      <field name="group">هندسة / طبيب</field>
+      <field name="type">incentive</field>
+      <field name="amount">2255</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI34')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_35" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI35</field>
+      <field name="slice">شريحة 35</field>
+      <field name="desc">ثالثة حديث</field>
+      <field name="group">هندسة / طبيب</field>
+      <field name="type">incentive</field>
+      <field name="amount">2145</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI35')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_36" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI36</field>
+      <field name="slice">شريحة 36</field>
+      <field name="desc">اولي بعد 15 سنة</field>
+      <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+      <field name="type">incentive</field>
+      <field name="amount">3647</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI36')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_37" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI37</field>
+      <field name="slice">شريحة 37</field>
+      <field name="desc">اولي بعد 10 سنوات</field>
+      <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+      <field name="type">incentive</field>
+      <field name="amount">3553</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI37')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_38" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI38</field>
+      <field name="slice">شريحة 38</field>
+      <field name="desc">اولي بعد 5 سنوات</field>
+      <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+      <field name="type">incentive</field>
+      <field name="amount">3443</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI38')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_39" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI39</field>
+      <field name="slice">شريحة 39</field>
+      <field name="desc">اولي حديث</field>
+      <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+      <field name="type">incentive</field>
+      <field name="amount">3245</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI39')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_40" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI40</field>
+      <field name="slice">شريحة 40</field>
+      <field name="desc">ثانية بعد 3 سنوات</field>
+      <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+      <field name="type">incentive</field>
+      <field name="amount">3849</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI40')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_41" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI41</field>
+        <field name="slice">شريحة 41</field>
+        <field name="desc">ثانية حديث</field>
+        <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+        <field name="type">incentive</field>
+        <field name="amount">3530</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI41')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    
+    <record id="job_incentive_42" model="allowance">
+            <field name="name">حافز وظيفي</field>
+        <field name="code">JI42</field>
+        <field name="slice">شريحة 42</field>
+        <field name="desc">ثالثة بعد 6 سنوات</field>
+        <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+        <field name="type">incentive</field>
+        <field name="amount">2365</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI42')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_44" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI43</field>
+        <field name="slice">شريحة 43</field>
+        <field name="desc">ثالثة بعد 3 سنوات</field>
+        <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+        <field name="type">incentive</field>
+        <field name="amount">2200</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI43')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_44" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI44</field>
+        <field name="slice">شريحة 44</field>
+        <field name="desc">ثالثة حديث</field>
+        <field name="group">وظيفة (ضابط ارشاد)/اخصائي/محاسب/محام</field>
+        <field name="type">incentive</field>
+        <field name="amount">2090</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI44')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_45" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI45</field>
+        <field name="slice">شريحة 45</field>
+        <field name="desc">اولي بعد 15 سنة</field>
+        <field name="group">فني</field>
+        <field name="type">incentive</field>
+        <field name="amount">3564</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI45')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_46" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI46</field>
+        <field name="slice">شريحة 46</field>
+        <field name="desc">اولي بعد 10 سنوات</field>
+        <field name="group">فني</field>
+        <field name="type">incentive</field>
+        <field name="amount">3443</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI46')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    
+    <record id="job_incentive_47" model="allowance">
+            <field name="name">حافز وظيفي</field>
+            <field name="code">JI47</field>
+            <field name="slice">شريحة 47</field>
+            <field name="desc">اولي بعد 5 سنوات</field>
+            <field name="group">فني</field>
+            <field name="type">incentive</field>
+            <field name="amount">3333</field>
+            <field name="all_employees">True</field>
+            <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+            <field name="domain">[('employee_job_incentive_code','=','JI47')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_48" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI48</field>
+        <field name="slice">شريحة 48</field>
+        <field name="desc">اولي حديث</field>
+        <field name="group">فني</field>
+        <field name="type">incentive</field>
+        <field name="amount">3135</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI48')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_49" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI49</field>
+        <field name="slice">شريحة 49</field>
+        <field name="desc">ثانية بعد 3 سنوات</field>
+        <field name="group">فني</field>
+        <field name="type">incentive</field>
+        <field name="amount">2739</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI49')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_50" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI50</field>
+      <field name="slice">شريحة 50</field>
+      <field name="desc">ثانية حديث</field>
+      <field name="group">فني</field>
+      <field name="type">incentive</field>
+      <field name="amount">2420</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI50')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_51" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI51</field>
+      <field name="slice">شريحة 51</field>
+      <field name="desc">ثالثة بعد 6 سنوات</field>
+      <field name="group">فني</field>
+      <field name="type">incentive</field>
+      <field name="amount">2255</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI51')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_52" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI52</field>
+      <field name="slice">شريحة 52</field>
+      <field name="desc">ثالثة بعد 3 سنوات</field>
+      <field name="group">فني</field>
+      <field name="type">incentive</field>
+      <field name="amount">2090</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI52')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_53" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI53</field>
+        <field name="slice">شريحة 53</field>
+        <field name="desc">ثالثة حديث</field>
+        <field name="group">فني</field>
+        <field name="type">incentive</field>
+        <field name="amount">1980</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI53')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_54" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI54</field>
+        <field name="slice">شريحة 54</field>
+        <field name="desc">الرابعة</field>
+        <field name="group">فني</field>
+        <field name="type">incentive</field>
+        <field name="amount">1842.5</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI54')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_55" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI55</field>
+        <field name="slice">شريحة 55</field>
+        <field name="desc">اولي بعد 15 سنة</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">3564</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI55')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_56" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI56</field>
+        <field name="slice">شريحة 56</field>
+        <field name="desc">اولي بعد 10 سنوات</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">3443</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI56')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_57" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI57</field>
+        <field name="slice">شريحة 57</field>
+        <field name="desc">اولي بعد 5 سنوات</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">3333</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI57')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_58" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI58</field>
+        <field name="slice">شريحة 58</field>
+        <field name="desc">اولي حديث</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">3135</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI58')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_59" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI59</field>
+        <field name="slice">شريحة 59</field>
+        <field name="desc">ثانية بعد 3 سنوات</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">2739</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI59')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_60" model="allowance">
+         <field name="name">حافز وظيفي</field>
+        <field name="code">JI60</field>
+        <field name="slice">شريحة 60</field>
+        <field name="desc">ثانية حديث</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">2420</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI60')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_61" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI61</field>
+        <field name="slice">شريحة 61</field>
+        <field name="desc">ثالثة بعد 6 سنوات</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">2255</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI61')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_62" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI62</field>
+        <field name="slice">شريحة 62</field>
+        <field name="desc">ثالثة بعد 3 سنوات</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">2090</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI62')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_63" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI63</field>
+        <field name="slice">شريحة 63</field>
+        <field name="desc">ثالثة حديث</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">1980</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI63')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_64" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI64</field>
+        <field name="slice">شريحة 64</field>
+        <field name="desc">الرابعة</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">1842.5</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI64')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    
+    <record id="job_incentive_65" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI65</field>
+        <field name="slice">شريحة 65</field>
+        <field name="desc">الخامسة</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">1551</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI65')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_66" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI66</field>
+        <field name="slice">شريحة 66</field>
+        <field name="desc">السادسة</field>
+        <field name="group">حرفي</field>
+        <field name="type">incentive</field>
+        <field name="amount">1375</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI66')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_67" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI67</field>
+      <field name="slice">شريحة 67</field>
+      <field name="desc">ثانية بعد 3 سنوات</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">2629</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI67')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_68" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI68</field>
+      <field name="slice">شريحة 68</field>
+      <field name="desc">ثانية حديث</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">2310</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI68')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_69" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI69</field>
+      <field name="slice">شريحة 69</field>
+      <field name="desc">ثالثة بعد 6 سنوات</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">2145</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI69')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_70" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI70</field>
+      <field name="slice">شريحة 70</field>
+      <field name="desc">ثالثة بعد 3 سنوات</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">1980</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI70')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+    
+    <record id="job_incentive_71" model="allowance">
+        <field name="name">حافز وظيفي</field>
+        <field name="code">JI71</field>
+        <field name="slice">شريحة 71</field>
+        <field name="desc">ثالثة حديث</field>
+        <field name="group">الخدمات المعاونة</field>
+        <field name="type">incentive</field>
+        <field name="amount">1870</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_job_incentive_code','=','JI71')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_72" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI72</field>
+      <field name="slice">شريحة 72</field>
+      <field name="desc">الرابعة</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">1732.5</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI72')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_73" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI73</field>
+      <field name="slice">شريحة 73</field>
+      <field name="desc">الخامسة</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">1441</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI73')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_74" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI74</field>
+      <field name="slice">شريحة 74</field>
+      <field name="desc">السادسة</field>
+      <field name="group">الخدمات المعاونة</field>
+      <field name="type">incentive</field>
+      <field name="amount">1265</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI74')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_75" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI75</field>
+      <field name="slice">شريحة 75</field>
+      <field name="desc">مساعد رئيس مجلس ادارة الشركة المصرية القابضة للمطارات والملاحة الجوية</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">24000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI75')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_76" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI76</field>
+      <field name="slice">شريحة 76</field>
+      <field name="desc">مساعد رئيس مجلس ادارة شركة تابعة للشركة المصرية القابضة للمطارات والملاحة الجوية</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">18000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI76')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_77" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI77</field>
+      <field name="slice">شريحة 77</field>
+      <field name="desc">مستشار وزير قائم بأعمال رئيس مجلس اجارة الشركة المصرية القابضة للمطارات والملاحة الجوية</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">25000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI77')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_78" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI78</field>
+      <field name="slice">شريحة 78</field>
+      <field name="desc">مستشار اول (أ) علي ان يكون قد قام بأعمال رئيس مجلس ادارة الشركة المصرية القابضة للمطارات والملاحة الجوية</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">21000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI78')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_79" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI79</field>
+      <field name="slice">شريحة 79</field>
+      <field name="desc">مستشار وزير علي ان يكون قد قام بأعمال رئيس مجلس ادارة شركة تابعة</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">19000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI79')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_80" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI80</field>
+      <field name="slice">شريحة 80</field>
+      <field name="desc">مستشار اول (أ) علي ان يكون قد قام بأعمال رئيس مجلس ادارة شركة تابعة</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">16000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI80')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_81" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI81</field>
+      <field name="slice">شريحة 81</field>
+      <field name="desc">رئيس قطاع / مستشار ثاني (ب)</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">12100</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI81')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_82" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI82</field>
+      <field name="slice">شريحة 82</field>
+      <field name="desc">نائب (مساعد) رئيس قطاع / رئيس ادارات عامة + 6 سنوات</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6880</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI82')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_83" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI83</field>
+      <field name="slice">شريحة 83</field>
+      <field name="desc">نائب (مساعد) رئيس قطاع / رئيس ادارات عامة + 3 سنوات</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6630</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI83')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_84" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI84</field>
+      <field name="slice">شريحة 84</field>
+      <field name="desc">نائب (مساعد) رئيس قطاع / رئيس ادارات عامة</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6380</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI84')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_85" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI85</field>
+      <field name="slice">شريحة 85</field>
+      <field name="desc">مدير عام ادارة عامة + 6 سنوات</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6550</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI85')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_86" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI86</field>
+      <field name="slice">شريحة 86</field>
+      <field name="desc">مدير عام ادارة عامة + 3سنوات</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6300</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI86')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_87" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI87</field>
+      <field name="slice">شريحة 87</field>
+      <field name="desc">مستشار ثالث + 3 سنوات / مدير عام ادارة عامة (لا يشغل وظيفة مدير عام)</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6200</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI87')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+
+    <record id="job_incentive_88" model="allowance">
+         <field name="name">حافز وظيفي</field>
+      <field name="code">JI88</field>
+      <field name="slice">شريحة 88</field>
+      <field name="desc">مدير عام ادارة عامة / مستشار ثالث</field>
+      <field name="group"></field>
+      <field name="type">incentive</field>
+      <field name="amount">6050</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_job_incentive_code','=','JI88')]</field>
+    <field name="incentive_type">Job Incentive</field>
+</record>
+
+</odoo>

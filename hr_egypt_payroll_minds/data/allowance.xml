@@ -6,6 +6,7 @@
             <field name="name">حافز 2019</field>
             <field name="code">A201901</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="all_employees">True</field>
             <field name="amount">150</field>
             <field name="monthly">True</field>
@@ -22,6 +23,28 @@
             <field name="monthly">True</field>
             <field name="employee_card_salary">True</field>
             <field name="employee_card_date">2020-06-30</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="allowance_06_01" model="allowance">
+            <field name="name">علاوة 0.06</field>
+            <field name="code">A0601</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="percentage">6</field>
+            <field name="monthly">True</field>
+            <field name="employee_card_salary">True</field>
+            <field name="is_taxable">True</field>
+        </record>
+
+        <record id="allowance_05_01" model="allowance">
+            <field name="name">علاوة 0.05</field>
+            <field name="code">A0501</field>
+            <field name="type">allowance</field>
+            <field name="all_employees">True</field>
+            <field name="percentage">5</field>
+            <field name="monthly">True</field>
+            <field name="employee_card_salary">True</field>
             <field name="is_taxable">True</field>
         </record>
 
@@ -231,38 +254,55 @@
             <field name="monthly">True</field>
             <field name="is_partial">True</field>
             <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="salary_degree">True</field>
+            <field name="domain">[('employee_group_name','in',('محامين','مهندسين','اخصائيين تجاريين'))]</field>
         </record>
         <!--for lawyers specialization-->
         <record id="lawyer_incentive_01" model="allowance">
             <field name="name">حافز محامي نقض</field>
             <field name="code">LI01</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="percentage">40</field>
             <field name="monthly">True</field>
+            <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="job_incentive">True</field>
+            <field name="domain">[('employee_group_child_name','=','محامي نقض')]</field>
         </record>
 
         <record id="lawyer_incentive_02" model="allowance">
             <field name="name">حافز محامي استئناف</field>
             <field name="code">LI02</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="percentage">20</field>
             <field name="monthly">True</field>
             <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="job_incentive">True</field>
+            <field name="domain">[('employee_group_child_name','=','محامي استئناف')]</field>
         </record>
 
         <record id="lawyer_incentive_03" model="allowance">
             <field name="name">حافز محامي ابتدائي</field>
             <field name="code">LI03</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="percentage">15</field>
             <field name="monthly">True</field>
             <field name="is_taxable">True</field>
+            <field name="all_employees">True</field>
+            <field name="job_incentive">True</field>
+            <field name="domain">[('employee_group_child_name','=','محامي ابتدائي')]</field>
         </record>
 
         <record id="monitor_allowance_03" model="allowance">
             <field name="name">بدل شاشة</field>
             <field name="code">MA01</field>
             <field name="type">allowance</field>
+            <field name="incentive_type">Incentive</field>
             <field name="all_employees">True</field>
             <field name="amount">100</field>
             <field name="monthly">True</field>
@@ -288,6 +328,7 @@
             <field name="name">حافز تميز(لغة فرنسية أو انجليزية)</field>
             <field name="code">DI01</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="amount">150</field>
             <field name="monthly">True</field>
             <field name="is_taxable">True</field>
@@ -298,6 +339,7 @@
             <field name="name">حافز تميز (الحاصلين علي الدكتوراه)</field>
             <field name="code">DI02</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="amount">200</field>
             <field name="monthly">True</field>
             <field name="is_taxable">True</field>
@@ -307,6 +349,7 @@
             <field name="name">حافز تميز(ماجستير أو دراسات عليا)</field>
             <field name="code">DI03</field>
             <field name="type">incentive</field>
+            <field name="incentive_type">Incentive</field>
             <field name="amount">150</field>
             <field name="monthly">True</field>
             <field name="is_taxable">True</field>

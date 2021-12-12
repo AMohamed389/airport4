@@ -19,3 +19,4 @@ class taxation(models.Model):
     subscription_id = fields.Many2one('subscription', string="Subscription", index=True)
     salary_rule_code = fields.Char(related='salary_rule_id.code', readonly=True, store=True)
     category_code = fields.Char(related='category_id.code', readonly=True, store=True)
+    contract_id = fields.Many2one('hr.contract', string='Contract', required=False, index=True)

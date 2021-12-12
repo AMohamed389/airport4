@@ -80,9 +80,53 @@
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
 
+        <record id="hr_payslip_rule_dtjinc" model="hr.salary.rule">
+            <field name="name">حافز وظيفي خاضع للضريبة</field>
+            <field name="sequence" eval="101"/>
+            <field name="code">DTJINC</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dntjinc" model="hr.salary.rule">
+            <field name="name">حافز وظيفي غير خاضع للضريبة</field>
+            <field name="sequence" eval="102"/>
+            <field name="code">DNTJINC</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dteinc" model="hr.salary.rule">
+            <field name="name">حافز اضافي خاضع للضريبة</field>
+            <field name="sequence" eval="103"/>
+            <field name="code">DTEINC</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.TMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
+        <record id="hr_payslip_rule_dnteinc" model="hr.salary.rule">
+            <field name="name">حافز اضافي غير خاضع للضريبة</field>
+            <field name="sequence" eval="104"/>
+            <field name="code">DNTEINC</field>
+            <field name="category_id" ref="hr_egypt_payroll_minds.NTMRT"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_python_compute">0.0</field>
+            <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
+        </record>
+
         <record id="hr_payslip_rule_dtalw" model="hr.salary.rule">
             <field name="name">بدل خاضع للضريبة</field>
-            <field name="sequence" eval="101"/>
+            <field name="sequence" eval="201"/>
             <field name="code">DTALW</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.TMRT"/>
             <field name="condition_select">none</field>
@@ -93,7 +137,7 @@
 
         <record id="hr_payslip_rule_dntalw" model="hr.salary.rule">
             <field name="name">بدل غير خاضع للضريبة</field>
-            <field name="sequence" eval="102"/>
+            <field name="sequence" eval="202"/>
             <field name="code">DNTALW</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.NTMRT"/>
             <field name="condition_select">none</field>
@@ -104,7 +148,7 @@
 
         <record id="hr_payslip_rule_dtinc" model="hr.salary.rule">
             <field name="name">حافز خاضع للضريبة</field>
-            <field name="sequence" eval="201"/>
+            <field name="sequence" eval="220"/>
             <field name="code">DTINC</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.TMRT"/>
             <field name="condition_select">none</field>
@@ -115,7 +159,7 @@
 
         <record id="hr_payslip_rule_dntinc" model="hr.salary.rule">
             <field name="name">حافز غير خاضع للضريبة</field>
-            <field name="sequence" eval="202"/>
+            <field name="sequence" eval="221"/>
             <field name="code">DNTINC</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.NTMRT"/>
             <field name="condition_select">none</field>
@@ -124,10 +168,11 @@
             <field name="struct_id" ref="hr_egypt_payroll_minds.EGYPT_CAI_STRUCTURE"></field>
         </record>
 
+
         <record id="hr_payslip_rule_gross" model="hr.salary.rule">
             <field name="name">الأجر الشامل قبل الضريبة (اجمالي الاستحقاقات)</field>
             <!-- <field name="name">الأجر الشامل قبل الضريبة و الاسقطاعات و الاشتراكات</field> -->
-            <field name="sequence" eval="203"/>
+            <field name="sequence" eval="250"/>
             <field name="code">GROSS_EG</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.GROSS"/>
             <field name="condition_select">none</field>
@@ -171,7 +216,7 @@
 
         <record id="hr_payslip_rule_dts" model="hr.salary.rule">
             <field name="name">اشتراك خاضع للضريبة</field>
-            <field name="sequence" eval="304"/>
+            <field name="sequence" eval="350"/>
             <field name="code">DTS</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.TS"/>
             <field name="condition_select">none</field>
@@ -182,7 +227,7 @@
 
         <record id="hr_payslip_rule_dnts" model="hr.salary.rule">
             <field name="name">اشتراك غير خاضع للضريبة</field>
-            <field name="sequence" eval="305"/>
+            <field name="sequence" eval="351"/>
             <field name="code">DNTS</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.NTS"/>
             <field name="condition_select">none</field>
@@ -193,7 +238,7 @@
 
         <record id="hr_payslip_rule_totalded" model="hr.salary.rule">
             <field name="name">اجمالي الاسقطاعات</field>
-            <field name="sequence" eval="350"/>
+            <field name="sequence" eval="360"/>
             <field name="code">TOTAL_DED</field>
             <field name="category_id" ref="hr_egypt_payroll_minds.TOTALDED"/>
             <field name="condition_select">none</field>

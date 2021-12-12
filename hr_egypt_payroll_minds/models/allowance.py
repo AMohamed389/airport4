@@ -7,8 +7,17 @@ class Allowance(models.Model):
 
     name = fields.Char(string="Allowance Name", index=True, tracking=True)
     code = fields.Char(string="Allowance Code", index=True, tracking=True)
-    type = fields.Selection([('allowance', 'Allowance'), ('incentive', 'Incentive'), ('slice', 'Slice')], 
+    slice = fields.Char(string="Slice", index=True, tracking=True)
+    desc = fields.Char(string="Description", index=True, tracking=True)
+    group = fields.Char(string="Group", index=True, tracking=True)
+    type = fields.Selection([('allowance', 'Allowance'), ('incentive', 'Incentive')
+                            # , ('slice', 'Slice')
+                            ], 
                                     string="Type", index=True, tracking=True)
+    incentive_type = fields.Selection([('Incentive', 'Incentive'), ('Job Incentive', 'Job Incentive')
+                            , ('Extra Incentive', 'Extra Incentive')
+                            ], 
+                                    string="Incentive Type", index=True, tracking=True)
     start_date = fields.Date(string='Start Date', index=True, tracking=True)
     end_date = fields.Date(string='End Date', index=True, tracking=True)
     amount = fields.Monetary(string="Amount Of Money", tracking=True)
@@ -24,6 +33,9 @@ class Allowance(models.Model):
     employee_card_salary = fields.Boolean(string="Employee Card Salary", index=True, tracking=True)
     employee_card_date = fields.Date(string="Employee Card Date", index=True, tracking=True)
     comprehensive_wage = fields.Boolean(string="Comprehensive Wage", index=True, tracking=True)
+    job_incentive = fields.Boolean(string="Job Incentive", index=True, tracking=True)
+    extra_incentive = fields.Boolean(string="Extra Incentive", index=True, tracking=True)
+    salary_degree = fields.Boolean(string="Salary Degree", index=True, tracking=True)
     is_taxable = fields.Boolean(string="Is Taxable", index=True, tracking=True)
     is_partial = fields.Boolean(string="Is Partial", index=True, tracking=True)
     is_retroactive = fields.Boolean(string="Is Retroactive", index=True, tracking=True)

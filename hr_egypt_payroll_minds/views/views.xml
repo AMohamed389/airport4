@@ -145,5 +145,84 @@
       </field>
     </record>
 
+    
+    <!-- incentive_band-->
+    <record id="action_incentive_band" model="ir.actions.act_window">
+      <field name="name">Incentive Band</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">incentive_band</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_incentive_band_list" model="ir.ui.view">
+      <field name="name">view_incentive_band_list</field>
+      <field name="model">incentive_band</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="code"/>
+          <field name="type"/>
+          <field name="desc"/>
+          <field name="active"/>
+
+        </tree>
+      </field>
+    </record>
+    
+    <record id="view_incentive_band_form" model="ir.ui.view">
+      <field name="name">view_incentive_band_form</field>
+      <field name="model">incentive_band</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+              
+    
+              <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+                <field name="type"/>
+                <field name="code"/>
+                <field name="active"/>
+              </group>
+              <group name="group_right">
+                <field name="desc"/>
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
   </data>
 </odoo>

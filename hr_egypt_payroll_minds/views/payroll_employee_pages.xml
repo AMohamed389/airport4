@@ -90,7 +90,19 @@
                         </field>
                     </page>
 
-                    <page string="Employee Flags">
+                    <page string="Employee Flags/Slices">
+                        <group string="Incentive Slices">
+                            <group>
+                                <field name="employee_job_incentive_id" />
+                                <field name="employee_job_incentive_name" readonly="1"/>
+                                <field name="employee_job_incentive_code" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="employee_extra_incentive_id"/>
+                                <field name="employee_extra_incentive_name" readonly="1"/>
+                                <field name="employee_extra_incentive_code" readonly="1"/>
+                            </group>
+                        </group>
                         <group>
                             <group string="Flags">
                                 <field name="is_military"/>

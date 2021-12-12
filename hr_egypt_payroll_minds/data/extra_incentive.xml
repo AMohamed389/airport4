@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="extra_incentive_1" model="allowance">
+        <field name="name">حافز اضافي</field>
+        <field name="code">EI1</field>
+        <field name="slice">شريحة 1</field>
+        <field name="desc"></field>
+        <field name="group">رئيس قطاع</field>
+        <field name="type">incentive</field>
+        <field name="amount">9500</field>
+        <field name="all_employees">True</field>
+        <field name="monthly">True</field>
+        <field name="is_taxable">True</field>
+        <field name="domain">[('employee_extra_incentive_code','=','EI1')]</field>
+        <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_2" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI2</field>
+      <field name="slice">شريحة 2</field>
+      <field name="desc"></field>
+      <field name="group">مدير عام ادارة عامة</field>
+      <field name="type">incentive</field>
+      <field name="amount">8000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI2')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_3" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI3</field>
+      <field name="slice">شريحة 3</field>
+      <field name="desc"></field>
+      <field name="group">كبير ويشرف علي ادارة</field>
+      <field name="type">incentive</field>
+      <field name="amount">7000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI3')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_4" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI4</field>
+      <field name="slice">شريحة 4</field>
+      <field name="desc"></field>
+      <field name="group">مدير ادارة</field>
+      <field name="type">incentive</field>
+      <field name="amount">7000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI4')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_5" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI5</field>
+      <field name="slice">شريحة 5</field>
+      <field name="desc"></field>
+      <field name="group">كبير ولا يشرف علي ادارة</field>
+      <field name="type">incentive</field>
+      <field name="amount">7000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI5')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_6" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI6</field>
+      <field name="slice">شريحة 6</field>
+      <field name="desc"></field>
+      <field name="group">اولي</field>
+      <field name="type">incentive</field>
+      <field name="amount">6000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI6')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_7" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI7</field>
+      <field name="slice">شريحة 7</field>
+      <field name="desc"></field>
+      <field name="group">ثانية</field>
+      <field name="type">incentive</field>
+      <field name="amount">5000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI7')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_8" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI8</field>
+      <field name="slice">شريحة 8</field>
+      <field name="desc"></field>
+      <field name="group">ثالثة</field>
+      <field name="type">incentive</field>
+      <field name="amount">4500</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI8')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_9" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI9</field>
+      <field name="slice">شريحة 9</field>
+      <field name="desc"></field>
+      <field name="group">رابعة</field>
+      <field name="type">incentive</field>
+      <field name="amount">4000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI9')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_10" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI10</field>
+      <field name="slice">شريحة 10</field>
+      <field name="desc"></field>
+      <field name="group">خامسة</field>
+      <field name="type">incentive</field>
+      <field name="amount">2500</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI10')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+
+    <record id="extra_incentive_11" model="allowance">
+         <field name="name">حافز اضافي</field>
+      <field name="code">EI11</field>
+      <field name="slice">شريحة 11</field>
+      <field name="desc"></field>
+      <field name="group">سادسة</field>
+      <field name="type">incentive</field>
+      <field name="amount">2000</field>
+      <field name="all_employees">True</field>
+      <field name="monthly">True</field>
+      <field name="is_taxable">True</field>
+      <field name="domain">[('employee_extra_incentive_code','=','EI11')]</field>
+      <field name="incentive_type">Extra Incentive</field>
+    </record>
+
+</odoo>
