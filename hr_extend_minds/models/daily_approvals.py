@@ -10,7 +10,7 @@ class DailyApprovals(models.Model):
     _description = 'Daily Approvals'
     _order = 'id DESC'
 
-    hr_employee_id = fields.Many2one('hr.employee',string='Employee Name',index=True,tracking=True)
+    hr_employee_id = fields.Many2one('hr.employee', string='Employee Name', index=True, tracking=True)
     date = fields.Date(index=True,tracking=True)
     diagnosis_id = fields.Many2one('employee_diagnosis_type',sting="Diagnosis",index=True, required=True,tracking=True)
     currency_id = fields.Many2one('res.currency', string="Currency", store=True, tracking=True, index=True, default=lambda self: self.env.user.company_id.currency_id.id)

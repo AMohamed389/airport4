@@ -262,12 +262,14 @@ class hrextend(models.Model):
     egypt_air_subscription = fields.Boolean(tracking=True, index=True)
 
     grants_ids = fields.One2many('grants', 'hr_employee_id')
-    employee_care_subscriptions_ids = fields.One2many(
-        'employee_care_subscriptions', 'hr_employee_id')
+    employee_care_subscriptions_ids = fields.One2many('employee_care_subscriptions', 'hr_employee_id')
     employee_usage_ids = fields.One2many('employee_usage', 'hr_employee_id')
     daily_approvals_ids = fields.One2many('daily_approvals', 'hr_employee_id')
-    medical_committee_ids = fields.One2many('medical_committee',
-                                            'hr_employee_id')
+    medical_committee_ids = fields.One2many('medical_committee','hr_employee_id')
+    
+    transfer_ids = fields.One2many('transfer','employee_id')
+    delegation_ids = fields.One2many('delegation','employee_id')
+    loan_ids = fields.One2many('loan','employee_id')
 
     _sql_constraints = [
         ('unique_egypt_air_insurance', 'UNIQUE(egypt_air_insurance)', 'egypt air insurance must be unique'),

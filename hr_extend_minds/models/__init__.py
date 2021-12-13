@@ -53,6 +53,13 @@ from . import bonus_matrix
 from . import employee_bonus
 from . import employee_card
 
+#from . import
+
+from . import transfer
+from . import delegation
+from . import loan
+from . import transfer_company_name
+
 
 from . import grants
 from . import grant_type
@@ -73,4 +80,3 @@ from . import daily_approvals
 from . import medical_committee
 
 from . import grants_terms
-#from . import test

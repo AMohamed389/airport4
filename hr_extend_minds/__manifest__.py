@@ -23,6 +23,7 @@
         'data/document_folder.xml',
         'data/hr_leave_type.xml',
         'data/grants.xml',
+        'data/company_data.xml',
     ],
 
     # 'qweb': [

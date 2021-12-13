@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-""" Employee Service Name """
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, Warning, ValidationError
 

@@ -1,25 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <odoo>
 
-  <!--<record id="studio_customization.employees_custom_con_55ec6d5b-9fef-4830-975f-2e9225cc35c3" model="ir.ui.menu" >
-    <field name="action" eval="False"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Custom Configuration</field>
-    <field name="parent_id" ref="hr.menu_hr_root"/>
-    <field name="sequence">1000</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
-
-  <!--<record id="studio_customization.employees_custom_con_8bfed0e3-571b-4135-906d-3ee71cf25656" model="ir.ui.menu" >
-    <field name="action" ref="studio_customization.employee_penalty_tag_c8d57544-ed73-45ec-b8a3-479f87c68eb8"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Employee Penalty Tags</field>
-    <field name="parent_id" ref="studio_customization.employees_custom_con_55ec6d5b-9fef-4830-975f-2e9225cc35c3"/>
-    <field name="sequence">10</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
 
   <record id="employee_penalty_menu_1" model="ir.ui.menu" >
     <field name="action" ref="hr_extend_minds.employee_penalty_action_1"/>
@@ -41,25 +22,6 @@
     <field name="web_icon">fa fa-institution,#FFFFFF,#BC4242</field>
   </record>
 
-  <!--<record id="studio_customization.penalty_configuratio_7c38f4c7-c170-4164-9aa7-269e971858bd" model="ir.ui.menu" >
-    <field name="action" eval="False"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Configuration</field>
-    <field name="parent_id" ref="studio_customization.penalty_43df1dcb-84e0-4ab4-8989-e4b21f2dd642"/>
-    <field name="sequence">1000</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
-
-  <!--<record id="studio_customization.penalty_configuratio_90cadcaa-4456-4cee-b072-b65d6aa96ab8" model="ir.ui.menu" >
-    <field name="action" ref="studio_customization.penalty_types_tags_76d231d8-0b0e-41a5-9c14-3e6b9baee883"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Penalty Types Tags</field>
-    <field name="parent_id" ref="studio_customization.penalty_configuratio_7c38f4c7-c170-4164-9aa7-269e971858bd"/>
-    <field name="sequence">10</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
 
   <record id="penalty_employee_penalty_menu_1" model="ir.ui.menu" >
     <field name="action" ref="hr_extend_minds.employee_penalty_action_1"/>
@@ -90,36 +52,6 @@
     <field name="sequence">10</field>
     <field name="web_icon">fa fa-briefcase,#FFFFFF,#34495e</field>
   </record>
-
-  <!--<record id="studio_customization.training_configurati_15193891-f9bd-48ae-a539-1c5abde34e4c" model="ir.ui.menu" >
-    <field name="action" eval="False"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Configuration</field>
-    <field name="parent_id" ref="studio_customization.training_2080e27c-5f85-43ae-ae71-647da49652de"/>
-    <field name="sequence">2</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
-
-  <!--<record id="studio_customization.training_configurati_2ea8d72c-c12f-4f02-b8ab-7fbdac0310a9" model="ir.ui.menu" >
-    <field name="action" ref="studio_customization.employee_training_ta_38e1a1ea-9140-41e9-a8cf-690fc65ca0ac"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Employee Training Tags</field>
-    <field name="parent_id" ref="studio_customization.training_configurati_15193891-f9bd-48ae-a539-1c5abde34e4c"/>
-    <field name="sequence">10</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
-
-  <!--<record id="studio_customization.training_configurati_86211eee-0780-4d08-a2b9-dfc0c0c514cc" model="ir.ui.menu" >
-    <field name="action" ref="studio_customization.training_catalogue_t_524aea7f-6c4c-46f1-9de3-2e36fc31c2fc"/>
-    <field name="active" eval="True"/>
-    <field name="groups_id" eval="[(6, 0, [])]"/>
-    <field name="name">Training Catalogue Tags</field>
-    <field name="parent_id" ref="studio_customization.training_configurati_15193891-f9bd-48ae-a539-1c5abde34e4c"/>
-    <field name="sequence">10</field>
-    <field name="web_icon" eval="False"/>
-  </record>-->
 
   <record id="training_employee_training_menu_1" model="ir.ui.menu" >
     <field name="action" ref="hr_extend_minds.employee_training_action_1"/>
@@ -252,8 +184,8 @@
   </record>
 
   <menuitem id="parent_menu_salary_degree"  name="Salary Degree"  action="action_salary_degree"  parent="parent_menu_salary" sequence="3000" />
-  <menuitem id="parent_menu_salary_marital"  name="Salary Marital"  action="action_salary_marital"  parent="parent_menu_salary" sequence="3001" />
-  <menuitem id="parent_menu_salary_supervision_job"  name="Salary Supervision Job"  action="action_salary_supervision_job"  parent="parent_menu_salary" sequence="3002" />
+  <!-- <menuitem id="parent_menu_salary_marital"  name="Salary Marital"  action="action_salary_marital"  parent="parent_menu_salary" sequence="3001" /> -->
+  <!-- <menuitem id="parent_menu_salary_supervision_job"  name="Salary Supervision Job"  action="action_salary_supervision_job"  parent="parent_menu_salary" sequence="3002" /> -->
 
   <record id="parent_menu_settlement" model="ir.ui.menu">
     <field name="action" eval="False" />
@@ -277,7 +209,7 @@
     <field name="name">Employees Care</field>
     <field name="parent_id" eval="False" />
     <field name="sequence">150</field>
-    <field name="web_icon">fa fa-handshake-o,#FFFFFF,#698b69</field>
+    <field name="web_icon">fa fa-heartbeat,#FFFFFF,#b1bca0</field>
   </record>
 
 
@@ -297,5 +229,113 @@
   <menuitem id="parent_menu_service_group"  name="Service Group"  action="action_service_group"  parent="parent_menu_employees_care_config" sequence="3007" />
   <menuitem id="parent_menu_employee_service_name"  name="Employee Service Name"  action="action_employee_service_name"  parent="parent_menu_employees_care_config" sequence="3008" />
   <menuitem id="parent_menu_action_grants_terms"  name="Grants Terms"  action="action_grants_terms"  parent="parent_menu_employees_care_config" sequence="3009" />
+
+  <!--transfers menu item-->
+  <!--main menu-->
+  <record id="transfers_menu_item" model="ir.ui.menu">
+    <field name="action" eval="False" />
+    <field name="active" eval="True" />
+    <field name="groups_id" eval="[(6, 0, [])]" />
+    <field name="name">Transfers</field>
+    <field name="parent_id" eval="False" />
+    <field name="sequence">5000</field>
+    <field name="web_icon">fa fa-exchange,#FFFFFF,#2d4038</field>
+  </record>
+  <!---->
+  <!--transfers-->
+  <record id="transfers_sub_menu_item" model="ir.ui.menu">
+    <field name="action" eval="False" />
+    <field name="active" eval="True" />
+    <field name="name">Transfers</field>
+    <field name="parent_id" ref="transfers_menu_item" />
+    <field name="sequence">5100</field>
+  </record>
+
+  <record id="internal_transfers_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.internal_transfers_action" />
+    <field name="active" eval="True" />
+    <field name="name">Internal Transfers</field>
+    <field name="parent_id" ref="transfers_sub_menu_item" />
+    <field name="sequence">5200</field>
+  </record>
+
+  <record id="external_transfers_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.external_transfers_action" />
+    <field name="active" eval="True" />
+    <field name="name">External Transfers</field>
+    <field name="parent_id" ref="transfers_sub_menu_item" />
+    <field name="sequence">5300</field>
+  </record>
+  <!--end transfers-->
+
+  <!--delegation menu items-->
+  <record id="delegation_sub_menu_item" model="ir.ui.menu">
+    <field name="action" eval="False" />
+    <field name="active" eval="True" />
+    <field name="name">Delegation</field>
+    <field name="parent_id" ref="transfers_menu_item" />
+    <field name="sequence">5400</field>
+  </record>
+
+  <record id="internal_delegation_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.internal_delegation_action" />
+    <field name="active" eval="True" />
+    <field name="name">Internal Delegation</field>
+    <field name="parent_id" ref="delegation_sub_menu_item" />
+    <field name="sequence">5500</field>
+  </record>
+
+  <record id="external_delegation_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.external_delegation_action" />
+    <field name="active" eval="True" />
+    <field name="name">External Delegation</field>
+    <field name="parent_id" ref="delegation_sub_menu_item" />
+    <field name="sequence">5600</field>
+
+  </record>
+  <!--    company names-->
+  <record id="company_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.company_name_action" />
+    <field name="active" eval="True" />
+    <field name="name">Company</field>
+    <field name="parent_id" ref="transfers_menu_item" />
+    <field name="sequence">6000</field>
+  </record>
+
+  <record id="airport_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.airport_name_action" />
+    <field name="active" eval="True" />
+    <field name="name">Airports</field>
+    <field name="parent_id" ref="transfers_menu_item" />
+    <field name="sequence">6100</field>
+  </record>
+  <!--end delegation-->
+
+  <!--loan-->
+  <record id="loan_sub_menu_item" model="ir.ui.menu">
+    <field name="action" eval="False" />
+    <field name="active" eval="True" />
+    <field name="name">Loan</field>
+    <field name="parent_id" ref="transfers_menu_item" />
+    <field name="sequence">5700</field>
+  </record>
+
+  <record id="internal_loan_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.internal_loan_action" />
+    <field name="active" eval="True" />
+    <field name="name">Internal Loan</field>
+    <field name="parent_id" ref="loan_sub_menu_item" />
+    <field name="sequence">5800</field>
+  </record>
+
+  <record id="external_loan_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.external_loan_action" />
+    <field name="active" eval="True" />
+    <field name="name">External Loan</field>
+    <field name="parent_id" ref="loan_sub_menu_item" />
+    <field name="sequence">5900</field>
+
+  </record>
+  <!--end loan-->
 
 </odoo>

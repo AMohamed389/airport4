@@ -32,4 +32,4 @@ class job_history(models.Model):
     x_date_from = fields.Date(string="Date From", index=True, tracking=True)
     x_date_to = fields.Date(string="Date To", index=True, tracking=True)
 
-    active = fields.Boolean(string='Active', index=True, default=True, tracking=True)
+    active = fields.Boolean(string='Active',index=True,default=True,tracking=True)

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-""" Grants """
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, Warning, ValidationError
 

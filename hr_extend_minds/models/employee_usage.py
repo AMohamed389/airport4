@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-""" Employee Usage """
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, Warning, ValidationError
 
@@ -9,8 +8,7 @@ class EmployeeUsage(models.Model):
     _name = 'employee_usage'
     _description = 'Employee Usage'
 
-    hr_employee_id = fields.Many2one('hr.employee', string='Employee Name',
-                                     index=True, tracking=True)
+    hr_employee_id = fields.Many2one('hr.employee', string='Employee Name', index=True, tracking=True)
     service_date = fields.Date(index=True, tracking=True)
     employee_service_name_id = fields.Many2one('employee_service_name',
                                                index=True, tracking=True)
