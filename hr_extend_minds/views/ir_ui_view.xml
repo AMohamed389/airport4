@@ -797,9 +797,10 @@
                 </xpath>
                 <xpath expr="//tree[1]/field[@name='name']" position="after">
                     <!-- <field name="x_employee_status"/> -->
-                    <field name="x_age"/>
-                    <field name="gender"/>
-                    <field name="x_religion"/>
+
+                    <field name="x_age" optional="hide"/>
+                    <field name="gender" optional="hide"/>
+                    <field name="x_religion" optional="hide"/>
                     <field name="x_receiving_work_date" optional="hide"/>
                     <field name="x_hiring_date" optional="hide"/>
                     <field name="x_end_of_service_date" optional="hide"/>
@@ -814,12 +815,12 @@
                     <field name="x_military_end_date" optional="hide"/>
                     <field name="x_military_status" optional="hide"/>
                     <field name="x_mother_name" optional="hide"/>
-                    <field name="x_section_name" optional="show"/>
-                    <field name="x_administration_name" optional="show"/>
-                    <field name="x_public_administration_name" optional="show"/>
+                    <field name="x_section_name" optional="hide"/>
+                    <field name="x_administration_name" optional="hide"/>
+                    <field name="x_public_administration_name" optional="hide"/>
                     <field name="x_sector_name" optional="show"/>
-                    <field name="x_job_degree_id" optional="show"/>
-                    <field name="x_qualitative_group_id" optional="show"/>
+                    <field name="x_job_degree_id" optional="hide"/>
+                    <field name="x_qualitative_group_id" optional="hide"/>
                     <field name="x_seniority_number" optional="hide"/>
                     <field name="x_company_leaving_reason" optional="hide"/>
                     <field name="x_work_schedule_type" optional="hide"/>
@@ -832,6 +833,9 @@
                     <attribute name="optional">hide</attribute>
                 </xpath>
                 <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
                     <attribute name="optional">hide</attribute>
                 </xpath>
             </data>
