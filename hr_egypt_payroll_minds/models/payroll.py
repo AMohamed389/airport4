@@ -26,6 +26,10 @@ class taxation(models.Model):
     merit_line_ids = fields.One2many('hr.payslip.line', 'slip_id', compute="_get_merits", readonly=True)
     net_tax_line_ids = fields.One2many('hr.payslip.line', 'slip_id', compute="_get_net_tax", readonly=True)
     currency_id = fields.Many2one(related='company_id.currency_id')
+    sector_name = fields.Char(related='employee_id.x_sector_name', store=True, index=True)
+    public_administration_name = fields.Char(related='employee_id.x_public_administration_name', store=True, index=True)
+    administration_name = fields.Char(related='employee_id.x_administration_name', store=True, index=True)
+    section_name = fields.Char(related='employee_id.x_section_name', store=True, index=True)
 
     def _get_deductions(self):
         self.ded_line_ids = self.env['hr.payslip.line'].search(['|','|','|','|',
