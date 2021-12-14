@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="default_search_view_hr_payslip" model="ir.ui.view">
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_filter"/>
+        <field name="model">hr.payslip</field>
+        <field name="name">Default search view for hr_payroll.payslip.inherit</field>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//search" position="inside">
+                <field name="sector_name"/>
+                <field name="public_administration_name"/>
+                <field name="administration_name"/>
+                <field name="section_name"/>
+            </xpath>
+            
+            <xpath expr="//search/group" position="inside">
+                <filter name="hr_payslip_group_by_sector_name" string="Sector" context="{'group_by': 'sector_name'}"/>
+                <filter name="hr_payslip_group_by_public_administration_name" string="Public Administration" context="{'group_by': 'public_administration_name'}"/>
+                <filter name="hr_payslip_group_by_administration_name" string="Administration" context="{'group_by': 'administration_name'}"/>
+                <filter name="hr_payslip_group_by_section_name" string="Section" context="{'group_by': 'section_name'}"/>
+            </xpath>
+
+            <xpath expr="//search/group" position="after">
+                <searchpanel>
+                    <!-- <field name="sector_name" icon="fa fa-code-fork" groupby="sector_name" string="Sector" enable_counters="1"/> -->
+                    <field name="state" icon="fa fa-circle-o-notch" groupby="state" string="State" enable_counters="1"/>
+                </searchpanel>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="default_search_view_hr_payslip_line" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search string="Payslip Lines">
+
+                <field name="sector_name"/>
+                <field name="public_administration_name"/>
+                <field name="administration_name"/>
+                <field name="section_name"/>
+                <field name="payslip_state"/>
+                
+                <group>
+                    <filter name="hr_payslip_line_group_by_sector_name" string="Sector" context="{'group_by': 'sector_name'}"/>
+                    <filter name="hr_payslip_line_group_by_public_administration_name" string="Public Administration" context="{'group_by': 'public_administration_name'}"/>
+                    <filter name="hr_payslip_line_group_by_administration_name" string="Administration" context="{'group_by': 'administration_name'}"/>
+                    <filter name="hr_payslip_line_group_by_section_name" string="Section" context="{'group_by': 'section_name'}"/>
+                    <filter name="hr_payslip_line_group_by_employee_id" string="Employee" context="{'group_by': 'employee_id'}"/>
+                </group>
+                
+
+                <searchpanel>
+                    <!-- <field name="sector_name" icon="fa fa-code-fork" groupby="sector_name" string="Sector" enable_counters="1"/>
+                    <field name="public_administration_name" icon="fa fa-code-fork" groupby="public_administration_name" string="Public Administration" enable_counters="1"/>
+                    <field name="administration_name" icon="fa fa-code-fork" groupby="administration_name" string="Administration" enable_counters="1"/>
+                    <field name="section_name" icon="fa fa-code-fork" groupby="section_name" string="Section" enable_counters="1"/> -->
+                    <field name="payslip_state" icon="fa fa-circle-o-notch" groupby="payslip_state" string="State" enable_counters="1"/>
+                </searchpanel>
+
+            </search>
+        </field>
+        <field name="field_parent" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="inherit_id" eval="False"/>
+        <field name="key" eval="False"/>
+        <field name="mode">primary</field>
+        <field name="model">hr.payslip.line</field>
+        <field name="name">Default search view for hr.payslip.line</field>
+        <field name="priority">16</field>
+        <field name="type">search</field>
+    </record>
+
+</odoo>

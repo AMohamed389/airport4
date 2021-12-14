@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_payslip_line_pivot" model="ir.ui.view">
+        <field name="name">interview</field>
+        <field name="model">hr.payslip.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Payslip Lines Statistics" sample="1">
+                <field name="employee_id" type="row"/>
+                <field name="category_id" type="col"/>
+            </pivot>
+        </field>
+     </record>
+
+</odoo>
