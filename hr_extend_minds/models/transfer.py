@@ -18,7 +18,7 @@ class Transfer(models.Model):
     transfer_from_external = fields.Many2one('airports', string='Transfer From External', index=True, tracking=True)
     transfer_to_external = fields.Many2one('airports', string='Transfer To External', index=True, tracking=True)
 
-    transfer_from_name = fields.Char(related='transfer_from.name', store=True, index=True, string='Transfer From Name')
+    transfer_from_name = fields.Char(related='transfer_from.name',  store=True, index=True, string='Transfer From Name')
     transfer_to_name = fields.Char(related='transfer_to.name', store=True, index=True, string='Transfer To Name')
 
     decision_number = fields.Char(string='Decision Number', index=True, tracking=True)
@@ -32,33 +32,44 @@ class Transfer(models.Model):
     @api.depends('type_of_transfer', 'employee_id', 'transfer_from_external', 'transfer_to_external')
     @api.onchange('type_of_transfer', 'employee_id', 'transfer_from_external', 'transfer_to_external')
     def check_type(self):
-        get_employee_dept = self.env['hr.employee'].search(
-            [('department_id.id', '=', self.employee_id.department_id.id)])
+        # get_employee_dept = self.env['hr.employee'].search(
+        #     [('department_id.id', '=', self.employee_id.department_id.id)])
 
         if self.type_of_transfer == 'Internal Transfer':
             get_internal = self.env['hr.department'].search(
                 ['|', ('x_type', '=', 'Department'), ('x_type', '=', 'Administration')])
-            self.transfer_from = get_employee_dept.department_id
+            self.transfer_from = self.employee_id.department_id.id
             return {
                 'domain': {
                     'transfer_to': ['&', ('id', 'in', get_internal.ids),
-                                    ('id', '!=', get_employee_dept.department_id.id)],
-                    'transfer_from': [('id', '=', get_employee_dept.department_id.id)]
+                                    # ('id', '!=', get_employee_dept.department_id.id)],
+                                    ('id', '!=', self.transfer_from.id if self.transfer_from else self.employee_id.department_id.id)],
+                    'transfer_from': ['&', ('id', 'in', get_internal.ids),
+                                    ('id', '!=', self.transfer_to.id if self.transfer_to else 0),
+                                    ('id', '=', self.employee_id.department_id.id if not self.transfer_to else get_internal.ids)]
                 }
             }
         else:
             get_airports_all = self.env['airports'].search([])
-            get_airports = self.env['airports'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
-            if self.transfer_from_external.name == 'شركة ميناء القاهرة الجوي':
-                return {
+            # get_airports = self.env['airports'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
+            # if self.transfer_from_external.name == 'شركة ميناء القاهرة الجوي':
+            #     return {
+            #         'domain': {
+            #             'transfer_to_external': [('id', 'in', get_airports.ids)],
+            #         }
+            #     }
+            # else:
+            #     return {
+            #         'domain': {
+            #             'transfer_to_external': [('id', 'in', get_airports_all.ids)],
+            #         }
+            #     }
+            return {
                     'domain': {
-                        'transfer_to_external': [('id', 'in', get_airports.ids)],
-                    }
-                }
-            else:
-                return {
-                    'domain': {
-                        'transfer_to_external': [('id', 'in', get_airports_all.ids)],
+                        'transfer_from_external': ['&', ('id', 'in', get_airports_all.ids),
+                                                        ('id','!=',self.transfer_to_external.id if self.transfer_to_external else 0)],
+                        'transfer_to_external': ['&', ('id', 'in', get_airports_all.ids),
+                                                        ('id','!=',self.transfer_from_external.id if self.transfer_from_external else 0)],
                     }
                 }
 
