@@ -21,6 +21,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        'views/pivot.xml',
         'views/views.xml',
         'views/ir.ui.menu.xml',
         'views/templates.xml',
@@ -41,7 +42,7 @@
         'data/extra_incentive.xml',
         'report/report_payslip_templates.xml',
         'views/search.xml',
-        'views/pivot.xml',
+        
     ],
     # only loaded in demonstration mode
     # 'demo': [
