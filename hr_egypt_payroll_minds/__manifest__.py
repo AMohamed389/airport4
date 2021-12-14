@@ -40,6 +40,8 @@
         'data/job_incentive.xml',
         'data/extra_incentive.xml',
         'report/report_payslip_templates.xml',
+        'views/search.xml',
+        'views/pivot.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [
