@@ -1,69 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate='1'>
+    <data noupdate='0'>
 
         <record id="grant_type_01" model="grant_type">
             <field name="name">مساهمة في وفاة احد افراد الاسرة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_02" model="grant_type">
             <field name="name">علاج احد افراد الاسرة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_03" model="grant_type">
             <field name="name">ولادة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_04" model="grant_type">
             <field name="name">الامراض المزمنة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_05" model="grant_type">
             <field name="name">أجهزة تعويضية - نظارة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_06" model="grant_type">
             <field name="name">أجهزة تعويضية - أسنان</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_07" model="grant_type">
             <field name="name">أجهزة تعويضية - طرف صناعى</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_08" model="grant_type">
             <field name="name">أجهزة تعويضية - سماعة ضعف سمع</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_09" model="grant_type">
             <field name="name">منحة بدل هدية</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_10" model="grant_type">
             <field name="name">منحة انجاب</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_11" model="grant_type">
             <field name="name">زواج احد الابناء</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_12" model="grant_type">
             <field name="name">منحة زواج</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_13" model="grant_type">
             <field name="name">خروج سيارة لتشييع جثمان عضو الشركة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grant_type_14" model="grant_type">
             <field name="name">وفاة عضو الشركة</field>
             <field name="active">True</field>
         </record>
 
-
-        <record id="grants_terms_01" model="grants_terms">
+        <!-- <record id="grants_terms_01" model="grants_terms">
             <field name="name">2500 حد اقصي في السنة المالية</field>
             <field name="active">True</field>
         </record>
+
         <record id="grants_terms_02" model="grants_terms">
             <field name="name">مرتين في العمر</field>
             <field name="active">True</field>
@@ -73,35 +86,41 @@
             <field name="name">مرة كل سنة</field>
             <field name="active">True</field>
         </record>
+
         <record id="grants_terms_04" model="grants_terms">
             <field name="name">كل 3 سنين</field>
             <field name="active">True</field>
         </record>
+
         <record id="grants_terms_05" model="grants_terms">
             <field name="name">مرة واحدة للابن</field>
             <field name="active">True</field>
         </record>
+
         <record id="grants_terms_06" model="grants_terms">
             <field name="name">مرة واحدة في العمر</field>
             <field name="active">True</field>
         </record>
+
         <record id="grants_01" model="grants">
             <field name="grant_type_id" ref="grant_type_01"/>
         </record>
-
 
         <record id="grants_02" model="grants">
             <field name="grant_type_id" ref="grant_type_02"/>
             <field name="grants_terms_id" ref="grants_terms_01"/>
         </record>
+
         <record id="grants_03" model="grants">
             <field name="grant_type_id" ref="grant_type_03"/>
             <field name="grants_terms_id" ref="grants_terms_02"/>
         </record>
+
         <record id="grants_04" model="grants">
             <field name="grant_type_id" ref="grant_type_04"/>
             <field name="grants_terms_id" ref="grants_terms_03"/>
         </record>
+
         <record id="grants_05" model="grants">
             <field name="grant_type_id" ref="grant_type_05"/>
             <field name="grants_terms_id" ref="grants_terms_04"/>
@@ -113,11 +132,13 @@
             <field name="grants_terms_id" ref="grants_terms_04"/>
             <field name="amount">2000</field>
         </record>
+
         <record id="grants_07" model="grants">
             <field name="grant_type_id" ref="grant_type_07"/>
             <field name="grants_terms_id" ref="grants_terms_04"/>
             <field name="amount">12000</field>
         </record>
+
         <record id="grants_08" model="grants">
             <field name="grant_type_id" ref="grant_type_08"/>
             <field name="grants_terms_id" ref="grants_terms_04"/>
@@ -127,22 +148,28 @@
         <record id="grants_09" model="grants">
             <field name="grant_type_id" ref="grant_type_09"/>
         </record>
+
         <record id="grants_10" model="grants">
             <field name="grant_type_id" ref="grant_type_10"/>
             <field name="grants_terms_id" ref="grants_terms_06"/>
         </record>
+
         <record id="grants_11" model="grants">
             <field name="grant_type_id" ref="grant_type_11"/>
         </record>
+
         <record id="grants_12" model="grants">
             <field name="grant_type_id" ref="grant_type_12"/>
         </record>
+
         <record id="grants_13" model="grants">
             <field name="grant_type_id" ref="grant_type_13"/>
         </record>
+
         <record id="grants_14" model="grants">
             <field name="grant_type_id" ref="grant_type_14"/>
             <field name="grants_terms_id" ref="grants_terms_06"/>
-        </record>
+        </record> -->
+
     </data>
 </odoo>

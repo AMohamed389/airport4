@@ -172,10 +172,6 @@ access_medical_committee_all,medical_committee_all,model_medical_committee,base.
 access_medical_committee_basic,medical_committee_basic,model_medical_committee,hr_extend_minds_group_employee,1,0,0,0
 access_medical_committee_admin,medical_committee_admin,model_medical_committee,hr_extend_minds_group_admin,1,1,1,1
 
-access_grants_terms_all,grants_terms_all,model_grants_terms,base.group_user,1,0,0,0
-access_grants_terms_basic,grants_terms_basic,model_grants_terms,hr_extend_minds_group_employee,1,0,0,0
-access_grants_terms_admin,grants_terms_admin,model_grants_terms,hr_extend_minds_group_admin,1,1,1,1
-
 access_transfer_all,transfer_card_all,model_transfer,base.group_user,1,0,0,0
 access_transfer_basic,transfer_card_basic,model_transfer,hr_extend_minds_group_employee,1,0,0,0
 access_transfer_admin,transfer_admin,model_transfer,hr_extend_minds_group_admin,1,1,1,1

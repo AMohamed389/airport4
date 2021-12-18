@@ -228,7 +228,7 @@
   <menuitem id="parent_menu_service_provider"  name="Service Provider"  action="action_service_provider"  parent="parent_menu_employees_care_config" sequence="3006" />
   <menuitem id="parent_menu_service_group"  name="Service Group"  action="action_service_group"  parent="parent_menu_employees_care_config" sequence="3007" />
   <menuitem id="parent_menu_employee_service_name"  name="Employee Service Name"  action="action_employee_service_name"  parent="parent_menu_employees_care_config" sequence="3008" />
-  <menuitem id="parent_menu_action_grants_terms"  name="Grants Terms"  action="action_grants_terms"  parent="parent_menu_employees_care_config" sequence="3009" />
+  <!-- <menuitem id="parent_menu_action_grants_terms"  name="Grants Terms"  action="action_grants_terms"  parent="parent_menu_employees_care_config" sequence="3009" /> -->
 
   <!--transfers menu item-->
   <!--main menu-->

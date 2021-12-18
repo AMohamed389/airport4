@@ -271,10 +271,6 @@ class hrextend(models.Model):
     delegation_ids = fields.One2many('delegation','employee_id')
     loan_ids = fields.One2many('loan','employee_id')
 
-    _sql_constraints = [
-        ('unique_egypt_air_insurance', 'UNIQUE(egypt_air_insurance)', 'egypt air insurance must be unique'),
-        ('unique_dmc_insurance', 'UNIQUE(dmc_insurance)', 'dmc insurance must be unique'),
-        ('unique_gov_medical_insurance', 'UNIQUE(gov_medical_insurance)', 'gov medical insurance must be unique')]
 
     @api.depends('department_id')
     def _get_section_name(self):
