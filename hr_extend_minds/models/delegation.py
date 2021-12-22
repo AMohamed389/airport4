@@ -1,5 +1,5 @@
-from odoo import fields, models, api
-
+from odoo import fields, models, api, _
+from dateutil import relativedelta
 
 class Delegation(models.Model):
     _name = 'delegation'
@@ -77,10 +77,12 @@ class Delegation(models.Model):
 
                 # date_from_months = rec.period_date_from.year * 12 + (rec.period_date_from.month - 1)
                 # date_to_months = rec.period_date_to.year * 12 + (rec.period_date_to.month - 1)
-                _num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (
-                            rec.period_date_to.month - rec.period_date_from.month)
+                ##_num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (
+                            ##rec.period_date_to.month - rec.period_date_from.month)
                 # months_res = date_to_months - date_from_months
-                rec.period = f'days({day_res}), months({_num_months})'
+                ## rec.period = f'days({day_res}), months({_num_months})'
+                r = relativedelta.relativedelta(rec.period_date_to, rec.period_date_from)
+                rec.period = f'days({r.days}), months({r.months}), years({r.years})'
             else:
                 rec.period = 0.0
 

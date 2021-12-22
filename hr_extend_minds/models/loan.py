@@ -1,5 +1,5 @@
-from odoo import fields, models, api
-
+from odoo import fields, models, api, _
+from dateutil import relativedelta
 
 class Loan(models.Model):
     _name = 'loan'
@@ -75,9 +75,10 @@ class Loan(models.Model):
 
                 date_from_months = rec.period_date_from.year * 12 + (rec.period_date_from.month - 1)
                 date_to_months = rec.period_date_to.year * 12 + (rec.period_date_to.month - 1)
-
-                months_res = date_to_months - date_from_months
-                rec.period = f'days({day_res}), months({months_res})'
+                r = relativedelta.relativedelta(rec.period_date_to, rec.period_date_from)         
+                # months_res = date_to_months - date_from_months
+                # rec.period = f'days({day_res}), months({months_res})'
+                rec.period = f'days({r.days}), months({r.months}), years({r.years})'
             else:
                 rec.period = 0.0
 
