@@ -7,6 +7,7 @@ class Delegation(models.Model):
     employee_id = fields.Many2one('hr.employee')
     type_of_delegation = fields.Selection([('Internal','Internal'),('External','External')])
 
+    @api.depends('type_of_delegation')
     @api.onchange('type_of_delegation')
     def check_type(self):
         x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
@@ -20,8 +21,8 @@ class Delegation(models.Model):
                         'delegate_from': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
                         'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
                         'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                        }
                     }
-                }
         else:
             self.delegate_to = False
             self.delegate_from = False
@@ -32,14 +33,14 @@ class Delegation(models.Model):
                         'delegate_to': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
                         'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
                         'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                        }
                     }
-                }
 
-    delegate_from = fields.Many2one('transfer_company_name', string='Delegate From', index=True, tracking=True)
-    delegate_to = fields.Many2one('transfer_company_name', string='Delegate To', index=True, tracking=True)
+    delegate_from = fields.Many2one('transfer_company_name', string='Delegate From', index=True, tracking=True, domain=lambda self: self.check_type())
+    delegate_to = fields.Many2one('transfer_company_name', string='Delegate To', index=True, tracking=True, domain=lambda self: self.check_type())
 
-    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
-    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True, domain=lambda self: self.check_type())
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True, domain=lambda self: self.check_type())
 
     delegate_from_name = fields.Char(related='delegate_from.name', string='Delegate From Name', store=True)
     delegate_to_name = fields.Char(related='delegate_to.name', string='Delegate To Name', store=True)

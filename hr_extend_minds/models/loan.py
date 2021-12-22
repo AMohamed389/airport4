@@ -7,6 +7,7 @@ class Loan(models.Model):
     employee_id = fields.Many2one('hr.employee')
     type_of_loan = fields.Selection([('Internal','Internal Loan'),('External','External Loan')])
 
+    @api.depends('type_of_delegation')
     @api.onchange('type_of_loan')
     def check_type(self):
         x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
@@ -20,8 +21,8 @@ class Loan(models.Model):
                         'loan_from': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
                         'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
                         'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                        }
                     }
-                }
         else:
             self.loan_to = False
             self.loan_from = False
@@ -32,23 +33,24 @@ class Loan(models.Model):
                         'loan_to': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
                         'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
                         'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                        }
                     }
-                }
 
-    loan_from = fields.Many2one('transfer_company_name', string='Loan From', index=True, tracking=True)
-    loan_to = fields.Many2one('transfer_company_name', string='Loan To', index=True, tracking=True)
 
-    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
-    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
+    loan_from = fields.Many2one('transfer_company_name', string='Loan From', index=True, tracking=True, domain=lambda self: self.check_type())
+    loan_to = fields.Many2one('transfer_company_name', string='Loan To', index=True, tracking=True, domain=lambda self: self.check_type())
+
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True, domain=lambda self: self.check_type())
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True, domain=lambda self: self.check_type())
     loan_from_name = fields.Char(related='loan_from.name', string='Loan From Name', store=True)
     loan_to_name = fields.Char(related='loan_to.name', string='Loan To Name', store=True)
 
-    decision_date = fields.Date(string='Decision date')
-    decision_number = fields.Char(string='Decision number')
+    decision_date = fields.Date(string='Decision date', index=True, tracking=True)
+    decision_number = fields.Char(string='Decision number', index=True, tracking=True)
 
     period = fields.Char(string='Loan period', compute='compute_loan_period')
-    period_date_from = fields.Date(string='Period date from')
-    period_date_to = fields.Date(string='Period date to')
+    period_date_from = fields.Date(string='Period date from', index=True, tracking=True)
+    period_date_to = fields.Date(string='Period date to', index=True, tracking=True)
     attachments = fields.Binary(string='Attachment')
     notes = fields.Text(string='Notes')
     state = fields.Selection([
