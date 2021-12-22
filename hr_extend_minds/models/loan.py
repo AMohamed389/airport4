@@ -3,43 +3,43 @@ from odoo import fields, models, api
 
 class Loan(models.Model):
     _name = 'loan'
+    _rec_name = 'employee_id'
     employee_id = fields.Many2one('hr.employee')
-    type_of_loan = fields.Selection([('Internal Loan', 'Internal Loan'), ('External Loan', 'External Loan')],
-                                    string='Type Of Loan')
+    type_of_loan = fields.Selection([('Internal','Internal Loan'),('External','External Loan')])
 
-    @api.depends('type_of_loan')
     @api.onchange('type_of_loan')
     def check_type(self):
-        x_company = self.env['transfer_company_name'].search([('name', '=', 'شركة ميناء القاهرة الجوي')], limit=1)
-        x_company_all = self.env['transfer_company_name'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
-        airport_domain = self.env['airports'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
-
-        if self.type_of_loan == 'Internal Loan':
-            self.loan_to = x_company.id
+        x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
+        x_airport = self.env['transfer_company_name'].search([('name', 'ilike', 'مطار ')])
+        if self.type_of_loan == 'Internal':
+            self.loan_from = False
+            self.loan_to = False
             return {
-                'domain': {
-                    'loan_from': [('id', 'in', x_company_all.ids)],
-                    'loan_to': [('id', '=', x_company.id)],
-                    'from_airport': [('id', 'in', airport_domain.ids)]
-
+                    'domain':{
+                        'loan_to': [('name', '=', 'شركة ميناء القاهرة الجوي')],
+                        'loan_from': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
+                        'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
+                        'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                    }
                 }
-            }
         else:
-            self.loan_from = x_company.id
-            return {
-                'domain': {
-                    'loan_to': [('id', 'in', x_company_all.ids)],
-                    'loan_from': [('id', '=', x_company.id)],
-                    'to_airport': [('id', 'in', airport_domain.ids)]
+            self.loan_to = False
+            self.loan_from = False
 
+            return {
+                    'domain': {
+                        'loan_from': [('name', '=', 'شركة ميناء القاهرة الجوي')],
+                        'loan_to': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
+                        'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
+                        'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                    }
                 }
-            }
 
     loan_from = fields.Many2one('transfer_company_name', string='Loan From', index=True, tracking=True)
     loan_to = fields.Many2one('transfer_company_name', string='Loan To', index=True, tracking=True)
 
-    from_airport = fields.Many2one('airports', string='From Airport', index=True, tracking=True)
-    to_airport = fields.Many2one('airports', string='To Airport', index=True, tracking=True)
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
     loan_from_name = fields.Char(related='loan_from.name', string='Loan From Name', store=True)
     loan_to_name = fields.Char(related='loan_to.name', string='Loan To Name', store=True)
 
@@ -54,13 +54,6 @@ class Loan(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'), ('submit', 'Submit'), ('completed', 'Completed')
     ], string='Run State', default='draft', index=True, tracking=True)
-
-    def name_get(self):
-        result = []
-        for rec in self:
-            new_name = f'{rec.employee_id.name}, {rec.type_of_loan}'
-            result.append((rec.id, new_name))
-        return result
 
     def set_to_draft(self):
         if self.state == 'submit' or self.state == 'completed':
@@ -92,10 +85,17 @@ class Loan(models.Model):
         if self.state == 'submit':
             self.state = 'completed'
 
+        internal_source = ''
+        external_source = ''
+        if self.type_of_loan == 'Internal':
+            internal_source = self.loan_to_name
+        else:
+            external_source = self.loan_from_name
+
         line = {
             'x_employee_id': self.employee_id.id,
             'x_type': self.type_of_loan,
-            # 'x_source_company': self.employee_id.department_id.name,
+            'x_source_company': internal_source if internal_source else external_source,
             'x_sector': self.employee_id.x_sector_name,
             'x_public_administration': self.employee_id.x_public_administration_name,
             'x_administration': self.employee_id.x_administration_name,

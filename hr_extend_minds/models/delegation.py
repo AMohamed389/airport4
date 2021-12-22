@@ -3,43 +3,43 @@ from odoo import fields, models, api
 
 class Delegation(models.Model):
     _name = 'delegation'
+    _rec_name = 'employee_id'
     employee_id = fields.Many2one('hr.employee')
-    type_of_delegation = fields.Selection([('Internal Delegation', 'Internal Delegation'),
-                                           ('External Delegation', 'External Delegation')],
-                                          string='Type of delegation')
+    type_of_delegation = fields.Selection([('Internal','Internal'),('External','External')])
 
-    @api.depends('type_of_delegation')
     @api.onchange('type_of_delegation')
     def check_type(self):
-        x_company = self.env['transfer_company_name'].search([('name', '=', 'شركة ميناء القاهرة الجوي')], limit=1)
-        x_company_all = self.env['transfer_company_name'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
-        airport_domain = self.env['airports'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
-
-        if self.type_of_delegation == 'Internal Delegation':
-            self.delegate_to = x_company.id
+        x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
+        x_airport = self.env['transfer_company_name'].search([('name', 'ilike', 'مطار ')])
+        if self.type_of_delegation == 'Internal':
+            self.delegate_from = False
+            self.delegate_to = False
             return {
-                'domain': {
-                    'delegate_from': [('id', 'in', x_company_all.ids)],
-                    'delegate_to': [('id', '=', x_company.id)],
-                    'from_airport': [('id', 'in', airport_domain.ids)]
-                },
-            }
-        else:
-            self.delegate_from = x_company.id
-            return {
-                'domain': {
-                    'delegate_to': [('id', 'in', x_company_all.ids)],
-                    'delegate_from': [('id', '=', x_company.id)],
-                    'to_airport': [('id', 'in', airport_domain.ids)],
-
+                    'domain':{
+                        'delegate_to': [('name', '=', 'شركة ميناء القاهرة الجوي')],
+                        'delegate_from': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
+                        'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
+                        'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                    }
                 }
-            }
+        else:
+            self.delegate_to = False
+            self.delegate_from = False
+
+            return {
+                    'domain': {
+                        'delegate_from': [('name', '=', 'شركة ميناء القاهرة الجوي')],
+                        'delegate_to': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
+                        'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
+                        'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                    }
+                }
 
     delegate_from = fields.Many2one('transfer_company_name', string='Delegate From', index=True, tracking=True)
     delegate_to = fields.Many2one('transfer_company_name', string='Delegate To', index=True, tracking=True)
 
-    from_airport = fields.Many2one('airports', string='From Airport', index=True, tracking=True)
-    to_airport = fields.Many2one('airports', string='To Airport', index=True, tracking=True)
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
 
     delegate_from_name = fields.Char(related='delegate_from.name', string='Delegate From Name', store=True)
     delegate_to_name = fields.Char(related='delegate_to.name', string='Delegate To Name', store=True)
@@ -56,13 +56,6 @@ class Delegation(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'), ('submit', 'Submit'), ('completed', 'Completed')
     ], string='Run State', default='draft', index=True, tracking=True)
-
-    def name_get(self):
-        result = []
-        for rec in self:
-            new_name = f'{rec.employee_id.name}, {rec.type_of_delegation}'
-            result.append((rec.id, new_name))
-        return result
 
     def set_to_draft(self):
         if self.state == 'submit' or self.state == 'completed':
@@ -84,7 +77,8 @@ class Delegation(models.Model):
 
                 # date_from_months = rec.period_date_from.year * 12 + (rec.period_date_from.month - 1)
                 # date_to_months = rec.period_date_to.year * 12 + (rec.period_date_to.month - 1)
-                _num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (rec.period_date_to.month - rec.period_date_from.month)
+                _num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (
+                            rec.period_date_to.month - rec.period_date_from.month)
                 # months_res = date_to_months - date_from_months
                 rec.period = f'days({day_res}), months({_num_months})'
             else:
@@ -94,10 +88,17 @@ class Delegation(models.Model):
         if self.state == 'submit':
             self.state = 'completed'
 
+        internal_source = ''
+        external_source = ''
+        if self.type_of_delegation == 'Internal':
+            internal_source= self.delegate_to_name
+        else:
+            external_source = self.delegate_from_name
+
         line = {
             'x_employee_id': self.employee_id.id,
             'x_type': self.type_of_delegation,
-            'x_source_company': self.employee_id.department_id.name,
+            'x_source_company': internal_source if internal_source else external_source,
             'x_sector': self.employee_id.x_sector_name,
             'x_public_administration': self.employee_id.x_public_administration_name,
             'x_administration': self.employee_id.x_administration_name,

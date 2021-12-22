@@ -15,63 +15,84 @@ class Transfer(models.Model):
     transfer_from = fields.Many2one('hr.department', string='Transfer From Internal', index=True, tracking=True)
     transfer_to = fields.Many2one('hr.department', string='Transfer To Internal', index=True, tracking=True)
 
-    transfer_from_external = fields.Many2one('airports', string='Transfer From External', index=True, tracking=True)
-    transfer_to_external = fields.Many2one('airports', string='Transfer To External', index=True, tracking=True)
-
-    transfer_from_name = fields.Char(related='transfer_from.name',  store=True, index=True, string='Transfer From Name')
+    transfer_from_name = fields.Char(related='transfer_from.name', store=True, index=True, string='Transfer From Name')
     transfer_to_name = fields.Char(related='transfer_to.name', store=True, index=True, string='Transfer To Name')
+
+    transfer_from_external = fields.Many2one('transfer_company_name', string='Transfer From External', index=True,
+                                             tracking=True)
+    transfer_to_external = fields.Many2one('transfer_company_name', string='Transfer To External', index=True,
+                                           tracking=True)
+
+    transfer_from_external_name = fields.Char(related='transfer_from_external.name', store=True, index=True)
+    transfer_to_external_name = fields.Char(related='transfer_to_external.name', store=True, index=True)
+
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
+
+    type_of_external_transfer = fields.Selection(
+        [('Internal Transfer CAC', 'Internal Transfer CAC'), ('External Transfer CAC', 'External Transfer CAC')],
+        string='Type Of Transfer',
+        index=True, tracking=True)
+
+    @api.onchange('type_of_external_transfer')
+    @api.depends('type_of_external_transfer')
+    def check_t(self):
+        x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
+        x_airport = self.env['transfer_company_name'].search([('name', 'ilike', 'مطار ')])
+        if self.type_of_external_transfer == 'Internal Transfer CAC':
+            self.transfer_from_external = False
+            self.transfer_to_external = False
+            return {
+                'domain': {
+                    'transfer_to_external': [('name', '=', 'شركة ميناء القاهرة الجوي')],
+                    'transfer_from_external': ['&', ('id', 'in', x_company.ids),
+                                               ('name', '!=', 'شركة ميناء القاهرة الجوي')],
+                    'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
+                    'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                }
+            }
+        else:
+            self.transfer_to_external = False
+            self.transfer_from_external = False
+            return {
+                'domain': {
+                    'transfer_from_external': [('name', '=', 'شركة ميناء القاهرة الجوي')],
+                    'transfer_to_external': ['&', ('id', 'in', x_company.ids),
+                                             ('name', '!=', 'شركة ميناء القاهرة الجوي')],
+                    'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
+                    'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
+                }
+            }
 
     decision_number = fields.Char(string='Decision Number', index=True, tracking=True)
     decision_date = fields.Date(string='Decision Date', index=True, tracking=True)
     attachments = fields.Binary(string='Attachment', index=True, tracking=True)
+
     state = fields.Selection([
         ('draft', 'Draft'), ('submit', 'Submit'), ('completed', 'Completed')
     ], string='Run State', default='draft', index=True, tracking=True)
     notes = fields.Text(string='Notes')
 
-    @api.depends('type_of_transfer', 'employee_id', 'transfer_from_external', 'transfer_to_external')
-    @api.onchange('type_of_transfer', 'employee_id', 'transfer_from_external', 'transfer_to_external')
+    @api.depends('type_of_transfer', 'employee_id')
+    @api.onchange('type_of_transfer', 'employee_id')
     def check_type(self):
-        # get_employee_dept = self.env['hr.employee'].search(
-        #     [('department_id.id', '=', self.employee_id.department_id.id)])
+        get_employee_dept = self.env['hr.employee'].search(
+            [('department_id.id', '=', self.employee_id.department_id.id)])
 
         if self.type_of_transfer == 'Internal Transfer':
             get_internal = self.env['hr.department'].search(
                 ['|', ('x_type', '=', 'Department'), ('x_type', '=', 'Administration')])
-            self.transfer_from = self.employee_id.department_id.id
+            self.transfer_from = get_employee_dept.department_id
             return {
                 'domain': {
                     'transfer_to': ['&', ('id', 'in', get_internal.ids),
-                                    # ('id', '!=', get_employee_dept.department_id.id)],
-                                    ('id', '!=', self.transfer_from.id if self.transfer_from else self.employee_id.department_id.id)],
-                    'transfer_from': ['&', ('id', 'in', get_internal.ids),
-                                    ('id', '!=', self.transfer_to.id if self.transfer_to else 0),
-                                    ('id', '=', self.employee_id.department_id.id if not self.transfer_to else get_internal.ids)]
+                                    ('id', '!=', get_employee_dept.department_id.id)],
+                    'transfer_from': [('id', '=', get_employee_dept.department_id.id)]
                 }
             }
         else:
-            get_airports_all = self.env['airports'].search([])
-            # get_airports = self.env['airports'].search([('name', '!=', 'شركة ميناء القاهرة الجوي')])
-            # if self.transfer_from_external.name == 'شركة ميناء القاهرة الجوي':
-            #     return {
-            #         'domain': {
-            #             'transfer_to_external': [('id', 'in', get_airports.ids)],
-            #         }
-            #     }
-            # else:
-            #     return {
-            #         'domain': {
-            #             'transfer_to_external': [('id', 'in', get_airports_all.ids)],
-            #         }
-            #     }
-            return {
-                    'domain': {
-                        'transfer_from_external': ['&', ('id', 'in', get_airports_all.ids),
-                                                        ('id','!=',self.transfer_to_external.id if self.transfer_to_external else 0)],
-                        'transfer_to_external': ['&', ('id', 'in', get_airports_all.ids),
-                                                        ('id','!=',self.transfer_from_external.id if self.transfer_from_external else 0)],
-                    }
-                }
+            self.transfer_from = False
+            self.transfer_to = False
 
     def name_get(self):
         result = []

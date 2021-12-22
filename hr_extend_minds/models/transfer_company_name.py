@@ -6,6 +6,3 @@ class TransferCompanyName(models.Model):
     name = fields.Char(string='Company name')
     active = fields.Boolean(default=True)
 
-class Airports(models.Model):
-    _name = 'airports'
-    name = fields.Char(string='Airport')
