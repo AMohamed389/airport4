@@ -1,0 +1,774 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+
+<!--&lt;!&ndash;transfer report&ndash;&gt;-->
+<!--    <record id="hr_transfer_print_badge" model="ir.actions.report">-->
+<!--        <field name="name">Transfer Report</field>-->
+<!--        <field name="model">transfer</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">hr_extend_minds.print_transfer_badge</field>-->
+<!--        <field name="report_file">hr_extend_minds.print_transfer_badge</field>-->
+<!--        <field name="print_report_name">'Print Badge - %s' % (object.employee_id.name).replace('/', '')</field>-->
+<!--        <field name="binding_model_id" ref="hr_extend_minds.model_transfer"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+
+<!--    <template id="print_transfer_badge">-->
+<!--                <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="o">-->
+<!--                    <div class="wrapper">-->
+<!--                        <h3 style="text-align:center; font-size:30px; margin:20px;">Transfer Report </h3>-->
+<!--                        <hr style="width:250px;"/>-->
+<!--                    </div>-->
+
+<!--                <div style="">-->
+<!--                        <h4>Name: <span t-field="o.employee_id.name"></span></h4>-->
+<!--                        <h4>Department: <span t-field="o.employee_id.department_id.name"></span></h4>-->
+<!--                </div>-->
+<!--                <hr/>-->
+<!--                <div style="margin-top:15px; margin-bottom:15px;">-->
+<!--                    <div style="margin:15px 0px 15px 0px;">-->
+<!--                        <span style="margin-right:5px; text-align:center; font-size:20px;">Transfer From :</span>-->
+<!--                        <div t-field="o.transfer_from_name" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+
+<!--                    <div style="margin:15px 0px 15px 0px;" t-if="o.from_airport">-->
+<!--                        <span style="margin-top:15px; margin-right:5px; text-align:center; font-size:20px;">From Airport :</span>-->
+<!--                        <div t-field="o.from_airport" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+<!--                    <div style="margin:15px 0px 15px 0px;">-->
+<!--                        <span style="margin-top:15px; margin-right:5px; text-align:center; font-size:20px;">Transfer To :</span>-->
+<!--                        <div t-field="o.transfer_to_name" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+<!--                    <div style="margin:15px 0px 15px 0px;" t-if="o.to_airport">-->
+<!--                        <span style="margin-top:15px; margin-right:5px; text-align:center; font-size:20px;">To Airport :</span>-->
+<!--                        <div t-field="o.to_airport" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+<!--                    <div style="margin:15px 0px 15px 0px;" >-->
+<!--                        <span style="margin-top:15px; margin-right:5px; text-align:center; font-size:20px;">Decision Date :</span>-->
+<!--                        <div t-field="o.decision_date" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+<!--                    <div style="margin:15px 0px 15px 0px;" >-->
+<!--                        <span style="margin-top:15px; margin-right:5px; text-align:center; font-size:20px;">Decision Number :</span>-->
+<!--                        <div t-field="o.decision_number" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+
+<!--                    <div style="margin:15px 0px 15px 0px;" >-->
+<!--                        <span style="margin-top:15px; margin-right:5px; text-align:center; font-size:20px;">Notes :</span>-->
+<!--                        <div t-field="o.notes" style="margin-top:-21px; margin-left:200px; text-align:left; font-size:18px;"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <hr/>-->
+
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <table class="styled-table">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Department</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Type Transfer</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Transfer From</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>From Airport</th>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Transfer To</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>To Airport</th>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <th >To Airport</th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Decision Date</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Decision Number</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Notes</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr t-foreach="docs" t-as="ob">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.employee_id.name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.employee_id.department_id.name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.type_of_transfer"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.transfer_from_name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.transfer_to_name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.decision_date"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.decision_number"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.notes"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </table>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            </t>-->
+<!--        </t>-->
+
+<!--&lt;!&ndash;        <t t-call="web.html_container">&ndash;&gt;-->
+<!--&lt;!&ndash;            <t>&ndash;&gt;-->
+<!--&lt;!&ndash;                <style>&ndash;&gt;-->
+<!--&lt;!&ndash;                    .styled-table {&ndash;&gt;-->
+<!--&lt;!&ndash;                        border-collapse: collapse;&ndash;&gt;-->
+<!--&lt;!&ndash;                        margin: 25px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;                        font-size: 0.9em;&ndash;&gt;-->
+<!--&lt;!&ndash;                        font-family: sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                    .styled-table thead tr {&ndash;&gt;-->
+<!--&lt;!&ndash;                        background-color: rgba(0, 0, 0, 0.15);&ndash;&gt;-->
+<!--&lt;!&ndash;                        color: #000;&ndash;&gt;-->
+<!--&lt;!&ndash;                        text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;                        border-bottom:1px solid #dddddd;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                    .styled-table th,&ndash;&gt;-->
+<!--&lt;!&ndash;                    .styled-table td {&ndash;&gt;-->
+<!--&lt;!&ndash;                        padding: 10px 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;                        border-right: 0.1em solid rgba(0, 0, 0, 0.15);&ndash;&gt;-->
+<!--&lt;!&ndash;                        width:100px;&ndash;&gt;-->
+<!--&lt;!&ndash;                        height:100px;&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                    .styled-table tbody tr {&ndash;&gt;-->
+<!--&lt;!&ndash;                        border-bottom: 1px solid #dddddd;&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    .styled-table tbody tr:nth-of-type(even) {&ndash;&gt;-->
+<!--&lt;!&ndash;                        background-color: #f3f3f3;&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    .styled-table tbody tr:last-of-type {&ndash;&gt;-->
+<!--&lt;!&ndash;                        border-bottom: 2px solid #009879;&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                    .styled-table tbody tr.active-row {&ndash;&gt;-->
+<!--&lt;!&ndash;                        font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;                        color: #009879;&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                    .center{&ndash;&gt;-->
+<!--&lt;!&ndash;                    margin-top:-10px;&ndash;&gt;-->
+<!--&lt;!&ndash;                    padding:0;&ndash;&gt;-->
+<!--&lt;!&ndash;                    text-align:center;&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                    .font_size{&ndash;&gt;-->
+<!--&lt;!&ndash;                        font-size:40px;&ndash;&gt;-->
+<!--&lt;!&ndash;                        font-weight:1px&ndash;&gt;-->
+<!--&lt;!&ndash;                        font-family: "Times New Roman", Times, serif;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                </style>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="center">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h2 class="font_size">Transfer Report </h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <hr/><hr/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <table class="styled-table">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Department</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Type Transfer</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Transfer From</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>From Airport</th>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Transfer To</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>To Airport</th>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <th t-if="o.to_airport">To Airport</th>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Decision Date</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Decision Number</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <th>Notes</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <tr t-foreach="docs" t-as="ob">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.employee_id.name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.employee_id.department_id.name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.type_of_transfer"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.transfer_from_name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.transfer_to_name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.decision_date"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.decision_number"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.notes"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </table>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </t>&ndash;&gt;-->
+<!--&lt;!&ndash;        </t>&ndash;&gt;-->
+<!--    </template>-->
+
+<!--    &lt;!&ndash;transfer report from hr&ndash;&gt;-->
+<!--    <record id="hr_transfer_print" model="ir.actions.report">-->
+<!--        <field name="name">Transfer Report</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">hr_extend_minds.print_transfer</field>-->
+<!--        <field name="report_file">hr_extend_minds.print_transfer</field>-->
+<!--        <field name="print_report_name">'Print Badge - %s' % (object.name).replace('/', '')</field>-->
+<!--        <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+
+<!--    <template id="print_transfer">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t>-->
+<!--                <style>-->
+<!--                    .styled-table {-->
+<!--                        border-collapse: collapse;-->
+<!--                        margin: 25px 0;-->
+<!--                        font-size: 0.9em;-->
+<!--                        font-family: sans-serif;-->
+<!--                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);-->
+<!--                    }-->
+<!--                    .styled-table thead tr {-->
+<!--                        background-color: rgba(0, 0, 0, 0.15);-->
+<!--                        color: #000;-->
+<!--                        text-align: center;-->
+<!--                        border-bottom:1px solid #dddddd;-->
+
+<!--                    }-->
+<!--                    .styled-table th,-->
+<!--                    .styled-table td {-->
+<!--                        padding: 10px 10px;-->
+<!--                        border-right: 0.1em solid rgba(0, 0, 0, 0.15);-->
+<!--                        width:100px;-->
+<!--                        height:100px;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr {-->
+<!--                        border-bottom: 1px solid #dddddd;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:nth-of-type(even) {-->
+<!--                        background-color: #f3f3f3;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:last-of-type {-->
+<!--                        border-bottom: 2px solid #009879;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr.active-row {-->
+<!--                        font-weight: bold;-->
+<!--                        color: #009879;-->
+<!--                    }-->
+<!--                    .center{-->
+<!--                    margin-top:-10px;-->
+<!--                    padding:0;-->
+<!--                    text-align:center;-->
+<!--                    }-->
+<!--                    .font_size{-->
+<!--                        font-size:40px;-->
+<!--                        font-weight:1px-->
+<!--                        font-family: "Times New Roman", Times, serif;-->
+
+<!--                    }-->
+<!--                </style>-->
+<!--                <div class="center">-->
+<!--                    <div>-->
+<!--                        <h2 class="font_size">Transfer Report </h2>-->
+<!--                        <hr/><hr/>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <table class="styled-table">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Name</th>-->
+<!--                                    <th>Department</th>-->
+<!--                                    <th>Type Transfer</th>-->
+<!--                                    <th>Transfer From</th>-->
+<!--                                    <th>From Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;-->
+<!--                                    <th>Transfer To</th>-->
+<!--                                    <th>To Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.to_airport">To Airport</th>&ndash;&gt;-->
+<!--                                    <th>Decision Date</th>-->
+<!--                                    <th>Decision Number</th>-->
+<!--                                    <th>Notes</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <tr t-foreach="docs.transfer_ids" t-as="ob">-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.name"></span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-field="ob.department_id.name"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.type_of_transfer"></span></td>-->
+<!--                                    <td><span t-field="ob.transfer_from_name"></span></td>-->
+<!--                                    <td><span t-field="ob.from_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.transfer_to_name"></span></td>-->
+<!--                                    <td><span t-field="ob.to_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.decision_date"></span></td>-->
+<!--                                    <td><span t-field="ob.decision_number"></span></td>-->
+<!--                                    <td><span t-field="ob.notes"></span></td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+
+<!--&lt;!&ndash;delegation report&ndash;&gt;-->
+
+<!--    &lt;!&ndash;delegation from delegation view&ndash;&gt;-->
+<!--    <record id="hr_delegation_print_badge" model="ir.actions.report">-->
+<!--        <field name="name">Delegation Report</field>-->
+<!--        <field name="model">delegation</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">hr_extend_minds.print_delegation_badge</field>-->
+<!--        <field name="report_file">hr_extend_minds.print_delegation_badge</field>-->
+<!--        <field name="print_report_name">'Print Badge - %s' % (object.employee_id.name).replace('/', '')</field>-->
+<!--        <field name="binding_model_id" ref="hr_extend_minds.model_delegation"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+
+<!--        <template id="print_delegation_badge">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t>-->
+<!--                <style>-->
+<!--                    .styled-table {-->
+<!--                        border-collapse: collapse;-->
+<!--                        margin: 25px 0;-->
+<!--                        font-size: 0.9em;-->
+<!--                        font-family: sans-serif;-->
+<!--                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);-->
+<!--                    }-->
+<!--                    .styled-table thead tr {-->
+<!--                        background-color: rgba(0, 0, 0, 0.15);-->
+<!--                        color: #000;-->
+<!--                        text-align: center;-->
+<!--                        border-bottom:1px solid #dddddd;-->
+
+<!--                    }-->
+<!--                    .styled-table th,-->
+<!--                    .styled-table td {-->
+<!--                        padding: 10px 10px;-->
+<!--                        border-right: 0.1em solid rgba(0, 0, 0, 0.15);-->
+<!--                        width:100px;-->
+<!--                        height:100px;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr {-->
+<!--                        border-bottom: 1px solid #dddddd;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:nth-of-type(even) {-->
+<!--                        background-color: #f3f3f3;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:last-of-type {-->
+<!--                        border-bottom: 2px solid #009879;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr.active-row {-->
+<!--                        font-weight: bold;-->
+<!--                        color: #009879;-->
+<!--                    }-->
+<!--                    .center{-->
+<!--                    margin-top:-10px;-->
+<!--                    padding:0;-->
+<!--                    text-align:center;-->
+<!--                    }-->
+<!--                    .font_size{-->
+<!--                        font-size:40px;-->
+<!--                        font-weight:1px-->
+<!--                        font-family: "Times New Roman", Times, serif;-->
+
+<!--                    }-->
+<!--                </style>-->
+<!--                <div class="center">-->
+<!--                    <div>-->
+<!--                        <h2 class="font_size">Delegation Report </h2>-->
+<!--                        <hr/><hr/>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <table class="styled-table">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Name</th>-->
+<!--                                    <th>Department</th>-->
+<!--                                    <th>Type Transfer</th>-->
+<!--                                    <th>Delegate From</th>-->
+<!--                                    <th>From Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;-->
+<!--                                    <th>Delegate To</th>-->
+<!--                                    <th>To Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.to_airport">To Airport</th>&ndash;&gt;-->
+<!--                                    <th>Decision Date</th>-->
+<!--                                    <th>Decision Number</th>-->
+<!--                                    <th>Period</th>-->
+<!--                                    <th>Period From</th>-->
+<!--                                    <th>Period To</th>-->
+<!--                                    <th>Notes</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <tr t-foreach="docs" t-as="ob">-->
+<!--                                    <td><span t-field="ob.employee_id.name"></span></td>-->
+<!--                                    <td><span t-field="ob.employee_id.department_id.name"></span></td>-->
+<!--                                    <td><span t-field="ob.delegate_from_name"></span></td>-->
+<!--                                    <td><span t-field="ob.from_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.delegate_to_name"></span></td>-->
+<!--                                    <td><span t-field="ob.to_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.decision_date"></span></td>-->
+<!--                                    <td><span t-field="ob.decision_number"></span></td>-->
+<!--                                    <td><span t-field="ob.period"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_from"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_to"></span></td>-->
+<!--                                    <td><span t-field="ob.notes"></span></td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+<!--    &lt;!&ndash;delegation report from hr&ndash;&gt;-->
+<!--    <record id="hr_delegation_print" model="ir.actions.report">-->
+<!--        <field name="name">Delegation Report</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">hr_extend_minds.print_delegation</field>-->
+<!--        <field name="report_file">hr_extend_minds.print_delegation</field>-->
+<!--        <field name="print_report_name">'Print Badge - %s' % (object.name).replace('/', '')</field>-->
+<!--        <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+
+<!--    <template id="print_delegation">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t>-->
+<!--                <style>-->
+<!--                    .styled-table {-->
+<!--                        border-collapse: collapse;-->
+<!--                        margin: 25px 0;-->
+<!--                        font-size: 0.9em;-->
+<!--                        font-family: sans-serif;-->
+<!--                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);-->
+<!--                    }-->
+<!--                    .styled-table thead tr {-->
+<!--                        background-color: rgba(0, 0, 0, 0.15);-->
+<!--                        color: #000;-->
+<!--                        text-align: center;-->
+<!--                        border-bottom:1px solid #dddddd;-->
+
+<!--                    }-->
+<!--                    .styled-table th,-->
+<!--                    .styled-table td {-->
+<!--                        padding: 10px 10px;-->
+<!--                        border-right: 0.1em solid rgba(0, 0, 0, 0.15);-->
+<!--                        width:100px;-->
+<!--                        height:100px;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr {-->
+<!--                        border-bottom: 1px solid #dddddd;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:nth-of-type(even) {-->
+<!--                        background-color: #f3f3f3;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:last-of-type {-->
+<!--                        border-bottom: 2px solid #009879;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr.active-row {-->
+<!--                        font-weight: bold;-->
+<!--                        color: #009879;-->
+<!--                    }-->
+<!--                    .center{-->
+<!--                    margin-top:-10px;-->
+<!--                    padding:0;-->
+<!--                    text-align:center;-->
+<!--                    }-->
+<!--                    .font_size{-->
+<!--                        font-size:40px;-->
+<!--                        font-weight:1px-->
+<!--                        font-family: "Times New Roman", Times, serif;-->
+
+<!--                    }-->
+<!--                </style>-->
+<!--                <div class="center">-->
+<!--                    <div>-->
+<!--                        <h2 class="font_size">Delegation Report </h2>-->
+<!--                        <hr/><hr/>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <table class="styled-table">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Name</th>-->
+<!--                                    <th>Department</th>-->
+<!--                                    <th>Type Transfer</th>-->
+<!--                                    <th>Delegate From</th>-->
+<!--                                    <th>From Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;-->
+<!--                                    <th>Delegate To</th>-->
+<!--                                    <th>To Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.to_airport">To Airport</th>&ndash;&gt;-->
+<!--                                    <th>Decision Date</th>-->
+<!--                                    <th>Decision Number</th>-->
+<!--                                    <th>Period</th>-->
+<!--                                    <th>Period From</th>-->
+<!--                                    <th>Period To</th>-->
+<!--                                    <th>Notes</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <tr t-foreach="docs.delegation_ids" t-as="ob">-->
+<!--                                    <td><span t-field="ob.name"></span></td>-->
+<!--                                    <td><span t-field="ob.department_id.name"></span></td>-->
+<!--                                    <td><span t-field="ob.delegate_from_name"></span></td>-->
+<!--                                    <td><span t-field="ob.from_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.delegate_to_name"></span></td>-->
+<!--                                    <td><span t-field="ob.to_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.decision_date"></span></td>-->
+<!--                                    <td><span t-field="ob.decision_number"></span></td>-->
+<!--                                    <td><span t-field="ob.period"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_from"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_to"></span></td>-->
+<!--                                    <td><span t-field="ob.notes"></span></td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+<!--&lt;!&ndash;end delegation&ndash;&gt;-->
+
+<!--&lt;!&ndash;loan report&ndash;&gt;-->
+<!--    <record id="hr_loan_print_badge" model="ir.actions.report">-->
+<!--        <field name="name">Loan Report</field>-->
+<!--        <field name="model">loan</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">hr_extend_minds.print_loan_badge</field>-->
+<!--        <field name="report_file">hr_extend_minds.print_loan_badge</field>-->
+<!--        <field name="print_report_name">'Print Badge - %s' % (object.employee_id.name).replace('/', '')</field>-->
+<!--        <field name="binding_model_id" ref="hr_extend_minds.model_loan"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+
+<!--    <template id="print_loan_badge">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t>-->
+<!--                <style>-->
+<!--                    .styled-table {-->
+<!--                        border-collapse: collapse;-->
+<!--                        margin: 25px 0;-->
+<!--                        font-size: 0.9em;-->
+<!--                        font-family: sans-serif;-->
+<!--                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);-->
+<!--                    }-->
+<!--                    .styled-table thead tr {-->
+<!--                        background-color: rgba(0, 0, 0, 0.15);-->
+<!--                        color: #000;-->
+<!--                        text-align: center;-->
+<!--                        border-bottom:1px solid #dddddd;-->
+
+<!--                    }-->
+<!--                    .styled-table th,-->
+<!--                    .styled-table td {-->
+<!--                        padding: 10px 10px;-->
+<!--                        border-right: 0.1em solid rgba(0, 0, 0, 0.15);-->
+<!--                        width:100px;-->
+<!--                        height:100px;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr {-->
+<!--                        border-bottom: 1px solid #dddddd;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:nth-of-type(even) {-->
+<!--                        background-color: #f3f3f3;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:last-of-type {-->
+<!--                        border-bottom: 2px solid #009879;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr.active-row {-->
+<!--                        font-weight: bold;-->
+<!--                        color: #009879;-->
+<!--                    }-->
+<!--                    .center{-->
+<!--                    margin-top:-10px;-->
+<!--                    padding:0;-->
+<!--                    text-align:center;-->
+<!--                    }-->
+<!--                    .font_size{-->
+<!--                        font-size:40px;-->
+<!--                        font-weight:1px-->
+<!--                        font-family: "Times New Roman", Times, serif;-->
+
+<!--                    }-->
+<!--                </style>-->
+<!--                <div class="center">-->
+<!--                    <div>-->
+<!--                        <h2 class="font_size">Loan Report</h2>-->
+<!--                        <hr/><hr/>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <table class="styled-table">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Name</th>-->
+<!--                                    <th>Department</th>-->
+<!--                                    <th>Type Transfer</th>-->
+<!--                                    <th>Delegate From</th>-->
+<!--                                    <th>From Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;-->
+<!--                                    <th>Delegate To</th>-->
+<!--                                    <th>To Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.to_airport">To Airport</th>&ndash;&gt;-->
+<!--                                    <th>Decision Date</th>-->
+<!--                                    <th>Decision Number</th>-->
+<!--                                    <th>Period</th>-->
+<!--                                    <th>Period From</th>-->
+<!--                                    <th>Period To</th>-->
+<!--                                    <th>Notes</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <tr t-foreach="docs" t-as="ob">-->
+<!--                                    <td><span t-field="ob.employee_id.name"></span></td>-->
+<!--                                    <td><span t-field="ob.employee_id.department_id.name"></span></td>-->
+<!--                                    <td><span t-field="ob.type_of_loan"></span></td>-->
+<!--                                    <td><span t-field="ob.loan_from_name"></span></td>-->
+<!--                                    <td><span t-field="ob.from_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.loan_to_name"></span></td>-->
+<!--                                    <td><span t-field="ob.to_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.decision_date"></span></td>-->
+<!--                                    <td><span t-field="ob.decision_number"></span></td>-->
+<!--                                    <td><span t-field="ob.period"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_from"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_to"></span></td>-->
+<!--                                    <td><span t-field="ob.notes"></span></td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+<!--    &lt;!&ndash;loan from hr&ndash;&gt;-->
+<!--    <record id="hr_loan_print" model="ir.actions.report">-->
+<!--        <field name="name">Loan Report</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">hr_extend_minds.print_loan</field>-->
+<!--        <field name="report_file">hr_extend_minds.print_loan</field>-->
+<!--        <field name="print_report_name">'Print Badge - %s' % (object.name).replace('/', '')</field>-->
+<!--        <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+
+<!--    <template id="print_loan">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t>-->
+<!--                <style>-->
+<!--                    .styled-table {-->
+<!--                        border-collapse: collapse;-->
+<!--                        margin: 25px 0;-->
+<!--                        font-size: 0.9em;-->
+<!--                        font-family: sans-serif;-->
+<!--                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);-->
+<!--                    }-->
+<!--                    .styled-table thead tr {-->
+<!--                        background-color: rgba(0, 0, 0, 0.15);-->
+<!--                        color: #000;-->
+<!--                        text-align: center;-->
+<!--                        border-bottom:1px solid #dddddd;-->
+
+<!--                    }-->
+<!--                    .styled-table th,-->
+<!--                    .styled-table td {-->
+<!--                        padding: 10px 10px;-->
+<!--                        border-right: 0.1em solid rgba(0, 0, 0, 0.15);-->
+<!--                        width:100px;-->
+<!--                        height:100px;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr {-->
+<!--                        border-bottom: 1px solid #dddddd;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:nth-of-type(even) {-->
+<!--                        background-color: #f3f3f3;-->
+<!--                    }-->
+
+<!--                    .styled-table tbody tr:last-of-type {-->
+<!--                        border-bottom: 2px solid #009879;-->
+<!--                    }-->
+<!--                    .styled-table tbody tr.active-row {-->
+<!--                        font-weight: bold;-->
+<!--                        color: #009879;-->
+<!--                    }-->
+<!--                    .center{-->
+<!--                    margin-top:-10px;-->
+<!--                    padding:0;-->
+<!--                    text-align:center;-->
+<!--                    }-->
+<!--                    .font_size{-->
+<!--                        font-size:40px;-->
+<!--                        font-weight:1px-->
+<!--                        font-family: "Times New Roman", Times, serif;-->
+
+<!--                    }-->
+<!--                </style>-->
+<!--                <div class="center">-->
+<!--                    <div>-->
+<!--                        <h2 class="font_size">Loan Report</h2>-->
+<!--                        <hr/><hr/>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <table class="styled-table">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Name</th>-->
+<!--                                    <th>Department</th>-->
+<!--                                    <th>Type Transfer</th>-->
+<!--                                    <th>Delegate From</th>-->
+<!--                                    <th>From Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.from_airport">From Airport</th>&ndash;&gt;-->
+<!--                                    <th>Delegate To</th>-->
+<!--                                    <th>To Airport</th>-->
+<!--&lt;!&ndash;                                    <th t-if="o.to_airport">To Airport</th>&ndash;&gt;-->
+<!--                                    <th>Decision Date</th>-->
+<!--                                    <th>Decision Number</th>-->
+<!--                                    <th>Period</th>-->
+<!--                                    <th>Period From</th>-->
+<!--                                    <th>Period To</th>-->
+<!--                                    <th>Notes</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <tr t-foreach="docs.loan_ids" t-as="ob">-->
+<!--                                    <td><span t-field="ob.name"></span></td>-->
+<!--                                    <td><span t-field="ob.employee_id.department_id.name"></span></td>-->
+<!--                                    <td><span t-field="ob.type_of_loan"></span></td>-->
+<!--                                    <td><span t-field="ob.loan_from_name"></span></td>-->
+<!--                                    <td><span t-field="ob.from_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.from_airport"><span t-field="ob.from_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.loan_to_name"></span></td>-->
+<!--                                    <td><span t-field="ob.to_airport"></span></td>-->
+<!--&lt;!&ndash;                                    <td t-if="ob.to_airport"><span t-field="ob.to_airport"></span></td>&ndash;&gt;-->
+<!--                                    <td><span t-field="ob.decision_date"></span></td>-->
+<!--                                    <td><span t-field="ob.decision_number"></span></td>-->
+<!--                                    <td><span t-field="ob.period"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_from"></span></td>-->
+<!--                                    <td><span t-field="ob.period_date_to"></span></td>-->
+<!--                                    <td><span t-field="ob.notes"></span></td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+</odoo>
