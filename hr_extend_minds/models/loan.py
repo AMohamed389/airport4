@@ -37,11 +37,11 @@ class Loan(models.Model):
                     }
 
 
-    loan_from = fields.Many2one('transfer_company_name', string='Loan From', index=True, tracking=True, domain=lambda self: self.check_type())
-    loan_to = fields.Many2one('transfer_company_name', string='Loan To', index=True, tracking=True, domain=lambda self: self.check_type())
+    loan_from = fields.Many2one('transfer_company_name', string='Loan From', index=True, tracking=True)
+    loan_to = fields.Many2one('transfer_company_name', string='Loan To', index=True, tracking=True)
 
-    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True, domain=lambda self: self.check_type())
-    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True, domain=lambda self: self.check_type())
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
     loan_from_name = fields.Char(related='loan_from.name', string='Loan From Name', store=True)
     loan_to_name = fields.Char(related='loan_to.name', string='Loan To Name', store=True)
 

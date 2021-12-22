@@ -36,11 +36,11 @@ class Delegation(models.Model):
                         }
                     }
 
-    delegate_from = fields.Many2one('transfer_company_name', string='Delegate From', index=True, tracking=True, domain=lambda self: self.check_type())
-    delegate_to = fields.Many2one('transfer_company_name', string='Delegate To', index=True, tracking=True, domain=lambda self: self.check_type())
+    delegate_from = fields.Many2one('transfer_company_name', string='Delegate From', index=True, tracking=True)
+    delegate_to = fields.Many2one('transfer_company_name', string='Delegate To', index=True, tracking=True)
 
-    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True, domain=lambda self: self.check_type())
-    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True, domain=lambda self: self.check_type())
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
 
     delegate_from_name = fields.Char(related='delegate_from.name', string='Delegate From Name', store=True)
     delegate_to_name = fields.Char(related='delegate_to.name', string='Delegate To Name', store=True)

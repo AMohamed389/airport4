@@ -12,22 +12,22 @@ class Transfer(models.Model):
         string='Type Of Transfer',
         index=True, tracking=True)
 
-    transfer_from = fields.Many2one('hr.department', string='Transfer From Internal', index=True, tracking=True, domain=lambda self: self.check_type())
-    transfer_to = fields.Many2one('hr.department', string='Transfer To Internal', index=True, tracking=True, domain=lambda self: self.check_type())
+    transfer_from = fields.Many2one('hr.department', string='Transfer From Internal', index=True, tracking=True)
+    transfer_to = fields.Many2one('hr.department', string='Transfer To Internal', index=True, tracking=True)
 
     transfer_from_name = fields.Char(related='transfer_from.name', store=True, index=True, string='Transfer From Name')
     transfer_to_name = fields.Char(related='transfer_to.name', store=True, index=True, string='Transfer To Name')
 
     transfer_from_external = fields.Many2one('transfer_company_name', string='Transfer From External', index=True,
-                                             tracking=True, domain=lambda self: self.check_t())
+                                             tracking=True)
     transfer_to_external = fields.Many2one('transfer_company_name', string='Transfer To External', index=True,
-                                           tracking=True, domain=lambda self: self.check_t())
+                                           tracking=True)
 
     transfer_from_external_name = fields.Char(related='transfer_from_external.name', store=True, index=True)
     transfer_to_external_name = fields.Char(related='transfer_to_external.name', store=True, index=True)
 
-    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True, domain=lambda self: self.check_t())
-    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True, domain=lambda self: self.check_t())
+    from_airport = fields.Many2one('transfer_company_name', string='From Airport', index=True, tracking=True)
+    to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
 
     type_of_external_transfer = fields.Selection(
         [('Internal Transfer CAC', 'Internal Transfer CAC'), ('External Transfer CAC', 'External Transfer CAC')],
