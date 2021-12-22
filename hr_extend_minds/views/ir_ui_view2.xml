@@ -2201,4 +2201,247 @@
 <!--end airports-->
 
 
+<!--committee blended-->
+    <!--employee list-->
+    <record id="committee_blended_view_inherit" model="ir.ui.view">
+        <field name="name">committee blended inherit view</field>
+        <field name="model">committee_employee</field>
+        <field name="inherit_id" ref="hr_extend_minds.view_committee_employee_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_notes']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='active']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_employee_id']" position="attributes">
+                <attribute name="attrs">{'invisible':[('type_of_committee','=','External Committee')],'required':[('type_of_committee','=','Internal Committee')],'readonly':[('type_of_committee','=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='x_employee_id']" position="before">
+                <field name="type_of_committee" required="1"/>
+                <field name="member" attrs="{'invisible':[('type_of_committee','=','Internal Committee')],'required':[('type_of_committee','=','External Committee')],'readonly':[('type_of_committee','=',False)]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='x_notes']" position="before">
+                <field name="role_member" required="1"/>
+                <field name="allowance_percentage" required="1"/>
+                <field name="repetition_of_attendance" optional="hide"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!--committee employee form-->
+    <record id="employee_committee_extended_page" model="ir.ui.view">
+        <field name="name">employee_committee_extended_page</field>
+        <field name="model">committee_employee</field>
+        <field name="inherit_id" ref="hr_extend_minds.view_committee_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_employee_id']" position="after">
+                <field name="x_committee_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+    <!--end of committee employee-->
+    <!---->
+
+    <!--committee-->
+    <record id="committee_list_view_inherit" model="ir.ui.view">
+        <field name="name">committee inherit list view</field>
+        <field name="model">committee</field>
+        <field name="inherit_id" ref="hr_extend_minds.view_committee_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="committee_name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="committee_view_inherit" model="ir.ui.view">
+        <field name="name">committee inherit view</field>
+        <field name="model">committee</field>
+        <field name="inherit_id" ref="hr_extend_minds.view_committee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_document_folder_id']" position="before">
+                <field name="committee_name"/>
+            </xpath>
+            <xpath expr="//field[@name='x_document_folder_id']" position="before">
+                <field name="allowance_percentage"/>
+            </xpath>
+            <xpath expr="//page[@name='page1']/field[@name='x_committee_employee']" position="inside">
+                <tree editable="top">
+                    <field name="type_of_committee" required="1"/>
+                    <field name="x_employee_id" attrs="{'invisible':[('type_of_committee','=','External Committee')],
+                        'required':[('type_of_committee','=','Internal Committee')],'readonly':[('type_of_committee','=',False)]}"
+                        string="Internal Employee"/>
+                    <field name="member" attrs="{'invisible':[('type_of_committee','=','Internal Committee')],
+                        'required':[('type_of_committee','=','External Committee')],'readonly':[('type_of_committee','=',False)]}"
+                        string="External Employee"/>
+                    <field name="role_member" required="1"/>
+                    <field name="x_amount" optional="show"/>
+                    <field name="allowance_percentage" optional="show"/>
+                    <field name="x_document_folder_id" optional="hide"/>
+                    <field name="x_attachments" optional="hide"/>
+                    <field name="repetition_of_attendance" optional="hide"/>
+                    <field name="x_notes" optional="hide"/>
+                </tree>
+            </xpath>
+            <xpath expr="//notebook[1]" position="after">
+                <notebook>
+                    <page name="sessions" string="Session">
+                        <field name="id" invisible="1"/>
+                        <field name="session_ids" mode="tree" context="{'default_x_committee_id':id}">
+                            <tree>
+                                <field name="session_date"/>
+                                <field name="attendance_selection"/>
+                                <field name="allowance_percentage"/>
+                                <field name="allowance_amount" string="Session Amount"/>
+                                <field name="note"/>
+                            </tree>
+                            <form>
+                                <sheet string="Committee Session">
+                                    <group>
+                                        <group>
+                                            <field name="committee_session_id" readonly="1"/>
+                                            <field name="session_date"/>
+                                            <field name="allowance_percentage"/>
+                                            <field name="allowance_amount" string="Session Amount"/>
+                                        </group>
+                                        <group>
+                                            <field name="attendance_selection"/>
+                                            <field name="note"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="employee_session_id" mode="tree">
+                                            <tree editable="top">
+                                                <field name="x_employee_id" string="Internal Employee"/>
+                                                <field name="member" string="External Employee"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <!--end of committee-->
+    <!---->
+
+    <!--committee sessions-->
+    <record id="committee_session_action" model="ir.actions.act_window">
+        <field name="name">Committee Sessions</field>
+        <field name="res_model">committee_session</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="employee_committee_session_tree_view" model="ir.ui.view">
+        <field name="name">employee_committee_session_tree_view</field>
+        <field name="model">committee_session</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="committee_session_id"/>
+                <field name="session_date"/>
+                <field name="allowance_percentage"/>
+                <field name="allowance_amount" string="Session Amount"/>
+                <field name="attendance_selection"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="employee_committee_session_form_view" model="ir.ui.view">
+        <field name="name">employee_committee_session_form_view</field>
+        <field name="model">committee_session</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet string="Committee Session">
+                    <group>
+                        <group>
+                            <field name="committee_session_id" required="1"/>
+                            <field name="session_date" required="1"/>
+                            <field name="allowance_percentage"/>
+                            <field name="allowance_amount" string="Session Amount"/>
+                        </group>
+                        <group>
+                            <field name="attendance_selection" required="1"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="employee_session_id" mode="tree">
+                            <tree editable="top">
+                                <field name="x_employee_id" string="Internal Employee"/>
+                                <field name="member" string="External Employee"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--end of committee sessions-->
+
+    <!--free time exception-->
+    <record id="free_time_exception_action" model="ir.actions.act_window">
+        <field name="name">Exception Time</field>
+        <field name="res_model">free_exception_time</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <record id="free_exception_time_form_view" model="ir.ui.view">
+        <field name="name">free_exception_time_form_view</field>
+        <field name="model">free_exception_time</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" required="1"/>
+                            <field name="decision_number" required="1"/>
+                            <field name="decision_date" required="1"/>
+                            <field name="type" required="1"/>
+                        </group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="destination" required="1"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="free_exception_time_tree_view" model="ir.ui.view">
+        <field name="name">free_exception_time_tree_view</field>
+        <field name="model">free_exception_time</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="employee_id"/>
+                <field name="decision_number"/>
+                <field name="decision_date"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="type"/>
+                <field name="destination"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="free_exception_pivot_view" model="ir.ui.view">
+        <field name="model">free_exception_time</field>
+        <field name="arch" type="xml">
+            <pivot string="Exception time Analysis"  sample="1">
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+<!--end of free time exceptions-->
+<!---->
+
 </odoo>
