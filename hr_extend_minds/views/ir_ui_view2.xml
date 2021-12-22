@@ -1330,875 +1330,645 @@
 
   <!--transfers, delegation, loan views-->
 
-  <!--transfers-->
+    <!--transfers-->
 
-  <!--transfer action-->
-  <record id="internal_transfers_action" model="ir.actions.act_window">
-      <field name="name">Internal Transfers</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">transfer</field>
-      <field name="domain">[('type_of_transfer','=','Internal Transfer')]</field>
-      <field name="context">{'default_type_of_transfer':'Internal Transfer'}</field>
-  </record>
+    <!--transfer action-->
+    <record id="internal_transfers_action" model="ir.actions.act_window">
+        <field name="name">Internal Transfers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">transfer</field>
+        <field name="domain">[('type_of_transfer','=','Internal Transfer')]</field>
+        <field name="context">{'default_type_of_transfer':'Internal Transfer'}</field>
+    </record>
 
-  <record id="internal_transfer_tree_view" model="ir.ui.view">
-      <field name="name">transfer tree view</field>
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="employee_id"/>
-                  <field name="type_of_transfer"/>
-                  <field name="transfer_from"/>
-                  <field name="transfer_to"/>
-                  <field name="decision_number"/>
-                  <field name="decision_date" optional="hide"/>
-                  <field name="attachments" optional="hide"/>
-                  <field name="notes" optional="hide"/>
-              </tree>
-      </field>
-  </record>
+    <record id="internal_transfer_tree_view" model="ir.ui.view">
+        <field name="name">transfer tree view</field>
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="type_of_transfer"/>
+                    <field name="transfer_from"/>
+                    <field name="transfer_to"/>
+                    <field name="decision_number"/>
+                    <field name="decision_date" optional="hide"/>
+                    <field name="attachments" optional="hide"/>
+                    <field name="notes" optional="hide"/>
+                </tree>
+        </field>
+    </record>
 
-  <record id="internal_transfer_tree_view_action" model="ir.actions.act_window.view">
-          <field eval="1" name="sequence"/>
-          <field name="view_mode">tree</field>
-          <field name="view_id" ref="internal_transfer_tree_view"/>
-          <field name="act_window_id" ref="internal_transfers_action"/>
-  </record>
+    <record id="internal_transfer_tree_view_action" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="internal_transfer_tree_view"/>
+            <field name="act_window_id" ref="internal_transfers_action"/>
+    </record>
 
-  <record id="internal_transfer_form_view" model="ir.ui.view">
-      <field name="name">transfer form view</field>
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-          <form>
-              <header>
-                  <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
-                  <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
-                  <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
-                  <field name="state" widget="statusbar"/>
-              </header>
-              <sheet>
-                  <div class="oe_title">
-                      <h1>
-                          <field name="employee_id" placeholder="Employee's Name" required="1"/>
-                      </h1>
-                  </div>
-                  <group>
-                      <group>
-                          <field name="type_of_transfer" readonly="1"/>
-                          <field name="transfer_from"/>
-                          <field name="transfer_to"/>
-                      </group>
-                      <group>
-                          <field name="decision_number"/>
-                          <field name="decision_date"/>
-                          <field name="attachments"/>
-                      </group>
-                      <group string="Notes">
-                          <field name="notes"/>
-                      </group>
-                  </group>
-              </sheet>
-          </form>
-      </field>
-  </record>
+    <record id="internal_transfer_form_view" model="ir.ui.view">
+        <field name="name">transfer form view</field>
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
+                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
+                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="employee_id" placeholder="Employee's Name" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type_of_transfer" readonly="1"/>
+                            <field name="transfer_from"/>
+                            <field name="transfer_to"/>
+                        </group>
+                        <group>
+                            <field name="decision_number"/>
+                            <field name="decision_date"/>
+                            <field name="attachments"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-  <record id="internal_transfer_form_view_action" model="ir.actions.act_window.view">
-          <field eval="2" name="sequence"/>
-          <field name="view_mode">form</field>
-          <field name="view_id" ref="internal_transfer_form_view"/>
-          <field name="act_window_id" ref="internal_transfers_action"/>
-  </record>
+    <record id="internal_transfer_form_view_action" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="internal_transfer_form_view"/>
+            <field name="act_window_id" ref="internal_transfers_action"/>
+    </record>
 
-  <record id="internal_transfer_pivot_view" model="ir.ui.view">
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-          <pivot string="Transfer Analysis"  sample="1">
-              <field name="employee_id" type="row"/>
-          </pivot>
-      </field>
-  </record>
+    <record id="internal_transfer_pivot_view" model="ir.ui.view">
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+            <pivot string="Transfer Analysis"  sample="1">
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
 
-  <record id="internal_transfer_pivot_view_action" model="ir.actions.act_window.view">
-          <field eval="3" name="sequence"/>
-          <field name="view_mode">pivot</field>
-          <field name="view_id" ref="internal_transfer_pivot_view"/>
-          <field name="act_window_id" ref="internal_transfers_action"/>
-  </record>
+    <record id="internal_transfer_pivot_view_action" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="internal_transfer_pivot_view"/>
+            <field name="act_window_id" ref="internal_transfers_action"/>
+    </record>
 
-<!--    external-->
-  <record id="external_transfers_action" model="ir.actions.act_window">
-      <field name="name">External Transfers</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">transfer</field>
-      <field name="view_mode">tree,form,pivot</field>
-      <field name="domain">[('type_of_transfer','=','External Transfer')]</field>
-      <field name="context">{'default_type_of_transfer':'External Transfer'}</field>
-  </record>
+<!--external-->
+    <record id="external_transfers_action" model="ir.actions.act_window">
+        <field name="name">External Transfers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">transfer</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="domain">[('type_of_transfer','=','External Transfer')]</field>
+        <field name="context">{'default_type_of_transfer':'External Transfer'}</field>
+    </record>
 
-  <record id="external_transfer_tree_view" model="ir.ui.view">
-      <field name="name">transfer tree view</field>
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="employee_id"/>
-                  <field name="type_of_transfer"/>
-                  <field name="transfer_from_external"/>
-                  <field name="transfer_to_external"/>
-                  <field name="decision_number"/>
-                  <field name="decision_date" optional="hide"/>
-                  <field name="attachments" optional="hide"/>
-                  <field name="notes" optional="hide"/>
-              </tree>
-      </field>
-  </record>
+    <record id="external_transfer_tree_view" model="ir.ui.view">
+        <field name="name">transfer tree view</field>
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="type_of_external_transfer"/>
+                    <field name="transfer_from_external"/>
+                    <field name="transfer_to_external"/>
+                    <field name="decision_number"/>
+                    <field name="decision_date" optional="hide"/>
+                    <field name="attachments" optional="hide"/>
+                    <field name="notes" optional="hide"/>
+                </tree>
+        </field>
+    </record>
 
-  <record id="external_transfer_tree_view_action" model="ir.actions.act_window.view">
-          <field eval="1" name="sequence"/>
-          <field name="view_mode">tree</field>
-          <field name="view_id" ref="external_transfer_tree_view"/>
-          <field name="act_window_id" ref="external_transfers_action"/>
-  </record>
+    <record id="external_transfer_tree_view_action" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="external_transfer_tree_view"/>
+            <field name="act_window_id" ref="external_transfers_action"/>
+    </record>
 
-  <record id="external_transfer_form_view" model="ir.ui.view">
-      <field name="name">transfer form view</field>
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-          <form>
-              <header>
-                  <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
-                  <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
-                  <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
-                  <field name="state" widget="statusbar"/>
-              </header>
-              <sheet>
-                  <div class="oe_title">
-                      <h1>
-                          <field name="employee_id" placeholder="Employee's Name" required="1"/>
-                      </h1>
-                  </div>
-                  <group>
-                      <group>
-                          <field name="type_of_transfer" readonly="1"/>
-                          <field name="transfer_from_external"/>
-                          <field name="transfer_to_external"/>
-                      </group>
-                      <group>
-                          <field name="decision_number"/>
-                          <field name="decision_date"/>
-                          <field name="attachments"/>
-                      </group>
-                      <group string="Notes">
-                          <field name="notes"/>
-                      </group>
-                  </group>
-              </sheet>
-          </form>
-      </field>
-  </record>
+    <record id="external_transfer_form_view" model="ir.ui.view">
+        <field name="name">transfer form view</field>
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
+                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
+                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="employee_id" placeholder="Employee's Name" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type_of_external_transfer" required="1"/>
+                            <field name="transfer_from_external" attrs="{'readonly':[('type_of_external_transfer','=',False)]}"/>
+                            <field name="transfer_from_external_name" invisible="1"/>
+                            <field name="from_airport" attrs="{'invisible':[('transfer_from_external_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('transfer_from_external_name','=','الشركة المصرية للمطارات')]}"/>
+                            <field name="transfer_to_external" attrs="{'readonly':[('type_of_external_transfer','=',False)]}"/>
+                            <field name="transfer_to_external_name" invisible="1"/>
+                            <field name="to_airport" attrs="{'invisible':[('transfer_to_external_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('transfer_to_external_name','=','الشركة المصرية للمطارات')]}"/>
 
-  <record id="external_transfer_form_view_action" model="ir.actions.act_window.view">
-          <field eval="2" name="sequence"/>
-          <field name="view_mode">form</field>
-          <field name="view_id" ref="external_transfer_form_view"/>
-          <field name="act_window_id" ref="external_transfers_action"/>
-  </record>
+                        </group>
+                        <group>
+                            <field name="decision_number"/>
+                            <field name="decision_date"/>
+                            <field name="attachments"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-
-  <record id="external_transfer_pivot_view" model="ir.ui.view">
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-          <pivot string="Transfer Analysis"  sample="1">
-              <field name="employee_id" type="row"/>
-          </pivot>
-      </field>
-  </record>
-
-  <record id="external_transfer_pivot_view_action" model="ir.actions.act_window.view">
-          <field eval="3" name="sequence"/>
-          <field name="view_mode">pivot</field>
-          <field name="view_id" ref="external_transfer_pivot_view"/>
-          <field name="act_window_id" ref="external_transfers_action"/>
-  </record>
+    <record id="external_transfer_form_view_action" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="external_transfer_form_view"/>
+            <field name="act_window_id" ref="external_transfers_action"/>
+    </record>
 
 
+    <record id="external_transfer_pivot_view" model="ir.ui.view">
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+            <pivot string="Transfer Analysis"  sample="1">
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
 
-  <!--transfer search view-->
-  <record id="transfer_search_view" model="ir.ui.view">
-      <field name="name">transfer search view</field>
-      <field name="model">transfer</field>
-      <field name="arch" type="xml">
-          <search string="Search Leads">
-              <field name="employee_id" string="Lead Name" filter_domain="[('employee_id', 'ilike', self)]"/>
-              <field name="transfer_to_name" string="Transfer To Name"/>
-              <field name="transfer_from_name" string="Transfer from Name"/>
-              <field name="decision_number" string="Decision number"/>
-              <separator/>
+    <record id="external_transfer_pivot_view_action" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="external_transfer_pivot_view"/>
+            <field name="act_window_id" ref="external_transfers_action"/>
+    </record>
 
-              <filter name="decision_date" date='decision_date' />
+    <record id="external_transfer_search_view" model="ir.ui.view">
+        <field name="name"> external transfer search view</field>
+        <field name="model">transfer</field>
+        <field name="arch" type="xml">
+            <search string="Search Leads">
+                <field name="employee_id" string="Lead Name" filter_domain="[('employee_id', 'ilike', self)]"/>
+                <field name="transfer_from" string="Internal Transfer From"/>
+                <field name="transfer_to" string="Internal Transfer To "/>
+                <field name="transfer_from_external" string="External Transfer From"/>
+                <field name="transfer_to_external" string="External Transfer To"/>
+                <field name="decision_number" string="Decision number"/>
+                <separator/>
 
-              <separator/>
+                <filter name="decision_date" date='decision_date' />
 
-              <group expand="0" string="Group By">
-                  <filter string="Group by Date" name="decision_date" context="{'group_by': 'decision_date'}" />
-                  <filter string="Group by Transfer From" name="transfer_from" context="{'group_by': 'transfer_from'}" />
-                  <filter string="Group by Transfer To" name="transfer_to" context="{'group_by': 'transfer_to'}" />
-              </group>
-          </search>
-      </field>
-  </record>
+                <separator/>
 
-  <!--transfers tab in hr employee-->
-  <record id="transfers_hr_employee_view_tab" model="ir.ui.view">
-      <field name="name">transfers employee tab</field>
-      <field name="model">hr.employee</field>
-      <field name="inherit_id" ref="hr.view_employee_form"/>
-      <field name="arch" type="xml">
-          <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-                  <page string="Transfer">
-                      <field name="transfer_ids" mode="tree">
-                          <tree string="Transfer" editable="top">
-                                <control>
-                                    <create name="add_section_control" string="Add internal section"
-                                            context="{'default_type_of_transfer':'Internal Transfer'}"/>
-                                    <create name="add_section_control" string="Add external section"
-                                            context="{'default_type_of_transfer':'External Transfer'}"/>
-                                    <create name="add_line_control" string="Add a line"/>
-                                  </control>
-                              <field name="employee_id" readonly="1"/>
-                              <field name="type_of_transfer"/>
-                              <field name="transfer_from" attrs="{'invisible':[('type_of_transfer','=','External Transfer')]}"/>
-                              <field name="transfer_to" attrs="{'invisible':[('type_of_transfer','=','External Transfer')]}"/>
-                              <field name="transfer_from_external" attrs="{'invisible':[('type_of_transfer','=','Internal Transfer')]}"/>
-                              <field name="transfer_to_external" attrs="{'invisible':[('type_of_transfer','=','Internal Transfer')]}"/>
-                              <field name="decision_number" optional="hide"/>
-                              <field name="decision_date" optional="hide"/>
-                              <field name="attachments" optional="hide"/>
-                              <field name="notes" optional="hide"/>
-                          </tree>
-                      </field>
-                  </page>
-          </xpath>
-      </field>
-  </record>
-<!--end of transfers-->
+                <group expand="0" string="Group By">
+                    <filter string="Group by Date" name="decision_date" context="{'group_by': 'decision_date'}" />
+                    <filter string="Group by Transfer From" name="transfer_from" context="{'group_by': 'transfer_from'}" />
+                    <filter string="Group by Transfer To" name="transfer_to" context="{'group_by': 'transfer_to'}" />
+                </group>
+                <searchpanel>
+                    <field name="transfer_from"  enable_counters="1"/>
+                    <field name="transfer_from_external" icon="fa-arrow-left" enable_counters="1"/>
+                    <field name="from_airport" icon="fa-plane" enable_counters="1"/>
+                    <field name="transfer_to"  enable_counters="1"/>
+                    <field name="transfer_to_external" icon="fa-arrow-right" enable_counters="1"/>
+                    <field name="to_airport" icon="fa-plane" enable_counters="1"/>
+                </searchpanel>
 
-  <!--delegation-->
-  <!--delegation action-->
-  <record id="internal_delegation_action" model="ir.actions.act_window">
-      <field name="name">Internal Delegation</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">delegation</field>
-      <field name="domain">[('type_of_delegation','=','Internal Delegation')]</field>
-      <field name="context">{'default_type_of_delegation':'Internal Delegation'}</field>
-  </record>
+            </search>
+        </field>
+    </record>
 
-  <record id="internal_delegation_tree_view_01" model="ir.ui.view">
-      <field name="name">delegation tree view</field>
-      <field name="model">delegation</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="employee_id"/>
-                  <field name="type_of_delegation"/>
-                  <field name="delegate_from"/>
-                  <field name="from_airport" />
-                  <field name="delegate_to"/>
-                  <field name="to_airport"/>
-                  <field name="decision_number"/>
-                  <field name="decision_date"/>
-                  <field name="attachments"/>
-                  <field name="period_date_from"/>
-                  <field name="period_date_to"/>
-                  <field name="period"/>
-                  <field name="attachments" optional="hide"/>
-                  <field name="notes" optional="hide"/>
-              </tree>
-      </field>
-  </record>
+    <record id="external_transfer_search_view_action" model="ir.actions.act_window.view">
+            <field eval="5" name="sequence"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="external_transfer_search_view"/>
+            <field name="act_window_id" ref="external_transfers_action"/>
+    </record>
 
-  <record id="internal_delegation_tree_view_action_1" model="ir.actions.act_window.view">
-          <field eval="1" name="sequence"/>
-          <field name="view_mode">tree</field>
-          <field name="view_id" ref="internal_delegation_tree_view_01"/>
-          <field name="act_window_id" ref="internal_delegation_action"/>
-  </record>
 
-  <record id="internal_delegation_form_view" model="ir.ui.view">
-      <field name="name">delegation form view</field>
-      <field name="model">delegation</field>
-      <field name="arch" type="xml">
-          <form>
-              <header>
+    <!--transfers tab in hr employee-->
+    <record id="transfers_hr_employee_view_tab" model="ir.ui.view">
+        <field name="name">transfers employee tab</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Transfer">
+                        <field name="transfer_ids" mode="tree">
+                            <tree string="Transfer" editable="top">
+                                  <control>
+                                      <create name="add_section_control" string="Add internal section"
+                                              context="{'default_type_of_transfer':'Internal Transfer'}"/>
+                                      <create name="add_section_control" string="Add external section"
+                                              context="{'default_type_of_transfer':'External Transfer'}"/>
+                                      <create name="add_line_control" string="Add a line"/>
+                                    </control>
+
+                                <field name="type_of_transfer" required="1"/>
+                                <field name="transfer_from_external_name" invisible="1"/>
+                                <field name="transfer_to_external_name" invisible="1"/>
+
+                                <field name="transfer_from" attrs="{'readonly':[('type_of_transfer','=','External Transfer')],'required':[('type_of_transfer','=','Internal Transfer')]}"/>
+                                <field name="transfer_to" attrs="{'readonly':[('type_of_transfer','=','External Transfer')],'required':[('type_of_transfer','=','Internal Transfer')]}"/>
+                                <field name="type_of_external_transfer" optional="show" attrs="{'required':[('type_of_transfer','=','External Transfer')],'readonly':[('type_of_transfer','=','Internal Transfer')]}"/>
+                                <field name="transfer_from_external" attrs="{'readonly':[('type_of_external_transfer','=',False)],'required':[('type_of_transfer','=','External Transfer')]}"/>
+                                <field name="from_airport" attrs="{'invisible':[('transfer_from_external_name','!=','الشركة المصرية للمطارات')],
+                                            'required':[('transfer_from_external_name','=','الشركة المصرية للمطارات')]}" optional="show"/>
+                                <field name="transfer_to_external" attrs="{'readonly':[('type_of_external_transfer','=',False)],'required':[('type_of_transfer','=','External Transfer')]}" optional="show"/>
+
+                                <field name="to_airport" attrs="{'invisible':[('transfer_to_external_name','!=','الشركة المصرية للمطارات')],
+                                            'required':[('transfer_to_external_name','=','الشركة المصرية للمطارات')]}" optional="show"/>
+
+                                <field name="decision_number" optional="hide"/>
+                                <field name="decision_date" optional="hide"/>
+                                <field name="attachments" optional="hide"/>
+                                <field name="notes" optional="hide"/>
+                            </tree>
+                        </field>
+                    </page>
+            </xpath>
+        </field>
+    </record>
+    <!--end of transfers-->
+
+    <!--delegation-->
+    <!--delegation action-->
+    <record id="delegation_action" model="ir.actions.act_window">
+        <field name="name">Delegation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">delegation</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="delegation_tree_view" model="ir.ui.view">
+        <field name="name">delegation tree view</field>
+        <field name="model">delegation</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="type_of_delegation"/>
+                    <field name="delegate_from"/>
+                    <field name="from_airport" />
+                    <field name="delegate_to"/>
+                    <field name="to_airport"/>
+                    <field name="decision_number"/>
+                    <field name="decision_date"/>
+                    <field name="attachments"/>
+                    <field name="period_date_from"/>
+                    <field name="period_date_to"/>
+                    <field name="period"/>
+                    <field name="attachments" optional="hide"/>
+                    <field name="notes" optional="hide"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="delegation_form_view" model="ir.ui.view">
+        <field name="name">delegation form view</field>
+        <field name="model">delegation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
 <!--                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="Draft" />-->
-                  <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
-                  <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
-                  <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
-                  <field name="state" widget="statusbar"/>
-              </header>
-              <sheet>
-                  <div class="oe_title">
-                      <h1>
-                          <field name="employee_id" placeholder="Employee's Name" required="1"/>
-                      </h1>
-                  </div>
-                  <group>
-                      <group>
-                          <field name="type_of_delegation" readonly="1"/>
-                          <field name="delegate_from"/>
-                          <field name="delegate_from_name" invisible="1"/>
-                          <field name="from_airport" attrs="{'invisible':[('delegate_from_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('delegate_from_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="delegate_to"/>
-                          <field name="delegate_to_name" invisible="1"/>
-                          <field name="to_airport" attrs="{'invisible':[('delegate_to_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('delegate_to_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="decision_number"/>
-                      </group>
-                      <group>
-                          <field name="decision_date"/>
-                          <field name="period_date_from"/>
-                          <field name="period_date_to"/>
-                          <field name="period"/>
-                          <field name="attachments"/>
-                      </group>
-                      <group string="Notes">
-                          <field name="notes"/>
-                      </group>
-                  </group>
-              </sheet>
-          </form>
-      </field>
-  </record>
+                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
+                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
+                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="employee_id" placeholder="Employee's Name" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type_of_delegation" required="1"/>
+                            <field name="delegate_from" attrs="{'readonly':[('type_of_delegation','=',False)]}"/>
+                            <field name="delegate_from_name" invisible="1"/>
+                            <field name="from_airport" attrs="{'invisible':[('delegate_from_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('delegate_from_name','=','الشركة المصرية للمطارات')]}"/>
+                            <field name="delegate_to" attrs="{'readonly':[('type_of_delegation','=',False)]}"/>
+                            <field name="delegate_to_name" invisible="1"/>
+                            <field name="to_airport" attrs="{'invisible':[('delegate_to_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('delegate_to_name','=','الشركة المصرية للمطارات')]}"/>
+                            <field name="decision_number"/>
+                        </group>
+                        <group>
+                            <field name="decision_date"/>
+                            <field name="period_date_from"/>
+                            <field name="period_date_to"/>
+                            <field name="period"/>
+                            <field name="attachments"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-  <record id="internal_delegation_action_form_view" model="ir.actions.act_window.view">
-          <field eval="2" name="sequence"/>
-          <field name="view_mode">form</field>
-          <field name="view_id" ref="internal_delegation_form_view"/>
-          <field name="act_window_id" ref="internal_delegation_action"/>
-  </record>
+    <record id="delegation_pivot_view" model="ir.ui.view">
+        <field name="model">delegation</field>
+        <field name="arch" type="xml">
+            <pivot string="Loan Analysis"  sample="1">
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
 
-  <record id="internal_delegation_pivot_view" model="ir.ui.view">
-      <field name="model">delegation</field>
-      <field name="arch" type="xml">
-          <pivot string="Loan Analysis"  sample="1">
-              <field name="employee_id" type="row"/>
-          </pivot>
-      </field>
-  </record>
+    <record id="delegation_hr_employee_view_tab" model="ir.ui.view">
+        <field name="name">loan employee tab</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Delegation">
+                        <field name="delegation_ids" mode="tree">
+                            <tree string="Delegation" editable="top">
+                                <field name="type_of_delegation" required="1"/>
+                                <field name="delegate_from" attrs="{'readonly':[('type_of_delegation','=',False)]}"/>
+                                <field name="delegate_from_name" invisible="1"/>
+                                <field name="delegate_to_name" invisible="1"/>
+                                <field name="from_airport" attrs="{'invisible':[('delegate_from_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('delegate_from_name','=','الشركة المصرية للمطارات')]}" />
+                                <field name="delegate_to" attrs="{'readonly':[('type_of_delegation','=',False)]}"/>
+                                <field name="to_airport" attrs="{'invisible':[('delegate_to_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('delegate_to_name','=','الشركة المصرية للمطارات')]}"/>
+                                <field name="period" optional="hide"/>
+                                <field name="period_date_from" optional="hide"/>
+                                <field name="period_date_to" optional="hide"/>
+                                <field name="decision_number" optional="hide"/>
+                                <field name="decision_date" optional="hide"/>
+                                <field name="attachments" optional="hide"/>
+                                <field name="notes" optional="hide"/>
+                            </tree>
+                        </field>
+                    </page>
+            </xpath>
+        </field>
+    </record>
 
-  <record id="internal_delegation_action_pivot_view" model="ir.actions.act_window.view">
-          <field eval="3" name="sequence"/>
-          <field name="view_mode">pivot</field>
-          <field name="view_id" ref="internal_delegation_pivot_view"/>
-          <field name="act_window_id" ref="internal_delegation_action"/>
-  </record>
+    <record id="delegation_search_view" model="ir.ui.view">
+        <field name="name">delegation search view</field>
+        <field name="model">delegation</field>
+        <field name="arch" type="xml">
+            <search string="Search Leads">
+                <field name="employee_id" string="Lead Name" filter_domain="[('employee_id', 'ilike', self)]"/>
+                <field name="delegate_to_name" string="Delegate To"/>
+                <field name="delegate_from_name" string="Delegate From"/>
+                <field name="decision_number" string="Decision Number"/>
+                <separator/>
+                <filter name="decision_date" date="decision_date" />
 
+                <separator/>
 
+                <group expand="0" string="Group By">
+                    <filter string="Group by Decision Date" name="decision_date" context="{'group_by': 'decision_date'}" />
+<!--                    <filter string="Group by Loan From" name="delegate_from" context="{'group_by': 'delegate_from'}" />-->
+<!--                    <filter string="Group by Loan To" name="delegate_to" context="{'group_by': 'delegate_to'}" />-->
+                </group>
+                <searchpanel>
+                    <field name="delegate_from" icon="fa-arrow-left" enable_counters="1"/>
+                    <field name="from_airport" icon="fa-plane" enable_counters="1"/>
+                    <field name="delegate_to" icon="fa-arrow-right" enable_counters="1"/>
+                    <field name="to_airport" icon="fa-plane" enable_counters="1"/>
+                </searchpanel>
 
-  <record id="external_delegation_action" model="ir.actions.act_window">
-      <field name="name">External Delegation</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">delegation</field>
-      <field name="domain">[('type_of_delegation','=','External Delegation')]</field>
-      <field name="context">{'default_type_of_delegation':'External Delegation'}</field>
-  </record>
-
-  <record id="external_delegation_tree_view" model="ir.ui.view">
-      <field name="name">delegation tree view</field>
-      <field name="model">delegation</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="employee_id"/>
-                  <field name="type_of_delegation"/>
-                  <field name="delegate_from"/>
-                  <field name="from_airport" />
-                  <field name="delegate_to"/>
-                  <field name="to_airport"/>
-                  <field name="decision_number"/>
-                  <field name="decision_date"/>
-                  <field name="attachments"/>
-                  <field name="period_date_from"/>
-                  <field name="period_date_to"/>
-                  <field name="period"/>
-                  <field name="attachments" optional="hide"/>
-                  <field name="notes" optional="hide"/>
-              </tree>
-      </field>
-  </record>
-
-  <record id="external_delegation_action_tree_view" model="ir.actions.act_window.view">
-          <field eval="1" name="sequence"/>
-          <field name="view_mode">tree</field>
-          <field name="view_id" ref="external_delegation_tree_view"/>
-          <field name="act_window_id" ref="external_delegation_action"/>
-  </record>
-
-  <record id="external_delegation_form_view" model="ir.ui.view">
-      <field name="name">delegation form view</field>
-      <field name="model">delegation</field>
-      <field name="arch" type="xml">
-          <form>
-              <header>
-<!--                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="Draft" />-->
-                  <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
-                  <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
-                  <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
-                  <field name="state" widget="statusbar"/>
-              </header>
-              <sheet>
-                  <div class="oe_title">
-                      <h1>
-                          <field name="employee_id" placeholder="Employee's Name" required="1"/>
-                      </h1>
-                  </div>
-                  <group>
-                      <group>
-                          <field name="type_of_delegation" readonly="1"/>
-                          <field name="delegate_from"/>
-                          <field name="delegate_from_name" invisible="1"/>
-                          <field name="from_airport" attrs="{'invisible':[('delegate_from_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('delegate_from_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="delegate_to" />
-                          <field name="delegate_to_name" invisible="1"/>
-                          <field name="to_airport" attrs="{'invisible':[('delegate_to_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('delegate_to_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="decision_number"/>
-                      </group>
-                      <group>
-                          <field name="decision_date"/>
-                          <field name="period_date_from"/>
-                          <field name="period_date_to"/>
-                          <field name="period"/>
-                          <field name="attachments"/>
-                      </group>
-                      <group string="Notes">
-                          <field name="notes"/>
-                      </group>
-                  </group>
-              </sheet>
-          </form>
-      </field>
-  </record>
-
-  <record id="external_delegation_action_form_view" model="ir.actions.act_window.view">
-          <field eval="2" name="sequence"/>
-          <field name="view_mode">form</field>
-          <field name="view_id" ref="external_delegation_form_view"/>
-          <field name="act_window_id" ref="external_delegation_action"/>
-  </record>
-
-  <record id="external_delegation_pivot_view" model="ir.ui.view">
-      <field name="model">delegation</field>
-      <field name="arch" type="xml">
-          <pivot string="Loan Analysis"  sample="1">
-              <field name="employee_id" type="row"/>
-          </pivot>
-      </field>
-  </record>
-
-  <record id="external_delegation_action_pivot_view" model="ir.actions.act_window.view">
-          <field eval="3" name="sequence"/>
-          <field name="view_mode">pivot</field>
-          <field name="view_id" ref="external_delegation_pivot_view"/>
-          <field name="act_window_id" ref="external_delegation_action"/>
-  </record>
-
-      <record id="delegation_hr_employee_view_tab" model="ir.ui.view">
-      <field name="name">loan employee tab</field>
-      <field name="model">hr.employee</field>
-      <field name="inherit_id" ref="hr.view_employee_form"/>
-      <field name="arch" type="xml">
-          <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-                  <page string="Delegation">
-                      <field name="delegation_ids" mode="tree">
-                          <tree string="Delegation" editable="top">
-                              <field name="employee_id" readonly="1"/>
-                              <field name="type_of_delegation"/>
-                              <field name="delegate_from" />
-                              <field name="delegate_from_name" invisible="1"/>
-                              <field name="delegate_to_name" invisible="1"/>
-                              <field name="from_airport" attrs="{'invisible':[('delegate_from_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('delegate_from_name','=','الشركة المصرية للمطارات')]}" />
-                              <field name="delegate_to" />
-                              <field name="to_airport" attrs="{'invisible':[('delegate_to_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('delegate_to_name','=','الشركة المصرية للمطارات')]}"/>
-                              <field name="period" optional="hide"/>
-                              <field name="period_date_from" optional="hide"/>
-                              <field name="period_date_to" optional="hide"/>
-                              <field name="decision_number" optional="hide"/>
-                              <field name="decision_date" optional="hide"/>
-                              <field name="attachments" optional="hide"/>
-                              <field name="notes" optional="hide"/>
-                          </tree>
-                      </field>
-                  </page>
-          </xpath>
-      </field>
-  </record>
+            </search>
+        </field>
+    </record>
 
 
 <!--    stop-->
 <!--stop delegation-->
 
-<!--loan-->
-<record id="internal_loan_action" model="ir.actions.act_window">
-      <field name="name">Internal Loan</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">loan</field>
-      <field name="domain">[('type_of_loan','=','Internal Loan')]</field>
-      <field name="context">{'default_type_of_loan':'Internal Loan'}</field>
-  </record>
+    <!--loan-->
+    <record id="loan_action" model="ir.actions.act_window">
+        <field name="name">Loan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
 
-  <record id="internal_loan_tree_view" model="ir.ui.view">
-      <field name="name">loan tree view</field>
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="employee_id"/>
-                  <field name="type_of_loan"/>
-                  <field name="loan_from"/>
-                  <field name="from_airport" />
-                  <field name="loan_to"/>
-                  <field name="to_airport"/>
-                  <field name="decision_number"/>
-                  <field name="decision_date"/>
-                  <field name="attachments"/>
-                  <field name="period_date_from"/>
-                  <field name="period_date_to"/>
-                  <field name="period"/>
-                  <field name="attachments" optional="hide"/>
-                  <field name="notes" optional="hide"/>
-              </tree>
-      </field>
-  </record>
+    <record id="loan_tree_view" model="ir.ui.view">
+        <field name="name">loan tree view</field>
+        <field name="model">loan</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="type_of_loan"/>
+                    <field name="loan_from"/>
+                    <field name="from_airport" />
+                    <field name="loan_to"/>
+                    <field name="to_airport"/>
+                    <field name="decision_number"/>
+                    <field name="decision_date"/>
+                    <field name="attachments"/>
+                    <field name="period_date_from"/>
+                    <field name="period_date_to"/>
+                    <field name="period"/>
+                    <field name="attachments" optional="hide"/>
+                    <field name="notes" optional="hide"/>
+                </tree>
+        </field>
+    </record>
 
-  <record id="internal_tree_view" model="ir.actions.act_window.view">
-          <field eval="1" name="sequence"/>
-          <field name="view_mode">tree</field>
-          <field name="view_id" ref="internal_loan_tree_view"/>
-          <field name="act_window_id" ref="internal_loan_action"/>
-  </record>
-
-  <record id="internal_loan_form_view" model="ir.ui.view">
-      <field name="name">loan form view</field>
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-          <form>
-              <header>
+    <record id="loan_form_view" model="ir.ui.view">
+        <field name="name">loan form view</field>
+        <field name="model">loan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
 <!--                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="Draft" />-->
-                  <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
-                  <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
-                  <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
-                  <field name="state" widget="statusbar"/>
-              </header>
-              <sheet>
-                  <div class="oe_title">
-                      <h1>
-                          <field name="employee_id" placeholder="Employee's Name" required="1"/>
-                      </h1>
-                  </div>
-                  <group>
-                      <group>
-                          <field name="type_of_loan" readonly="1"/>
-                          <field name="loan_from"/>
-                          <field name="loan_from_name" invisible="1"/>
-                          <field name="from_airport" attrs="{'invisible':[('loan_from_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('loan_from_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="loan_to"/>
-                          <field name="loan_to_name" invisible="1"/>
-                          <field name="to_airport" attrs="{'invisible':[('loan_to_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('loan_to_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="decision_number"/>
-                      </group>
-                      <group>
-                          <field name="decision_date"/>
-                          <field name="period_date_from"/>
-                          <field name="period_date_to"/>
-                          <field name="period"/>
-                          <field name="attachments"/>
-                      </group>
-                      <group string="Notes">
-                          <field name="notes"/>
-                      </group>
-                  </group>
-              </sheet>
-          </form>
-      </field>
-  </record>
+                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
+                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
+                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="employee_id" placeholder="Employee's Name" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type_of_loan" required="1"/>
+                            <field name="loan_from" attrs="{'readonly':[('type_of_loan','=',False)]}"/>
+                            <field name="loan_from_name" invisible="1"/>
+                            <field name="from_airport" attrs="{'invisible':[('loan_from_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('loan_from_name','=','الشركة المصرية للمطارات')]}"/>
+                            <field name="loan_to" attrs="{'readonly':[('type_of_loan','=',False)]}"/>
+                            <field name="loan_to_name" invisible="1"/>
+                            <field name="to_airport" attrs="{'invisible':[('loan_to_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('loan_to_name','=','الشركة المصرية للمطارات')]}"/>
+                            <field name="decision_number"/>
+                        </group>
+                        <group>
+                            <field name="decision_date"/>
+                            <field name="period_date_from"/>
+                            <field name="period_date_to"/>
+                            <field name="period"/>
+                            <field name="attachments"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-  <record id="internal_action_tree_view" model="ir.actions.act_window.view">
-          <field eval="2" name="sequence"/>
-          <field name="view_mode">form</field>
-          <field name="view_id" ref="internal_loan_form_view"/>
-          <field name="act_window_id" ref="internal_loan_action"/>
-  </record>
+    <record id="loan_pivot_view" model="ir.ui.view">
+        <field name="model">loan</field>
+        <field name="arch" type="xml">
+            <pivot string="Loan Analysis"  sample="1">
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
 
-  <record id="internal_loan_pivot_view" model="ir.ui.view">
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-          <pivot string="Loan Analysis"  sample="1">
-              <field name="employee_id" type="row"/>
-          </pivot>
-      </field>
-  </record>
+    <!---->
 
-  <record id="internal_action_pivot_view" model="ir.actions.act_window.view">
-          <field eval="3" name="sequence"/>
-          <field name="view_mode">pivot</field>
-          <field name="view_id" ref="internal_loan_pivot_view"/>
-          <field name="act_window_id" ref="internal_loan_action"/>
-  </record>
+    <!--loan search view-->
+    <record id="loan_search_view" model="ir.ui.view">
+        <field name="name">loan search view</field>
+        <field name="model">loan</field>
+        <field name="arch" type="xml">
+            <search string="Search Leads">
+                <field name="employee_id" string="Lead Name" filter_domain="[('employee_id', 'ilike', self)]"/>
+                <field name="loan_to_name" string="Loan To Name"/>
+                <field name="loan_from_name" string="Loan from Name"/>
+                <field name="decision_number" string="Decision number"/>
+                <separator/>
+                <filter name="decision_date" date="decision_date" />
 
+                <separator/>
 
+                <group expand="0" string="Group By">
+                    <filter string="Group by Decision Date" name="decision_date" context="{'group_by': 'decision_date'}" />
+<!--                    <filter string="Group by Loan From" name="loan_from" context="{'group_by': 'loan_from'}" />-->
+<!--                    <filter string="Group by Loan To" name="loan_to" context="{'group_by': 'loan_to'}" />-->
+                </group>
+                <searchpanel>
+                    <field name="loan_from" icon="fa-arrow-left" enable_counters="1"/>
+                    <field name="from_airport" icon="fa-plane" enable_counters="1"/>
+                    <field name="loan_to" icon="fa-arrow-right" enable_counters="1"/>
+                    <field name="to_airport" icon="fa-plane" enable_counters="1"/>
+                </searchpanel>
 
-  <record id="external_loan_action" model="ir.actions.act_window">
-      <field name="name">External Loan</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">loan</field>
-      <field name="domain">[('type_of_loan','=','External Loan')]</field>
-      <field name="context">{'default_type_of_loan':'External Loan'}</field>
-  </record>
+            </search>
+        </field>
+    </record>
 
-  <record id="external_loan_tree_view" model="ir.ui.view">
-      <field name="name">loan tree view</field>
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="employee_id"/>
-                  <field name="type_of_loan"/>
-                  <field name="loan_from"/>
-                  <field name="from_airport" />
-                  <field name="loan_to"/>
-                  <field name="to_airport"/>
-                  <field name="decision_number"/>
-                  <field name="decision_date"/>
-                  <field name="attachments"/>
-                  <field name="period_date_from"/>
-                  <field name="period_date_to"/>
-                  <field name="period"/>
-                  <field name="attachments" optional="hide"/>
-                  <field name="notes" optional="hide"/>
-              </tree>
-      </field>
-  </record>
-
-  <record id="external_action_tree_view" model="ir.actions.act_window.view">
-          <field eval="1" name="sequence"/>
-          <field name="view_mode">tree</field>
-          <field name="view_id" ref="external_loan_tree_view"/>
-          <field name="act_window_id" ref="external_loan_action"/>
-  </record>
-
-  <record id="external_loan_form_view" model="ir.ui.view">
-      <field name="name">loan form view</field>
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-          <form>
-              <header>
-<!--                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="Draft" />-->
-                  <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
-                  <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
-                  <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
-                  <field name="state" widget="statusbar"/>
-              </header>
-              <sheet>
-                  <div class="oe_title">
-                      <h1>
-                          <field name="employee_id" placeholder="Employee's Name" required="1"/>
-                      </h1>
-                  </div>
-                  <group>
-                      <group>
-                          <field name="type_of_loan" readonly="1"/>
-                          <field name="loan_from"/>
-                          <field name="loan_from_name" invisible="1"/>
-                          <field name="from_airport" attrs="{'invisible':[('loan_from_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('loan_from_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="loan_to" />
-                          <field name="loan_to_name" invisible="1"/>
-                          <field name="to_airport" attrs="{'invisible':[('loan_to_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('loan_to_name','=','الشركة المصرية للمطارات')]}"/>
-                          <field name="decision_number"/>
-                      </group>
-                      <group>
-                          <field name="decision_date"/>
-                          <field name="period_date_from"/>
-                          <field name="period_date_to"/>
-                          <field name="period"/>
-                          <field name="attachments"/>
-                      </group>
-                      <group string="Notes">
-                          <field name="notes"/>
-                      </group>
-                  </group>
-              </sheet>
-          </form>
-      </field>
-  </record>
-
-  <record id="external_action_form_view" model="ir.actions.act_window.view">
-          <field eval="2" name="sequence"/>
-          <field name="view_mode">form</field>
-          <field name="view_id" ref="external_loan_form_view"/>
-          <field name="act_window_id" ref="external_loan_action"/>
-  </record>
-
-  <record id="external_loan_pivot_view" model="ir.ui.view">
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-          <pivot string="Loan Analysis"  sample="1">
-              <field name="employee_id" type="row"/>
-          </pivot>
-      </field>
-  </record>
-
-  <record id="external_action_pivot_view" model="ir.actions.act_window.view">
-          <field eval="3" name="sequence"/>
-          <field name="view_mode">pivot</field>
-          <field name="view_id" ref="external_loan_pivot_view"/>
-          <field name="act_window_id" ref="external_loan_action"/>
-  </record>
-
-  <!--tree-->
-
-  <!--loan search view-->
-  <record id="loan_search_view" model="ir.ui.view">
-      <field name="name">loan search view</field>
-      <field name="model">loan</field>
-      <field name="arch" type="xml">
-          <search string="Search Leads">
-              <field name="employee_id" string="Lead Name" filter_domain="[('employee_id', 'ilike', self)]"/>
-              <field name="loan_to_name" string="Loan To Name"/>
-              <field name="loan_from_name" string="Loan from Name"/>
-              <field name="decision_number" string="Decision number"/>
-              <separator/>
-              <filter name="decision_date" date="decision_date" />
-
-              <separator/>
-
-              <group expand="0" string="Group By">
-                  <filter string="Group by Date" name="decision_date" context="{'group_by': 'decision_date'}" />
-                  <filter string="Group by Loan From" name="loan_from" context="{'group_by': 'loan_from'}" />
-                  <filter string="Group by Loan To" name="loan_to" context="{'group_by': 'loan_to'}" />
-              </group>
-          </search>
-      </field>
-  </record>
-
-  <!--loan tree view-->
+    <!--loan tree view-->
 
 
 <!---->
-  <!--pivot table for loan-->
+    <!--pivot table for loan-->
 
-  <!--loan tab in hr employee-->
-  <record id="loan_hr_employee_view_tab" model="ir.ui.view">
-      <field name="name">loan employee tab</field>
-      <field name="model">hr.employee</field>
-      <field name="inherit_id" ref="hr.view_employee_form"/>
-      <field name="arch" type="xml">
-          <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
-                  <page string="Loan">
-                      <field name="loan_ids" mode="tree">
-                          <tree string="Transfer" editable="top">
-                              <field name="employee_id" readonly="1"/>
-                              <field name="type_of_loan"/>
-                              <field name="loan_from"/>
-                              <field name="loan_from_name" invisible="1"/>
-                              <field name="loan_to_name" invisible="1"/>
-                              <field name="from_airport" attrs="{'invisible':[('loan_from_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('loan_from_name','=','الشركة المصرية للمطارات')]}" />
-                              <field name="loan_to"/>
-                              <field name="to_airport" attrs="{'invisible':[('loan_to_name','!=','الشركة المصرية للمطارات')],
-                          'required':[('loan_to_name','=','الشركة المصرية للمطارات')]}"/>
-                              <field name="period" optional="hide"/>
-                              <field name="period_date_from" optional="hide"/>
-                              <field name="period_date_to" optional="hide"/>
-                              <field name="decision_number" optional="hide"/>
-                              <field name="decision_date" optional="hide"/>
-                              <field name="attachments" optional="hide"/>
-                              <field name="notes" optional="hide"/>
-                          </tree>
-                      </field>
-                  </page>
-          </xpath>
-      </field>
-  </record>
+    <!--loan tab in hr employee-->
+    <record id="loan_hr_employee_view_tab" model="ir.ui.view">
+        <field name="name">loan employee tab</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Loan">
+                        <field name="loan_ids" mode="tree">
+                            <tree string="Transfer" editable="top">
+                                <field name="type_of_loan" required="1"/>
+                                <field name="loan_from" attrs="{'readonly':[('type_of_loan','=',False)]}"/>
+                                <field name="loan_from_name" invisible="1"/>
+                                <field name="loan_to_name" invisible="1"/>
+                                <field name="from_airport" attrs="{'invisible':[('loan_from_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('loan_from_name','=','الشركة المصرية للمطارات')]}" />
+                                <field name="loan_to" attrs="{'readonly':[('type_of_loan','=',False)]}"/>
+                                <field name="to_airport" attrs="{'invisible':[('loan_to_name','!=','الشركة المصرية للمطارات')],
+                            'required':[('loan_to_name','=','الشركة المصرية للمطارات')]}"/>
+                                <field name="period" optional="hide"/>
+                                <field name="period_date_from" optional="hide"/>
+                                <field name="period_date_to" optional="hide"/>
+                                <field name="decision_number" optional="hide"/>
+                                <field name="decision_date" optional="hide"/>
+                                <field name="attachments" optional="hide"/>
+                                <field name="notes" optional="hide"/>
+                            </tree>
+                        </field>
+                    </page>
+            </xpath>
+        </field>
+    </record>
 <!--end loan-->
 
 
 <!--company-->
-  <!--company action-->
-  <record id="company_name_action" model="ir.actions.act_window">
-      <field name="name">Company</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">transfer_company_name</field>
-      <field name="view_mode">tree,form</field>
-  </record>
+    <!--company action-->
+    <record id="company_name_action" model="ir.actions.act_window">
+        <field name="name">Company</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">transfer_company_name</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
-  <!--company tree view-->
-  <record id="company_tree_view" model="ir.ui.view">
-      <field name="name">company tree view</field>
-      <field name="model">transfer_company_name</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="name"/>
-              </tree>
-      </field>
-  </record>
+    <!--company tree view-->
+    <record id="company_tree_view" model="ir.ui.view">
+        <field name="name">company tree view</field>
+        <field name="model">transfer_company_name</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+        </field>
+    </record>
 
-  <!--company form view-->
-  <record id="company_form_view" model="ir.ui.view">
-      <field name="name">company form view</field>
-      <field name="model">transfer_company_name</field>
-      <field name="arch" type="xml">
-              <form>
-                  <sheet>
-                          <group>
-                              <field name="name"/>
-<!--                                <field name="airports"/>-->
-<!--                                <field name="transfer_ids" invisible="True"/>-->
-                          </group>
-                  </sheet>
-              </form>
-      </field>
-  </record>
+    <!--company form view-->
+    <record id="company_form_view" model="ir.ui.view">
+        <field name="name">company form view</field>
+        <field name="model">transfer_company_name</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
 <!--end company-->
-
-<!--airports-->
-  <!--airports action-->
-  <record id="airport_name_action" model="ir.actions.act_window">
-      <field name="name">Company</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">airports</field>
-      <field name="view_mode">tree,form</field>
-  </record>
-
-  <!--airports tree view-->
-  <record id="airport_tree_view" model="ir.ui.view">
-      <field name="name">airport tree view</field>
-      <field name="model">airports</field>
-      <field name="arch" type="xml">
-              <tree>
-                  <field name="name"/>
-              </tree>
-      </field>
-  </record>
-
-  <!--airports form view-->
-  <record id="airport_form_view" model="ir.ui.view">
-      <field name="name">airport form view</field>
-      <field name="model">airports</field>
-      <field name="arch" type="xml">
-              <form>
-                  <sheet>
-                          <group>
-                              <field name="name"/>
-                          </group>
-                  </sheet>
-              </form>
-      </field>
-  </record>
-<!--end airports-->
 
 
 <!--committee blended-->

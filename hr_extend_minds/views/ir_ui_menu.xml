@@ -230,7 +230,7 @@
   <menuitem id="parent_menu_employee_service_name"  name="Employee Service Name"  action="action_employee_service_name"  parent="parent_menu_employees_care_config" sequence="3008" />
   <!-- <menuitem id="parent_menu_action_grants_terms"  name="Grants Terms"  action="action_grants_terms"  parent="parent_menu_employees_care_config" sequence="3009" /> -->
 
-  <!--transfers menu item-->
+<!--transfers menu item-->
   <!--main menu-->
   <record id="transfers_menu_item" model="ir.ui.menu">
     <field name="action" eval="False" />
@@ -268,31 +268,15 @@
   </record>
   <!--end transfers-->
 
-  <!--delegation menu items-->
+<!--delegation menu items-->
   <record id="delegation_sub_menu_item" model="ir.ui.menu">
-    <field name="action" eval="False" />
+    <field name="action" ref="hr_extend_minds.delegation_action" />
     <field name="active" eval="True" />
     <field name="name">Delegation</field>
     <field name="parent_id" ref="transfers_menu_item" />
     <field name="sequence">5400</field>
   </record>
 
-  <record id="internal_delegation_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.internal_delegation_action" />
-    <field name="active" eval="True" />
-    <field name="name">Internal Delegation</field>
-    <field name="parent_id" ref="delegation_sub_menu_item" />
-    <field name="sequence">5500</field>
-  </record>
-
-  <record id="external_delegation_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.external_delegation_action" />
-    <field name="active" eval="True" />
-    <field name="name">External Delegation</field>
-    <field name="parent_id" ref="delegation_sub_menu_item" />
-    <field name="sequence">5600</field>
-
-  </record>
   <!--    company names-->
   <record id="company_sub_menu_item" model="ir.ui.menu">
     <field name="action" ref="hr_extend_minds.company_name_action" />
@@ -301,40 +285,16 @@
     <field name="parent_id" ref="transfers_menu_item" />
     <field name="sequence">6000</field>
   </record>
+<!--end delegation-->
 
-  <record id="airport_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.airport_name_action" />
-    <field name="active" eval="True" />
-    <field name="name">Airports</field>
-    <field name="parent_id" ref="transfers_menu_item" />
-    <field name="sequence">6100</field>
-  </record>
-  <!--end delegation-->
+<!--loan-->
 
-  <!--loan-->
   <record id="loan_sub_menu_item" model="ir.ui.menu">
-    <field name="action" eval="False" />
+    <field name="action" ref="hr_extend_minds.loan_action" />
     <field name="active" eval="True" />
     <field name="name">Loan</field>
     <field name="parent_id" ref="transfers_menu_item" />
     <field name="sequence">5700</field>
-  </record>
-
-  <record id="internal_loan_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.internal_loan_action" />
-    <field name="active" eval="True" />
-    <field name="name">Internal Loan</field>
-    <field name="parent_id" ref="loan_sub_menu_item" />
-    <field name="sequence">5800</field>
-  </record>
-
-  <record id="external_loan_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.external_loan_action" />
-    <field name="active" eval="True" />
-    <field name="name">External Loan</field>
-    <field name="parent_id" ref="loan_sub_menu_item" />
-    <field name="sequence">5900</field>
-
   </record>
 
   <record id="free_exception_time_menu_item" model="ir.ui.menu">
@@ -346,13 +306,13 @@
   </record>
 
   <record id="committee_session_menu_item" model="ir.ui.menu">
-      <field name="action" ref="hr_extend_minds.committee_session_action" />
-      <field name="active" eval="True" />
-      <field name="name">Committee Sessions</field>
-      <field name="parent_id" ref="parent_menu_committee" />
-      <field name="sequence">3200</field>
+    <field name="action" ref="hr_extend_minds.committee_session_action" />
+    <field name="active" eval="True" />
+    <field name="name">Committee Sessions</field>
+    <field name="parent_id" ref="parent_menu_committee" />
+    <field name="sequence">3200</field>
   </record>
-  
-  <!--end loan-->
+
+<!--end loan-->
 
 </odoo>
