@@ -1444,12 +1444,12 @@
             </field>
     </record>
 
-    <record id="internal_transfer_graph_view_action" model="ir.actions.act_window.view">
+    <!-- <record id="internal_transfer_graph_view_action" model="ir.actions.act_window.view">
         <field eval="100" name="sequence"/>
         <field name="view_mode">graph</field>
         <field name="view_id" ref="hr_extend_minds.transfer_report_view_graph"/>
         <field name="act_window_id" ref="hr_extend_minds.internal_transfers_action"/>
-    </record>
+    </record> -->
 
 <!--external-->
     <record id="external_transfers_action" model="ir.actions.act_window">
@@ -1575,12 +1575,12 @@
         </record>
 
 
-    <record id="external_transfer_graph_view_action" model="ir.actions.act_window.view">
+    <!-- <record id="external_transfer_graph_view_action" model="ir.actions.act_window.view">
             <field eval="200" name="sequence"/>
             <field name="view_mode">graph</field>
             <field name="view_id" ref="hr_extend_minds.external_transfer_report_view_graph"/>
             <field name="act_window_id" ref="hr_extend_minds.external_transfers_action"/>
-    </record>
+    </record> -->
 
 
 <!--transfer search view-->
