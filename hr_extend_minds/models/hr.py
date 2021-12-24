@@ -271,6 +271,8 @@ class hrextend(models.Model):
     delegation_ids = fields.One2many('delegation','employee_id')
     loan_ids = fields.One2many('loan','employee_id')
 
+    exception_employee_ids = fields.One2many('free_exception_time', 'employee_id')
+
 
     @api.depends('department_id')
     def _get_section_name(self):
