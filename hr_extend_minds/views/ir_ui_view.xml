@@ -2746,6 +2746,7 @@
         </tree>
         </field>
     </record>
+
     <record id="view_job_hierarchy_form" model="ir.ui.view">
         <field name="name">view_job_hierarchy_form</field>
         <field name="model">job_hierarchy</field>
@@ -2820,6 +2821,7 @@
         </tree>
       </field>
     </record>
+    
     <record id="view_job_hierarchy_decisions_form" model="ir.ui.view">
       <field name="name">view_job_hierarchy_decisions_form</field>
       <field name="model">job_hierarchy_decisions</field>
