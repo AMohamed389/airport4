@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+""" Employee Usage """
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, Warning, ValidationError
 
@@ -6,9 +7,12 @@ from odoo.exceptions import UserError, Warning, ValidationError
 class EmployeeUsage(models.Model):
     """ Employee Usage """
     _name = 'employee_usage'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'employee_service_name_id'
     _description = 'Employee Usage'
 
-    hr_employee_id = fields.Many2one('hr.employee', string='Employee Name', index=True, tracking=True)
+    hr_employee_id = fields.Many2one('hr.employee', string='Employee Name',
+                                     index=True, tracking=True)
     service_date = fields.Date(index=True, tracking=True)
     employee_service_name_id = fields.Many2one('employee_service_name',
                                                index=True, tracking=True)
@@ -52,6 +56,6 @@ class EmployeeUsage(models.Model):
                     if rec.insurance_company == '1':
                         rec.medical_number = rec.hr_employee_id.egypt_air_insurance
                     if rec.insurance_company == '2':
-                        rec.medical_number = rec.hr_employee_id.dmc_insurance
+                        rec.medical_number = rec.hr_employee_id.dms_insurance
                     if rec.insurance_company == '3':
                         rec.medical_number = rec.hr_employee_id.gov_medical_insurance

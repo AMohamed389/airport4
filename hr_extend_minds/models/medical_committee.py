@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+""" Medical Committee """
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, Warning, ValidationError
 
@@ -6,8 +7,9 @@ from odoo.exceptions import UserError, Warning, ValidationError
 class MedicalCommittee(models.Model):
     """ Medical Committee """
     _name = 'medical_committee'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'hr_employee_id'
     _description = 'Medical Committee'
-    _order = 'id DESC'
 
     hr_employee_id = fields.Many2one('hr.employee',string='Employee Name',index=True,tracking=True)
     date = fields.Date(index=True,tracking=True)
@@ -16,5 +18,5 @@ class MedicalCommittee(models.Model):
     amount = fields.Monetary(string='Amount',index=True,tracking=True)
     destination_number = fields.Integer(index=True,tracking=True)
     destination_date = fields.Date(index=True,tracking=True)
-    attachment = fields.Binary(string="Attachment")
+    attachment = fields.Binary()
 

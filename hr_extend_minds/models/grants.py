@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+""" Grants """
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, Warning, ValidationError
 from datetime import date, datetime, time
@@ -9,23 +10,29 @@ from functools import reduce
 class Grants(models.Model):
     """ Grants """
     _name = 'grants'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'grant_type_id'
     _description = 'Grants'
-    _order = 'id DESC'
 
-    hr_employee_id = fields.Many2one('hr.employee',string='Employee Name',index=True,tracking=True)
-    grant_type_id = fields.Many2one('grant_type',index=True,tracking=True)
-    # grants_terms_id = fields.Many2one('grants_terms',index=True,tracking=True)
-    diagnosis_id = fields.Many2one('employee_diagnosis_type',sting="Diagnosis Type",index=True,tracking=True)
-    currency_id = fields.Many2one('res.currency', string="Currency", store=True, tracking=True, index=True, default=lambda self: self.env.user.company_id.currency_id.id)
-    amount = fields.Monetary(string='Amount',index=True,tracking=True)
-    document_date = fields.Date(string='Document Date',index=True,tracking=True)
-    submission_date = fields.Date(string='submission Date',index=True,tracking=True)
-    attachment = fields.Binary(string="Attachment")
+    hr_employee_id = fields.Many2one('hr.employee', string='Employee Name',
+                                     index=True, tracking=True, required=True)
+    grant_type_id = fields.Many2one('grant_type', index=True, tracking=True,
+                                    required=True)
     grant_check = fields.Boolean()
-    s_date = fields.Date(index=True,tracking=True)
-    e_date = fields.Date(index=True,tracking=True)
-
-
+    s_date = fields.Date()
+    e_date = fields.Date()
+    diagnosis_id = fields.Many2one('employee_diagnosis_type',
+                                   string="Diagnosis Type", index=True,
+                                   tracking=True)
+    currency_id = fields.Many2one('res.currency', string="Currency", store=True,
+                                  tracking=True, index=True, default=lambda
+            self: self.env.user.company_id.currency_id.id)
+    amount = fields.Monetary(string='Amount', index=True, tracking=True)
+    document_date = fields.Date(string='Document Date', index=True,
+                                tracking=True, required=True)
+    submission_date = fields.Date(string='submission Date', index=True,
+                                  tracking=True)
+    attachment = fields.Binary()
 
     @api.constrains('grant_type_id', 'amount', 'document_date')
     def _check_grant_type(self):
@@ -49,12 +56,14 @@ class Grants(models.Model):
                 if rec.document_date > datem2 and rec.document_date < datem3:
                     if rec.grant_type_id == self.env.ref(
                             "hr_extend_minds.grant_type_02"):
+                        rec.s_date=datem2
+                        rec.e_date=datem3
                         hr2 = self.env['grants'].search(
                             [('hr_employee_id', '=', rec.hr_employee_id.id),('grant_type_id', '=', self.env.ref(
                                 "hr_extend_minds.grant_type_02").id),('s_date', '=', datem2),('e_date', '=',datem3)])
                         for amount in hr2:
                             total_amount += amount.amount
-                        if total_amount >= 2500:
+                        if total_amount > 2500:
                             raise ValidationError(_('علاج احد افراد الاسرة حد أقصى 2500 فى السنة المالية.'))
                         else:
                             rec.s_date=datem2
@@ -187,3 +196,20 @@ class Grants(models.Model):
                             if birth_check > 1:
                                 raise ValidationError(
                                     _('منحة وفاة عضو الشركة مرة واحدة في العمر .'))
+
+                if rec.grant_type_id == self.env.ref(
+                        "hr_extend_minds.grant_type_11"):
+                    na=hr.hr_employee_id.name
+                    if hr.hr_employee_id.children:
+                        print(hr.hr_employee_id.children)
+                        for birth in hr:
+                            if birth.grant_type_id == self.env.ref(
+                                    "hr_extend_minds.grant_type_11"):
+
+                                birth_check += 1
+                                if birth_check > hr.hr_employee_id.children:
+                                    raise ValidationError(
+                                        _('منحة زواج احد ابناء عضو الشركة مرة واحدة للإبن .'))
+                    else:
+                        raise ValidationError(
+                            _('عضو الشركة %s ليس لديه أبناء.')%na)

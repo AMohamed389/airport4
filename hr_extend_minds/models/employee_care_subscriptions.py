@@ -7,6 +7,8 @@ from odoo.exceptions import UserError, Warning, ValidationError
 class EmployeeCareSubscriptions(models.Model):
     """ Employee Care Subscriptions """
     _name = 'employee_care_subscriptions'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'care_subscriptions_type_id'
     _description = 'Employee Care Subscriptions'
 
     hr_employee_id = fields.Many2one('hr.employee',string='Employee Name',index=True,tracking=True)
