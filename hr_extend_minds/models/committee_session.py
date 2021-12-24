@@ -3,8 +3,8 @@ from odoo.exceptions import UserError
 
 class SessionCommittee(models.Model):
     _name = 'committee_session'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'committee_session_id'
-    attendance_selection = fields.Boolean(string='Attendance')
     session_date = fields.Date(string='Session Date')
     allowance_percentage = fields.Selection(related='employee_session_id.allowance_percentage',
                                             string="Allowance Percentage")
@@ -12,6 +12,7 @@ class SessionCommittee(models.Model):
     note = fields.Text(string="Note")
     employee_session_id = fields.Many2many('committee_employee', string='Employees Session', store=True)
     committee_session_id = fields.Many2one('committee', string='Committee')
+    employee_id = fields.Many2one('hr.employee')
 
     @api.onchange('committee_session_id')
     def get_committee_session_id_employee(self):

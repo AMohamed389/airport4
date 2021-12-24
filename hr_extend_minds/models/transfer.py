@@ -4,6 +4,7 @@ from odoo.exceptions import UserError
 
 class Transfer(models.Model):
     _name = "transfer"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "internal and external transfers "
 
     employee_id = fields.Many2one('hr.employee', string='Name', index=True, tracking=True)
@@ -30,7 +31,7 @@ class Transfer(models.Model):
     to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
 
     type_of_external_transfer = fields.Selection(
-        [('Internal Transfer CAC', 'Internal Transfer CAC'), ('External Transfer CAC', 'External Transfer CAC')],
+        [('Internal Transfer CAC', 'Internal Transfer To CAC'), ('External Transfer CAC', 'External Transfer From CAC')],
         string='Type Of Transfer',
         index=True, tracking=True)
 
@@ -64,7 +65,7 @@ class Transfer(models.Model):
                 }
             }
 
-    decision_number = fields.Char(string='Decision Number', index=True, tracking=True)
+    decision_number = fields.Integer(string='Decision Number', index=True, tracking=True)
     decision_date = fields.Date(string='Decision Date', index=True, tracking=True)
     attachments = fields.Binary(string='Attachment', index=True, tracking=True)
 
@@ -134,3 +135,22 @@ class Transfer(models.Model):
             'name': self.employee_id.job_id.name,
         }
         history = self.env['job_history'].search([('x_employee_id.id', '=', self.employee_id.id)]).create(line)
+
+    @api.model
+    def create(self, vals):
+        if vals['decision_number'] == 0:
+            raise UserError('please add the Decision number')
+        return super(Transfer, self).create(vals)
+
+    def write(self, vals):
+        if 'decision_number' in vals:
+            if vals['decision_number'] == 0:
+                raise UserError('please add the Decision number !!')
+        super(Transfer, self).write(vals)
+
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+        if args is None:
+            args = []
+        domain = args + ['|', ('x_staff_id', operator, name), ('name', operator, name)]
+        return self._search(domain, limit=limit, access_rights_uid=name_get_uid)

@@ -1,13 +1,14 @@
-from odoo import fields, models, api, _
-from dateutil import relativedelta
+from odoo import fields, models, api
+from odoo.exceptions import UserError
+
 
 class Delegation(models.Model):
     _name = 'delegation'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'employee_id'
     employee_id = fields.Many2one('hr.employee')
     type_of_delegation = fields.Selection([('Internal','Internal'),('External','External')])
 
-    @api.depends('type_of_delegation')
     @api.onchange('type_of_delegation')
     def check_type(self):
         x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
@@ -21,8 +22,8 @@ class Delegation(models.Model):
                         'delegate_from': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
                         'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
                         'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
-                        }
                     }
+                }
         else:
             self.delegate_to = False
             self.delegate_from = False
@@ -33,8 +34,8 @@ class Delegation(models.Model):
                         'delegate_to': ['&', ('id', 'in', x_company.ids), ('name', '!=', 'شركة ميناء القاهرة الجوي')],
                         'from_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.to_airport.id)],
                         'to_airport': ['&', ('id', 'in', x_airport.ids), ('id', '!=', self.from_airport.id)]
-                        }
                     }
+                }
 
     delegate_from = fields.Many2one('transfer_company_name', string='Delegate From', index=True, tracking=True)
     delegate_to = fields.Many2one('transfer_company_name', string='Delegate To', index=True, tracking=True)
@@ -46,7 +47,7 @@ class Delegation(models.Model):
     delegate_to_name = fields.Char(related='delegate_to.name', string='Delegate To Name', store=True)
 
     decision_date = fields.Date(string='Decision date')
-    decision_number = fields.Char(string='Decision number')
+    decision_number = fields.Integer(string='Decision number', tracking=True)
 
     period = fields.Char(compute='compute_delegation', string='Delegation period')
 
@@ -78,12 +79,10 @@ class Delegation(models.Model):
 
                 # date_from_months = rec.period_date_from.year * 12 + (rec.period_date_from.month - 1)
                 # date_to_months = rec.period_date_to.year * 12 + (rec.period_date_to.month - 1)
-                ##_num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (
-                            ##rec.period_date_to.month - rec.period_date_from.month)
+                _num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (
+                            rec.period_date_to.month - rec.period_date_from.month)
                 # months_res = date_to_months - date_from_months
-                ## rec.period = f'days({day_res}), months({_num_months})'
-                r = relativedelta.relativedelta(rec.period_date_to, rec.period_date_from)
-                rec.period = f'days({r.days}), months({r.months}), years({r.years})'
+                rec.period = f'days({day_res}), months({_num_months})'
             else:
                 rec.period = 0.0
 
@@ -113,3 +112,22 @@ class Delegation(models.Model):
             'x_date_to': self.period_date_to,
         }
         history = self.env['job_history'].search([('x_employee_id.id', '=', self.employee_id.id)]).create(line)
+
+    @api.model
+    def create(self, vals):
+        if vals['decision_number'] == 0:
+            raise UserError('please add the Decision number')
+        return super(Delegation, self).create(vals)
+
+    def write(self, vals):
+        if 'decision_number' in vals:
+            if vals['decision_number'] == 0:
+                raise UserError('please add the Decision number !!')
+        super(Delegation, self).write(vals)
+
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+        if args is None:
+            args = []
+        domain = args + ['|', ('x_staff_id', operator, name), ('name', operator, name)]
+        return self._search(domain, limit=limit, access_rights_uid=name_get_uid)

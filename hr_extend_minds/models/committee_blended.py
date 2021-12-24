@@ -1,5 +1,5 @@
 from odoo import fields, models, api
-
+from odoo.exceptions import UserError
 
 class BlendedCommittee(models.Model):
     _inherit = 'committee_employee'
@@ -11,9 +11,8 @@ class BlendedCommittee(models.Model):
     role_member = fields.Selection([('عضو', 'عضو'), ('مدعو', 'مدعو'), ('مستعان', 'مستعان'),
                                     ('مقرر', 'مقرر'), ('امانة', 'امانة'),
                                     ('رئيس', 'رئيس'), ('سكرتير', 'سكرتير'), ('عضو لجنة فرعية', 'عضو لجنة فرعية')])
-    member = fields.Char(string="External Committee Member", index=True, tracking=True)
+    member = fields.Char(string="External Member", index=True, tracking=True)
     allowance_percentage = fields.Selection(related='x_committee_id.allowance_percentage',string="Allowance Percentage",tracking=True, index=True)
-    repetition_of_attendance = fields.Integer(string="Repetition of Attendance")
     session_ids = fields.Many2many('committee_session', string='Sessions')
     names = fields.Char(compute='calc')
 
@@ -40,10 +39,22 @@ class CommitteeInherit(models.Model):
     committee_name = fields.Char(string='Committee Name', index=True, tracking=True)
     allowance_percentage = fields.Selection([('25','25'),('50','50'),('75','75'),('100','100')],string="Allowance Percentage",tracking=True, index=True)
     session_ids = fields.One2many('committee_session','committee_session_id')
+    repetition_of_attendance = fields.Integer(string="Repetition of Attendance")
     com = fields.Char(compute='com_name')
 
     @api.depends('committee_name','name')
     def com_name(self):
         for rec in self:
-            rec.com = rec.committee_name + '/' + rec.name
+            rec.com = (rec.committee_name or ' ') + '/' + (rec.name or ' ')
 
+    @api.model
+    def create(self, vals):
+        if vals['repetition_of_attendance'] == 0:
+            raise UserError('please add the repetition attendance of this committee')
+        return super(CommitteeInherit, self).create(vals)
+
+    def write(self, vals):
+        if 'repetition_of_attendance' in vals:
+            if vals['repetition_of_attendance'] == 0:
+                raise UserError('please add the repetition attendance of this committee !!')
+        super(CommitteeInherit, self).write(vals)
