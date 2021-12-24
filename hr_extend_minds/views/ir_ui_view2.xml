@@ -565,29 +565,26 @@
         <field name="res_model">grants</field>
         <field name="view_mode">tree,form,pivot</field>
     </record>
-
     <record id="view_grants_list" model="ir.ui.view">
         <field name="name">view_grants_list</field>
         <field name="model">grants</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <tree>
                 <field name="hr_employee_id" optional="show"/>
                 <field name="grant_type_id" optional="show"/>
                 <field name="grant_check" invisible="1"/>
                 <field name="s_date" invisible="1"/>
                 <field name="e_date" invisible="1"/>
                 <field name="amount" optional="show"/>
-                <!-- <field name="grants_terms_id" optional="show"/> -->
                 <field name="diagnosis_id" optional="show"/>
                 <field name="currency_id" optional="show" invisible="1"/>
                 <field name="document_date" optional="show"/>
                 <field name="submission_date" optional="show"/>
-                <field name="attachment" optional="show"/>
+                <field name="attachment" optional="show" widget="download_link" filename="attachment_fname"/>
 
             </tree>
         </field>
     </record>
-
     <record id="view_grants_form" model="ir.ui.view">
         <field name="name">view_grants_form</field>
         <field name="model">grants</field>
@@ -596,7 +593,8 @@
                 <header>
                     <!-- <button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
 
-                    <field name="state" widget="statusbar" /> -->
+
+                                         <field name="state" widget="statusbar" /> -->
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_button_box"> </div>
@@ -606,8 +604,21 @@
                         </h1>
                     </div>
                     <group name="main_group">
-                        <group name="group_left"> </group>
-                        <group name="group_right"> </group>
+                        <group name="group_left">
+                            <field name="hr_employee_id" optional="show"/>
+                            <field name="grant_type_id" optional="show"/>
+                            <field name="grant_check" invisible="1"/>
+                            <field name="s_date" invisible="1"/>
+                            <field name="e_date" invisible="1"/>
+                            <field name="amount" optional="show"/>
+                            <field name="diagnosis_id" optional="show"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="currency_id" optional="show" invisible="1"/>
+                            <field name="document_date" optional="show"/>
+                            <field name="submission_date" optional="show"/>
+                            <field name="attachment" optional="show" widget="download_link" filename="attachment_fname"/>
+                        </group>
                     </group>
                     <!--  <notebook name="main_notebook">
                                             <page name="page1" string="page name">
@@ -615,15 +626,14 @@
                                             </page>
                                           </notebook>  -->
                 </sheet>
-                <!--  <div class="oe_chatter" name="mainchatterview">
+                  <div class="oe_chatter" name="mainchatterview">
                                   <field name="message_follower_ids"/>
                                   <field name="activity_ids"/>
                                   <field name="message_ids"/>
-                                </div>  -->
+                                </div>
             </form>
         </field>
     </record>
-
     <record id="grants_pivot" model="ir.ui.view">
         <field name="name">grants.pivot</field>
         <field name="model">grants</field>
@@ -643,7 +653,6 @@
         <field name="res_model">grant_type</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <record id="view_grant_type_list" model="ir.ui.view">
         <field name="name">Grant Type</field>
         <field name="model">grant_type</field>
@@ -655,7 +664,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_grant_type_form" model="ir.ui.view">
         <field name="name">view_grant_type_form</field>
         <field name="model">grant_type</field>
@@ -700,7 +708,6 @@
         <field name="res_model">employee_diagnosis_type</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <record id="view_employee_diagnosis_type_list" model="ir.ui.view">
         <field name="name">employee_diagnosis_type_list</field>
         <field name="model">employee_diagnosis_type</field>
@@ -712,7 +719,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_employee_diagnosis_type_form" model="ir.ui.view">
         <field name="name">view_employee_diagnosis_type_form</field>
         <field name="model">employee_diagnosis_type</field>
@@ -757,14 +763,13 @@
         <field name="res_model">employee_care_subscriptions</field>
         <field name="view_mode">tree,form,pivot</field>
     </record>
-
     <record id="view_employee_care_subscriptions_list" model="ir.ui.view">
         <field name="name">employee_care_subscriptions_list</field>
         <field name="model">employee_care_subscriptions</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
-                <field name="hr_employee_id" optional="show"/>
-                <field name="care_subscriptions_type_id" optional="show"/>
+            <tree>
+                <field name="hr_employee_id" optional="show" required="True"/>
+                <field name="care_subscriptions_type_id" optional="show" required="True"/>
                 <field name="employee_destination_id" optional="show"/>
                 <field name="no_of_months" optional="show"/>
                 <field name="currency_id" invisible="1"/>
@@ -776,7 +781,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_employee_care_subscriptions_form" model="ir.ui.view">
         <field name="name">view_employee_care_subscriptions_form</field>
         <field name="model">employee_care_subscriptions</field>
@@ -796,8 +800,19 @@
                         </h1>
                     </div>
                     <group name="main_group">
-                        <group name="group_left"> </group>
-                        <group name="group_right"> </group>
+                        <group name="group_left">
+                            <field name="hr_employee_id" optional="show" required="True"/>
+                            <field name="care_subscriptions_type_id" optional="show" required="True"/>
+                            <field name="employee_destination_id" optional="show"/>
+                            <field name="no_of_months" optional="show"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="amount" optional="show"/>
+                            <field name="start_date" optional="show"/>
+                            <field name="end_date" optional="show"/>
+                            <field name="active" optional="show"/>
+                        </group>
                     </group>
                     <!--  <notebook name="main_notebook">
                                             <page name="page1" string="page name">
@@ -805,15 +820,14 @@
                                             </page>
                                           </notebook>  -->
                 </sheet>
-                <!--  <div class="oe_chatter" name="mainchatterview">
+                  <div class="oe_chatter" name="mainchatterview">
                                   <field name="message_follower_ids"/>
                                   <field name="activity_ids"/>
                                   <field name="message_ids"/>
-                                </div>  -->
+                                </div>
             </form>
         </field>
     </record>
-
     <record id="employee_care_subscriptions_pivot" model="ir.ui.view">
         <field name="name">employee_care_subscriptions.pivot</field>
         <field name="model">employee_care_subscriptions</field>
@@ -833,7 +847,6 @@
         <field name="res_model">care_subscriptions_type</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <record id="view_care_subscriptions_type_list" model="ir.ui.view">
         <field name="name">care_subscriptions_type_list</field>
         <field name="model">care_subscriptions_type</field>
@@ -845,7 +858,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_care_subscriptions_type_form" model="ir.ui.view">
         <field name="name">view_care_subscriptions_type_form</field>
         <field name="model">care_subscriptions_type</field>
@@ -890,13 +902,12 @@
         <field name="res_model">employee_usage</field>
         <field name="view_mode">tree,form,pivot</field>
     </record>
-
     <record id="view_employee_usage_list" model="ir.ui.view">
         <field name="name">view_employee_usage_list</field>
         <field name="model">employee_usage</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
-                <field name="hr_employee_id" optional="show"/>
+            <tree>
+                <field name="hr_employee_id" optional="show" required="True"/>
                 <field name="insurance_company" optional="show"/>
                 <field name="medical_number" optional="show"/>
                 <field name="service_date" optional="show"/>
@@ -904,7 +915,7 @@
                 <field name="service_provider_id" optional="show"/>
                 <field name="service_group_id" optional="show"/>
                 <field name="employee_service_name_id" optional="show"/>
-                <field name="currency_id" optional="show"/>
+                <field name="currency_id" invisible="1"/>
                 <field name="service_fees" optional="show"/>
                 <field name="total_fees" optional="show"/>
                 <field name="discount" optional="show"/>
@@ -913,11 +924,10 @@
                 <field name="deductions" optional="show"/>
                 <field name="total" optional="show"/>
                 <field name="notes" optional="show"/>
-                <field name="attachment" optional="show"/>
+                <field name="attachment" optional="show" widget="download_link" filename="attachment_fname"/>
             </tree>
         </field>
     </record>
-
     <record id="view_employee_usage_form" model="ir.ui.view">
         <field name="name">view_employee_usage_form</field>
         <field name="model">employee_usage</field>
@@ -937,8 +947,27 @@
                         </h1>
                     </div>
                     <group name="main_group">
-                        <group name="group_left"> </group>
-                        <group name="group_right"> </group>
+                        <group name="group_left">
+                            <field name="hr_employee_id" optional="show" required="True"/>
+                            <field name="insurance_company" optional="show"/>
+                            <field name="medical_number" optional="show"/>
+                            <field name="service_date" optional="show"/>
+                            <field name="employee_diagnosis_type_id" optional="show"/>
+                            <field name="service_provider_id" optional="show"/>
+                            <field name="service_group_id" optional="show"/>
+                            <field name="employee_service_name_id" optional="show"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="service_fees" optional="show"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="total_fees" optional="show"/>
+                            <field name="discount" optional="show"/>
+                            <field name="after_discount" optional="show"/>
+                            <field name="after_bearing" optional="show"/>
+                            <field name="deductions" optional="show"/>
+                            <field name="total" optional="show"/>
+                            <field name="notes" optional="show"/>
+                            <field name="attachment" optional="show" widget="download_link" filename="attachment_fname"/></group>
                     </group>
                     <!--  <notebook name="main_notebook">
                                             <page name="page1" string="page name">
@@ -946,15 +975,14 @@
                                             </page>
                                           </notebook>  -->
                 </sheet>
-                <!--  <div class="oe_chatter" name="mainchatterview">
+                  <div class="oe_chatter" name="mainchatterview">
                                   <field name="message_follower_ids"/>
                                   <field name="activity_ids"/>
                                   <field name="message_ids"/>
-                                </div>  -->
+                                </div>
             </form>
         </field>
     </record>
-
     <record id="employee_usage_pivot" model="ir.ui.view">
         <field name="name">employee_usage.pivot</field>
         <field name="model">employee_usage</field>
@@ -974,7 +1002,6 @@
         <field name="res_model">service_provider</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <record id="view_service_provider_list" model="ir.ui.view">
         <field name="name">Service Provider</field>
         <field name="model">service_provider</field>
@@ -986,7 +1013,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_service_provider_form" model="ir.ui.view">
         <field name="name">view_service_provider_form</field>
         <field name="model">service_provider</field>
@@ -1031,7 +1057,6 @@
         <field name="res_model">service_group</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <record id="view_service_group_list" model="ir.ui.view">
         <field name="name">view_service_group_list</field>
         <field name="model">service_group</field>
@@ -1042,7 +1067,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_service_group_form" model="ir.ui.view">
         <field name="name">view_service_group_form</field>
         <field name="model">service_group</field>
@@ -1080,8 +1104,6 @@
         </field>
     </record>
 
-
-
     <!-- service group-->
     <record id="action_employee_service_name" model="ir.actions.act_window">
         <field name="name">Employee Service Name</field>
@@ -1089,7 +1111,6 @@
         <field name="res_model">employee_service_name</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <record id="view_employee_service_name_list" model="ir.ui.view">
         <field name="name">view_employee_service_name_list</field>
         <field name="model">employee_service_name</field>
@@ -1100,7 +1121,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_employee_service_name_form" model="ir.ui.view">
         <field name="name">view_employee_service_name_form</field>
         <field name="model">employee_service_name</field>
@@ -1138,8 +1158,6 @@
         </field>
     </record>
 
-
-
     <!-- daily approvals -->
     <record id="action_daily_approvals" model="ir.actions.act_window">
         <field name="name">Daily Approvals</field>
@@ -1147,13 +1165,12 @@
         <field name="res_model">daily_approvals</field>
         <field name="view_mode">tree,form,pivot</field>
     </record>
-
     <record id="view_daily_approvals_list" model="ir.ui.view">
         <field name="name">view_daily_approvals_list</field>
         <field name="model">daily_approvals</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
-                <field name="hr_employee_id" optional="show"/>
+            <tree>
+                <field name="hr_employee_id" optional="show" required="True"/>
                 <field name="date" optional="show"/>
                 <field name="diagnosis_id" optional="show"/>
                 <field name="currency_id" invisible="1"/>
@@ -1162,7 +1179,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_daily_approvals_form" model="ir.ui.view">
         <field name="name">view_daily_approvals_form</field>
         <field name="model">daily_approvals</field>
@@ -1182,8 +1198,16 @@
                         </h1>
                     </div>
                     <group name="main_group">
-                        <group name="group_left"> </group>
-                        <group name="group_right"> </group>
+                        <group name="group_left">
+                            <field name="hr_employee_id" optional="show" required="True"/>
+                            <field name="date" optional="show"/>
+                            <field name="diagnosis_id" optional="show"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount" optional="show"/>
+                            <field name="destination" optional="show"/>
+                        </group>
                     </group>
                     <!--  <notebook name="main_notebook">
                                             <page name="page1" string="page name">
@@ -1191,11 +1215,11 @@
                                             </page>
                                           </notebook>  -->
                 </sheet>
-                <!--  <div class="oe_chatter" name="mainchatterview">
+                  <div class="oe_chatter" name="mainchatterview">
                                   <field name="message_follower_ids"/>
                                   <field name="activity_ids"/>
                                   <field name="message_ids"/>
-                                </div>  -->
+                                </div>
             </form>
         </field>
     </record>
@@ -1219,12 +1243,11 @@
         <field name="res_model">medical_committee</field>
         <field name="view_mode">tree,form,pivot</field>
     </record>
-
     <record id="view_medical_committee_list" model="ir.ui.view">
         <field name="name">view_medical_committee_list</field>
         <field name="model">medical_committee</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <tree>
                 <field name="hr_employee_id" optional="show"/>
                 <field name="date" optional="show"/>
                 <field name="diagnosis_id" optional="show"/>
@@ -1232,12 +1255,11 @@
                 <field name="amount" optional="show"/>
                 <field name="destination_number" optional="show"/>
                 <field name="destination_date" optional="show"/>
-                <field name="attachment" optional="show"/>
+                <field name="attachment" optional="show" widget="download_link" filename="attachment_fname"/>
 
             </tree>
         </field>
     </record>
-
     <record id="view_medical_committee_form" model="ir.ui.view">
         <field name="name">view_medical_committee_form</field>
         <field name="model">medical_committee</field>
@@ -1257,8 +1279,17 @@
                         </h1>
                     </div>
                     <group name="main_group">
-                        <group name="group_left"> </group>
-                        <group name="group_right"> </group>
+                        <group name="group_left">
+                            <field name="hr_employee_id" optional="show"/>
+                            <field name="date" optional="show"/>
+                            <field name="diagnosis_id" optional="show"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="amount" optional="show"/>
+                            <field name="destination_number" optional="show"/>
+                            <field name="destination_date" optional="show"/>
+                            <field name="attachment" optional="show" widget="download_link" filename="attachment_fname"/></group>
                     </group>
                     <!--  <notebook name="main_notebook">
                                             <page name="page1" string="page name">
@@ -1266,15 +1297,14 @@
                                             </page>
                                           </notebook>  -->
                 </sheet>
-                <!--  <div class="oe_chatter" name="mainchatterview">
+                  <div class="oe_chatter" name="mainchatterview">
                                   <field name="message_follower_ids"/>
                                   <field name="activity_ids"/>
                                   <field name="message_ids"/>
-                                </div>  -->
+                                </div>
             </form>
         </field>
     </record>
-
     <record id="medical_committee_pivot" model="ir.ui.view">
         <field name="name">medical_committee.pivot</field>
         <field name="model">medical_committee</field>
@@ -1286,6 +1316,7 @@
             </pivot>
         </field>
     </record>
+
 
     <!-- service group-->
     <!-- <record id="action_grants_terms" model="ir.actions.act_window">
