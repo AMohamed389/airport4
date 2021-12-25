@@ -1383,7 +1383,7 @@
                     <field name="transfer_to"/>
                     <field name="decision_number"/>
                     <field name="decision_date" optional="hide"/>
-                    <field name="attachments" optional="hide"/>
+                    <field name="attachments" optional="hide" widget="binary"/>
                     <field name="notes" optional="hide"/>
                 </tree>
         </field>
@@ -1422,7 +1422,7 @@
                         <group>
                             <field name="decision_number" required="1"/>
                             <field name="decision_date" required="1"/>
-                            <field name="attachments" required="1"/>
+                            <field name="attachments"  widget="binary"/>
                         </group>
                         <group string="Notes">
                             <field name="notes"/>
@@ -1503,7 +1503,7 @@
                     <field name="transfer_to_external"/>
                     <field name="decision_number"/>
                     <field name="decision_date" optional="hide"/>
-                    <field name="attachments" optional="hide"/>
+                    <field name="attachments" optional="hide" widget="binary"/>
                     <field name="notes" optional="hide"/>
                 </tree>
         </field>
@@ -1549,7 +1549,7 @@
                         <group>
                             <field name="decision_number" required="1"/>
                             <field name="decision_date" required="1"/>
-                            <field name="attachments" required="1"/>
+                            <field name="attachments"  widget="binary"/>
                         </group>
                         <group string="Notes">
                             <field name="notes"/>
@@ -1686,7 +1686,7 @@
 
                                 <field name="decision_number" required="1" optional="hide"/>
                                 <field name="decision_date" required="1" optional="hide"/>
-                                <field name="attachments" required="1" optional="hide"/>
+                                <field name="attachments" optional="hide" widget="binary"/>
                                 <field name="notes" optional="hide"/>
                             </tree>
                         </field>
@@ -1716,7 +1716,7 @@
                     <field name="transfer_to_external"/>
                     <field name="decision_number" optional="hide"/>
                     <field name="decision_date" optional="hide"/>
-                    <field name="attachments" optional="hide"/>
+                    <field name="attachments" optional="hide" widget="binary"/>
                     <field name="notes" optional="hide"/>
                 </tree>
         </field>
@@ -1751,7 +1751,7 @@
                         <group>
                             <field name="decision_number"/>
                             <field name="decision_date" />
-                            <field name="attachments"/>
+                            <field name="attachments" widget="binary"/>
                         </group>
                     </group>
                     <group>
@@ -1793,7 +1793,7 @@
                     <field name="period_date_from"/>
                     <field name="period_date_to"/>
                     <field name="period"/>
-                    <field name="attachments" optional="hide"/>
+                    <field name="attachments" optional="hide" widget="binary"/>
                     <field name="notes" optional="hide"/>
                 </tree>
         </field>
@@ -1835,7 +1835,7 @@
                             <field name="period_date_from" />
                             <field name="period_date_to" />
                             <field name="period"/>
-                            <field name="attachments" required="1"/>
+                            <field name="attachments"  widget="binary"/>
                         </group>
                         <group string="Notes">
                             <field name="notes"/>
@@ -1901,7 +1901,7 @@
                                 <field name="period_date_to"  optional="hide"/>
                                 <field name="decision_number" required="1" optional="hide"/>
                                 <field name="decision_date" required="1" optional="hide"/>
-                                <field name="attachments" required="1" optional="hide"/>
+                                <field name="attachments" optional="hide" widget="binary"/>
                                 <field name="notes" optional="hide"/>
                             </tree>
                         </field>
@@ -1972,7 +1972,7 @@
                     <field name="period_date_from"/>
                     <field name="period_date_to"/>
                     <field name="period"/>
-                    <field name="attachments" optional="hide"/>
+                    <field name="attachments" optional="hide" widget="binary"/>
                     <field name="notes" optional="hide"/>
                 </tree>
         </field>
@@ -2014,7 +2014,7 @@
                             <field name="period_date_from" />
                             <field name="period_date_to" />
                             <field name="period" required="1"/>
-                            <field name="attachments" required="1"/>
+                            <field name="attachments" widget="binary" />
                         </group>
                         <group string="Notes">
                             <field name="notes"/>
@@ -2116,7 +2116,7 @@
                                 <field name="period_date_to"  optional="hide"/>
                                 <field name="decision_number" required="1" optional="hide"/>
                                 <field name="decision_date" required="1" optional="hide"/>
-                                <field name="attachments" required="1" optional="hide"/>
+                                <field name="attachments" optional="hide" widget="binary"/>
                                 <field name="notes" optional="hide"/>
                             </tree>
                         </field>
