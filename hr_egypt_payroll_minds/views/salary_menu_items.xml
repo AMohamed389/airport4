@@ -226,7 +226,7 @@
                         <field name="is_partial" />
                         <field name="is_retroactive" />
                         <field name="is_taxable"/>
-                        <field name="domain"/>
+                        <field name="domain" widget="char_domain"/>
                         <field name="active"/>
                     </group>
                     </group>
@@ -288,7 +288,7 @@
                     <field name="is_partial" optional="show"/>
                     <field name="is_retroactive" optional="show"/>
                     <field name="is_taxable" optional="hide"/>
-                    <field name="domain" optional="hide"/>
+                    <field name="domain" optional="hide" widget="char_domain"/>
                     <field name="active" optional="hide"/>
                     <field name="currency_id" invisible="1"/>
                 </tree>
@@ -337,7 +337,7 @@
                                 <!-- <field name="is_partial" /> -->
                                 <field name="is_retroactive" />
                                 <field name="is_taxable"/>
-                                <field name="domain"/>
+                                <field name="domain" widget="char_domain"/>
                                 <field name="active"/>
                             </group>
                         </group>
@@ -392,7 +392,7 @@
                     <!-- <field name="is_partial" optional="show"/> -->
                     <field name="is_retroactive" optional="show"/>
                     <field name="is_taxable" optional="show"/>
-                    <field name="domain" optional="hide"/>
+                    <field name="domain" optional="hide" widget="char_domain"/>
                     <field name="active" optional="hide"/>
                     <field name="currency_id" invisible="1"/>
                 </tree>
@@ -440,7 +440,7 @@
                                 <field name="is_partial" />
                                 <field name="is_retroactive" />
                                 <field name="is_taxable"/>
-                                <field name="domain"/>
+                                <field name="domain" widget="char_domain"/>
                                 <field name="active"/>
                             </group>
                         </group>
@@ -496,7 +496,7 @@
                     <field name="is_partial" optional="show"/>
                     <field name="is_retroactive" optional="show"/>
                     <field name="is_taxable" optional="show"/>
-                    <field name="domain" optional="hide"/>
+                    <field name="domain" optional="hide" widget="char_domain"/>
                     <field name="active" optional="hide"/>
                     <field name="currency_id" invisible="1"/>
                 </tree>
