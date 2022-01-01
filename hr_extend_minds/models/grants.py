@@ -68,8 +68,6 @@ class Grants(models.Model):
                         else:
                             rec.s_date=datem2
                             rec.e_date=datem3
-                else:
-                    raise ValidationError(_('Date out of current fiscal year range .'))
 
                 if rec.grant_type_id == self.env.ref(
                         "hr_extend_minds.grant_type_03"):
