@@ -2,74 +2,94 @@
 <odoo>
     <data noupdate='0'>
         
+        <record id="company_1" model="transfer_company_name">
+            <field name="name">الشركة المصرية القابضة للمطارات و الملاحة الجوية</field>
+        </record>
+
+        <record id="company_2" model="transfer_company_name">
+            <field name="name">الشركة المصرية للمطارات</field>
+        </record>
+
+        <record id="company_3" model="transfer_company_name">
+            <field name="name">مطار اسيوط</field>
+        </record>
+
+        <record id="company_4" model="transfer_company_name">
+            <field name="name">مطار اسوان</field>
+        </record>
+
+        <record id="company_5" model="transfer_company_name">
+            <field name="name">مطار شرم الشيخ</field>
+        </record>
+
+        <record id="company_6" model="transfer_company_name">
+            <field name="name">مطار 6 اكتوبر</field>
+        </record>
+
+        <record id="company_7" model="transfer_company_name">
+            <field name="name">مطار سوهاج</field>
+        </record>
+
+        <record id="company_8" model="transfer_company_name">
+            <field name="name">مطار الغردقة</field>
+        </record>
+
+        <record id="company_9" model="transfer_company_name">
+            <field name="name">مطار طابا</field>
+        </record>
+
+        <record id="company_10" model="transfer_company_name">
+            <field name="name">مطار العاصمة الادارية</field>
+        </record>
+
+        <record id="company_11" model="transfer_company_name">
+            <field name="name">مطار الاقصر</field>
+        </record>
+
+        <record id="company_12" model="transfer_company_name">
+            <field name="name">مطار برج العرب</field>
+        </record>
+
+        <record id="company_13" model="transfer_company_name">
+            <field name="name">مطار سفنكس</field>
+        </record>
+
+        <record id="company_14" model="transfer_company_name">
+            <field name="name">الشركة المصرية لخدمات الطيران EAS</field>
+        </record>
+
+        <record id="company_15" model="transfer_company_name">
+            <field name="name">شركة ايرو سبورت للخدمات الرياضية و الترفيهية</field>
+        </record>
+
+        <record id="company_16" model="transfer_company_name">
+            <field name="name">الهيئة العامة للارصاد الجوية</field>
+        </record>
+
+        <record id="company_17" model="transfer_company_name">
+            <field name="name">ديوان عام وزارة الطيران المدني</field>
+        </record>
+
+        <record id="company_19" model="transfer_company_name">
+            <field name="name">شركة تكنولجيا معلومات الطيران</field>
+        </record>
+
+        <record id="company_23" model="transfer_company_name">
+            <field name="name">شركة ميناء القاهرة الجوي</field>
+        </record>
+    
+        <record id="company_20" model="transfer_company_name">
+            <field name="name">الشركة الوطنية لخدمات الملاحة الجوية</field>
+        </record>
+
+        <record id="company_21" model="transfer_company_name">
+            <field name="name">وزارة الدفاع المدني</field>
+        </record>
+        
+        <record id="company_22" model="transfer_company_name">
+            <field name="name">الشركة القابضة للسياحة و الفنادق</field>
+        </record>
+
     </data>
 
-    <record id="company_1" model="transfer_company_name">
-        <field name="name">الشركة المصرية القابضة للمطارات و الملاحة الجوية</field>
-    </record>
-    <record id="company_2" model="transfer_company_name">
-        <field name="name">الشركة المصرية للمطارات</field>
-    </record>
-    <record id="company_3" model="transfer_company_name">
-        <field name="name">مطار اسيوط</field>
-    </record>
-    <record id="company_4" model="transfer_company_name">
-        <field name="name">مطار اسوان</field>
-    </record>
-    <record id="company_5" model="transfer_company_name">
-        <field name="name">مطار شرم الشيخ</field>
-    </record>
-    <record id="company_6" model="transfer_company_name">
-        <field name="name">مطار 6 اكتوبر</field>
-    </record>
-    <record id="company_7" model="transfer_company_name">
-        <field name="name">مطار سوهاج</field>
-    </record>
-    <record id="company_8" model="transfer_company_name">
-        <field name="name">مطار الغردقة</field>
-    </record>
-    <record id="company_9" model="transfer_company_name">
-        <field name="name">مطار طابا</field>
-    </record>
-    <record id="company_10" model="transfer_company_name">
-        <field name="name">مطار العاصمة الادارية</field>
-    </record>
-    <record id="company_11" model="transfer_company_name">
-        <field name="name">مطار الاقصر</field>
-    </record>
-    <record id="company_12" model="transfer_company_name">
-        <field name="name">مطار برج العرب</field>
-    </record>
-    <record id="company_13" model="transfer_company_name">
-        <field name="name">مطار سفنكس</field>
-    </record>
-    <record id="company_14" model="transfer_company_name">
-        <field name="name">الشركة المصرية لخدمات الطيران EAS</field>
-    </record>
-    <record id="company_15" model="transfer_company_name">
-        <field name="name">شركة ايرو سبورت للخدمات الرياضية و الترفيهية</field>
-    </record>
-    <record id="company_16" model="transfer_company_name">
-        <field name="name">الهيئة العامة للارصاد الجوية</field>
-    </record>
-    <record id="company_17" model="transfer_company_name">
-        <field name="name">ديوان عام وزارة الطيران المدني</field>
-    </record>
-    <record id="company_19" model="transfer_company_name">
-        <field name="name">شركة تكنولجيا معلومات الطيران</field>
-    </record>
-    <record id="company_23" model="transfer_company_name">
-        <field name="name">شركة ميناء القاهرة الجوي</field>
-    </record>
-
-    <record id="company_20" model="transfer_company_name">
-        <field name="name">الشركة الوطنية لخدمات الملاحة الجوية</field>
-    </record>
-    <record id="company_21" model="transfer_company_name">
-        <field name="name">وزارة الدفاع المدني</field>
-    </record>
-    <record id="company_22" model="transfer_company_name">
-        <field name="name">الشركة القابضة للسياحة و الفنادق</field>
-    </record>
-    
 </odoo>

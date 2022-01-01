@@ -209,7 +209,7 @@
     <field name="name">Employees Care</field>
     <field name="parent_id" eval="False" />
     <field name="sequence">150</field>
-    <field name="web_icon">fa fa-handshake-o,#FFFFFF,#698b69</field>
+    <field name="web_icon">fa fa-heartbeat,#FFFFFF,#999999</field>
   </record>
 
 
@@ -241,40 +241,16 @@
     <field name="web_icon">fa fa-exchange,#FFFFFF,#2d4038</field>
   </record>
   <!---->
-  <!--transfers-->
+
+<!--transfers-->
   <record id="transfers_sub_menu_item" model="ir.ui.menu">
-    <field name="action" eval="False" />
-    <field name="active" eval="True" />
-    <field name="name">Transfers</field>
-    <field name="parent_id" ref="transfers_menu_item" />
-    <field name="sequence">5100</field>
-  </record>
-
-  <record id="internal_transfers_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.internal_transfers_action" />
-    <field name="active" eval="True" />
-    <field name="name">Internal Transfers</field>
-    <field name="parent_id" ref="transfers_sub_menu_item" />
-    <field name="sequence">5200</field>
-  </record>
-
-  <record id="external_transfers_sub_menu_item" model="ir.ui.menu">
-    <field name="action" ref="hr_extend_minds.external_transfers_action" />
-    <field name="active" eval="True" />
-    <field name="name">External Transfers</field>
-    <field name="parent_id" ref="transfers_sub_menu_item" />
-    <field name="sequence">5300</field>
-  </record>
-
-  <record id="all_transfers_sub_menu_item" model="ir.ui.menu">
       <field name="action" ref="hr_extend_minds.all_transfers_action" />
       <field name="active" eval="True" />
-      <field name="name">All Transfers</field>
-      <field name="parent_id" ref="transfers_sub_menu_item" />
-      <field name="sequence">5400</field>
+      <field name="name">Transfers</field>
+      <field name="parent_id" ref="transfers_menu_item" />
+      <field name="sequence">5100</field>
   </record>
-
-  <!--end transfers-->
+<!--end transfers-->
 
 <!--delegation menu items-->
   <record id="delegation_sub_menu_item" model="ir.ui.menu">
@@ -285,7 +261,7 @@
     <field name="sequence">5400</field>
   </record>
 
-  <!--    company names-->
+<!--company names-->
   <record id="company_sub_menu_item" model="ir.ui.menu">
     <field name="action" ref="hr_extend_minds.company_name_action" />
     <field name="active" eval="True" />
