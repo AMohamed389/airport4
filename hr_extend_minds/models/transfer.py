@@ -9,7 +9,7 @@ class Transfer(models.Model):
 
     employee_id = fields.Many2one('hr.employee', string='Name', index=True, tracking=True)
     type_of_transfer = fields.Selection(
-        [('Internal Transfer', 'Internal Transfer'), ('External Transfer', 'External Transfer')],
+        [('Internal Transfer', 'Internal'), ('External Transfer', 'External')],
         string='Type Of Transfer',
         index=True, tracking=True)
 
@@ -31,8 +31,8 @@ class Transfer(models.Model):
     to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
 
     type_of_external_transfer = fields.Selection(
-        [('Internal Transfer CAC', 'Internal Transfer To CAC'), ('External Transfer CAC', 'External Transfer From CAC')],
-        string='Type Of Transfer',
+        [('Internal Transfer CAC', 'To CAC'), ('External Transfer CAC', 'From CAC')],
+        string='Type Of External Transfer',
         index=True, tracking=True)
 
     @api.onchange('type_of_external_transfer')
@@ -43,6 +43,8 @@ class Transfer(models.Model):
         if self.type_of_external_transfer == 'Internal Transfer CAC':
             self.transfer_from_external = False
             self.transfer_to_external = False
+            self.from_airport = False
+            self.to_airport = False
             return {
                 'domain': {
                     'transfer_to_external': [('name', '=', 'شركة ميناء القاهرة الجوي')],
@@ -55,6 +57,8 @@ class Transfer(models.Model):
         else:
             self.transfer_to_external = False
             self.transfer_from_external = False
+            self.from_airport = False
+            self.to_airport = False
             return {
                 'domain': {
                     'transfer_from_external': [('name', '=', 'شركة ميناء القاهرة الجوي')],
@@ -65,7 +69,7 @@ class Transfer(models.Model):
                 }
             }
 
-    decision_number = fields.Integer(string='Decision Number', index=True, tracking=True)
+    decision_number = fields.Char(string='Decision Number', index=True, tracking=True)
     decision_date = fields.Date(string='Decision Date', index=True, tracking=True)
     attachments = fields.Binary(string='Attachment', index=True, tracking=True)
 
@@ -81,8 +85,9 @@ class Transfer(models.Model):
             [('department_id.id', '=', self.employee_id.department_id.id)])
 
         if self.type_of_transfer == 'Internal Transfer':
-            get_internal = self.env['hr.department'].search(
-                ['|', ('x_type', '=', 'Department'), ('x_type', '=', 'Administration')])
+            get_internal = self.env['hr.department'].search([])
+                # ['|', '|', '|', ('x_type', '=', 'Department'), ('x_type', '=', 'Administration'),
+                #  ('x_type', '=', 'Public Administration'), ('x_type', '=', 'Sector')])
             self.transfer_from = get_employee_dept.department_id
             return {
                 'domain': {
@@ -135,18 +140,6 @@ class Transfer(models.Model):
             'name': self.employee_id.job_id.name,
         }
         history = self.env['job_history'].search([('x_employee_id.id', '=', self.employee_id.id)]).create(line)
-
-    @api.model
-    def create(self, vals):
-        if vals['decision_number'] == 0:
-            raise UserError('please add the Decision number')
-        return super(Transfer, self).create(vals)
-
-    def write(self, vals):
-        if 'decision_number' in vals:
-            if vals['decision_number'] == 0:
-                raise UserError('please add the Decision number !!')
-        super(Transfer, self).write(vals)
 
     @api.model
     def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):

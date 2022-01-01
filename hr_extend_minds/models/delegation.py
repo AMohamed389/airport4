@@ -7,13 +7,15 @@ class Delegation(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'employee_id'
     employee_id = fields.Many2one('hr.employee')
-    type_of_delegation = fields.Selection([('Internal','Internal'),('External','External')])
+    type_of_delegation = fields.Selection([('Internal','To CAC'),('External','From CAC')])
 
     @api.onchange('type_of_delegation')
     def check_type(self):
         x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
         x_airport = self.env['transfer_company_name'].search([('name', 'ilike', 'مطار ')])
+
         if self.type_of_delegation == 'Internal':
+
             self.delegate_from = False
             self.delegate_to = False
             return {
@@ -44,10 +46,11 @@ class Delegation(models.Model):
     to_airport = fields.Many2one('transfer_company_name', string='To Airport', index=True, tracking=True)
 
     delegate_from_name = fields.Char(related='delegate_from.name', string='Delegate From Name', store=True)
+
     delegate_to_name = fields.Char(related='delegate_to.name', string='Delegate To Name', store=True)
 
     decision_date = fields.Date(string='Decision date')
-    decision_number = fields.Integer(string='Decision number', tracking=True)
+    decision_number = fields.Char(string='Decision number', tracking=True)
 
     period = fields.Char(compute='compute_delegation', string='Delegation period')
 
@@ -76,12 +79,8 @@ class Delegation(models.Model):
                 date_to_days = rec.period_date_to
                 days_res = str(date_to_days - date_from_days)
                 day_res = days_res.replace(', 0:00:00', '')
-
-                # date_from_months = rec.period_date_from.year * 12 + (rec.period_date_from.month - 1)
-                # date_to_months = rec.period_date_to.year * 12 + (rec.period_date_to.month - 1)
                 _num_months = (rec.period_date_to.year - rec.period_date_from.year) * 12 + (
                             rec.period_date_to.month - rec.period_date_from.month)
-                # months_res = date_to_months - date_from_months
                 rec.period = f'days({day_res}), months({_num_months})'
             else:
                 rec.period = 0.0

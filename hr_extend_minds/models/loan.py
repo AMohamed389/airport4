@@ -7,12 +7,14 @@ class Loan(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'employee_id'
     employee_id = fields.Many2one('hr.employee')
-    type_of_loan = fields.Selection([('Internal','Internal Loan'),('External','External Loan')])
+    type_of_loan = fields.Selection([('Internal','To CAC'),('External','From CAC')])
 
     @api.onchange('type_of_loan')
     def check_type(self):
+        print('entered onchange when create')
         x_company = self.env['transfer_company_name'].search([('name', 'not like', 'مطار ')])
         x_airport = self.env['transfer_company_name'].search([('name', 'ilike', 'مطار ')])
+
         if self.type_of_loan == 'Internal':
             self.loan_from = False
             self.loan_to = False
@@ -46,7 +48,7 @@ class Loan(models.Model):
     loan_to_name = fields.Char(related='loan_to.name', string='Loan To Name', store=True)
 
     decision_date = fields.Date(string='Decision date')
-    decision_number = fields.Integer(string='Decision number', index=True, tracking=True)
+    decision_number = fields.Char(string='Decision number', index=True, tracking=True)
 
     period = fields.Char(string='Loan period', compute='compute_loan_period')
     period_date_from = fields.Date(string='Period date from')
@@ -110,17 +112,6 @@ class Loan(models.Model):
         }
         history = self.env['job_history'].search([('x_employee_id.id', '=', self.employee_id.id)]).create(line)
 
-    @api.model
-    def create(self, vals):
-        if vals['decision_number'] == 0:
-            raise UserError('please add the Decision number')
-        return super(Loan, self).create(vals)
-
-    def write(self, vals):
-        if 'decision_number' in vals:
-            if vals['decision_number'] == 0:
-                raise UserError('please add the Decision number !!')
-        super(Loan, self).write(vals)
 
     @api.model
     def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
