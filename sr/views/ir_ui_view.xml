@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- category-->
+    <record id="action_category" model="ir.actions.act_window">
+      <field name="name">Category</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">category</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record id="view_category_list" model="ir.ui.view">
+      <field name="name">view_category_list</field>
+      <field name="model">category</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" multi_edit="1">
+          <field name="name" optional="show"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="view_category_form" model="ir.ui.view">
+      <field name="name">view_category_form</field>
+      <field name="model">category</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+             
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+    <!-- sub_category-->
+    <record id="action_sub_category" model="ir.actions.act_window">
+      <field name="name">Sub Category</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sub_category</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record id="view_sub_category_list" model="ir.ui.view">
+      <field name="name">view_sub_category_list</field>
+      <field name="model">sub_category</field>
+      <field name="arch" type="xml">
+        <tree multi_edit="1">
+          <field name="category_id" optional="show"/>
+          <field name="name" optional="show"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="view_sub_category_form" model="ir.ui.view">
+      <field name="name">view_sub_category_form</field>
+      <field name="model">sub_category</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!-- <button name="initiate_request" type="object" string="Initiate Request" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                 
+                 <field name="state" widget="statusbar" /> -->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <!-- <field name="name" placeholder="Name"/> -->
+              </h1>
+            </div>
+
+            <group name="main_group">
+              <group name="group_left">
+                <field name="category_id" optional="show"/>
+                <field name="name" optional="show"/>
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+            <notebook name="main_notebook">
+              <page name="tasks" string="Tasks">
+                <field name="task_ids" nolabel="1" context="{'default_sub_category_id': id}">
+                  <tree editable="bottom" string="task_ids">
+                    <field name="seq" optional='show' />
+                    <field name="name" optional='show' />
+                    <field name="res_group_id" optional='show' />
+                    <field name="action_id" optional='show' />
+                    <field name="desc" optional='show' />
+                    <field name="next_seq" optional='show' />
+                  </tree>
+                </field>
+              </page>
+
+              <page name="sr_field_ids" string="Fields">
+                <field name="sr_field_ids" nolabel="1">
+                  <tree editable="bottom" string="sr_field_ids">
+                    <field name="name" options='{"no_open": True,"no_create": True}' optional='show' />
+                    <!-- <field name="string_val" optional='show' />
+                  <field name="ttype" optional="show"/>
+                  <field name="model_id" optional='show' /> -->
+                    <field name="active" optional='show' />
+
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+              </div> -->
+        </form>
+      </field>
+    </record>
+
+    <!-- task-->
+    <record id="action_task" model="ir.actions.act_window">
+      <field name="name">Configuration Tasks</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">task</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record id="view_task_list" model="ir.ui.view">
+      <field name="name">view_task_list</field>
+      <field name="model">task</field>
+      <field name="arch" type="xml">
+        <tree multi_edit="1">
+          <field name="sub_category_id" optional="show"/>
+          <field name="name" optional="show"/>
+          <field name="res_group_id" optional="show"/>
+          <field name="desc" optional="show"/>
+          <field name="action_id" optional="show"/>
+          <field name="seq" optional="show"/>
+
+
+        </tree>
+      </field>
+    </record>
+    <record id="view_task_form" model="ir.ui.view">
+      <field name="name">view_task_form</field>
+      <field name="model">task</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                 
+                 <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <!-- <field name="name" placeholder="Name"/> -->
+              </h1>
+            </div>
+
+            <group name="main_group">
+              <group name="group_left">
+                <field name="sub_category_id" optional="show"/>
+                <field name="name" optional="show"/>
+                <field name="res_group_id" optional="show"/>
+                <field name="desc" optional="show"/>
+              </group>
+              <group name="group_right">
+                <field name="action_id" optional="show"/>
+
+                <field name="seq" optional="show"/>
+                <field name="next_seq" optional="show"/>
+              </group>
+            </group>
+
+            <!-- <notebook name="main_notebook">
+                    <page name="page1" string="page name">
+                      
+                    </page>
+                  </notebook> -->
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+              </div> -->
+        </form>
+      </field>
+    </record>
+
+    <!-- action-->
+    <record id="action_action" model="ir.actions.act_window">
+      <field name="name">Configuration Actions</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">action</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record id="view_action_list" model="ir.ui.view">
+      <field name="name">view_action_list</field>
+      <field name="model">action</field>
+      <field name="arch" type="xml">
+        <tree multi_edit="1">
+          <field name="taskname" optional="show"/>
+          <field name="name" optional="show" />
+          <field name="code" optional="show"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="view_action_form" model="ir.ui.view">
+      <field name="name">view_action_form</field>
+      <field name="model">action</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <button name="run_action_code_multi" type="object" string="Run" class="oe_highlight" attrs="{}"/>
+            <!--
+   
+             <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="taskname" placeholder="Name"/>
+              </h1>
+            </div>
+
+            <group name="main_group">
+              <group name="group_left">
+                <field name="name" optional="show"/>
+
+              </group>
+
+              <group name="group_right">
+                <field name="employee_id" options='{"no_open": True,"no_create": True}' optional="show"/>
+              </group>
+            </group>
+
+            <notebook name="main_notebook">
+              <page name="page1" string="Code">
+                <field name="code" widget="ace" options="{'mode': 'python'}" nolabel="1"/>
+              </page>
+            </notebook>
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+    <!-- sr-->
+    <record id="action_sr" model="ir.actions.act_window">
+      <field name="name">Service Requests</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sr</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record id="view_sr_list" model="ir.ui.view">
+      <field name="name">view_sr_list</field>
+      <field name="model">sr</field>
+      <field name="arch" type="xml">
+        <tree multi_edit="1">
+          <field name="name" optional="show" attrs="{'readonly': [('state','!=','New')]}"/>
+          <field name="employee_id"  optional="show" attrs="{'readonly': [('state','!=','New')]}"/>
+          <field name="category_id" optional="show" attrs="{'readonly': [('state','!=','New')]}" />
+          <field name="sub_category_id" optional="show" attrs="{'readonly': [('state','!=','New')]}"/>
+          <field name="state" optional="show" attrs="{'readonly': [('state','!=','New')]}"/>
+
+
+        </tree>
+      </field>
+    </record>
+    <record id="view_sr_form" model="ir.ui.view">
+      <field name="name">view_sr_form</field>
+      <field name="model">sr</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <button name="initiate_request" type="object" string="Initiate Request" class="oe_highlight" states="New" attrs="{}"/>
+            <button name="approve_request" type="object" string="Approve" class="oe_highlight" states="In Progress" attrs="{}"/>
+            <button name="reject_request" type="object" string="Reject" class="oe_highlight" states="In Progress" attrs="{}"/>
+
+            <field name="state" widget="statusbar" />
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name" readonly="1"/>
+              </h1>
+            </div>
+
+            <group name="main_group">
+              <group name="group_left">
+
+                <field name="employee_id"  options='{"no_open": True,"no_create": True}' optional="show" attrs="{'readonly': [('state','!=','New')]}"/>
+                <field name="category_id" options='{"no_open": True,"no_create": True}'  optional="show" attrs="{'readonly': [('state','!=','New')]}"/>
+                <field name="sub_category_id" options='{"no_open": True,"no_create": True}' domain="[('category_id', '=',category_id )]" attrs="{'readonly': [('state','!=','New')]}"/>
+                <field name="current_seq" optional="show" invisible="1" attrs="{'readonly': [('state','!=','New')]}"/>
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+            <notebook name="main_notebook">
+              <page name="page1" string="Tasks">
+                <field name="sr_task_ids" nolabel="1" readonly="1">
+                  <tree string="sr_task_ids">
+                    <field name="name" optional='show' />
+                    <field name="task_id" optional='show' />
+                    <field name="res_group_id" optional='show' />
+                    <field name="has_access" optional='show' />
+                    <field name="state" optional='show' />
+                    <field name="action_date" optional='show' />
+                    <field name="action_by" optional='show' />
+
+                  </tree>
+                </field>
+              </page>
+
+              <page name="smartscript_ids" string="Smart Script">
+                <group>
+
+
+                <field name="i_ss_emp_name" invisible="1" />
+                <field name="i_ss_address" invisible="1"/>
+                <field name="i_ss_military_status" invisible="1" />
+                <field name="i_ss_military_start_date" invisible="1" />
+                <field name="i_ss_military_end_date" invisible="1"/>
+                <field name="i_ss_marital" invisible="1"/>
+                <field name="i_ss_identity_issuer" invisible="1"/>
+
+
+                <field name="ss_emp_name" attrs="{'invisible': [('i_ss_emp_name',  '=', True)],'required':[('i_ss_emp_name',  '=', False)],'readonly': [('state','!=','New')]}"  />
+                <field name="ss_address" attrs="{'invisible': [('i_ss_address',  '=', True)],'required':[('i_ss_address',  '=', False)],'readonly': [('state','!=','New')]}"/>
+                <field name="ss_military_status" attrs="{'invisible': [('i_ss_military_status',  '=', True)],'required':[('i_ss_military_status',  '=', False)],'readonly': [('state','!=','New')]}"/>
+                <field name="ss_military_start_date" attrs="{'invisible': [('i_ss_military_start_date',  '=', True)],'required':[('i_ss_military_start_date',  '=', False)],'readonly': [('state','!=','New')]}"/>
+                <field name="ss_military_end_date" attrs="{'invisible': [('i_ss_military_end_date',  '=', True)],'required':[('i_ss_military_end_date',  '=', False)],'readonly': [('state','!=','New')]}"/>
+                <field name="ss_marital" attrs="{'invisible': [('i_ss_marital',  '=', True)],'required':[('i_ss_marital',  '=', False)],'readonly': [('state','!=','New')]}"/>
+                <field name="ss_identity_issuer" attrs="{'invisible': [('i_ss_identity_issuer',  '=', True)],'required':[('i_ss_identity_issuer',  '=', False)],'readonly': [('state','!=','New')]}"/>
+                
+                </group>
+              </page>
+            </notebook>
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record> 
+
+    <!-- sr_task-->
+    <record id="action_sr_task" model="ir.actions.act_window">
+      <field name="name">Tasks</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sr_task</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_sr_task_list" model="ir.ui.view">
+      <field name="name">view_sr_task_list</field>
+      <field name="model">sr_task</field>
+      <field name="arch" type="xml">
+        <tree multi_edit="1">
+          <field name="name" optional="show"/>
+          <field name="sr_id" optional="show"/>
+          <field name="task_id" optional="show"/>
+          <field name="res_group_id" optional="show"/>
+
+          <field name="action_by" optional="show"/>
+          <field name="action_date" optional="show"/>
+          <field name="state" optional="show"/>
+
+        </tree>
+      </field>
+    </record>
+    <record id="view_sr_task_form" model="ir.ui.view">
+      <field name="name">view_sr_task_form</field>
+      <field name="model">sr_task</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <button name="approve_request" type="object" string="Approve" class="oe_highlight" states="In Progress" attrs="{}"/>
+            <button name="reject_request" type="object" string="Reject" class="oe_highlight" states="In Progress" attrs="{}"/>
+
+            <field name="state" widget="statusbar" />
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <!-- <field name="name" placeholder="Name"/> -->
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+                <field name="task_id" optional="show"/>
+                <field name="name" optional="show"/>
+                <field name="sr_id" optional="show"/>
+
+                <field name="res_group_id" optional="show"/>
+              </group>
+              <group name="group_right">
+
+                <field name="has_access" optional="show"/>
+                <field name="action_by" optional="show"/>
+                <field name="action_date" optional="show"/>
+
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+
+
+    <record id="default_search_view_sr_task" model="ir.ui.view">
+      <field name="active" eval="True"/>
+      <field name="arch" type="xml">
+        <search string="sr_task">
+          <field name="name"/>
+          <field name="sr_id"/>
+          <filter name="am_filter_pending" string="In Progress" domain="[['state','=','In Progress']]"/>
+
+          <separator/>
+
+          <group>
+            <filter name="sr_task_group_by_status" string="Status" context="{'group_by': 'state'}"/>
+            <filter name="sr_task_group_by_SR" string="Service Request" context="{'group_by': 'sr_id'}"/>
+            <filter name="sr_task_group_by_group" string="Group" context="{'group_by': 'res_group_id'}"/>
+          </group>
+
+          <!-- <searchpanel>
+                
+                <field name="create_uid" icon="fa fa-user" groupby="create_uid" string="Creator" enable_counters="1"/>
+    
+              </searchpanel> -->
+
+        </search>
+      </field>
+      <field name="field_parent" eval="False"/>
+      <field name="groups_id" eval="[(6, 0, [])]"/>
+      <field name="inherit_id" eval="False"/>
+      <field name="key" eval="False"/>
+      <field name="mode">primary</field>
+      <field name="model">sr_task</field>
+      <field name="name">Default search view for sr_task</field>
+      <field name="priority">16</field>
+      <field name="type">search</field>
+    </record>
+
+
+
+    <!-- sr_field-->
+    <record id="action_sr_field" model="ir.actions.act_window">
+      <field name="name">sr_field</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sr_field</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <record id="view_sr_field_list" model="ir.ui.view">
+      <field name="name">view_sr_field_list</field>
+      <field name="model">sr_field</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" multi_edit="1">
+
+          <field name="name" optional="show"/>
+          <field name="string_val" optional="show"/>
+          <field name="model_id" optional="show"/>
+          <field name="ttype" optional="show"/>
+          <field name="sub_category_id" optional="show"/>
+          <field name="active" optional='show' />
+        </tree>
+      </field>
+    </record>
+    <record id="view_sr_field_form" model="ir.ui.view">
+      <field name="name">view_sr_field_form</field>
+      <field name="model">sr_field</field>
+
+      <field name="arch" type="xml">
+        <form  >
+          <header>
+            <!--<button name="setactive" type="object" string="Activate" class="oe_highlight" states="PENDING,DEACTIVE" attrs="{}"/>
+                        
+              
+                        <field name="state" widget="statusbar" />-->
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+              <group name="group_left">
+
+              </group>
+              <group name="group_right">
+
+              </group>
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                           <page name="page1" string="page name">
+                             
+                           </page>
+                         </notebook> -->
+
+
+          </sheet>
+          <!-- <div class="oe_chatter" name="mainchatterview">
+                       <field name="message_follower_ids"/>
+                       <field name="activity_ids"/>
+                       <field name="message_ids"/>
+                     </div> -->
+        </form>
+      </field>
+    </record>
+    
+    <record id="default_search_view_sr" model="ir.ui.view">
+      <field name="active" eval="True"/>
+      <field name="arch" type="xml">
+        <search string="sr">
+          <field name="name"/>
+          <filter name="am_filter_my_requests" string="My Requests" domain="[['create_uid','=',uid]]"/>
+          
+          
+          <filter name="am_filter_done" string="Done" domain="[['state','=','Done']]"/>
+          <filter name="am_filter_rejected" string="In Progress" domain="[['state','=','In Progress']]"/>
+          <filter name="am_filter_progress" string="Rejected" domain="[['state','=','Rejected']]"/>
+          <separator/>
+
+          <group>
+            <filter name="sr_group_by_Creator" string="Creator" context="{'group_by': 'create_uid'}"/>
+          </group>
+      
+          <!-- <searchpanel>
+            
+            <field name="create_uid" icon="fa fa-user" groupby="create_uid" string="Creator" enable_counters="1"/>
+
+          </searchpanel> -->
+      
+        </search>
+      </field>
+      <field name="field_parent" eval="False"/>
+      <field name="groups_id" eval="[(6, 0, [])]"/>
+      <field name="inherit_id" eval="False"/>
+      <field name="key" eval="False"/>
+      <field name="mode">primary</field>
+      <field name="model">sr</field>
+      <field name="name">Default search view for sr</field>
+      <field name="priority">16</field>
+      <field name="type">search</field>
+    </record>
+
+    <record id="default_search_view_sr_task" model="ir.ui.view">
+      <field name="active" eval="True"/>
+      <field name="arch" type="xml">
+        <search string="sr_task">
+          <field name="name"/>
+          <field name="sr_id"/>
+          <field name="res_group_id"/>
+          <field name="state"/>
+          <field name="name"/>
+          <!-- <filter name="am_filter_my_requests" string="My Record" domain="[['create_uid','=',uid]]"/> -->
+          <separator/>
+
+          <group>
+            <filter name="sr_task_group_by_res_group_id" string="Creator" context="{'group_by': 'res_group_id'}"/>
+            <filter name="sr_task_group_by_res_state" string="Status" context="{'group_by': 'state'}"/>
+            <filter name="sr_task_group_by_sr_id" string="Service Request" context="{'group_by': 'sr_id'}"/>
+          </group>
+      
+          <searchpanel>
+            
+            <field name="res_group_id" icon="fa fa-user" groupby="res_group_id" string="Groups" enable_counters="1"/>
+
+          </searchpanel>
+      
+        </search>
+      </field>
+      <field name="field_parent" eval="False"/>
+      <field name="groups_id" eval="[(6, 0, [])]"/>
+      <field name="inherit_id" eval="False"/>
+      <field name="key" eval="False"/>
+      <field name="mode">primary</field>
+      <field name="model">sr_task</field>
+      <field name="name">Default search view for sr_task</field>
+      <field name="priority">16</field>
+      <field name="type">search</field>
+    </record>
+
+
+  </data>
+</odoo>

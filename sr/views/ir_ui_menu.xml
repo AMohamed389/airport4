@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <menuitem id="parent_menu_category_main" name="SR Configuration" action="action_category" sequence="3001" web_icon="category,static/description/icon.png"  />
+
+
+        <menuitem id="parent_menu_sr_tree"  name="SR Tree"   parent="parent_menu_category_main" sequence="3000" />
+        <menuitem id="parent_menu_category"  name="Category"  action="action_category"  parent="parent_menu_sr_tree" sequence="3000" />
+        <menuitem id="parent_menu_sub_category"  name="Templates"  action="action_sub_category"  parent="parent_menu_sr_tree" sequence="3000" />
+
+        <menuitem id="parent_menu_sr_action"  name="Actions"   parent="parent_menu_category_main" sequence="3000" />
+        <menuitem id="parent_menu_task"  name="Configuration Tasks"  action="action_task"  parent="parent_menu_sr_action" sequence="3000" />
+
+        <menuitem id="parent_menu_action"  name="Configuration Actions"  action="action_action"  parent="parent_menu_sr_action" sequence="3000" />
+
+        <menuitem id="parent_menu_sr_main"  name="Service Requests"  action="action_sr"  parent="" sequence="3000" />
+        <menuitem id="parent_menu_sr"  name="Service Requests"  action="action_sr"  parent="parent_menu_sr_main" sequence="3000" />
+        <menuitem id="parent_menu_sr_task"  name="Tasks"  action="action_sr_task"  parent="parent_menu_sr_main" sequence="3000" />
+
+
+
+
+
+
+
+
+
+</odoo>     
