@@ -1428,6 +1428,13 @@
                     </group>
 
                 </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
             </form>
         </field>
     </record>
@@ -1450,11 +1457,12 @@
                     <filter string="Group by Date" name="decision_date" context="{'group_by': 'decision_date'}" />
                     <filter string="Group by Transfer From" name="transfer_from" context="{'group_by': 'transfer_from'}" />
                     <filter string="Group by Transfer To" name="transfer_to" context="{'group_by': 'transfer_to'}" />
-                    <filter string="Group by Transfer To External" name="transfer_from_external" context="{'group_by': 'transfer_from_external'}" />
+                    <filter string="Group by Transfer From External" name="transfer_from_external" context="{'group_by': 'transfer_from_external'}" />
                     <filter string="Group by Transfer To External" name="transfer_to_external" context="{'group_by': 'transfer_to_external'}" />
-
+                    <field string="Type Of Transfer" name="type_of_transfer" context="{'group_by': 'type_of_transfer'}" />
                 </group>
                 <searchpanel>
+                    <field name="type_of_transfer"  enable_counters="1"/>
                     <field name="transfer_from"  enable_counters="1"/>
                     <field name="transfer_to"  enable_counters="1"/>
                     <field name="transfer_from_external" icon="fa-arrow-left" enable_counters="1"/>
