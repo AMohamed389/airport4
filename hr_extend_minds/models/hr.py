@@ -273,6 +273,10 @@ class hrextend(models.Model):
 
     exception_employee_ids = fields.One2many('free_exception_time', 'employee_id')
 
+    supervision_position_end_date = fields.Date(string='Job Position End Date')
+    supervision_position_start_date = fields.Date(string='Job Position Start Date')
+    job_balancing_id = fields.Many2one('job_balancing', string='Job Position')
+    job_balancing_position = fields.Selection(related='job_balancing_id.supervision_position', store=True, string='Job Position', readonly=False)
 
     @api.depends('department_id')
     def _get_section_name(self):

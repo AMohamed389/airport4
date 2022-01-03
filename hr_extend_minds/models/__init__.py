@@ -84,3 +84,6 @@ from . import medical_committee
 from . import committee_blended
 from . import free_exception_time
 from . import committee_session
+
+from . import performance_evaluation
+from . import job_balancing

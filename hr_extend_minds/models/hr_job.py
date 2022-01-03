@@ -29,5 +29,6 @@ class hr_job(models.Model):
     x_is_supervision_job = fields.Boolean(string="Is Supervision Job ?", index=True, tracking=True)
     allowance_id = fields.Many2one(string="Allowance", domain=[('Type','=','Allowance')], index=True, tracking=True)
 
+    hr_employee_id = fields.Many2one('hr.employee')
 
     
