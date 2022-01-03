@@ -1395,6 +1395,12 @@
         <field name="model">transfer</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
+                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
+                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
@@ -1706,11 +1712,13 @@
                 <separator/>
 
                 <group expand="0" string="Group By">
+                    <filter string="Group by Type Of Delegation" name="type_of_delegation" context="{'group_by': 'type_of_delegation'}" />
                     <filter string="Group by Decision Date" name="decision_date" context="{'group_by': 'decision_date'}" />
-    <!--                    <filter string="Group by Loan From" name="delegate_from" context="{'group_by': 'delegate_from'}" />-->
-    <!--                    <filter string="Group by Loan To" name="delegate_to" context="{'group_by': 'delegate_to'}" />-->
+                    <filter string="Group by Delegation From" name="delegate_from" context="{'group_by': 'delegate_from'}" />
+                    <filter string="Group by Delegation To" name="delegate_to" context="{'group_by': 'delegate_to'}" />
                 </group>
                 <searchpanel>
+                    <field name="type_of_delegation" icon="fa-arrow-left" enable_counters="1"/>
                     <field name="delegate_from" icon="fa-arrow-left" enable_counters="1"/>
                     <field name="from_airport" icon="fa-plane" enable_counters="1"/>
                     <field name="delegate_to" icon="fa-arrow-right" enable_counters="1"/>
@@ -1838,11 +1846,13 @@
                 <separator/>
 
                 <group expand="0" string="Group By">
+                    <filter string="Group by Type Of Loan" name="type_of_loan" context="{'group_by': 'type_of_loan'}" />
                     <filter string="Group by Decision Date" name="decision_date" context="{'group_by': 'decision_date'}" />
-    <!--                    <filter string="Group by Loan From" name="loan_from" context="{'group_by': 'loan_from'}" />-->
-    <!--                    <filter string="Group by Loan To" name="loan_to" context="{'group_by': 'loan_to'}" />-->
+                    <filter string="Group by Loan From" name="loan_from" context="{'group_by': 'loan_from'}" />
+                    <filter string="Group by Loan To" name="loan_to" context="{'group_by': 'loan_to'}" />
                 </group>
                 <searchpanel>
+                    <field name="type_of_loan" enable_counters="1"/>
                     <field name="loan_from" icon="fa-arrow-left" enable_counters="1"/>
                     <field name="from_airport" icon="fa-plane" enable_counters="1"/>
                     <field name="loan_to" icon="fa-arrow-right" enable_counters="1"/>
@@ -2269,6 +2279,151 @@
     </record>
 <!--end of free time exceptions-->
 <!---->
+
+
+<!---->
+<!--job balancing-->
+
+    <record id="job_action" model="ir.actions.act_window">
+        <field name="name">Job Balancing</field>
+        <field name="res_model">job_balancing</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <record id="job_balancing_tree_view" model="ir.ui.view">
+        <field name="name">job_balancing_tree_view</field>
+        <field name="model">job_balancing</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id" optional="show"/>
+                <field name="hr_job_id" optional="show"/>
+                <field name="supervision_position" optional="show"/>
+                <field name="supervision_position_start_date" optional="show"/>
+                <field name="decision_number" optional="show"/>
+                <field name="decision_date" optional="show"/>
+                <field name="attachments" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="job_balancing_form_view" model="ir.ui.view">
+        <field name="name">job_balancing_form_view</field>
+        <field name="model">job_balancing</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />
+                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>
+                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                <group>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="hr_job_id"/>
+                        <field name="supervision_position"/>
+                        <field name="supervision_position_start_date"/>
+                    </group>
+                    <group>
+                        <field name="decision_number"/>
+                        <field name="decision_date"/>
+                        <field name="attachments"/>
+                    </group>
+                </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="job_balancing_pivot_view" model="ir.ui.view">
+        <field name="name">job_balancing_pivot_view</field>
+        <field name="model">job_balancing</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+<!--    -->
+
+<!--performance_evaluation-->
+    <record id="performance_evaluation_action" model="ir.actions.act_window">
+        <field name="name">Performance Evaluation</field>
+        <field name="res_model">performance_evaluation</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <record id="performance_evaluation_tree_view" model="ir.ui.view">
+        <field name="name">performance_evaluation_tree_view</field>
+        <field name="model">performance_evaluation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id" optional="show"/>
+                <field name="evaluation" optional="show"/>
+                <field name="evaluation_year" optional="show"/>
+                <field name="reason" optional="show"/>
+                <field name="personal_committee_no" optional="show"/>
+                <field name="note" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="performance_evaluation_form_view" model="ir.ui.view">
+        <field name="name">performance_evaluation_form_view</field>
+        <field name="model">performance_evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+    <!--                <header>-->
+    <!--                    <button name="submit_order" type="object" string="Submit" class="oe_highlight" states="draft" />-->
+    <!--                    <button name="complete_order" type="object" string="Completed" class="oe_highlight" states="submit"/>-->
+    <!--                    <button name="set_to_draft" type="object" states="submit" string="Set to draft"/>-->
+    <!--                    <field name="state" widget="statusbar"/>-->
+    <!--                </header>-->
+
+                <sheet>
+                <group>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="evaluation"/>
+                        <field name="evaluation_year"/>
+                        <field name="date"/>
+                        <field name="reason"/>
+                        <field name="personal_committee_no"/>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="performance_evaluation_pivot_view" model="ir.ui.view">
+        <field name="name">performance_evaluation_pivot_view</field>
+        <field name="model">performance_evaluation</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="employee_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+<!---->
+
 
 
 </odoo>

@@ -910,12 +910,16 @@
                 <xpath expr="//group[@name='job_page_group_parent_left']" position="inside">
                     <field name="x_qualitative_group_id" />
                     <field name="x_job_degree_id" domain="[('x_qualitative_group_id','=',x_qualitative_group_id)]" string="Degree"/>
-                    <xpath expr="//field[@name='job_id']" position="move"/>
+                    <!-- <xpath expr="//field[@name='job_id']" position="move"/> -->
                     <!-- <xpath name="job_id" position="attributes">
                         <attribute name="domain">[['x_job_degree_id','=',x_job_degree_id],['x_qualitative_group_id','=',x_qualitative_group_id]]</attribute>
                     </xpath> -->
+                    <field name="job_id" domain="[('hr_employee_id','=','id')]"/>
                     <field name="x_job_degree_date" string="Degree Date"/>
                     <field name="x_supervision_job" string="Supervision Job"/>
+                    <field name="job_balancing_position" string="Supervision Job Position"/>
+                    <field name="supervision_position_start_date" string="Supervision Position Start Date"/>
+                    <field name="supervision_position_end_date" string="Supervision Position End Date"/>
                 </xpath>
                 <xpath expr="//group[@name='job_page_group_parent']" position="inside">
                     <group name="job_page_group_parent_right">
@@ -1001,7 +1005,7 @@
                         </group>
                     </page>
 
-                    <page string="Delegation" name="delegation_page">
+                    <!--<page string="Delegation" name="delegation_page">
                         <group>
                             <group name="delegation_page_group_parent_left">
                                 <field name="x_is_delegated" string="Is Delegated"/>
@@ -1011,13 +1015,13 @@
                             <group name="delegation_page_group_parent_right">
                             </group>
                         </group>
-                    </page>
+                    </page>-->
 
-                    <page string="Trainings" name="Training_page">
+                    <!--<page string="Trainings" name="Training_page">
                         <field name="employee_training_ids" readonly="1"/>
-                    </page>
+                    </page>-->
 
-                    <page string="Loan" name="loan_page">
+                    <!--<page string="Loan" name="loan_page">
                         <group>
                             <group name="loan_page_group_parent_left">
                                 <field name="x_is_loaned" string="Is Loaned"/>
@@ -1027,7 +1031,7 @@
                             <group name="loan_page_group_parent_right">
                             </group>
                         </group>
-                    </page>
+                    </page>-->
 
                     <page string="Illegal Earning" name="illegal_earning_page">
                         <group name="illegal_earning_page_group_parent">

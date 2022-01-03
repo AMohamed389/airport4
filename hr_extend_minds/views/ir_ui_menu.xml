@@ -299,4 +299,39 @@
 
 <!--end loan-->
 
+<!--job balancing menu-->
+  <record id="job_balancing_menu_item" model="ir.ui.menu">
+    <field name="active" eval="True" />
+    <field name="name">Job Balancing</field>
+    <field name="sequence">5200</field>
+    <field name="web_icon">fa fa-balance-scale,#FFFFFF,#af4038</field>
+  </record>
+
+  <record id="job_balancing_action_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.job_action" />
+    <field name="active" eval="True" />
+    <field name="name">Job Balancing</field>
+    <field name="parent_id" ref="job_balancing_menu_item" />
+    <field name="sequence">5300</field>
+  </record>
+<!---->
+
+<!--performance evaluation-->
+  <record id="performance_evaluation_menu_item" model="ir.ui.menu">
+    <field name="active" eval="True" />
+    <field name="name">Performance Evaluation</field>
+    <field name="sequence">5400</field>
+    <field name="web_icon">fa fa-star-half-o ,#FFFFFF,#2d0038</field>
+  </record>
+
+  <record id="performance_evaluation_action_sub_menu_item" model="ir.ui.menu">
+    <field name="action" ref="hr_extend_minds.performance_evaluation_action" />
+    <field name="active" eval="True" />
+    <field name="name">Performance Evaluation</field>
+    <field name="parent_id" ref="performance_evaluation_menu_item" />
+    <field name="sequence">5500</field>
+  </record>
+
+<!---->
+
 </odoo>
