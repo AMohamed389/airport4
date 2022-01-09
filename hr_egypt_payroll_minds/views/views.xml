@@ -344,5 +344,103 @@
       </field>
     </record>
 
+
+    <!-- payroll_config-->
+    <record id="action_payroll_config" model="ir.actions.act_window">
+      <field name="name">payroll_config</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">payroll_config</field>
+      <field name="view_mode">form</field>
+      <field name="res_id" eval="ref('hr_egypt_payroll_minds.payroll_config_01')"/>
+    </record>
+
+    <record id="view_payroll_config_form" model="ir.ui.view">
+      <field name="name">view_payroll_config_form</field>
+      <field name="model">payroll_config</field>
+      <field name="arch" type="xml">
+        <form  write="0" create="0" delete="0">
+
+          <header>
+
+            <button name="activate_dynamic" type="object" string="Activate" class="oe_highlight" attrs="{'invisible':[('active', '=', True)]}"/>
+            <button name="deactivate_dynamic" type="object" string="Deactivate" class="oe_highlight" attrs="{'invisible':[('active', '=', False)]}"/>
+          
+          </header>
+
+          <sheet>
+
+            <div name="button_box" class="oe_button_box">
+            </div>
+
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Name"/>
+              </h1>
+            </div>
+
+
+            <group name="main_group">
+
+              <group name="group_left">
+                <field name="active"/>
+              </group>
+
+              <group name="group_right">
+              </group>
+
+            </group>
+
+
+            <!-- <notebook name="main_notebook">
+                <page name="page1" string="page name">
+                  
+                </page>
+              </notebook> -->
+
+          </sheet>
+
+          <div class="oe_chatter" name="mainchatterview">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div>
+
+        </form>
+      </field>
+    </record>
+
+    
+    <!-- hr.employee payroll static slices-->
+    <record id="view_hr_employee_static_slices_list" model="ir.ui.view">
+      <field name="name">view_hr.employee_list</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <tree delete="0" editable="bottom" create="0">
+          <field name="x_staff_id" readonly="1" optional="show"/>
+          <field name="name" readonly="1" optional="show"/>
+          <field name="x_sector_name" readonly="1" optional="show"/>
+          <field name="employee_job_incentive_id" optional="show"/>
+          <field name="employee_job_incentive_code" optional="hide"/>
+          <field name="static_job_incentive" optional="show"/>
+          <field name="employee_extra_incentive_id" optional="show"/>
+          <field name="employee_extra_incentive_code" optional="hide"/>
+          <field name="static_extra_incentive" optional="show"/>
+          <field name="x_work_schedule_type" readonly="1" optional="hide"/>
+          <field name="job_id" readonly="1" optional="hide"/>
+          <field name="x_qualitative_group_id" readonly="1" optional="hide"/>
+          <field name="x_job_degree_id" readonly="1" optional="hide"/>
+          <field name="x_job_degree_date" readonly="1" optional="hide"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_hr_employee_static_slices" model="ir.actions.act_window">
+      <field name="name">Employees Slices</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="view_hr_employee_static_slices_list" />
+    </record>
+    
   </data>
 </odoo>

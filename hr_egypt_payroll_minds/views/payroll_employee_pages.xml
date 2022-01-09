@@ -120,4 +120,18 @@
         </field>
     </record>
 
+
+    <record id="hr_employee_payroll_extend_1" model="ir.ui.view">
+        <field name="name">hr_employee_payroll_extend_view </field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_extend_minds.hr_employee_extend_2"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='x_job_degree_date']" position="after">
+                <field name="x_calc_degree_date_years"/>
+            </xpath>
+            
+        </field>
+    </record>
+
 </odoo>

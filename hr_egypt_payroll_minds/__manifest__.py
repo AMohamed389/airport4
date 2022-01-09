@@ -21,6 +21,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        'data/payroll_config.xml',
         'views/pivot.xml',
         'views/views.xml',
         'views/ir.ui.menu.xml',
